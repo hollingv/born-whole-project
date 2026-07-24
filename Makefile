@@ -1,7 +1,7 @@
 .PHONY: help init build build-all test clean version-preview release-preview release
 .SILENT:
 
-APP_NAME    = iserver
+APP_NAME    = iwebsite
 GO_VERSION  = 1.26.1
 COG_VERSION = 7.0.0
 DRY_RUN    ?= true
@@ -57,17 +57,16 @@ init: ## Install Go if not already present (run once after cloning)
 	cp scripts/hooks/pre-push.sh .git/hooks/pre-push
 	chmod +x .git/hooks/pre-push
 
-build: ## Build the igcli binary for the current platform
+build: ## Build the binary for the current platform
 	@echo "[ INFO ] Tidying Go modules..."
 	$(GO_BIN) mod tidy
 	@echo "Building $(APP_NAME) version $(APP_TAG)..."
-	CGO_ENABLED=0 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME) ./cmd/igcli
+	CGO_ENABLED=0 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME) .
 
 build-all: ## Build static binaries for all platforms (linux/amd64, darwin/arm64)
 	@echo "Building $(APP_NAME) for all platforms (version $(APP_TAG))..."
-	CGO_ENABLED=0 GOOS=linux  GOARCH=amd64 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME)-linux-amd64 ./cmd/igcli
-	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME)-darwin-arm64 ./cmd/igcli
-	@echo "Built: $(APP_NAME)-linux-amd64, $(APP_NAME)-darwin-arm64"
+	CGO_ENABLED=0 GOOS=linux  GOARCH=amd64 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME)-linux-amd64 .
+	@echo "Built: $(APP_NAME)-linux-amd64"
 
 test: build  ## Build and run all tests
 	@./$(APP_NAME)
