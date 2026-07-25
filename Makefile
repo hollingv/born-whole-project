@@ -69,7 +69,7 @@ build-all: ## Build static binaries for all platforms (linux/amd64, darwin/arm64
 	@echo "Built: $(APP_NAME)-linux-amd64"
 
 test: build  ## Build and run all tests
-	@./$(APP_NAME)
+	$(GO_BIN) test
 
 version-preview: ## Show the next semantic version based on commits since last tag
 	@echo "Current version: $(APP_TAG)"
