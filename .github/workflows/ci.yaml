@@ -37,11 +37,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: iwebsite
-          directory: .
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Dummy Deploy
+        run: echo "Dummy Deploy - cloudflare"
