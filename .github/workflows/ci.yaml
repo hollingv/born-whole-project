@@ -28,6 +28,7 @@ jobs:
         run: make test
 
   deploy:
+    needs: ci
     runs-on: ubuntu-latest
 
     steps:
