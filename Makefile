@@ -52,10 +52,6 @@ init: ## Install Go if not already present (run once after cloning)
 	else \
 		echo "[ INFO ] cog already installed: $$(cog --version)"; \
 	fi
-	# --- git hooks ---
-	@echo "[ INFO ] Installing pre-push hook..."
-	cp scripts/hooks/pre-push.sh .git/hooks/pre-push
-	chmod +x .git/hooks/pre-push
 
 build: ## Build the binary for the current platform
 	@echo "[ INFO ] Tidying Go modules..."
