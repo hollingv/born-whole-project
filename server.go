@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fs := http.FileServer(http.Dir("."))
+	fs := http.FileServer(http.Dir("site"))
 	http.Handle("/", fs)
 
 	log.Println("Serving on http://localhost:8080")
