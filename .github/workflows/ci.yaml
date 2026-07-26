@@ -32,27 +32,14 @@ jobs:
         run: make test
 
   deploy:
-    name: Deploy to GitHub Pages
+    name: Deploy iwebsite
     needs: ci
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Dummy Deployment
+        run: echo "Dummy Deployment (TBD)"
