@@ -13,7 +13,7 @@ APP_TAG := $(shell \
 	if test -n "$$(git status --short)"; then \
 		echo "local-dirty"; \
 	else \
-		git describe --tags --match "v*" 2>/dev/null || echo "untagged"; \
+		git describe --tags --match "v*" 2>/dev/null || echo "sha-$$(git rev-parse --short=7 HEAD)"; \
 	fi)
 
 help:
@@ -95,6 +95,9 @@ release: build-all release-preview ## Perform a full release. Set DRY_RUN=false 
 		echo "";\
 		echo "[INFO] Release completed OK. CI will build and publish the artifacts.";\
 	fi
+
+app-tag: ## Print the current APP_TAG
+	@echo "$(APP_TAG)"
 
 clean: ## Remove built binaries
 	@echo "Cleaning up..."

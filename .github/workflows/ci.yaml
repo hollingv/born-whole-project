@@ -35,6 +35,13 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
 
+      - name: Compute APP_TAG
+        id: app_tag
+        run: echo "tag=$(make app-tag)" >> $GITHUB_OUTPUT
+
+      - name: Inject APP_TAG
+        run: sed -i "s/__COMMIT_SHA__/${{ steps.app_tag.outputs.tag }}/g" site/index.html
+
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy site --project-name=global-autonomy
         env:
