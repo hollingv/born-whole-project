@@ -1,7 +1,7 @@
 .PHONY: help init build build-all test clean version-preview release-preview release
 .SILENT:
 
-APP_NAME    = iwebsite
+APP_NAME    = gacli
 GO_VERSION  = 1.26.1
 COG_VERSION = 7.0.0
 DRY_RUN    ?= true
@@ -18,7 +18,7 @@ APP_TAG := $(shell \
 
 help:
 	@echo ""
-	@echo "Central Intactivism Website"
+	@echo "Global Autonomy Website"
 	@echo "(version: $(APP_TAG))"
 	@echo ""
 	@grep -E '^[a-zA-Z0-9-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -57,15 +57,17 @@ build: ## Build the binary for the current platform
 	@echo "[ INFO ] Tidying Go modules..."
 	$(GO_BIN) mod tidy
 	@echo "Building $(APP_NAME) version $(APP_TAG)..."
-	CGO_ENABLED=0 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME) .
+	CGO_ENABLED=0 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME) ./cmd/$(APP_NAME)
+
+
 
 build-all: ## Build static binaries for all platforms (linux/amd64, darwin/arm64)
 	@echo "Building $(APP_NAME) for all platforms (version $(APP_TAG))..."
-	CGO_ENABLED=0 GOOS=linux  GOARCH=amd64 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME)-linux-amd64 .
+	CGO_ENABLED=0 GOOS=linux  GOARCH=amd64 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME)-linux-amd64 ./cmd/$(APP_NAME)
 	@echo "Built: $(APP_NAME)-linux-amd64"
 
 test: build  ## Build and run all tests
-	$(GO_BIN) test
+	$(GO_BIN) test ./cmd/server/... ./cmd/$(APP_NAME)/...
 
 version-preview: ## Show the next semantic version based on commits since last tag
 	@echo "Current version: $(APP_TAG)"
