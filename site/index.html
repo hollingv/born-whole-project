@@ -55,13 +55,13 @@
             margin-bottom: 1.2rem;
         }
         .hero p {
-            font-size: 1.05rem;
+            font-size: 1.365rem;
             line-height: 1.75;
             color: rgba(255, 255, 255, 0.85);
             margin-bottom: 0.8rem;
         }
         .hero .tagline {
-            font-size: 1.1rem;
+            font-size: 1.43rem;
             font-weight: 700;
             color: #fff;
             border-left: 4px solid #5ba3f5;
@@ -78,6 +78,14 @@
             height: auto;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             display: block;
+        }
+        @media (min-width: 1200px) {
+            .hero-image img { max-width: 640px; }
+            .hero-text { max-width: 640px; }
+        }
+        @media (min-width: 1600px) {
+            .hero-image img { max-width: 1200px; }
+            .hero-text { max-width: 1200px; }
         }
 
         /* Main */
