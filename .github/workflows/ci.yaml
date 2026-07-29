@@ -13,12 +13,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  ci:
-    name: Test and Build
+  deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Check out repository
         uses: actions/checkout@v6
 
       - name: Run make init to initialize build env
@@ -26,14 +26,6 @@ jobs:
 
       - name: Build and Test
         run: make test
-
-  deploy:
-    needs: ci
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v6
 
       - name: Compute APP_TAG
         id: app_tag
