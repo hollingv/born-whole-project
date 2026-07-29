@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Autonomy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <nav>
+        <span class="brand">Global Autonomy</span>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Global Autonomy</h1>
+            <p>Central site to direct people to existing websites providing information about the harms of genital cutting and the legal efforts to stop it.</p>
+            <p>We are committed to ending the genital cutting of infants and protecting every child's right to bodily autonomy and informed consent.</p>
+            <p>Our mission is to provide accurate information, connect people with trusted resources, and support the organizations leading the effort to end this practice.</p>
+            <div class="tagline">Learn. Understand. Take action.</div>
+        </div>
+        <div class="hero-image">
+            <img src="images/HeroImage.png" alt="Global Autonomy" />
+        </div>
+    </section>
+
+    <main>
+        <h2>Organizations working toward this goal</h2>
+        <p>We are an independent advocacy resource and feature organizations whose work we believe deserves greater visibility.
+        <p> Learn more about each organization through the links below.</p>
+        <p></p>
+        <div class="cards">
+            {{range .Organizations}}{{template "organization-card" .}}{{end}}
+        </div>
+    </main>
+
+    <footer>commit: __COMMIT_SHA__</footer>
+
+</body>
+</html>

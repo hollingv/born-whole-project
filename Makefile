@@ -1,4 +1,4 @@
-.PHONY: help init build build-all test clean version-preview release-preview release
+.PHONY: help init build test clean version-preview release-preview release
 .SILENT:
 
 APP_NAME    = gacli
@@ -53,21 +53,16 @@ init: ## Install Go if not already present (run once after cloning)
 		echo "[ INFO ] cog already installed: $$(cog --version)"; \
 	fi
 
-build: ## Build the binary for the current platform
+build: ## Build the binary and site
 	@echo "[ INFO ] Tidying Go modules..."
 	$(GO_BIN) mod tidy
 	@echo "Building $(APP_NAME) version $(APP_TAG)..."
 	CGO_ENABLED=0 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME) ./src/cmd/$(APP_NAME)
-
-
-
-build-all: ## Build static binaries for all platforms (linux/amd64, darwin/arm64)
-	@echo "Building $(APP_NAME) for all platforms (version $(APP_TAG))..."
-	CGO_ENABLED=0 GOOS=linux  GOARCH=amd64 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME)-linux-amd64 ./src/cmd/$(APP_NAME)
-	@echo "Built: $(APP_NAME)-linux-amd64"
+	./$(APP_NAME) html
+	@echo "Built: $(APP_NAME)"
 
 test: build  ## Build and run all tests
-	$(GO_BIN) test ./src/cmd/server/... ./src/cmd/$(APP_NAME)/...
+	$(GO_BIN) test ./src/cmd/$(APP_NAME)/... ./src/server/...
 
 version-preview: ## Show the next semantic version based on commits since last tag
 	@echo "Current version: $(APP_TAG)"
@@ -83,7 +78,7 @@ release-preview: ## Dry run showing next version and full changelog without maki
 	@cog bump --dry-run --auto
 	@echo ""
 
-release: build-all release-preview ## Perform a full release. Set DRY_RUN=false to perform the actual release.
+release: build release-preview ## Perform a full release. Set DRY_RUN=false to perform the actual release.
 	@if [ "$(DRY_RUN)" = "true" ]; then \
 		echo "[INFO] Dry run complete";\
 		echo "[INFO] Run 'make release DRY_RUN=false' to perform the actual release.";\
