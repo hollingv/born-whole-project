@@ -79,6 +79,13 @@ func TestJSServed(t *testing.T) {
 	}
 }
 
+func TestAskButtonPresent(t *testing.T) {
+	resp := get(t, "/")
+	if !strings.Contains(body(t, resp), "prompt-submit") {
+		t.Error("expected page to contain the ask prompt button")
+	}
+}
+
 func TestUsage(t *testing.T) {
 	fmt.Printf("Running integration tests against: %s\n", *baseURL)
 }

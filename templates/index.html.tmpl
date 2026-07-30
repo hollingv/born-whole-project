@@ -14,21 +14,24 @@
 
     <nav>
         <span class="brand">{{.SiteName}}</span>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#organizations">Organizations</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
         </button>
         <ul class="nav-menu" id="nav-menu">
-            <li><a href="#">Luminary</a></li>
-            <li><a href="#">Vestige</a></li>
-            <li><a href="#">Cobalt</a></li>
-            <li><a href="#">Meridian</a></li>
-            <li><a href="#">Quorum</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#organizations">Organizations</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
-    <section class="hero">
+    <section class="hero" id="about">
         <div class="hero-text">
             <h1>{{.SiteName}}</h1>
             <p>Central site to direct people to existing websites providing information about the harms of genital cutting and the legal efforts to stop it.</p>
@@ -41,10 +44,20 @@
         </div>
     </section>
 
-    <main>
+    <section id="ask" class="ask-section">
+        <h2>What do you want to know about?</h2>
+        <form class="prompt-form" action="#" method="get">
+            <div class="prompt-input-wrapper">
+                <input type="text" class="prompt-input" name="q" placeholder="Ask anything..." autocomplete="off" />
+                <button type="submit" class="prompt-submit">Ask</button>
+            </div>
+        </form>
+    </section>
+
+    <main id="organizations">
         <h2>Organizations working toward this goal</h2>
         <p>We are an independent advocacy resource and feature organizations whose work we believe deserves greater visibility.
-        <p> Learn more about each organization through the links below.</p>
+        <p>Learn more about each organization through the links below.</p>
         <p></p>
         {{range .OrgGroups}}
         <div class="org-group">
@@ -55,6 +68,12 @@
         </div>
         {{end}}
     </main>
+
+    <section id="contact" class="contact-section">
+        <h2>Contact</h2>
+        <p>Have a suggestion for an organization to feature, or want to get in touch?</p>
+        <a href="mailto:info@globalautonomy.org" class="contact-link">info@globalautonomy.org</a>
+    </section>
 
     <footer>version: __COMMIT_SHA__</footer>
 
