@@ -23,17 +23,18 @@ func init() {
 	}
 }
 
-func main() {
-	fs := http.FileServer(http.Dir("site"))
+func newHandler(siteDir string, ver string) http.Handler {
+	fs := http.FileServer(http.Dir(siteDir))
+	mux := http.NewServeMux()
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/" || r.URL.Path == "/index.html" {
-			content, err := os.ReadFile("site/index.html")
+			content, err := os.ReadFile(siteDir + "/index.html")
 			if err != nil {
 				http.Error(w, "not found", http.StatusNotFound)
 				return
 			}
-			html := strings.ReplaceAll(string(content), "__COMMIT_SHA__", version)
+			html := strings.ReplaceAll(string(content), "__COMMIT_SHA__", ver)
 			w.Header().Set("Content-Type", "text/html; charset=utf-8")
 			w.Write([]byte(html))
 			return
@@ -41,6 +42,10 @@ func main() {
 		fs.ServeHTTP(w, r)
 	})
 
+	return mux
+}
+
+func main() {
 	log.Println("Serving on http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", newHandler("site", version)))
 }
