@@ -13,7 +13,13 @@ APP_TAG := $(shell \
 	if test -n "$$(git status --short)"; then \
 		echo "local-dirty"; \
 	else \
-		git describe --tags --match "v*" 2>/dev/null || echo "sha-$$(git rev-parse --short=7 HEAD)"; \
+		TAG=$$(git describe --tags --match "v*" 2>/dev/null || git rev-parse --short=7 HEAD); \
+		BRANCH=$$(git rev-parse --abbrev-ref HEAD); \
+		if [ "$$BRANCH" = "main" ]; then \
+			echo "$$TAG"; \
+		else \
+			echo "$$TAG-$$BRANCH"; \
+		fi; \
 	fi)
 
 help:
