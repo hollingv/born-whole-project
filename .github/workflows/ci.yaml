@@ -2,8 +2,11 @@ name: CI/CD
 
 on:
   push:
-    branches: [main]
+    branches: [main, devel]
   pull_request:
+
+env:
+  DEPLOY_BRANCH: refs/heads/main
 
 permissions:
   contents: read
@@ -35,6 +38,7 @@ jobs:
         run: sed -i "s/__COMMIT_SHA__/${{ steps.app_tag.outputs.tag }}/g" site/index.html
 
       - name: Deploy to Cloudflare Pages
+        if: github.ref == env.DEPLOY_BRANCH
         run: npx wrangler pages deploy site --project-name=global-autonomy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

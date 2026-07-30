@@ -3,28 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Autonomy</title>
+    <title>{{.SiteName}}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
 </head>
 <body>
 
     <nav>
-        <span class="brand">Global Autonomy</span>
+        <span class="brand">{{.SiteName}}</span>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="#">Luminary</a></li>
+            <li><a href="#">Vestige</a></li>
+            <li><a href="#">Cobalt</a></li>
+            <li><a href="#">Meridian</a></li>
+            <li><a href="#">Quorum</a></li>
+        </ul>
     </nav>
 
     <section class="hero">
         <div class="hero-text">
-            <h1>Global Autonomy</h1>
+            <h1>{{.SiteName}}</h1>
             <p>Central site to direct people to existing websites providing information about the harms of genital cutting and the legal efforts to stop it.</p>
             <p>We are committed to ending the genital cutting of infants and protecting every child's right to bodily autonomy and informed consent.</p>
             <p>Our mission is to provide accurate information, connect people with trusted resources, and support the organizations leading the effort to end this practice.</p>
             <div class="tagline">Learn. Understand. Take action.</div>
         </div>
         <div class="hero-image">
-            <img src="images/HeroImage.png" alt="Global Autonomy" />
+            <img src="images/HeroImage.webp" alt="Global Autonomy" />
         </div>
     </section>
 
@@ -33,9 +46,14 @@
         <p>We are an independent advocacy resource and feature organizations whose work we believe deserves greater visibility.
         <p> Learn more about each organization through the links below.</p>
         <p></p>
+        {{range .OrgGroups}}
+        <div class="org-group">
+        <h3>{{.Type}}</h3>
         <div class="cards">
             {{range .Organizations}}{{template "organization-card" .}}{{end}}
         </div>
+        </div>
+        {{end}}
     </main>
 
     <footer>commit: __COMMIT_SHA__</footer>
