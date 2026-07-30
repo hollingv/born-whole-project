@@ -1,6 +1,9 @@
 {{define "organization-card"}}
 <article class="organization-card">
-    <a href="{{.Website}}" target="_blank">{{.Name}}</a>
+    <div class="org-header">
+        <h3>{{.Name}}</h3>
+        <a href="{{.Website}}" target="_blank" class="org-button">Visit Site</a>
+    </div>
     <p>{{.Description}}</p>
 </article>
 {{end}}
