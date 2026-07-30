@@ -14,7 +14,7 @@ type OrgGroup struct {
 	Organizations []Organization
 }
 
-const placeholderImage = "images/placeholder.svg"
+const placeholderImage = "images/placeholder.jpg"
 
 // orgGroups is the list of organization groups to display on the site.
 var orgGroups = []OrgGroup{

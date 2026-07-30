@@ -193,18 +193,24 @@ main p {
 }
 .organization-card a.org-button {
     display: inline-block;
+    width: 120px;
+    flex-shrink: 0;
+    white-space: nowrap;
     padding: 0.5rem 1.5rem;
     background-color: #c8dff7;
+    background-size: cover;
+    background-position: center;
     color: #0f1f3d;
     border-radius: 6px;
     text-decoration: none;
     font-size: 0.875rem;
     font-weight: 600;
-    transition: background-color 0.2s;
+    font-weight: 600;
+    transition: opacity 0.2s;
     align-self: flex-start;
 }
 .organization-card a.org-button:hover {
-    background-color: #a0c8f0;
+    opacity: 0.85;
 }
 .organization-card .placeholder {
     font-size: 0.85rem;
