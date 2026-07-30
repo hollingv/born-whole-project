@@ -76,7 +76,7 @@ test-integ-local: build ## Start server, run integration tests, stop server
 	@go run ./src/server/server.go > /dev/null 2>&1 & \
 	SERVER_PID=$$!; \
 	sleep 2; \
-	$(GO_BIN) test ./src/test-integ/... -url http://localhost:8080 > /dev/null 2>&1; \
+	$(GO_BIN) test ./src/test-integ/... -url http://localhost:8080; \
 	TEST_EXIT=$$?; \
 	kill $$SERVER_PID 2>/dev/null; \
 	if [ $$TEST_EXIT -eq 0 ]; then echo "Tests PASSED"; else echo "Tests FAILED"; fi; \

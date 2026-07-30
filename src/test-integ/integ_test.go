@@ -7,9 +7,35 @@ import (
 	"net/http"
 	"strings"
 	"testing"
+	"time"
 )
 
 var baseURL = flag.String("url", "http://localhost:8080", "base URL of the site to test")
+
+func waitForSite(timeout time.Duration) error {
+	deadline := time.Now().Add(timeout)
+	for time.Now().Before(deadline) {
+		resp, err := http.Get(*baseURL + "/")
+		if err == nil && resp.StatusCode == http.StatusOK {
+			resp.Body.Close()
+			return nil
+		}
+		if resp != nil {
+			resp.Body.Close()
+		}
+		time.Sleep(2 * time.Second)
+	}
+	return fmt.Errorf("site did not return 200 within %s", timeout)
+}
+
+func TestMain(m *testing.M) {
+	flag.Parse()
+	if err := waitForSite(30 * time.Second); err != nil {
+		fmt.Println("FAIL:", err)
+		return
+	}
+	m.Run()
+}
 
 func get(t *testing.T, path string) *http.Response {
 	t.Helper()
@@ -80,9 +106,10 @@ func TestJSServed(t *testing.T) {
 }
 
 func TestAskButtonPresent(t *testing.T) {
+	askButtonName := "prompt-submit"
 	resp := get(t, "/")
-	if !strings.Contains(body(t, resp), "prompt-submit") {
-		t.Error("expected page to contain the ask prompt button")
+	if !strings.Contains(body(t, resp), askButtonName) {
+		t.Errorf("expected page to contain the ask prompt button '%s'", askButtonName)
 	}
 }
 
