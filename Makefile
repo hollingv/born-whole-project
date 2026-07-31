@@ -64,7 +64,7 @@ build: ## Build the binary and site
 	$(GO_BIN) mod tidy
 	@echo "Building $(APP_NAME) version $(APP_TAG)..."
 	CGO_ENABLED=0 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME) ./src/cmd/$(APP_NAME)
-	./$(APP_NAME) html
+	./$(APP_NAME) site
 	@echo "Built: $(APP_NAME)"
 
 test: build test-unit test-integ-local ## Build and run all tests

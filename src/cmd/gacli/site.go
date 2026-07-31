@@ -31,8 +31,8 @@ var pages = []page{
 	},
 }
 
-var htmlCmd = &cobra.Command{
-	Use:   "html",
+var siteCmd = &cobra.Command{
+	Use:   "site",
 	Short: "Generate site HTML from templates and organization data",
 	Long:  `Renders all page templates and writes output to site/`,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -63,5 +63,5 @@ var htmlCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(htmlCmd)
+	rootCmd.AddCommand(siteCmd)
 }
