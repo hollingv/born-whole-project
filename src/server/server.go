@@ -34,12 +34,16 @@ func newHandler(siteDir string, ver string) http.Handler {
 		fmt.Fprintf(w, "<p>You asked: <strong>%s</strong></p><p>Stub response: more information coming soon.</p>", q)
 	})
 
+	generatedPages := map[string]string{
+		"/":                   "index.html",
+		"/index.html":         "index.html",
+		"/mission.html":       "mission.html",
+		"/about.html":         "about.html",
+		"/organizations.html": "organizations.html",
+	}
+
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path == "/" || r.URL.Path == "/index.html" || r.URL.Path == "/mission.html" {
-			fileName := "index.html"
-			if r.URL.Path == "/mission.html" {
-				fileName = "mission.html"
-			}
+		if fileName, ok := generatedPages[r.URL.Path]; ok {
 			content, err := os.ReadFile(siteDir + "/" + fileName)
 			if err != nil {
 				http.Error(w, "not found", http.StatusNotFound)

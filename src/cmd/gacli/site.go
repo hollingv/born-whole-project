@@ -22,12 +22,20 @@ type page struct {
 
 var pages = []page{
 	{
-		tmplFiles: []string{"templates/index.html.tmpl", "templates/organization.html.tmpl"},
+		tmplFiles: []string{"templates/index.html.tmpl", "templates/nav.html.tmpl"},
 		output:    "site/index.html",
 	},
 	{
-		tmplFiles: []string{"templates/mission.html.tmpl"},
+		tmplFiles: []string{"templates/mission.html.tmpl", "templates/nav.html.tmpl"},
 		output:    "site/mission.html",
+	},
+	{
+		tmplFiles: []string{"templates/about.html.tmpl", "templates/nav.html.tmpl"},
+		output:    "site/about.html",
+	},
+	{
+		tmplFiles: []string{"templates/organizations.html.tmpl", "templates/nav.html.tmpl", "templates/organization.html.tmpl"},
+		output:    "site/organizations.html",
 	},
 }
 

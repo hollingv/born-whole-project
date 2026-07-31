@@ -42,8 +42,9 @@ jobs:
 
       - name: Inject APP_TAG
         run: |
-          sed -i "s/__COMMIT_SHA__/${{ steps.app_tag.outputs.tag }}/g" site/index.html
-          sed -i "s/__COMMIT_SHA__/${{ steps.app_tag.outputs.tag }}/g" site/mission.html
+          for f in site/index.html site/mission.html site/about.html site/organizations.html; do
+            sed -i "s/__COMMIT_SHA__/${{ steps.app_tag.outputs.tag }}/g" "$f"
+          done
 
       # -------------------------------------------------------------------------------------
       # Deploy env.MAIN_BRANCH

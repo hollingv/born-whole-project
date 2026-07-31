@@ -13,33 +13,13 @@
 </head>
 <body>
 
-    <nav>
-        <span class="brand">{{.SiteName}}</span>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="mission.html">Mission</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#organizations">Organizations</a></li>
-        </ul>
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <ul class="nav-menu" id="nav-menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="mission.html">Mission</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#organizations">Organizations</a></li>
-            <li class="nav-version" id="nav-version"></li>
-        </ul>
-    </nav>
+    {{template "nav" .}}
 
     <section class="hero" id="about">
         <div class="hero-text">
             <h1>{{.SiteName}}</h1>
             <p>Central site to direct people to existing websites providing information about the harms of genital cutting and the legal efforts to stop it.</p>
-            <p>We are committed to ending the genital cutting of infants and protecting every child's right to bodily autonomy.</p>
+            <p>We are committed to ending the genital cutting of infants and protecting every child's right to bodily autonomy and informed consent.</p>
             <p>Our mission is to provide accurate information, connect people with trusted resources, and support the organizations leading the effort to end this practice.</p>
             <div class="tagline">Learn. Understand. Take action.</div>
         </div>
@@ -57,27 +37,6 @@
             </div>
         </form>
         <div id="ask-response" class="ask-response"></div>
-    </section>
-
-    <main id="organizations">
-        <h2>Organizations working toward this goal</h2>
-        <p>We are an independent advocacy resource and feature organizations whose work we believe deserves greater visibility.
-        <p>Learn more about each organization through the links below.</p>
-        <p></p>
-        {{range .OrgGroups}}
-        <div class="org-group">
-        <h3>{{.Type}}</h3>
-        <div class="cards">
-            {{range .Organizations}}{{template "organization-card" .}}{{end}}
-        </div>
-        </div>
-        {{end}}
-    </main>
-
-    <section id="contact" class="contact-section">
-        <h2>Contact</h2>
-        <p>Have a suggestion for an organization to feature, or want to get in touch?</p>
-        <a href="mailto:donotuse@acme.org" class="contact-link">donotuse@acme.org</a>
     </section>
 
     <footer data-version="__COMMIT_SHA__">version: __COMMIT_SHA__</footer>

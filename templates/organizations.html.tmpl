@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizations — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main id="organizations">
+        <h2>Organizations working toward this goal</h2>
+        <p>We are an independent advocacy resource and feature organizations whose work we believe deserves greater visibility.</p>
+        <p>Learn more about each organization through the links below.</p>
+        {{range .OrgGroups}}
+        <div class="org-group">
+            <h3>{{.Type}}</h3>
+            <div class="cards">
+                {{range .Organizations}}{{template "organization-card" .}}{{end}}
+            </div>
+        </div>
+        {{end}}
+    </main>
+
+    <footer data-version="__COMMIT_SHA__">version: __COMMIT_SHA__</footer>
+
+</body>
+</html>
