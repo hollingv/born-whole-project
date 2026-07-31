@@ -36,16 +36,6 @@ jobs:
       - name: Build and Test
         run: make test
 
-      - name: Compute APP_TAG
-        id: app_tag
-        run: echo "tag=$(make app-tag)" >> $GITHUB_OUTPUT
-
-      - name: Inject APP_TAG
-        run: |
-          for f in site/index.html site/mission.html site/about.html site/organizations.html; do
-            sed -i "s/__COMMIT_SHA__/${{ steps.app_tag.outputs.tag }}/g" "$f"
-          done
-
       # -------------------------------------------------------------------------------------
       # Deploy env.MAIN_BRANCH
       # -------------------------------------------------------------------------------------

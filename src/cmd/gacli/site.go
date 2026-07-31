@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"html/template"
 	"os"
+	"path/filepath"
+	"strings"
 
 	"github.com/spf13/cobra"
 )
@@ -12,6 +14,7 @@ const siteName = "Global Autonomy"
 
 type templateData struct {
 	SiteName  string
+	Version   string
 	OrgGroups []OrgGroup
 }
 
@@ -20,31 +23,59 @@ type page struct {
 	output    string
 }
 
-var pages = []page{
-	{
-		tmplFiles: []string{"templates/index.html.tmpl", "templates/nav.html.tmpl"},
-		output:    "site/index.html",
-	},
-	{
-		tmplFiles: []string{"templates/mission.html.tmpl", "templates/nav.html.tmpl"},
-		output:    "site/mission.html",
-	},
-	{
-		tmplFiles: []string{"templates/about.html.tmpl", "templates/nav.html.tmpl"},
-		output:    "site/about.html",
-	},
-	{
-		tmplFiles: []string{"templates/organizations.html.tmpl", "templates/nav.html.tmpl", "templates/organization.html.tmpl"},
-		output:    "site/organizations.html",
-	},
+// discoverPages scans the templates directory and builds the list of pages to
+// generate. Files containing {{define are treated as shared templates and
+// included with every page. All other .tmpl files are treated as page templates.
+func discoverPages(tmplDir string) ([]page, error) {
+	entries, err := os.ReadDir(tmplDir)
+	if err != nil {
+		return nil, fmt.Errorf("reading templates directory: %w", err)
+	}
+
+	var shared []string
+	var pageTmpls []string
+
+	for _, e := range entries {
+		if e.IsDir() || !strings.HasSuffix(e.Name(), ".tmpl") {
+			continue
+		}
+		path := filepath.Join(tmplDir, e.Name())
+		content, err := os.ReadFile(path)
+		if err != nil {
+			return nil, fmt.Errorf("reading %s: %w", path, err)
+		}
+		if strings.Contains(string(content), "{{define") {
+			shared = append(shared, path)
+		} else {
+			pageTmpls = append(pageTmpls, path)
+		}
+	}
+
+	var pages []page
+	for _, pt := range pageTmpls {
+		name := strings.TrimSuffix(filepath.Base(pt), ".tmpl")
+		pages = append(pages, page{
+			tmplFiles: append([]string{pt}, shared...),
+			output:    filepath.Join("site", name),
+		})
+	}
+
+	return pages, nil
 }
 
 var siteCmd = &cobra.Command{
 	Use:   "site",
 	Short: "Generate site HTML from templates and organization data",
-	Long:  `Renders all page templates and writes output to site/`,
+	Long:  `Discovers all page templates and renders them to site/`,
 	Run: func(cmd *cobra.Command, args []string) {
-		data := templateData{SiteName: siteName, OrgGroups: orgGroups}
+		version, _ := cmd.Flags().GetString("version")
+		data := templateData{SiteName: siteName, Version: version, OrgGroups: orgGroups}
+
+		pages, err := discoverPages("templates")
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error discovering templates: %v\n", err)
+			os.Exit(1)
+		}
 
 		for _, p := range pages {
 			tmpl, err := template.ParseFiles(p.tmplFiles...)
@@ -72,4 +103,5 @@ var siteCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(siteCmd)
+	siteCmd.Flags().String("version", "local-dirty", "Version string to embed in the page footer")
 }

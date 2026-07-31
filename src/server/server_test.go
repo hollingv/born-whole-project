@@ -17,7 +17,7 @@ func TestMain(m *testing.M) {
 }
 
 func TestIndexReturns200(t *testing.T) {
-	srv := httptest.NewServer(newHandler("site", "test-version"))
+	srv := httptest.NewServer(newHandler("site"))
 	defer srv.Close()
 
 	resp, err := http.Get(srv.URL + "/")
