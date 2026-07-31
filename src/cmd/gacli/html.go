@@ -8,12 +8,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const (
-	tmplPath   = "templates/index.html.tmpl"
-	orgTmpl    = "templates/organization.html.tmpl"
-	outputPath = "site/index.html"
-)
-
 const siteName = "Global Autonomy"
 
 type templateData struct {
@@ -21,30 +15,50 @@ type templateData struct {
 	OrgGroups []OrgGroup
 }
 
+type page struct {
+	tmplFiles []string
+	output    string
+}
+
+var pages = []page{
+	{
+		tmplFiles: []string{"templates/index.html.tmpl", "templates/organization.html.tmpl"},
+		output:    "site/index.html",
+	},
+	{
+		tmplFiles: []string{"templates/mission.html.tmpl"},
+		output:    "site/mission.html",
+	},
+}
+
 var htmlCmd = &cobra.Command{
 	Use:   "html",
-	Short: "Generate index.html from templates and organization data",
-	Long:  `Renders templates/index.html.tmpl with organization data and writes site/index.html`,
+	Short: "Generate site HTML from templates and organization data",
+	Long:  `Renders all page templates and writes output to site/`,
 	Run: func(cmd *cobra.Command, args []string) {
-		tmpl, err := template.ParseFiles(tmplPath, orgTmpl)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "Error parsing templates: %v\n", err)
-			os.Exit(1)
-		}
+		data := templateData{SiteName: siteName, OrgGroups: orgGroups}
 
-		f, err := os.Create(outputPath)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "Error creating %s: %v\n", outputPath, err)
-			os.Exit(1)
-		}
-		defer f.Close()
+		for _, p := range pages {
+			tmpl, err := template.ParseFiles(p.tmplFiles...)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "Error parsing templates %v: %v\n", p.tmplFiles, err)
+				os.Exit(1)
+			}
 
-		if err := tmpl.Execute(f, templateData{SiteName: siteName, OrgGroups: orgGroups}); err != nil {
-			fmt.Fprintf(os.Stderr, "Error rendering template: %v\n", err)
-			os.Exit(1)
-		}
+			f, err := os.Create(p.output)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "Error creating %s: %v\n", p.output, err)
+				os.Exit(1)
+			}
 
-		fmt.Printf("Generated %s\n", outputPath)
+			if err := tmpl.Execute(f, data); err != nil {
+				f.Close()
+				fmt.Fprintf(os.Stderr, "Error rendering %s: %v\n", p.output, err)
+				os.Exit(1)
+			}
+			f.Close()
+			fmt.Printf("Generated %s\n", p.output)
+		}
 	},
 }
 

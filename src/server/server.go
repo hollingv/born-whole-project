@@ -35,8 +35,12 @@ func newHandler(siteDir string, ver string) http.Handler {
 	})
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path == "/" || r.URL.Path == "/index.html" {
-			content, err := os.ReadFile(siteDir + "/index.html")
+		if r.URL.Path == "/" || r.URL.Path == "/index.html" || r.URL.Path == "/mission.html" {
+			fileName := "index.html"
+			if r.URL.Path == "/mission.html" {
+				fileName = "mission.html"
+			}
+			content, err := os.ReadFile(siteDir + "/" + fileName)
 			if err != nil {
 				http.Error(w, "not found", http.StatusNotFound)
 				return

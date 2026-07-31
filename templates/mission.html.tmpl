@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+</head>
+<body>
+
+    <nav>
+        <span class="brand">{{.SiteName}}</span>
+        <ul class="nav-links">
+            <li><a href="mission.html">Mission</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#organizations">Organizations</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="mission.html">Mission</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#organizations">Organizations</a></li>
+            <li class="nav-version" id="nav-version"></li>
+        </ul>
+    </nav>
+
+    <main class="mission-page">
+        <h1>Our Mission</h1>
+        <p>Central site to direct people to existing websites providing information about the harms of genital cutting and the legal efforts to stop it.</p>
+        <p>We are committed to ending the genital cutting of infants and protecting every child's right to bodily autonomy and informed consent.</p>
+        <p>Our mission is to provide accurate information, connect people with trusted resources, and support the organizations leading the effort to end this practice. By helping people learn, understand, and take action, we hope to contribute to a future where every child can grow up with the freedom to make their own decisions about their own body.</p>
+        <div class="tagline">Learn. Understand. Take action.</div>
+    </main>
+
+    <footer data-version="__COMMIT_SHA__">version: __COMMIT_SHA__</footer>
+
+</body>
+</html>
