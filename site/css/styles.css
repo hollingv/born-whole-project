@@ -94,6 +94,14 @@ nav .brand {
     font-weight: 600;
     transition: background-color 0.2s;
 }
+.nav-version {
+    padding: 0.85rem 1.5rem;
+    color: #5ba3f5;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 0.25rem;
+}
 .nav-menu li a:hover {
     background-color: #1a4a8a;
 }
