@@ -87,12 +87,12 @@ func TestCSSServed(t *testing.T) {
 }
 
 func TestOrganizationsPresent(t *testing.T) {
-	resp := get(t, "/")
+	resp := get(t, "/organizations.html")
 	b := body(t, resp)
 	orgs := []string{"Intact Global", "Intaction", "Intact America"}
 	for _, org := range orgs {
 		if !strings.Contains(b, org) {
-			t.Errorf("expected page to contain organization %q", org)
+			t.Errorf("expected organizations page to contain organization %q", org)
 		}
 	}
 }
