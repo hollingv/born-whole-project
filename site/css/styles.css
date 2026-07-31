@@ -303,6 +303,16 @@ main p {
     transition: opacity 0.2s;
     white-space: nowrap;
 }
+.ask-response {
+    margin-top: 1.5rem;
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1.75;
+    min-height: 1.5rem;
+}
+.ask-response p {
+    color: #ffffff;
+}
 .prompt-submit:hover {
     opacity: 0.85;
 }

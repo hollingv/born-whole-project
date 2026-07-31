@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/nav.js" defer></script>
+    <script src="js/ask.js" defer></script>
 </head>
 <body>
 
@@ -35,7 +36,7 @@
         <div class="hero-text">
             <h1>{{.SiteName}}</h1>
             <p>Central site to direct people to existing websites providing information about the harms of genital cutting and the legal efforts to stop it.</p>
-            <p>We are committed to ending the genital cutting of infants and protecting every child's right to bodily autonomy and informed consent.</p>
+            <p>We are committed to ending the genital cutting of infants and protecting every child's right to bodily autonomy.</p>
             <p>Our mission is to provide accurate information, connect people with trusted resources, and support the organizations leading the effort to end this practice.</p>
             <div class="tagline">Learn. Understand. Take action.</div>
         </div>
@@ -46,12 +47,13 @@
 
     <section id="ask" class="ask-section">
         <h2>What do you want to know about?</h2>
-        <form class="prompt-form" action="#" method="get">
+        <form class="prompt-form" action="/ask" method="get">
             <div class="prompt-input-wrapper">
                 <input type="text" class="prompt-input" name="q" placeholder="Ask anything..." autocomplete="off" />
                 <button type="submit" class="prompt-submit">Ask</button>
             </div>
         </form>
+        <div id="ask-response" class="ask-response"></div>
     </section>
 
     <main id="organizations">
@@ -72,7 +74,7 @@
     <section id="contact" class="contact-section">
         <h2>Contact</h2>
         <p>Have a suggestion for an organization to feature, or want to get in touch?</p>
-        <a href="mailto:info@globalautonomy.org" class="contact-link">info@globalautonomy.org</a>
+        <a href="mailto:donotuse@acme.org" class="contact-link">donotuse@acme.org</a>
     </section>
 
     <footer>version: __COMMIT_SHA__</footer>

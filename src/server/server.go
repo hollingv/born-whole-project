@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -26,6 +27,12 @@ func init() {
 func newHandler(siteDir string, ver string) http.Handler {
 	fs := http.FileServer(http.Dir(siteDir))
 	mux := http.NewServeMux()
+
+	mux.HandleFunc("/ask", func(w http.ResponseWriter, r *http.Request) {
+		q := r.URL.Query().Get("q")
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		fmt.Fprintf(w, "<p>You asked: <strong>%s</strong></p><p>Stub response: more information coming soon.</p>", q)
+	})
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/" || r.URL.Path == "/index.html" {
