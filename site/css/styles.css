@@ -37,7 +37,10 @@ nav {
 .nav-links a:hover {
     color: #5ba3f5;
 }
-@media (max-width: 768px) {
+@media (min-width: 481px) {
+    .hamburger { display: none; }
+}
+@media (max-width: 480px) {
     .nav-links { display: none; }
 }
 
