@@ -21,15 +21,15 @@ nav {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
-    margin: 0 2rem;
+    gap: 1.2rem;
+    margin: 0 1rem;
     flex: 1;
     justify-content: flex-end;
 }
 .nav-links a {
     color: #fff;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.03em;
     transition: color 0.2s;
