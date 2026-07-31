@@ -85,12 +85,6 @@ var orgGroups = []OrgGroup{
 				Website:     "https://yourwholebaby.org",
 				Thumbnail:   placeholderImage,
 			},
-			{
-				Name:        "NOCIRC",
-				Description: "National Organization of Circumcision Information Resource Centers",
-				Website:     "https://www.nocirc.org/",
-				Thumbnail:   placeholderImage,
-			},
 		},
 	},
 }
