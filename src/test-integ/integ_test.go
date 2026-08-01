@@ -113,6 +113,14 @@ func TestAskButtonPresent(t *testing.T) {
 	}
 }
 
+func TestAskReturnsResponse(t *testing.T) {
+	resp := get(t, "/ask?q=circumcision")
+	b := body(t, resp)
+	if !strings.Contains(b, "more information coming soon") {
+		t.Error("expected /ask to return stub response")
+	}
+}
+
 func TestUsage(t *testing.T) {
 	fmt.Printf("Running integration tests against: %s\n", *baseURL)
 }

@@ -1,9 +1,13 @@
 {{define "organization-card"}}
 <article class="organization-card">
-    <div class="org-header">
+    <div class="org-body">
         <h3>{{.Name}}</h3>
-        <a href="{{.Website}}" target="_blank" class="org-button" style="background-image: url('{{.Thumbnail}}')">Visit Site</a>
+        <p>{{.Description}}</p>
     </div>
-    <p>{{.Description}}</p>
+    <div class="org-nav">
+        <a href="{{.Website}}" target="_blank" class="org-button" style="background-image: url('{{.Thumbnail}}')">Visit Site</a>
+        <a href="{{if .NewsUrl}}{{.NewsUrl}}{{else}}#{{end}}" class="org-link">News</a>
+        <a href="{{if .EventsUrl}}{{.EventsUrl}}{{else}}#{{end}}" class="org-link">Events</a>
+    </div>
 </article>
 {{end}}
