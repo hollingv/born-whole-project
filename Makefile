@@ -108,7 +108,7 @@ release: build release-preview ## Perform a full release. Set DRY_RUN=false to p
 		NEW_TAG=$$(git describe --tags --abbrev=0 --match "v*"); \
 		git push origin $$NEW_TAG;\
 		echo "";\
-		echo "[INFO] Release completed OK. CI will build and publish the artifacts.";\
+		echo "[INFO] Release completed OK. CI will build and test.";\
 	fi
 
 app-tag: ## Print the current APP_TAG
