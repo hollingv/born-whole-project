@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.1.1](https://github.com/IntactGlobal/ig_cli/compare/f49271ed40ebe1882498df660413648957c5077b..v0.1.1) - 2026-08-03
+#### Bug Fixes
+- (**Makefile**) add debug of APP_TAG - ([f49271e](https://github.com/IntactGlobal/ig_cli/commit/f49271ed40ebe1882498df660413648957c5077b)) - hollingv
+
+- - -
+
 ## [v0.1.0](https://github.com/IntactGlobal/ig_cli/compare/aa545df65efcc6bf41a514634ae895c85112fa6d..v0.1.0) - 2026-08-03
 #### Features
 - each nav link is its own page - ([493ff17](https://github.com/IntactGlobal/ig_cli/commit/493ff174e611c6d01751009b92987a71bb7f2141)) - hollingv
