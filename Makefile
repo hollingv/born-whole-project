@@ -65,7 +65,7 @@ build: ## Build the binary and site
 	@echo "Building $(APP_NAME) version $(APP_TAG)..."
 	CGO_ENABLED=0 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME) ./src/cmd/$(APP_NAME)
 	./$(APP_NAME) site --version $(APP_TAG)
-	@echo "Built: $(APP_NAME)"
+	@echo "Built: $(APP_NAME) at version $(APP_TAG)"
 
 test: build test-unit test-integ-local ## Build and run all tests
 
