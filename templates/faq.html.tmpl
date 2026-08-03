@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main class="faq-page">
+        <h1>Frequently Asked Questions</h1>
+        <p>Common questions about circumcision, bodily autonomy, and the work of the organizations featured on this site.</p>
+
+        <div class="faq-list">
+            {{range .FAQItems}}
+            <details class="faq-item">
+                <summary class="faq-question">{{.Question}}</summary>
+                <div class="faq-answer">{{.Answer}}</div>
+            </details>
+            {{end}}
+        </div>
+    </main>
+
+    {{template "footer" .}}
+
+</body>
+</html>

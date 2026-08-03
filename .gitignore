@@ -1,6 +1,2 @@
 /gacli*
-
-site/index.html
-site/mission.html
-site/about.html
-site/organizations.html
+site/*.html

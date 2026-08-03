@@ -16,6 +16,7 @@ type templateData struct {
 	SiteName  string
 	Version   string
 	OrgGroups []OrgGroup
+	FAQItems  []FAQItem
 }
 
 type page struct {
@@ -69,7 +70,7 @@ var siteCmd = &cobra.Command{
 	Long:  `Discovers all page templates and renders them to site/`,
 	Run: func(cmd *cobra.Command, args []string) {
 		version, _ := cmd.Flags().GetString("version")
-		data := templateData{SiteName: siteName, Version: version, OrgGroups: orgGroups}
+		data := templateData{SiteName: siteName, Version: version, OrgGroups: orgGroups, FAQItems: faqItems}
 
 		pages, err := discoverPages("templates")
 		if err != nil {
