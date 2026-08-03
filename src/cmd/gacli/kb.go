@@ -61,6 +61,10 @@ var kbBuildCmd = &cobra.Command{
 	Short: "Build the knowledge base from web sources",
 	Long:  `Fetches each configured web source, extracts the text content, and saves it to the kb/ directory`,
 	Run: func(cmd *cobra.Command, args []string) {
+		if err := os.RemoveAll(kbDir); err != nil {
+			fmt.Fprintf(os.Stderr, "Error clearing kb directory: %v\n", err)
+			os.Exit(1)
+		}
 		if err := os.MkdirAll(kbDir, 0755); err != nil {
 			fmt.Fprintf(os.Stderr, "Error creating kb directory: %v\n", err)
 			os.Exit(1)

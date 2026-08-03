@@ -32,9 +32,9 @@ var orgGroups = []OrgGroup{
 				NewsUrl:     "https://intactglobal.org/news",
 				EventsUrl:   "https://intactglobal.org/events",
 				KBURLs: []string{
-					"https://intactglobal.org/research",
-					"https://intactglobal.org/legal-cases",
 					"https://intactglobal.org/about",
+					"https://intactglobal.org/initiatives",
+					"https://intactglobal.org/litigation",
 				},
 			},
 			{
@@ -45,9 +45,9 @@ var orgGroups = []OrgGroup{
 				NewsUrl:     "https://intaction.org/news",
 				EventsUrl:   "https://intaction.org/events",
 				KBURLs: []string{
-					"https://intaction.org/research",
-					"https://intaction.org/legal-cases",
-					"https://intaction.org/about",
+					"https://intaction.org",
+					"https://intaction.org/ethics-of-circumcision/",
+					"https://intaction.org/circumcision-facts/",
 				},
 			},
 			{
@@ -58,9 +58,8 @@ var orgGroups = []OrgGroup{
 				NewsUrl:     "https://www.galdef.org/news",
 				EventsUrl:   "https://www.galdef.org/events",
 				KBURLs: []string{
-					"https://www.galdef.org/research",
-					"https://www.galdef.org/legal-cases",
 					"https://www.galdef.org/about",
+					"https://www.galdef.org/legal-defense",
 				},
 			},
 			{
@@ -71,9 +70,8 @@ var orgGroups = []OrgGroup{
 				NewsUrl:     "https://circumcisionlawreform.org/news",
 				EventsUrl:   "https://circumcisionlawreform.org/events",
 				KBURLs: []string{
-					"https://circumcisionlawreform.org/research",
-					"https://circumcisionlawreform.org/legal-cases",
 					"https://circumcisionlawreform.org/about",
+					"https://circumcisionlawreform.org/legal-reform",
 				},
 			},
 			{
@@ -84,9 +82,8 @@ var orgGroups = []OrgGroup{
 				NewsUrl:     "https://www.arclaw.org/news",
 				EventsUrl:   "https://www.arclaw.org/events",
 				KBURLs: []string{
-					"https://www.arclaw.org/research",
-					"https://www.arclaw.org/legal-cases",
 					"https://www.arclaw.org/about",
+					"https://www.arclaw.org/legal-resources",
 				},
 			},
 		},
@@ -102,9 +99,10 @@ var orgGroups = []OrgGroup{
 				NewsUrl:     "https://www.doctorsopposingcircumcision.org/news",
 				EventsUrl:   "https://www.doctorsopposingcircumcision.org/events",
 				KBURLs: []string{
-					"https://www.doctorsopposingcircumcision.org/research",
-					"https://www.doctorsopposingcircumcision.org/legal-cases",
-					"https://www.doctorsopposingcircumcision.org/about",
+					"https://www.doctorsopposingcircumcision.org/information/",
+					"https://www.doctorsopposingcircumcision.org/for-professionals/",
+					"https://www.doctorsopposingcircumcision.org/for-parents/",
+					"https://www.doctorsopposingcircumcision.org/resources/",
 				},
 			},
 		},
@@ -120,9 +118,8 @@ var orgGroups = []OrgGroup{
 				NewsUrl:     "https://www.nocirc.org/news",
 				EventsUrl:   "https://www.nocirc.org/events",
 				KBURLs: []string{
-					"https://www.nocirc.org/research",
-					"https://www.nocirc.org/legal-cases",
-					"https://www.nocirc.org/about",
+					"https://www.nocirc.org",
+					"https://www.nocirc.org/publish/pamphlet.html",
 				},
 			},
 			{
@@ -133,9 +130,10 @@ var orgGroups = []OrgGroup{
 				NewsUrl:     "https://intactamerica.org/news",
 				EventsUrl:   "https://intactamerica.org/events",
 				KBURLs: []string{
-					"https://intactamerica.org/research",
-					"https://intactamerica.org/legal-cases",
-					"https://intactamerica.org/about",
+					"https://intactamerica.org/resources/",
+					"https://intactamerica.org/resources/fact-sheets/",
+					"https://intactamerica.org/resources/talking-points/",
+					"https://intactamerica.org/our-positions/",
 				},
 			},
 			{
@@ -146,9 +144,9 @@ var orgGroups = []OrgGroup{
 				NewsUrl:     "https://yourwholebaby.org/news",
 				EventsUrl:   "https://yourwholebaby.org/events",
 				KBURLs: []string{
-					"https://yourwholebaby.org/research",
-					"https://yourwholebaby.org/legal-cases",
-					"https://yourwholebaby.org/about",
+					"https://yourwholebaby.org/researching-parents/",
+					"https://yourwholebaby.org/healthcare-providers/",
+					"https://yourwholebaby.org/circumcision/",
 				},
 			},
 		},
