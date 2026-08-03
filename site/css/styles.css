@@ -219,7 +219,7 @@ main p {
     background-color: #fffde7;
 }
 .organization-card {
-    background: #fff;
+    background-color: #fff;
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
@@ -254,25 +254,7 @@ main p {
     color: #555;
     line-height: 1.6;
 }
-.organization-card a.org-button {
-    display: block;
-    width: 100%;
-    text-align: center;
-    white-space: nowrap;
-    padding: 0.5rem 0;
-    background-color: #c8dff7;
-    background-size: cover;
-    background-position: center;
-    color: #0f1f3d;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 600;
-    transition: opacity 0.2s;
-}
-.organization-card a.org-button:hover {
-    opacity: 0.85;
-}
+
 .org-link {
     display: block;
     width: 100%;

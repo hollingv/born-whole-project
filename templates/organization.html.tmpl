@@ -5,7 +5,7 @@
         <p>{{.Description}}</p>
     </div>
     <div class="org-nav">
-        <a href="{{.Website}}" target="_blank" class="org-button" style="background-image: url('{{.Thumbnail}}')">Visit Site</a>
+        <a href="{{.Website}}" target="_blank" class="org-link">Visit Site</a>
         <a href="{{if .NewsUrl}}{{.NewsUrl}}{{else}}#{{end}}" class="org-link">News</a>
         <a href="{{if .EventsUrl}}{{.EventsUrl}}{{else}}#{{end}}" class="org-link">Events</a>
     </div>
