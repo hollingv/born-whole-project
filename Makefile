@@ -75,10 +75,13 @@ test-unit: build ## Run the go unit tests
 test-integ-local: build ## Start server, run integration tests, stop server
 	@go run ./src/server/server.go > /dev/null 2>&1 & \
 	SERVER_PID=$$!; \
+	trap "kill $$SERVER_PID 2>/dev/null; wait $$SERVER_PID 2>/dev/null; kill $$(lsof -t -i:8080) 2>/dev/null" EXIT INT TERM; \
 	sleep 2; \
 	$(GO_BIN) test ./src/test-integ/... -url http://localhost:8080; \
 	TEST_EXIT=$$?; \
 	kill $$SERVER_PID 2>/dev/null; \
+	wait $$SERVER_PID 2>/dev/null; \
+	kill $$(lsof -t -i:8080) 2>/dev/null; \
 	if [ $$TEST_EXIT -eq 0 ]; then echo "Tests PASSED"; else echo "Tests FAILED"; fi; \
 	exit $$TEST_EXIT
 
