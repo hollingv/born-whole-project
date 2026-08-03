@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -107,6 +108,20 @@ var kbBuildCmd = &cobra.Command{
 					fmt.Printf("  Saved to %s\n", outPath)
 				}
 			}
+		}
+
+		// Write manifest of all KB files for Cloudflare Pages Functions
+		files, _ := filepath.Glob(filepath.Join(kbDir, "*.txt"))
+		var filenames []string
+		for _, f := range files {
+			filenames = append(filenames, filepath.Base(f))
+		}
+		manifest, _ := json.Marshal(filenames)
+		manifestPath := filepath.Join(kbDir, "manifest.json")
+		if err := os.WriteFile(manifestPath, manifest, 0644); err != nil {
+			fmt.Fprintf(os.Stderr, "Error writing manifest: %v\n", err)
+		} else {
+			fmt.Printf("Written %s\n", manifestPath)
 		}
 
 		fmt.Println("Knowledge base build complete.")

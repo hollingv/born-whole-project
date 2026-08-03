@@ -46,9 +46,7 @@ function fileToSource(filename) {
 }
 
 async function listKBFiles(context) {
-    const resp = await fetch(new URL('/kb/', context.request.url));
+    const resp = await fetch(new URL('/kb/manifest.json', context.request.url));
     if (!resp.ok) return [];
-    const text = await resp.text();
-    const matches = [...text.matchAll(/href="([^"]+\.txt)"/g)];
-    return matches.map(m => m[1]);
+    return await resp.json();
 }

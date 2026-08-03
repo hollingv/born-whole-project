@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -33,7 +34,20 @@ func newHandler(siteDir string) http.Handler {
 		}
 		var matches []match
 
-		files, _ := filepath.Glob(filepath.Join(siteDir, "kb", "*.txt"))
+		manifestData, err := os.ReadFile(filepath.Join(siteDir, "kb", "manifest.json"))
+		if err != nil {
+			fmt.Fprintf(w, "<p>Knowledge base not available.</p>")
+			return
+		}
+		var filenames []string
+		if err := json.Unmarshal(manifestData, &filenames); err != nil {
+			fmt.Fprintf(w, "<p>Knowledge base error.</p>")
+			return
+		}
+		var files []string
+		for _, name := range filenames {
+			files = append(files, filepath.Join(siteDir, "kb", name))
+		}
 		for _, f := range files {
 			content, err := os.ReadFile(f)
 			if err != nil {
