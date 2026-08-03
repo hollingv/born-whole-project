@@ -68,30 +68,40 @@ var kbBuildCmd = &cobra.Command{
 
 		for _, group := range orgGroups {
 			for _, org := range group.Organizations {
-				fmt.Printf("Fetching %s (%s)...\n", org.Name, org.Website)
-
-				resp, err := httpClient.Get(org.Website)
-				if err != nil {
-					fmt.Fprintf(os.Stderr, "  Error fetching %s: %v\n", org.Website, err)
-					continue
+				urls := org.KBURLs
+				if len(urls) == 0 {
+					urls = []string{org.Website}
 				}
-				defer resp.Body.Close()
+				for _, u := range urls {
+					fmt.Printf("Fetching %s (%s)...\n", org.Name, u)
 
-				doc, err := html.Parse(resp.Body)
-				if err != nil {
-					fmt.Fprintf(os.Stderr, "  Error parsing HTML from %s: %v\n", org.Website, err)
-					continue
+					resp, err := httpClient.Get(u)
+					if err != nil {
+						fmt.Fprintf(os.Stderr, "  Error fetching %s: %v\n", u, err)
+						continue
+					}
+					defer resp.Body.Close()
+					if resp.StatusCode != http.StatusOK {
+						fmt.Fprintf(os.Stderr, "  Skipping %s: HTTP %d\n", u, resp.StatusCode)
+						continue
+					}
+
+					doc, err := html.Parse(resp.Body)
+					if err != nil {
+						fmt.Fprintf(os.Stderr, "  Error parsing HTML from %s: %v\n", u, err)
+						continue
+					}
+
+					text := extractText(doc)
+
+					outPath := filepath.Join(kbDir, urlToFilename(u))
+					if err := os.WriteFile(outPath, []byte(text), 0644); err != nil {
+						fmt.Fprintf(os.Stderr, "  Error writing %s: %v\n", outPath, err)
+						continue
+					}
+
+					fmt.Printf("  Saved to %s\n", outPath)
 				}
-
-				text := extractText(doc)
-
-				outPath := filepath.Join(kbDir, urlToFilename(org.Website))
-				if err := os.WriteFile(outPath, []byte(text), 0644); err != nil {
-					fmt.Fprintf(os.Stderr, "  Error writing %s: %v\n", outPath, err)
-					continue
-				}
-
-				fmt.Printf("  Saved to %s\n", outPath)
 			}
 		}
 

@@ -8,6 +8,7 @@ type Organization struct {
 	Thumbnail   string
 	NewsUrl     string
 	EventsUrl   string
+	KBURLs      []string // specific pages to include in the knowledge base
 }
 
 // OrgGroup represents a category of organizations.
@@ -30,6 +31,11 @@ var orgGroups = []OrgGroup{
 				Thumbnail:   placeholderImage,
 				NewsUrl:     "https://intactglobal.org/news",
 				EventsUrl:   "https://intactglobal.org/events",
+				KBURLs: []string{
+					"https://intactglobal.org/research",
+					"https://intactglobal.org/legal-cases",
+					"https://intactglobal.org/about",
+				},
 			},
 			{
 				Name:        "Intaction",
@@ -38,6 +44,11 @@ var orgGroups = []OrgGroup{
 				Thumbnail:   placeholderImage,
 				NewsUrl:     "https://intaction.org/news",
 				EventsUrl:   "https://intaction.org/events",
+				KBURLs: []string{
+					"https://intaction.org/research",
+					"https://intaction.org/legal-cases",
+					"https://intaction.org/about",
+				},
 			},
 			{
 				Name:        "Genital Autonomy Legal Defense and Education Fund",
@@ -46,6 +57,11 @@ var orgGroups = []OrgGroup{
 				Thumbnail:   placeholderImage,
 				NewsUrl:     "https://www.galdef.org/news",
 				EventsUrl:   "https://www.galdef.org/events",
+				KBURLs: []string{
+					"https://www.galdef.org/research",
+					"https://www.galdef.org/legal-cases",
+					"https://www.galdef.org/about",
+				},
 			},
 			{
 				Name:        "Circumcision Law Reform",
@@ -54,6 +70,11 @@ var orgGroups = []OrgGroup{
 				Thumbnail:   placeholderImage,
 				NewsUrl:     "https://circumcisionlawreform.org/news",
 				EventsUrl:   "https://circumcisionlawreform.org/events",
+				KBURLs: []string{
+					"https://circumcisionlawreform.org/research",
+					"https://circumcisionlawreform.org/legal-cases",
+					"https://circumcisionlawreform.org/about",
+				},
 			},
 			{
 				Name:        "Attorneys For The Rights of the Child",
@@ -62,6 +83,11 @@ var orgGroups = []OrgGroup{
 				Thumbnail:   placeholderImage,
 				NewsUrl:     "https://www.arclaw.org/news",
 				EventsUrl:   "https://www.arclaw.org/events",
+				KBURLs: []string{
+					"https://www.arclaw.org/research",
+					"https://www.arclaw.org/legal-cases",
+					"https://www.arclaw.org/about",
+				},
 			},
 		},
 	},
@@ -75,6 +101,11 @@ var orgGroups = []OrgGroup{
 				Thumbnail:   placeholderImage,
 				NewsUrl:     "https://www.doctorsopposingcircumcision.org/news",
 				EventsUrl:   "https://www.doctorsopposingcircumcision.org/events",
+				KBURLs: []string{
+					"https://www.doctorsopposingcircumcision.org/research",
+					"https://www.doctorsopposingcircumcision.org/legal-cases",
+					"https://www.doctorsopposingcircumcision.org/about",
+				},
 			},
 		},
 	},
@@ -88,6 +119,11 @@ var orgGroups = []OrgGroup{
 				Thumbnail:   placeholderImage,
 				NewsUrl:     "https://www.nocirc.org/news",
 				EventsUrl:   "https://www.nocirc.org/events",
+				KBURLs: []string{
+					"https://www.nocirc.org/research",
+					"https://www.nocirc.org/legal-cases",
+					"https://www.nocirc.org/about",
+				},
 			},
 			{
 				Name:        "Intact America",
@@ -96,6 +132,11 @@ var orgGroups = []OrgGroup{
 				Thumbnail:   placeholderImage,
 				NewsUrl:     "https://intactamerica.org/news",
 				EventsUrl:   "https://intactamerica.org/events",
+				KBURLs: []string{
+					"https://intactamerica.org/research",
+					"https://intactamerica.org/legal-cases",
+					"https://intactamerica.org/about",
+				},
 			},
 			{
 				Name:        "Your Whole Baby",
@@ -104,6 +145,11 @@ var orgGroups = []OrgGroup{
 				Thumbnail:   placeholderImage,
 				NewsUrl:     "https://yourwholebaby.org/news",
 				EventsUrl:   "https://yourwholebaby.org/events",
+				KBURLs: []string{
+					"https://yourwholebaby.org/research",
+					"https://yourwholebaby.org/legal-cases",
+					"https://yourwholebaby.org/about",
+				},
 			},
 		},
 	},
