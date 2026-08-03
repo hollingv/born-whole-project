@@ -13,7 +13,7 @@ import (
 	"golang.org/x/net/html"
 )
 
-const kbDir = "kb"
+const kbDir = "site/kb"
 
 var httpClient = &http.Client{Timeout: 15 * time.Second}
 

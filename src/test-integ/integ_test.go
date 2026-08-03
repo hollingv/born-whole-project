@@ -116,8 +116,8 @@ func TestAskButtonPresent(t *testing.T) {
 func TestAskReturnsResponse(t *testing.T) {
 	resp := get(t, "/ask?q=circumcision")
 	b := body(t, resp)
-	if !strings.Contains(b, "more information coming soon") {
-		t.Error("expected /ask to return stub response")
+	if !strings.Contains(b, "circumcision") {
+		t.Error("expected /ask response to contain the query term")
 	}
 }
 
