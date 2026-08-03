@@ -361,6 +361,31 @@ main p {
 .ask-response p {
     color: #ffffff;
 }
+.ask-results {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+.ask-results th {
+    text-align: left;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255,255,255,0.15);
+    color: #fff;
+    border-bottom: 2px solid #5ba3f5;
+}
+.ask-results td {
+    padding: 0.5rem 1rem;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    vertical-align: top;
+}
+.ask-results td:first-child {
+    white-space: nowrap;
+    color: #5ba3f5;
+    font-weight: 600;
+    width: 180px;
+}
 .prompt-submit:hover {
     opacity: 0.85;
 }
