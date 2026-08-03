@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.1.2](https://github.com/IntactGlobal/ig_cli/compare/e29c9eafaf99cd008b734878f7e9cf664824389e..v0.1.2) - 2026-08-03
+#### Bug Fixes
+- (**ci.yaml**) fetch full history including tags - ([e29c9ea](https://github.com/IntactGlobal/ig_cli/commit/e29c9eafaf99cd008b734878f7e9cf664824389e)) - hollingv
+
+- - -
+
 ## [v0.1.1](https://github.com/IntactGlobal/ig_cli/compare/f49271ed40ebe1882498df660413648957c5077b..v0.1.1) - 2026-08-03
 #### Bug Fixes
 - (**Makefile**) add debug of APP_TAG - ([f49271e](https://github.com/IntactGlobal/ig_cli/commit/f49271ed40ebe1882498df660413648957c5077b)) - hollingv
