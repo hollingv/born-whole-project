@@ -16,9 +16,9 @@ function extractKeywords(query) {
 }
 
 const SYSTEM_PROMPT = `You are a helpful assistant answering questions about circumcision,
-bodily autonomy, and children's rights. Answer based only on the provided context.
-Be concise, factual, and compassionate. If the context does not contain enough
-information to answer, say so.`;
+bodily autonomy, and children's rights. Only use the text provided below as context.
+Do not use any outside knowledge. Be concise, factual, and compassionate.
+If the provided context does not contain enough information to answer, say so explicitly.`;
 
 // Sanitise an error message to remove any account-specific information.
 function sanitiseError(err) {
@@ -86,7 +86,7 @@ async function handleRequest(context) {
                 { role: 'user', content: `Context:\n${contextText}\n\nQuestion: ${q}` }
             ]
         });
-        return respond(`<p>${aiResponse.response}</p><p class="ask-sources">Sources: ${sources.join(', ')}</p>`);
+        return respond(`<p>${aiResponse.response}</p><p class="ask-sources">Sources: ${sources.join(', ')}</p><p class="ask-disclaimer">Answers are generated from curated sources. Always verify with the linked organisations.</p>`);
     } catch (err) {
         const msg = sanitiseError(err);
         let html = `<p>AI unavailable: <code>${msg}</code></p>`;

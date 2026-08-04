@@ -15,9 +15,9 @@ import (
 const aiModel = "@cf/meta/llama-3.1-8b-instruct-fast"
 
 const systemPrompt = `You are a helpful assistant answering questions about circumcision,
-bodily autonomy, and children's rights. Answer based only on the provided context.
-Be concise, factual, and compassionate. If the context does not contain enough
-information to answer, say so.`
+bodily autonomy, and children's rights. Only use the text provided below as context.
+Do not use any outside knowledge. Be concise, factual, and compassionate.
+If the provided context does not contain enough information to answer, say so explicitly.`
 
 var stopWords = map[string]bool{
 	"a": true, "an": true, "the": true, "is": true, "are": true, "was": true,
@@ -209,6 +209,7 @@ func newHandler(siteDir string) http.Handler {
 
 		fmt.Fprintf(w, "<p>%s</p>", answer)
 		fmt.Fprintf(w, "<p class=\"ask-sources\">Sources: %s</p>", strings.Join(sources, ", "))
+		fmt.Fprintf(w, "<p class=\"ask-disclaimer\">Answers are generated from curated sources. Always verify with the linked organisations.</p>")
 	})
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
