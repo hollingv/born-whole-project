@@ -20,7 +20,24 @@ bodily autonomy, and children's rights. Answer based only on the provided contex
 Be concise, factual, and compassionate. If the context does not contain enough
 information to answer, say so.`;
 
+// Sanitise an error message to remove any account-specific information.
+function sanitiseError(err) {
+    let msg = err?.message || String(err);
+    msg = msg.replace(/accounts\/[a-f0-9]+/gi, 'accounts/[redacted]');
+    msg = msg.replace(/Bearer\s+\S+/gi, 'Bearer [redacted]');
+    return msg;
+}
+
 export async function onRequestGet(context) {
+    try {
+        return await handleRequest(context);
+    } catch (err) {
+        const msg = sanitiseError(err);
+        return respond(`<p>An error occurred: <code>${msg}</code></p>`);
+    }
+}
+
+async function handleRequest(context) {
     const q = new URL(context.request.url).searchParams.get('q') || '';
     const query = q.toLowerCase();
 
@@ -48,7 +65,6 @@ export async function onRequestGet(context) {
             if (score > 0) scored.push({ text: trimmed, source, score });
         }
     }
-    // Sort by score descending and take top 10
     scored.sort((a, b) => b.score - a.score);
     const chunks = scored.slice(0, 10);
 
@@ -56,12 +72,14 @@ export async function onRequestGet(context) {
         return respond(`<p>No information found for: <strong>${q}</strong></p>`);
     }
 
-    // Collect unique sources
     const sources = [...new Set(chunks.map(c => c.source))];
     const contextText = chunks.map(c => c.text).join('\n\n');
 
     // Call Workers AI
     try {
+        if (!context.env.AI) {
+            throw new Error('AI binding not configured — add the AI binding in the Cloudflare Pages dashboard under Settings → Functions → AI Bindings');
+        }
         const aiResponse = await context.env.AI.run(AI_MODEL, {
             messages: [
                 { role: 'system', content: SYSTEM_PROMPT },
@@ -70,11 +88,20 @@ export async function onRequestGet(context) {
         });
         return respond(`<p>${aiResponse.response}</p><p class="ask-sources">Sources: ${sources.join(', ')}</p>`);
     } catch (err) {
-        let html = '<p>AI unavailable. Here are relevant excerpts:</p><ul>';
+        const msg = sanitiseError(err);
+        let html = `<p>AI unavailable: <code>${msg}</code></p>`;
+        html += '<p>Here are relevant excerpts:</p><ul>';
         for (const c of chunks) html += `<li>${c.text}</li>`;
         html += `</ul><p class="ask-sources">Sources: ${sources.join(', ')}</p>`;
         return respond(html);
     }
+}
+
+function fileToSource(filename) {
+    let name = filename.replace(/\.txt$/, '');
+    const idx = name.lastIndexOf('-org');
+    if (idx !== -1) name = name.slice(0, idx) + '.org';
+    return name.replace(/-/g, '.');
 }
 
 function respond(html) {
