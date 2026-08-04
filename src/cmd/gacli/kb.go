@@ -116,7 +116,7 @@ var kbBuildCmd = &cobra.Command{
 		for _, f := range files {
 			filenames = append(filenames, filepath.Base(f))
 		}
-		manifest, _ := json.Marshal(filenames)
+		manifest, _ := json.MarshalIndent(filenames, "", "  ")
 		manifestPath := filepath.Join(kbDir, "manifest.json")
 		if err := os.WriteFile(manifestPath, manifest, 0644); err != nil {
 			fmt.Fprintf(os.Stderr, "Error writing manifest: %v\n", err)
