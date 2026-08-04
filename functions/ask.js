@@ -1,5 +1,20 @@
 const AI_MODEL = '@cf/meta/llama-3.1-8b-instruct';
 
+const STOP_WORDS = new Set([
+    'a','an','the','is','are','was','were','be','been','being','have','has','had',
+    'do','does','did','will','would','could','should','may','might','can',
+    'what','why','how','when','where','who','which','that','this','these','those',
+    'i','me','my','we','our','you','your','it','its','they','them','their',
+    'of','in','to','for','on','with','at','by','from','about','and','or',
+    'not','no','so','if','than','very',
+]);
+
+function extractKeywords(query) {
+    return query.toLowerCase()
+        .split(/[^a-z]+/)
+        .filter(w => w.length > 2 && !STOP_WORDS.has(w));
+}
+
 const SYSTEM_PROMPT = `You are a helpful assistant answering questions about circumcision,
 bodily autonomy, and children's rights. Answer based only on the provided context.
 Be concise, factual, and compassionate. If the context does not contain enough
@@ -16,8 +31,10 @@ export async function onRequestGet(context) {
     }
     const filenames = await manifestResp.json();
 
-    // Keyword search for relevant chunks
-    const chunks = [];
+    // Extract keywords and search for relevant chunks
+    const keywords = extractKeywords(q);
+    const searchTerms = keywords.length > 0 ? keywords : [query];
+    const scored = [];
     for (const file of filenames) {
         const resp = await fetch(new URL(`/kb/${file}`, context.request.url));
         if (!resp.ok) continue;
@@ -25,13 +42,15 @@ export async function onRequestGet(context) {
         const source = fileToSource(file);
         for (const line of text.split('\n')) {
             const trimmed = line.trim();
-            if (trimmed && trimmed.toLowerCase().includes(query)) {
-                chunks.push({ text: trimmed, source });
-            }
-            if (chunks.length >= 10) break;
+            if (!trimmed) continue;
+            const lineLower = trimmed.toLowerCase();
+            const score = searchTerms.filter(kw => lineLower.includes(kw)).length;
+            if (score > 0) scored.push({ text: trimmed, source, score });
         }
-        if (chunks.length >= 10) break;
     }
+    // Sort by score descending and take top 10
+    scored.sort((a, b) => b.score - a.score);
+    const chunks = scored.slice(0, 10);
 
     if (chunks.length === 0) {
         return respond(`<p>No information found for: <strong>${q}</strong></p>`);

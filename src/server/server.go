@@ -19,6 +19,33 @@ bodily autonomy, and children's rights. Answer based only on the provided contex
 Be concise, factual, and compassionate. If the context does not contain enough
 information to answer, say so.`
 
+var stopWords = map[string]bool{
+	"a": true, "an": true, "the": true, "is": true, "are": true, "was": true,
+	"were": true, "be": true, "been": true, "being": true, "have": true, "has": true,
+	"had": true, "do": true, "does": true, "did": true, "will": true, "would": true,
+	"could": true, "should": true, "may": true, "might": true, "can": true,
+	"what": true, "why": true, "how": true, "when": true, "where": true, "who": true,
+	"which": true, "that": true, "this": true, "these": true, "those": true,
+	"i": true, "me": true, "my": true, "we": true, "our": true, "you": true,
+	"your": true, "it": true, "its": true, "they": true, "them": true, "their": true,
+	"of": true, "in": true, "to": true, "for": true, "on": true, "with": true,
+	"at": true, "by": true, "from": true, "about": true, "and": true, "or": true,
+	"not": true, "no": true, "so": true, "if": true, "than": true, "very": true,
+}
+
+func extractKeywords(query string) []string {
+	query = strings.ToLower(query)
+	var words []string
+	for _, word := range strings.FieldsFunc(query, func(r rune) bool {
+		return !('a' <= r && r <= 'z')
+	}) {
+		if len(word) > 2 && !stopWords[word] {
+			words = append(words, word)
+		}
+	}
+	return words
+}
+
 // filenameToSource converts a KB filename to a readable source name.
 func filenameToSource(filename string) string {
 	name := strings.TrimSuffix(filepath.Base(filename), ".txt")
@@ -106,10 +133,16 @@ func newHandler(siteDir string) http.Handler {
 			return
 		}
 
-		// Keyword search for relevant chunks
-		type chunk struct{ text, source string }
+		// Extract keywords and search for relevant chunks
+		type chunk struct {
+			text, source string
+			score        int
+		}
+		keywords := extractKeywords(q)
+		if len(keywords) == 0 {
+			keywords = []string{strings.ToLower(q)}
+		}
 		var chunks []chunk
-		qLower := strings.ToLower(q)
 		for _, name := range filenames {
 			content, err := os.ReadFile(filepath.Join(siteDir, "kb", name))
 			if err != nil {
@@ -118,16 +151,31 @@ func newHandler(siteDir string) http.Handler {
 			source := filenameToSource(name)
 			for _, line := range strings.Split(string(content), "\n") {
 				line = strings.TrimSpace(line)
-				if line != "" && strings.Contains(strings.ToLower(line), qLower) {
-					chunks = append(chunks, chunk{text: line, source: source})
+				if line == "" {
+					continue
 				}
-				if len(chunks) >= 10 {
-					break
+				lineLower := strings.ToLower(line)
+				score := 0
+				for _, kw := range keywords {
+					if strings.Contains(lineLower, kw) {
+						score++
+					}
+				}
+				if score > 0 {
+					chunks = append(chunks, chunk{text: line, source: source, score: score})
 				}
 			}
-			if len(chunks) >= 10 {
-				break
+		}
+		// Sort by score descending and take top 10
+		for i := 0; i < len(chunks)-1; i++ {
+			for j := i + 1; j < len(chunks); j++ {
+				if chunks[j].score > chunks[i].score {
+					chunks[i], chunks[j] = chunks[j], chunks[i]
+				}
 			}
+		}
+		if len(chunks) > 10 {
+			chunks = chunks[:10]
 		}
 
 		if len(chunks) == 0 {
