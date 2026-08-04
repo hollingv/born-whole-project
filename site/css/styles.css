@@ -347,20 +347,20 @@ main p {
 }
 .ask-response p:first-child {
     color: #ffffff;
-    font-size: 1.35rem;
+    font-size: 1.50rem;
     line-height: 1.8;
     font-weight: 500;
     margin-bottom: 0;
 }
 .ask-sources {
     margin-top: 1rem;
-    font-size: 1.0rem;
+    font-size: 1.2rem;
     color: rgba(255,255,255,0.6);
     font-style: italic;
 }
 .ask-disclaimer {
     margin-top: 0.5rem;
-    font-size: 0.92rem;
+    font-size: 1.1rem;
     color: rgba(255,255,255,0.4);
     font-style: italic;
     border-top: 1px solid rgba(255,255,255,0.15);
