@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-const aiModel = "@cf/meta/llama-3.1-8b-instruct"
+const aiModel = "@cf/meta/llama-3.1-8b-instruct-fast"
 
 const systemPrompt = `You are a helpful assistant answering questions about circumcision,
 bodily autonomy, and children's rights. Answer based only on the provided context.

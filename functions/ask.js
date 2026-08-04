@@ -1,4 +1,4 @@
-const AI_MODEL = '@cf/meta/llama-3.1-8b-instruct';
+const AI_MODEL = '@cf/meta/llama-3.1-8b-instruct-fast';
 
 const STOP_WORDS = new Set([
     'a','an','the','is','are','was','were','be','been','being','have','has','had',
