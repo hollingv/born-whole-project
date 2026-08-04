@@ -2,6 +2,30 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.2.0](https://github.com/IntactGlobal/ig_cli/compare/8f3fcad815023f15c56c2a77ad3fca02bf072379..v0.2.0) - 2026-08-04
+#### Features
+- (**ask.js**) catch Ask/submit error messages from Cloudflare - ([bfbe8de](https://github.com/IntactGlobal/ig_cli/commit/bfbe8de0a8fe29947720532fba8fcae943b429c6)) - hollingv
+- increase font on Ask/submit response - ([49eb987](https://github.com/IntactGlobal/ig_cli/commit/49eb987c0f85cdc93f386ada547a221c7a0c6ed4)) - hollingv
+- add stronger prompt wording and add disclaimer - ([9068804](https://github.com/IntactGlobal/ig_cli/commit/9068804d8d320237f31ba65e5906736d2422fa8b)) - hollingv
+- update AI model to @cf/meta/llama-3.1-8b-instruct-fast - ([5d35ce3](https://github.com/IntactGlobal/ig_cli/commit/5d35ce39c495462be1ba29c950717aa2d769fac5)) - hollingv
+- add keyword extraction and scoring to Ask search - ([a45e80d](https://github.com/IntactGlobal/ig_cli/commit/a45e80db85d671033e7b27e1022443056b2a863b)) - hollingv
+- enable raw kb responses via cloudflare api calls - ([ac2a870](https://github.com/IntactGlobal/ig_cli/commit/ac2a87037293d754aaee4fa8d046ce0efc892d14)) - hollingv
+- change "Visit Site" to be blue like other buttons - ([3fe3fdf](https://github.com/IntactGlobal/ig_cli/commit/3fe3fdfadc3040c4956726c3db84a34ad955b051)) - hollingv
+- add new KBURLs based on suggestions from Claude Sonnet - ([2e359db](https://github.com/IntactGlobal/ig_cli/commit/2e359db161cf4d7a358865d33e3939113529f219)) - hollingv
+- add faq page with 3 questions - ([685d002](https://github.com/IntactGlobal/ig_cli/commit/685d00201af845a986ccb8d9aa63ed799a22f3f3)) - hollingv
+- add html table to Ask response with source - ([2fdf898](https://github.com/IntactGlobal/ig_cli/commit/2fdf8984b1387f877a06b1c61a77199ab2b04d0e)) - hollingv
+- add list of KBURLs for each organization - ([2727c8a](https://github.com/IntactGlobal/ig_cli/commit/2727c8a3d74199e84c79b0ad8e05b2e47675f415)) - hollingv
+- new knowledge build command returning site/kb for commit - ([f683f75](https://github.com/IntactGlobal/ig_cli/commit/f683f75aa8b97b3566be37581df900b1c10f0b94)) - hollingv
+- create knowledge base with site url on 'gacli kb-build' - ([4b698a7](https://github.com/IntactGlobal/ig_cli/commit/4b698a7bbc87d68720f14709363162d0bf6bac64)) - hollingv
+- add kb-build command as stubbed command - ([8f3fcad](https://github.com/IntactGlobal/ig_cli/commit/8f3fcad815023f15c56c2a77ad3fca02bf072379)) - hollingv
+#### Bug Fixes
+- use kb manifest to enable Ask on Cloudflare Pages - ([3607048](https://github.com/IntactGlobal/ig_cli/commit/36070485a80de82c9607046bf90c708e5a5f24d0)) - hollingv
+- kill the server process after test target ends - ([6c1d57b](https://github.com/IntactGlobal/ig_cli/commit/6c1d57b72c2a6cdb0a09f26df482254d2d114c96)) - hollingv
+#### Refactoring
+- write site/kb/manifest.json in human-readable form - ([a616054](https://github.com/IntactGlobal/ig_cli/commit/a616054239e0b2f7d971a1d687a4d6ccf105d6e8)) - hollingv
+
+- - -
+
 ## [v0.1.2](https://github.com/IntactGlobal/ig_cli/compare/e29c9eafaf99cd008b734878f7e9cf664824389e..v0.1.2) - 2026-08-03
 #### Bug Fixes
 - (**ci.yaml**) fetch full history including tags - ([e29c9ea](https://github.com/IntactGlobal/ig_cli/commit/e29c9eafaf99cd008b734878f7e9cf664824389e)) - hollingv
