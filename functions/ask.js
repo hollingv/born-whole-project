@@ -1,52 +1,65 @@
+const AI_MODEL = '@cf/meta/llama-3.1-8b-instruct';
+
+const SYSTEM_PROMPT = `You are a helpful assistant answering questions about circumcision,
+bodily autonomy, and children's rights. Answer based only on the provided context.
+Be concise, factual, and compassionate. If the context does not contain enough
+information to answer, say so.`;
+
 export async function onRequestGet(context) {
     const q = new URL(context.request.url).searchParams.get('q') || '';
     const query = q.toLowerCase();
 
-    const kbFiles = await listKBFiles(context);
-    const matches = [];
+    // Load KB manifest
+    const manifestResp = await fetch(new URL('/kb/manifest.json', context.request.url));
+    if (!manifestResp.ok) {
+        return respond('<p>Knowledge base not available.</p>');
+    }
+    const filenames = await manifestResp.json();
 
-    for (const file of kbFiles) {
+    // Keyword search for relevant chunks
+    const chunks = [];
+    for (const file of filenames) {
         const resp = await fetch(new URL(`/kb/${file}`, context.request.url));
         if (!resp.ok) continue;
-
         const text = await resp.text();
         const source = fileToSource(file);
         for (const line of text.split('\n')) {
             const trimmed = line.trim();
             if (trimmed && trimmed.toLowerCase().includes(query)) {
-                matches.push({ source, line: trimmed });
+                chunks.push({ text: trimmed, source });
             }
-            if (matches.length >= 10) break;
+            if (chunks.length >= 10) break;
         }
-        if (matches.length >= 10) break;
+        if (chunks.length >= 10) break;
     }
 
-    let html;
-    if (matches.length === 0) {
-        html = `<p>No results found for: <strong>${q}</strong></p>`;
-    } else {
-        html = `<p>Results for: <strong>${q}</strong></p>`;
-        html += `<table class="ask-results"><thead><tr><th>Source</th><th>Content</th></tr></thead><tbody>`;
-        for (const m of matches) {
-            html += `<tr><td>${m.source}</td><td>${m.line}</td></tr>`;
-        }
-        html += `</tbody></table>`;
+    if (chunks.length === 0) {
+        return respond(`<p>No information found for: <strong>${q}</strong></p>`);
     }
 
+    // Collect unique sources
+    const sources = [...new Set(chunks.map(c => c.source))];
+    const contextText = chunks.map(c => c.text).join('\n\n');
+
+    // Call Workers AI
+    try {
+        const aiResponse = await context.env.AI.run(AI_MODEL, {
+            messages: [
+                { role: 'system', content: SYSTEM_PROMPT },
+                { role: 'user', content: `Context:\n${contextText}\n\nQuestion: ${q}` }
+            ]
+        });
+        return respond(`<p>${aiResponse.response}</p><p class="ask-sources">Sources: ${sources.join(', ')}</p>`);
+    } catch (err) {
+        let html = '<p>AI unavailable. Here are relevant excerpts:</p><ul>';
+        for (const c of chunks) html += `<li>${c.text}</li>`;
+        html += `</ul><p class="ask-sources">Sources: ${sources.join(', ')}</p>`;
+        return respond(html);
+    }
+}
+
+function respond(html) {
     return new Response(html, {
         headers: { 'Content-Type': 'text/html; charset=utf-8' },
     });
-}
-
-function fileToSource(filename) {
-    let name = filename.replace(/\.txt$/, '');
-    const idx = name.lastIndexOf('-org');
-    if (idx !== -1) name = name.slice(0, idx) + '.org';
-    return name.replace(/-/g, '.');
-}
-
-async function listKBFiles(context) {
-    const resp = await fetch(new URL('/kb/manifest.json', context.request.url));
-    if (!resp.ok) return [];
-    return await resp.json();
 }

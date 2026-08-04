@@ -343,6 +343,12 @@ main p {
 .ask-response p {
     color: #ffffff;
 }
+.ask-sources {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    font-style: italic;
+}
 .ask-results {
     width: 100%;
     border-collapse: collapse;

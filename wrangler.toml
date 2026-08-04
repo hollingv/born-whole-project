@@ -1,0 +1,5 @@
+name = "global-autonomy"
+pages_build_output_dir = "site"
+
+[ai]
+binding = "AI"
