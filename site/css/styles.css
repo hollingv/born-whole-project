@@ -335,24 +335,33 @@ main p {
 }
 .ask-response {
     margin-top: 1.5rem;
-    color: #ffffff;
-    font-size: 1rem;
-    line-height: 1.75;
     min-height: 1.5rem;
 }
-.ask-response p {
+.ask-response:not(:empty) {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    backdrop-filter: blur(4px);
+    text-align: left;
+}
+.ask-response p:first-child {
     color: #ffffff;
+    font-size: 1.35rem;
+    line-height: 1.8;
+    font-weight: 500;
+    margin-bottom: 0;
 }
 .ask-sources {
-    margin-top: 0.75rem;
-    font-size: 0.8rem;
+    margin-top: 1rem;
+    font-size: 1.0rem;
     color: rgba(255,255,255,0.6);
     font-style: italic;
 }
 .ask-disclaimer {
     margin-top: 0.5rem;
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.45);
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.4);
     font-style: italic;
     border-top: 1px solid rgba(255,255,255,0.15);
     padding-top: 0.5rem;
