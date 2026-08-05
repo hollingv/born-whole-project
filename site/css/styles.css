@@ -341,7 +341,7 @@ main p {
     background: transparent;
 }
 .prompt-input::placeholder {
-    color: #aaa;
+    color: #555;
 }
 .prompt-submit {
     background: linear-gradient(135deg, #1a4a8a, #5ba3f5);
@@ -361,6 +361,13 @@ main p {
     min-height: 0;
     overflow-y: auto;
 }
+.ask-question {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
 .ask-response:not(:empty) {
     background: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.2);
@@ -369,9 +376,9 @@ main p {
     backdrop-filter: blur(4px);
     text-align: left;
 }
-.ask-response p:first-child {
+.ask-response p {
     color: #ffffff;
-    font-size: 1.50rem;
+    font-size: 1.15rem;
     line-height: 1.8;
     font-weight: 500;
     margin-bottom: 0;
