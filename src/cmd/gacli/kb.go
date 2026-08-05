@@ -18,6 +18,35 @@ const kbDir = "site/kb"
 
 var httpClient = &http.Client{Timeout: 15 * time.Second}
 
+// normalizeToParagraphs groups lines of extracted text into coherent paragraphs
+// separated by double newlines, filtering out very short fragments.
+func normalizeToParagraphs(text string) string {
+	lines := strings.Split(text, "\n")
+	var paragraphs []string
+	var current []string
+	for _, line := range lines {
+		line = strings.TrimSpace(line)
+		if line == "" {
+			if len(current) > 0 {
+				para := strings.Join(current, " ")
+				if len(para) > 40 {
+					paragraphs = append(paragraphs, para)
+				}
+				current = nil
+			}
+		} else {
+			current = append(current, line)
+		}
+	}
+	if len(current) > 0 {
+		para := strings.Join(current, " ")
+		if len(para) > 40 {
+			paragraphs = append(paragraphs, para)
+		}
+	}
+	return strings.Join(paragraphs, "\n\n")
+}
+
 // skipTags are HTML elements whose content should not be extracted.
 var skipTags = map[string]bool{
 	"script": true,
@@ -97,7 +126,7 @@ var kbBuildCmd = &cobra.Command{
 						continue
 					}
 
-					text := extractText(doc)
+					text := normalizeToParagraphs(extractText(doc))
 
 					outPath := filepath.Join(kbDir, urlToFilename(u))
 					if err := os.WriteFile(outPath, []byte(text), 0644); err != nil {

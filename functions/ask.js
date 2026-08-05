@@ -60,11 +60,11 @@ async function handleRequest(context) {
         if (!resp.ok) continue;
         const text = await resp.text();
         const source = fileToSource(file);
-        for (const line of text.split('\n')) {
-            const trimmed = line.trim();
+        for (const para of text.split('\n\n')) {
+            const trimmed = para.trim();
             if (!trimmed) continue;
-            const lineLower = trimmed.toLowerCase();
-            const score = searchTerms.filter(kw => lineLower.includes(kw)).length;
+            const paraLower = trimmed.toLowerCase();
+            const score = searchTerms.filter(kw => paraLower.includes(kw)).length;
             if (score > 0) scored.push({ text: trimmed, source, score });
         }
     }

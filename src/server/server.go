@@ -151,20 +151,20 @@ func newHandler(siteDir string) http.Handler {
 				continue
 			}
 			source := filenameToSource(name)
-			for _, line := range strings.Split(string(content), "\n") {
-				line = strings.TrimSpace(line)
-				if line == "" {
+			for _, para := range strings.Split(string(content), "\n\n") {
+				para = strings.TrimSpace(para)
+				if para == "" {
 					continue
 				}
-				lineLower := strings.ToLower(line)
+				paraLower := strings.ToLower(para)
 				score := 0
 				for _, kw := range keywords {
-					if strings.Contains(lineLower, kw) {
+					if strings.Contains(paraLower, kw) {
 						score++
 					}
 				}
 				if score > 0 {
-					chunks = append(chunks, chunk{text: line, source: source, score: score})
+					chunks = append(chunks, chunk{text: para, source: source, score: score})
 				}
 			}
 		}
