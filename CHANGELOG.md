@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.3.0](https://github.com/IntactGlobal/ig_cli/compare/24762f81af8a84092746e094f2f697651b959a45..v0.3.0) - 2026-08-05
+#### Features
+- (**ui**) add revolving sample questions to the AI Ask - ([c0338b1](https://github.com/IntactGlobal/ig_cli/commit/c0338b1ef0cdefedf72cbdaf528d637774b079ef)) - hollingv
+- improve kb search quality with paragraph-level chunking - ([043b6f2](https://github.com/IntactGlobal/ig_cli/commit/043b6f283567e91d9706f038be20ab5f65297d4e)) - hollingv
+- home page Ask prompt is always on the right - ([f1a5e62](https://github.com/IntactGlobal/ig_cli/commit/f1a5e6235a498b6cd4c45bb541d3b054687842ef)) - hollingv
+- add hyperlinked SiteName on nav bar - ([986de6c](https://github.com/IntactGlobal/ig_cli/commit/986de6c6aa0eb248234af9bec90b6f798234090d)) - hollingv
+#### Documentation
+- add readme - ([db83f5f](https://github.com/IntactGlobal/ig_cli/commit/db83f5fe27d6c374949dbc11a7e1d72723fcd651)) - hollingv
+- ask.js and server.go should mirror each other - ([3006ab1](https://github.com/IntactGlobal/ig_cli/commit/3006ab1047e579a3a976c3b56da5f787c213cf17)) - hollingv
+#### Refactoring
+- remove duplicated server*.go files - ([24762f8](https://github.com/IntactGlobal/ig_cli/commit/24762f81af8a84092746e094f2f697651b959a45)) - hollingv
+
+- - -
+
 ## [v0.2.0](https://github.com/IntactGlobal/ig_cli/compare/8f3fcad815023f15c56c2a77ad3fca02bf072379..v0.2.0) - 2026-08-04
 #### Features
 - (**ask.js**) catch Ask/submit error messages from Cloudflare - ([bfbe8de](https://github.com/IntactGlobal/ig_cli/commit/bfbe8de0a8fe29947720532fba8fcae943b429c6)) - hollingv
