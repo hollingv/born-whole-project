@@ -11,34 +11,37 @@
     <script src="js/nav.js" defer></script>
     <script src="js/ask.js" defer></script>
 </head>
-<body>
+<body class="home-body">
 
     {{template "nav" .}}
 
-    <section class="hero" id="about">
-        <div class="hero-text">
-            <h1>Connecting People with Resources to Protect Children</h1>
-            <p>
-                An open, community-maintained resource helping parents, advocates, and communities
-                find trusted information and organizations working to end genital cutting of children.
-            </p>
-            <div class="tagline">Learn. Understand. Take action.</div>
-        </div>
-        <div class="hero-image">
-            <img src="images/HeroImage.webp" alt="Global Autonomy" />
-        </div>
-    </section>
+    <div class="home-layout" id="about">
 
-    <section id="ask" class="ask-section">
-        <h2>What do you want to know about?</h2>
-        <form class="prompt-form" action="/ask" method="get">
-            <div class="prompt-input-wrapper">
-                <input type="text" class="prompt-input" name="q" placeholder="What is circumcision?" autocomplete="off" />
-                <button type="submit" class="prompt-submit">Ask</button>
+        <div class="home-left">
+            <div class="hero-text">
+                <h1>{{.SiteName}}</h1>
+                <p>Central site to direct people to existing websites providing information about the harms of genital cutting and the legal efforts to stop it.</p>
+                <p>We are committed to ending the genital cutting of infants and protecting every child's right to bodily autonomy and informed consent.</p>
+                <p>Our mission is to provide accurate information, connect people with trusted resources, and support the organizations leading the effort to end this practice.</p>
+                <div class="tagline">Learn. Understand. Take action.</div>
             </div>
-        </form>
-        <div id="ask-response" class="ask-response"></div>
-    </section>
+            <div class="hero-image">
+                <img src="images/HeroImage.webp" alt="Global Autonomy" />
+            </div>
+        </div>
+
+        <div class="home-right">
+            <h2 class="ask-heading">What do you want to know about?</h2>
+            <form class="prompt-form" action="/ask" method="get">
+                <div class="prompt-input-wrapper">
+                    <input type="text" class="prompt-input" name="q" placeholder="What is circumcision?" autocomplete="off" />
+                    <button type="submit" class="prompt-submit">Ask</button>
+                </div>
+            </form>
+            <div id="ask-response" class="ask-response"></div>
+        </div>
+
+    </div>
 
     {{template "footer" .}}
 
