@@ -1,3 +1,6 @@
+// Cloudflare Pages Function handling the /ask endpoint for the Global Autonomy site.
+// The logic in this file mirrors src/server/server.go — keep both in sync when making changes.
+
 const AI_MODEL = '@cf/meta/llama-3.1-8b-instruct-fast';
 
 const STOP_WORDS = new Set([

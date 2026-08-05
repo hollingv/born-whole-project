@@ -1,3 +1,5 @@
+// Package main implements the local development server for Global Autonomy.
+// The /ask handler logic mirrors functions/ask.js — keep both in sync when making changes.
 package main
 
 import (
