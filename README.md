@@ -1,14 +1,14 @@
-# Global Autonomy
+# Bodily Integrity Commons
 
 **Every child deserves the right to bodily autonomy.**
 
-Global Autonomy is an open-source advocacy hub dedicated to raising awareness about the harms of genital cutting, connecting people with trusted organizations, and empowering parents and the general public to make informed decisions.
+Bodily Integrity Commons is an open-source advocacy hub dedicated to raising awareness about the harms of genital cutting, connecting people with trusted organizations, and empowering parents and the general public to make informed decisions.
 
 ---
 
 ## Our Mission
 
-We believe that access to accurate, compassionate information can change outcomes for children around the world. Global Autonomy serves as a central resource for:
+We believe that access to accurate, compassionate information can change outcomes for children around the world. Bodily Integrity Commons serves as a central resource for:
 
 - **Education** — helping parents, healthcare providers, and the general public understand the medical, ethical, and legal dimensions of genital cutting
 - **Connection** — directing people to the organizations leading the fight to protect children's bodily integrity
@@ -34,7 +34,7 @@ All contributions are reviewed before merging to ensure they align with the site
 
 ## Sharing News and Events
 
-A core goal of Global Autonomy is to become the go-to hub for news and events in the intactivist space. Each organization featured on the site is encouraged to publish updates at consistent URLs:
+A core goal of Bodily Integrity Commons is to become the go-to hub for news and events in the intactivist space. Each organization featured on the site is encouraged to publish updates at consistent URLs:
 
 | Path | Content |
 |---|---|
@@ -49,7 +49,7 @@ The site aggregates this content automatically — organizations that adopt thes
 
 ## Educating Parents and the Public
 
-The harm of genital cutting is not widely understood. Many parents make decisions under social pressure, misinformation, or without realizing there is a choice to be made. Global Autonomy addresses this through:
+The harm of genital cutting is not widely understood. Many parents make decisions under social pressure, misinformation, or without realizing there is a choice to be made. Bodily Integrity Commons addresses this through:
 
 - **Plain-language explanations** of what circumcision is, what the medical evidence says, and what the ethical arguments are
 - **An AI-powered Ask feature** that answers natural language questions using content sourced directly from vetted advocacy organizations — grounded in real information, not assumptions
@@ -101,4 +101,4 @@ Visit the organizations listed on this site. Read the FAQ. Ask a question. And s
 
 ---
 
-*Global Autonomy is an independent advocacy resource and is not affiliated with any single organization. We feature organizations whose work we believe deserves greater visibility.*
+*Bodily Integrity Commons is an independent advocacy resource and is not affiliated with any single organization. We feature organizations whose work we believe deserves greater visibility.*

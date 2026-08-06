@@ -24,7 +24,7 @@ APP_TAG := $(shell \
 
 help:
 	@echo ""
-	@echo "Global Autonomy Website"
+	@echo "Bodily Integrity Commons Website"
 	@echo "(version: $(APP_TAG))"
 	@echo ""
 	@grep -E '^[a-zA-Z0-9-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

@@ -1,4 +1,4 @@
-// Cloudflare Pages Function handling the /ask endpoint for the Global Autonomy site.
+// Cloudflare Pages Function handling the /ask endpoint for the Bodily Integrity Commons site.
 // The logic in this file mirrors src/server/server.go — keep both in sync when making changes.
 
 const AI_MODEL = '@cf/meta/llama-3.1-8b-instruct-fast';

@@ -10,7 +10,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const siteName = "Global Autonomy"
+const siteName = "Bodily Integrity Commons"
 
 type templateData struct {
 	SiteName  string
