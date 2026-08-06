@@ -47,26 +47,35 @@ func normalizeToParagraphs(text string) string {
 	return strings.Join(paragraphs, "\n\n")
 }
 
-// skipTags are HTML elements whose content should not be extracted.
-var skipTags = map[string]bool{
-	"script": true,
-	"style":  true,
-	"nav":    true,
-	"footer": true,
-	"header": true,
+// contentTags are the only HTML elements from which text is extracted.
+// This targets meaningful prose content and ignores navigation, UI, and boilerplate.
+var contentTags = map[string]struct{}{
+	"p": {}, "h1": {}, "h2": {}, "h3": {}, "h4": {}, "h5": {}, "h6": {},
+	"article": {}, "main": {}, "section": {}, "blockquote": {}, "li": {},
 }
 
-// extractText walks the HTML node tree and returns visible text content.
-func extractText(n *html.Node) string {
+// allText recursively collects all text within a node and its descendants.
+func allText(n *html.Node) string {
 	if n.Type == html.TextNode {
-		text := strings.TrimSpace(n.Data)
-		if text != "" {
-			return text + "\n"
-		}
-		return ""
+		return n.Data
 	}
-	if n.Type == html.ElementNode && skipTags[n.Data] {
-		return ""
+	var sb strings.Builder
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		sb.WriteString(allText(c))
+	}
+	return sb.String()
+}
+
+// extractText walks the HTML node tree and returns text only from known content elements.
+func extractText(n *html.Node) string {
+	if n.Type == html.ElementNode {
+		if _, ok := contentTags[n.Data]; ok {
+			text := strings.TrimSpace(allText(n))
+			if text != "" {
+				return text + "\n"
+			}
+			return ""
+		}
 	}
 	var sb strings.Builder
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
