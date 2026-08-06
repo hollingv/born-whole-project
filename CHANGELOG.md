@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.3.1 - 2026-08-06
+#### Bug Fixes
+- (**ci.yaml**) ensure tags are fetched even if cached - (b08e90a) - hollingv
+- cog toml should have tag_prefix = 'v' - (ee4c7ae) - hollingv
+- ignore merge commits running cog - (62df321) - hollingv
+- adjust hooks and cog check in Makefile - (4bfaa81) - hollingv
+
+- - -
+
 ## [v0.3.0](https://github.com/IntactGlobal/ig_cli/compare/24762f81af8a84092746e094f2f697651b959a45..v0.3.0) - 2026-08-05
 #### Features
 - (**ui**) add revolving sample questions to the AI Ask - ([c0338b1](https://github.com/IntactGlobal/ig_cli/commit/c0338b1ef0cdefedf72cbdaf528d637774b079ef)) - hollingv
