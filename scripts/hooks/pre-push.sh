@@ -5,4 +5,10 @@ if ! command -v cog &> /dev/null; then
     exit 1
 fi
 
-cog check v0.0.4..HEAD
+echo "[ pre-push ] Checking commit messages..."
+cog check
+
+echo "[ pre-push ] Running tests..."
+make test
+
+echo "[ pre-push ] All checks passed."
