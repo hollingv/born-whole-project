@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.4.0 - 2026-08-07
+#### Features
+- (**UI**) make hero image smaller by 20% - (1e013b1) - hollingv
+- (**ui**) add organization placeholder image to org card - (e48c8dd) - hollingv
+- improve kb extraction quality by targeting content elements only - (34a8b2e) - hollingv
+#### Bug Fixes
+- adjust the test to correct ai mistake - (6c09db1) - hollingv
+#### Documentation
+- begin use of Bodily Integrity Commons naming - (2175bc9) - hollingv
+#### Continuous Integration
+- run 'make test' in pre-push hook to block broken pushes - (52aa0e8) - hollingv
+
+- - -
+
 ## v0.3.1 - 2026-08-06
 #### Bug Fixes
 - (**ci.yaml**) ensure tags are fetched even if cached - (b08e90a) - hollingv
