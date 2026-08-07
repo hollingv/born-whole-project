@@ -66,7 +66,7 @@ func TestSiteResponds(t *testing.T) {
 
 func TestIndexContainsSiteName(t *testing.T) {
 	resp := get(t, "/")
-	strings.Contains(body(t, resp), "Bodily Integrity Commons")
+	if !strings.Contains(body(t, resp), "Bodily Integrity Commons") {
 		t.Error("expected page to contain 'Bodily Integrity Commons'")
 	}
 }
