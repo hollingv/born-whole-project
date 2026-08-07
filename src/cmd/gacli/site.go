@@ -13,10 +13,11 @@ import (
 const siteName = "Bodily Integrity Commons"
 
 type templateData struct {
-	SiteName  string
-	Version   string
-	OrgGroups []OrgGroup
-	FAQItems  []FAQItem
+	SiteName          string
+	Version           string
+	OrgGroups         []OrgGroup
+	FAQItems          []FAQItem
+	ContributeExample string
 }
 
 type page struct {
@@ -70,7 +71,7 @@ var siteCmd = &cobra.Command{
 	Long:  `Discovers all page templates and renders them to site/`,
 	Run: func(cmd *cobra.Command, args []string) {
 		version, _ := cmd.Flags().GetString("version")
-		data := templateData{SiteName: siteName, Version: version, OrgGroups: orgGroups, FAQItems: faqItems}
+		data := templateData{SiteName: siteName, Version: version, OrgGroups: orgGroups, FAQItems: faqItems, ContributeExample: ContributeExample}
 
 		pages, err := discoverPages("templates")
 		if err != nil {

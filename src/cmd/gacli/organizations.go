@@ -19,6 +19,21 @@ type OrgGroup struct {
 
 const placeholderImage = "images/placeholder.jpg"
 
+// ContributeExample is the canonical Go snippet shown on the contribute page.
+// Update this whenever the Organization struct fields change.
+const ContributeExample = `{
+    Name:        "Your Organization Name",
+    Description: "A one-sentence description of your work.",
+    Website:     "https://yourwebsite.org",
+    Thumbnail:   "images/placeholder.jpg",
+    NewsUrl:     "https://yourwebsite.org/news",
+    EventsUrl:   "https://yourwebsite.org/events",
+    KBURLs: []string{
+        "https://yourwebsite.org/about",
+        "https://yourwebsite.org/research",
+    },
+},`
+
 // orgGroups is the list of organization groups to display on the site.
 var orgGroups = []OrgGroup{
 	{
