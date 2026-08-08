@@ -48,7 +48,6 @@ func normalizeToParagraphs(text string) string {
 }
 
 // contentTags are the only HTML elements from which text is extracted.
-// This targets meaningful prose content and ignores navigation, UI, and boilerplate.
 var contentTags = map[string]struct{}{
 	"p": {}, "h1": {}, "h2": {}, "h3": {}, "h4": {}, "h5": {}, "h6": {},
 	"article": {}, "main": {}, "section": {}, "blockquote": {}, "li": {},
@@ -95,6 +94,67 @@ func urlToFilename(rawURL string) string {
 	return name + ".txt"
 }
 
+// fetchURL fetches a URL and returns the parsed HTML document.
+func fetchURL(u string) (*html.Node, error) {
+	resp, err := httpClient.Get(u)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("HTTP %d", resp.StatusCode)
+	}
+	return html.Parse(resp.Body)
+}
+
+// saveKBFile extracts text from a URL and saves it to the kb directory.
+func saveKBFile(orgName, u string) {
+	fmt.Printf("Fetching %s (%s)...\n", orgName, u)
+	doc, err := fetchURL(u)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "  Skipping %s: %v\n", u, err)
+		return
+	}
+	text := normalizeToParagraphs(extractText(doc))
+	outPath := filepath.Join(kbDir, urlToFilename(u))
+	if err := os.WriteFile(outPath, []byte(text), 0644); err != nil {
+		fmt.Fprintf(os.Stderr, "  Error writing %s: %v\n", outPath, err)
+		return
+	}
+	fmt.Printf("  Saved to %s\n", outPath)
+}
+
+// buildTextKB fetches all org KB URLs and saves them as text files.
+func buildTextKB() {
+	for _, group := range orgGroups {
+		for _, org := range group.Organizations {
+			urls := org.KBURLs
+			if len(urls) == 0 {
+				urls = []string{org.Website}
+			}
+			for _, u := range urls {
+				saveKBFile(org.Name, u)
+			}
+		}
+	}
+}
+
+// writeManifest writes the list of KB text files to manifest.json.
+func writeManifest() {
+	files, _ := filepath.Glob(filepath.Join(kbDir, "*.txt"))
+	var filenames []string
+	for _, f := range files {
+		filenames = append(filenames, filepath.Base(f))
+	}
+	manifest, _ := json.MarshalIndent(filenames, "", "  ")
+	manifestPath := filepath.Join(kbDir, "manifest.json")
+	if err := os.WriteFile(manifestPath, manifest, 0644); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing manifest: %v\n", err)
+		return
+	}
+	fmt.Printf("Written %s\n", manifestPath)
+}
+
 var kbBuildCmd = &cobra.Command{
 	Use:   "kb-build",
 	Short: "Build the knowledge base from web sources",
@@ -109,58 +169,9 @@ var kbBuildCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		for _, group := range orgGroups {
-			for _, org := range group.Organizations {
-				urls := org.KBURLs
-				if len(urls) == 0 {
-					urls = []string{org.Website}
-				}
-				for _, u := range urls {
-					fmt.Printf("Fetching %s (%s)...\n", org.Name, u)
-
-					resp, err := httpClient.Get(u)
-					if err != nil {
-						fmt.Fprintf(os.Stderr, "  Error fetching %s: %v\n", u, err)
-						continue
-					}
-					defer resp.Body.Close()
-					if resp.StatusCode != http.StatusOK {
-						fmt.Fprintf(os.Stderr, "  Skipping %s: HTTP %d\n", u, resp.StatusCode)
-						continue
-					}
-
-					doc, err := html.Parse(resp.Body)
-					if err != nil {
-						fmt.Fprintf(os.Stderr, "  Error parsing HTML from %s: %v\n", u, err)
-						continue
-					}
-
-					text := normalizeToParagraphs(extractText(doc))
-
-					outPath := filepath.Join(kbDir, urlToFilename(u))
-					if err := os.WriteFile(outPath, []byte(text), 0644); err != nil {
-						fmt.Fprintf(os.Stderr, "  Error writing %s: %v\n", outPath, err)
-						continue
-					}
-
-					fmt.Printf("  Saved to %s\n", outPath)
-				}
-			}
-		}
-
-		// Write manifest of all KB files for Cloudflare Pages Functions
-		files, _ := filepath.Glob(filepath.Join(kbDir, "*.txt"))
-		var filenames []string
-		for _, f := range files {
-			filenames = append(filenames, filepath.Base(f))
-		}
-		manifest, _ := json.MarshalIndent(filenames, "", "  ")
-		manifestPath := filepath.Join(kbDir, "manifest.json")
-		if err := os.WriteFile(manifestPath, manifest, 0644); err != nil {
-			fmt.Fprintf(os.Stderr, "Error writing manifest: %v\n", err)
-		} else {
-			fmt.Printf("Written %s\n", manifestPath)
-		}
+		buildTextKB()
+		writeManifest()
+		buildYouTubeResources()
 
 		fmt.Println("Knowledge base build complete.")
 	},

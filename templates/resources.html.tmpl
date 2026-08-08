@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main class="resources-page">
+        <h1>Resources</h1>
+        <p>A curated collection of short videos to help you learn and share information about bodily autonomy and genital integrity.</p>
+        {{if .Resources}}<p class="resource-count">{{len .Resources}} shorts available</p>{{end}}
+
+        {{if .Resources}}
+        <div class="resource-grid">
+            {{range .Resources}}
+            <a class="resource-card" href="https://www.youtube.com/shorts/{{.VideoID}}" target="_blank">
+                <img
+                    src="https://img.youtube.com/vi/{{.VideoID}}/hqdefault.jpg"
+                    alt="{{.Title}}"
+                    class="resource-thumbnail"
+                />
+                <div class="resource-info">
+                    <h3>{{.Title}}</h3>
+                </div>
+            </a>
+            {{end}}
+        </div>
+        {{else}}
+        <p class="resource-empty">No resources available yet. Run <code>make kb-build</code> with a <code>YOUTUBE_API_KEY</code> set to populate this page.</p>
+        {{end}}
+    </main>
+
+    {{template "footer" .}}
+
+</body>
+</html>
