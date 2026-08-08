@@ -121,6 +121,21 @@ func TestAskReturnsResponse(t *testing.T) {
 	}
 }
 
+func TestResourcesPageLoads(t *testing.T) {
+	resp := get(t, "/resources.html")
+	defer resp.Body.Close()
+	if resp.StatusCode != http.StatusOK {
+		t.Errorf("expected 200 for resources page, got %d", resp.StatusCode)
+	}
+}
+
+func TestResourcesShortsAvailable(t *testing.T) {
+	resp := get(t, "/resources.html")
+	if !strings.Contains(body(t, resp), "shorts available") {
+		t.Error("expected resources page to contain 'shorts available' — run make kb-build with BIC_YT_API_KEY set")
+	}
+}
+
 func TestUsage(t *testing.T) {
 	fmt.Printf("Running integration tests against: %s\n", *baseURL)
 }
