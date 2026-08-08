@@ -75,10 +75,10 @@ type cfAIResponse struct {
 }
 
 func callCloudflareAI(question string, chunks []string) (string, error) {
-	accountID := os.Getenv("CLOUDFLARE_ACCOUNT_ID")
-	apiToken := os.Getenv("CLOUDFLARE_API_TOKEN")
+	accountID := os.Getenv(projectPrefix + "_CF_ACCOUNT_ID")
+	apiToken := os.Getenv(projectPrefix + "_CF_API_TOKEN")
 	if accountID == "" || apiToken == "" {
-		return "", fmt.Errorf("CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN env vars not set")
+		return "", fmt.Errorf("%s_CF_ACCOUNT_ID and %s_CF_API_TOKEN env vars not set", projectPrefix, projectPrefix)
 	}
 
 	context := strings.Join(chunks, "\n\n")

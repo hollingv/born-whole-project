@@ -80,7 +80,7 @@ test-unit: build ## Run the go unit tests
 	$(GO_BIN) test ./src/cmd/$(APP_NAME)/... ./src/server/...
 
 test-integ-local: build ## Start server, run integration tests, stop server
-	@go run ./src/server/server.go > /dev/null 2>&1 & \
+	@go run ./src/server > /dev/null 2>&1 & \
 	SERVER_PID=$$!; \
 	trap "kill $$SERVER_PID 2>/dev/null; wait $$SERVER_PID 2>/dev/null; kill $$(lsof -t -i:8080) 2>/dev/null" EXIT INT TERM; \
 	sleep 2; \

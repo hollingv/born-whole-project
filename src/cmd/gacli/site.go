@@ -10,11 +10,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const siteName = "Bodily Integrity Commons"
-
 type templateData struct {
 	SiteName          string
 	Version           string
+	EnvPrefix         string
 	OrgGroups         []OrgGroup
 	FAQItems          []FAQItem
 	ContributeExample string
@@ -72,7 +71,7 @@ var siteCmd = &cobra.Command{
 	Long:  `Discovers all page templates and renders them to site/`,
 	Run: func(cmd *cobra.Command, args []string) {
 		version, _ := cmd.Flags().GetString("version")
-		data := templateData{SiteName: siteName, Version: version, OrgGroups: orgGroups, FAQItems: faqItems, ContributeExample: ContributeExample, Resources: loadResources()}
+		data := templateData{SiteName: siteName, Version: version, EnvPrefix: projectPrefix, OrgGroups: orgGroups, FAQItems: faqItems, ContributeExample: ContributeExample, Resources: loadResources()}
 
 		pages, err := discoverPages("templates")
 		if err != nil {

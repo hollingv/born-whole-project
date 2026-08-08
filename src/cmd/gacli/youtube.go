@@ -31,9 +31,15 @@ type ytSearchResp struct {
 
 // buildYouTubeResources fetches Shorts from YouTube and saves them to resources.json.
 func buildYouTubeResources() {
-	apiKey := os.Getenv("YOUTUBE_API_KEY")
+	// Always write an empty resources.json so the file exists after kb-build.
+	if err := os.WriteFile(resourcesPath, []byte("[]\n"), 0644); err != nil {
+		fmt.Fprintf(os.Stderr, "Error initialising %s: %v\n", resourcesPath, err)
+	}
+
+	envKey := projectPrefix + "_YT_API_KEY"
+	apiKey := os.Getenv(envKey)
 	if apiKey == "" {
-		fmt.Println("[ WARN ] YOUTUBE_API_KEY not set — skipping YouTube Shorts fetch")
+		fmt.Printf("[ WARN ] %s not set — skipping YouTube Shorts fetch\n", envKey)
 		return
 	}
 	fmt.Println("Fetching YouTube Shorts...")
