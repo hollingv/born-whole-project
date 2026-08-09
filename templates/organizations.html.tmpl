@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/nav.js" defer></script>
+    <script src="js/toc.js" defer></script>
 </head>
 <body>
 
@@ -19,6 +20,7 @@
         <p>We are an independent advocacy resource and feature organizations whose work we believe deserves greater visibility.</p>
         <p>Learn more about each organization through the links below.</p>
         <p class="org-invite">Are you an organization working in this space? We welcome submissions. <a href="contribute.html">Learn more</a> about how to add your organization to this page.</p>
+        <nav class="toc" id="toc" data-section=".org-group" data-heading="h3"></nav>
         {{range .OrgGroups}}
         <div class="org-group">
             <h3>{{.Type}}</h3>
@@ -27,6 +29,7 @@
             </div>
         </div>
         {{end}}
+        <a href="#" class="back-to-top">&#8679; Top</a>
     </main>
 
     {{template "footer" .}}
