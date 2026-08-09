@@ -12,51 +12,41 @@ const STOP_WORDS = new Set([
     'not','no','so','if','than','very',
 ]);
 
-function extractKeywords(query) {
-    return query.toLowerCase()
-        .split(/[^a-z]+/)
-        .filter(w => w.length > 2 && !STOP_WORDS.has(w));
-}
-
 const SYSTEM_PROMPT = `You are a helpful assistant answering questions about circumcision,
 bodily autonomy, and children's rights. Only use the text provided below as context.
 Do not use any outside knowledge. Be concise, factual, and compassionate.
 If the provided context does not contain enough information to answer, say so explicitly.`;
 
-// Sanitise an error message to remove any account-specific information.
-function sanitiseError(err) {
-    let msg = err?.message || String(err);
-    msg = msg.replace(/accounts\/[a-f0-9]+/gi, 'accounts/[redacted]');
-    msg = msg.replace(/Bearer\s+\S+/gi, 'Bearer [redacted]');
-    return msg;
-}
-
 export async function onRequestGet(context) {
     try {
         return await handleRequest(context);
     } catch (err) {
-        const msg = sanitiseError(err);
-        return respond(`<p>An error occurred: <code>${msg}</code></p>`);
+        return respond(`<p>An error occurred: <code>${sanitiseError(err)}</code></p>`);
     }
 }
 
 async function handleRequest(context) {
     const q = new URL(context.request.url).searchParams.get('q') || '';
-    const query = q.toLowerCase();
+    const chunks = await searchKB(q, context.request.url);
 
-    // Load KB manifest
-    const manifestResp = await fetch(new URL('/kb/manifest.json', context.request.url));
-    if (!manifestResp.ok) {
-        return respond('<p>Knowledge base not available.</p>');
+    if (chunks.length === 0) {
+        return respond(`<p>No information found for: <strong>${q}</strong></p>`);
     }
+
+    return await askAI(q, chunks, context);
+}
+
+async function searchKB(q, requestUrl) {
+    const manifestResp = await fetch(new URL('/kb/manifest.json', requestUrl));
+    if (!manifestResp.ok) return [];
     const filenames = await manifestResp.json();
 
-    // Extract keywords and search for relevant chunks
     const keywords = extractKeywords(q);
-    const searchTerms = keywords.length > 0 ? keywords : [query];
+    const searchTerms = keywords.length > 0 ? keywords : [q.toLowerCase()];
     const scored = [];
+
     for (const file of filenames) {
-        const resp = await fetch(new URL(`/kb/${file}`, context.request.url));
+        const resp = await fetch(new URL(`/kb/${file}`, requestUrl));
         if (!resp.ok) continue;
         const text = await resp.text();
         const source = fileToSource(file);
@@ -68,17 +58,15 @@ async function handleRequest(context) {
             if (score > 0) scored.push({ text: trimmed, source, score });
         }
     }
+
     scored.sort((a, b) => b.score - a.score);
-    const chunks = scored.slice(0, 10);
+    return scored.slice(0, 10);
+}
 
-    if (chunks.length === 0) {
-        return respond(`<p>No information found for: <strong>${q}</strong></p>`);
-    }
-
+async function askAI(q, chunks, context) {
     const sources = [...new Set(chunks.map(c => c.source))];
     const contextText = chunks.map(c => c.text).join('\n\n');
 
-    // Call Workers AI
     try {
         if (!context.env.AI) {
             throw new Error('AI binding not configured — add the AI binding in the Cloudflare Pages dashboard under Settings → Functions → AI Bindings');
@@ -89,10 +77,13 @@ async function handleRequest(context) {
                 { role: 'user', content: `Context:\n${contextText}\n\nQuestion: ${q}` }
             ]
         });
-        return respond(`<p>${aiResponse.response}</p><p class="ask-sources">Sources: ${sources.join(', ')}</p><p class="ask-disclaimer">Answers are generated from curated sources. Always verify with the linked organisations.</p>`);
+        return respond(
+            `<p>${aiResponse.response}</p>` +
+            `<p class="ask-sources">Sources: ${sources.join(', ')}</p>` +
+            `<p class="ask-disclaimer">Answers are generated from curated sources. Always verify with the linked organisations.</p>`
+        );
     } catch (err) {
-        const msg = sanitiseError(err);
-        let html = `<p>AI unavailable: <code>${msg}</code></p>`;
+        let html = `<p>AI unavailable: <code>${sanitiseError(err)}</code></p>`;
         html += '<p>Here are relevant excerpts:</p><ul>';
         for (const c of chunks) html += `<li>${c.text}</li>`;
         html += `</ul><p class="ask-sources">Sources: ${sources.join(', ')}</p>`;
@@ -100,11 +91,24 @@ async function handleRequest(context) {
     }
 }
 
+function extractKeywords(query) {
+    return query.toLowerCase()
+        .split(/[^a-z]+/)
+        .filter(w => w.length > 2 && !STOP_WORDS.has(w));
+}
+
 function fileToSource(filename) {
     let name = filename.replace(/\.txt$/, '');
     const idx = name.lastIndexOf('-org');
     if (idx !== -1) name = name.slice(0, idx) + '.org';
     return name.replace(/-/g, '.');
+}
+
+function sanitiseError(err) {
+    let msg = err?.message || String(err);
+    msg = msg.replace(/accounts\/[a-f0-9]+/gi, 'accounts/[redacted]');
+    msg = msg.replace(/Bearer\s+\S+/gi, 'Bearer [redacted]');
+    return msg;
 }
 
 function respond(html) {
