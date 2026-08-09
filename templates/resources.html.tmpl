@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/nav.js" defer></script>
+    <script src="js/toc.js" defer></script>
 </head>
 <body>
 
@@ -16,27 +17,39 @@
 
     <main class="resources-page">
         <h1>Resources</h1>
-        <p>A curated collection of short videos to help you learn and share information about bodily autonomy and genital integrity.</p>
-        {{if .Resources}}<p class="resource-count">{{len .Resources}} shorts available</p>{{end}}
+        <p>A curated collection of resources to help you learn and share information about bodily autonomy and genital integrity.</p>
 
-        {{if .Resources}}
-        <div class="resource-grid">
-            {{range .Resources}}
-            <a class="resource-card" href="https://www.youtube.com/shorts/{{.VideoID}}" target="_blank">
-                <img
-                    src="https://img.youtube.com/vi/{{.VideoID}}/hqdefault.jpg"
-                    alt="{{.Title}}"
-                    class="resource-thumbnail"
-                />
-                <div class="resource-info">
-                    <h3>{{.Title}}</h3>
-                </div>
-            </a>
+        <nav class="toc" id="toc"></nav>
+
+        <section class="resource-section">
+            <h2>YouTube Informational Shorts</h2>
+            {{if .Resources}}
+            <p class="resource-count">{{len .Resources}} shorts available</p>
+            <div class="resource-grid">
+                {{range .Resources}}
+                <a class="resource-card" href="https://www.youtube.com/shorts/{{.VideoID}}" target="_blank">
+                    <img
+                        src="https://img.youtube.com/vi/{{.VideoID}}/hqdefault.jpg"
+                        alt="{{.Title}}"
+                        class="resource-thumbnail"
+                    />
+                    <div class="resource-info">
+                        <h3>{{.Title}}</h3>
+                    </div>
+                </a>
+                {{end}}
+            </div>
+            {{else}}
+            <p class="resource-empty">No resources available yet. Run <code>make kb-build</code> with a <code>{{.EnvPrefix}}_YT_API_KEY</code> set to populate this page.</p>
             {{end}}
-        </div>
-        {{else}}
-        <p class="resource-empty">No resources available yet. Run <code>make kb-build</code> with a <code>{{.EnvPrefix}}_YT_API_KEY</code> set to populate this page.</p>
-        {{end}}
+        </section>
+
+        <section class="resource-section">
+            <h2>TBD</h2>
+            <p class="resource-empty">Coming soon.</p>
+        </section>
+
+        <a href="#" class="back-to-top">&#8679; Top</a>
     </main>
 
     {{template "footer" .}}
