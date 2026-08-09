@@ -79,7 +79,10 @@ test: build test-unit test-integ-local ## Build and run all tests
 test-unit: build ## Run the go unit tests
 	$(GO_BIN) test ./src/cmd/$(APP_NAME)/... ./src/server/...
 
-test-integ-local: build ## Start server, run integration tests, stop server
+test-env-vars: ## Chaeck the status of the environment variables used for testing
+	./$(APP_NAME) status --set-exit-code=true
+
+test-integ-local: build test-env-vars ## Start server, run integration tests, stop server
 	@go run ./src/server > /dev/null 2>&1 & \
 	SERVER_PID=$$!; \
 	trap "kill $$SERVER_PID 2>/dev/null; wait $$SERVER_PID 2>/dev/null; kill $$(lsof -t -i:8080) 2>/dev/null" EXIT INT TERM; \
