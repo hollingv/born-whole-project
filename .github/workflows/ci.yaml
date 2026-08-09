@@ -6,8 +6,6 @@ on:
   pull_request:
 
 env:
-  PROJECT_PREFIX: BIC
-
   # Main production branch
   MAIN_BRANCH: main
   MAIN_URL: https://global-autonomy.pages.dev
@@ -30,12 +28,12 @@ jobs:
 
     env:
       # Resolved once from secrets — available to all steps
-      BIC_CF_API_TOKEN:  ${{ secrets[format('{0}_CF_API_TOKEN', env.PROJECT_PREFIX)] }}
-      BIC_CF_ACCOUNT_ID: ${{ secrets[format('{0}_CF_ACCOUNT_ID', env.PROJECT_PREFIX)] }}
-      BIC_YT_API_KEY:    ${{ secrets[format('{0}_YT_API_KEY', env.PROJECT_PREFIX)] }}
+      BIC_CF_API_TOKEN:  ${{ secrets.BIC_CF_API_TOKEN }}
+      BIC_CF_ACCOUNT_ID: ${{ secrets.BIC_CF_ACCOUNT_ID }}
+      BIC_YT_API_KEY:    ${{ secrets.BIC_YT_API_KEY }}
       # wrangler requires these specific names
-      CLOUDFLARE_API_TOKEN:  ${{ secrets[format('{0}_CF_API_TOKEN', env.PROJECT_PREFIX)] }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets[format('{0}_CF_ACCOUNT_ID', env.PROJECT_PREFIX)] }}
+      CLOUDFLARE_API_TOKEN:  ${{ secrets.BIC_CF_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.BIC_CF_ACCOUNT_ID }}
 
     steps:
       - name: Check out repository
