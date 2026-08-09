@@ -36,9 +36,9 @@ var statusCmd = &cobra.Command{
 		setExitCode, _ := cmd.Flags().GetBool(flagNameSetExitCode)
 
 		items := []statusItem{
-			{projectPrefix + "_CF_API_TOKEN", "Cloudflare API token (for AI)", checkEnvVar(projectPrefix + "_CF_API_TOKEN")},
-			{projectPrefix + "_CF_ACCOUNT_ID", "Cloudflare account ID (for AI)", checkEnvVar(projectPrefix + "_CF_ACCOUNT_ID")},
-			{projectPrefix + "_YT_API_KEY", "YouTube Data API key (for Shorts)", checkEnvVar(projectPrefix + "_YT_API_KEY")},
+			{projectPrefix + "_CF_ACCOUNT_ID", "Cloudflare account ID (AI and deployment)", checkEnvVar(projectPrefix + "_CF_ACCOUNT_ID")},
+			{projectPrefix + "_CF_API_TOKEN", "Cloudflare API token (AI and deployment)", checkEnvVar(projectPrefix + "_CF_API_TOKEN")},
+			{projectPrefix + "_YT_API_KEY", "YouTube Data API key (for Shorts metadata)", checkEnvVar(projectPrefix + "_YT_API_KEY")},
 		}
 
 		if !silent {

@@ -1,3 +1,9 @@
+// Package main — youtube.go
+// Fetches YouTube Shorts from a configured channel using the YouTube Data API v3.
+// Called by kb-build when BIC_YT_API_KEY is set. Resolves the channel handle to a
+// channel ID, pages through the search API filtering for short videos published in
+// the past 3 months, and writes the results to site/kb/resources.json for use by
+// the resources page. If the API key is not set, an empty resources.json is written.
 package main
 
 import (
