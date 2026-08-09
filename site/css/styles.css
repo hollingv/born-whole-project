@@ -1,3 +1,8 @@
+:root {
+    /* Change --page-bg to update the site background colour everywhere */
+    --page-bg: #f4f6fb;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
@@ -13,7 +18,7 @@ html {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #f4f6fb;
+    background-color: var(--page-bg);
     color: #1a1a1a;
 }
 
@@ -127,7 +132,7 @@ nav a.brand {
 
 /* Left column — hero */
 .home-left {
-    background: linear-gradient(160deg, #0f1f3d 0%, #1a4a8a 70%, #2d6abf 100%);
+    background-color: var(--page-bg);
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -144,17 +149,17 @@ nav a.brand {
     font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1.1;
-    color: #fff;
+    color: #0f1f3d;
 }
 .hero-text p {
     font-size: clamp(0.95rem, 1.2vw, 1.2rem);
     line-height: 1.75;
-    color: rgba(255, 255, 255, 0.85);
+    color: #444;
 }
 .hero-text .tagline {
     font-size: clamp(1rem, 1.3vw, 1.3rem);
     font-weight: 700;
-    color: #fff;
+    color: #0f1f3d;
     border-left: 4px solid #5ba3f5;
     padding-left: 1rem;
     margin-top: 0.5rem;
@@ -172,7 +177,8 @@ nav a.brand {
 
 /* Right column — Ask */
 .home-right {
-    background: #0a1628;
+    background-color: #fff;
+    border-left: 1px solid #e4e8f0;
     display: flex;
     flex-direction: column;
     padding: 2.5rem 2rem;
@@ -182,7 +188,7 @@ nav a.brand {
 .ask-heading {
     font-size: 1.3rem;
     font-weight: 800;
-    color: #fff;
+    color: #0f1f3d;
     margin: 0;
 }
 
@@ -379,21 +385,20 @@ main p {
 }
 .ask-question {
     font-size: 0.85rem;
-    color: rgba(255,255,255,0.55);
+    color: #888;
     margin-bottom: 0.75rem;
     padding-bottom: 0.75rem;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid #e4e8f0;
 }
 .ask-response:not(:empty) {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: var(--page-bg);
+    border: 1px solid #e4e8f0;
     border-radius: 12px;
     padding: 1.5rem;
-    backdrop-filter: blur(4px);
     text-align: left;
 }
 .ask-response p {
-    color: #ffffff;
+    color: #1a1a1a;
     font-size: 1.15rem;
     line-height: 1.8;
     font-weight: 500;
@@ -401,16 +406,16 @@ main p {
 }
 .ask-sources {
     margin-top: 1rem;
-    font-size: 1.2rem;
-    color: rgba(255,255,255,0.6);
+    font-size: 0.8rem;
+    color: #888;
     font-style: italic;
 }
 .ask-disclaimer {
     margin-top: 0.5rem;
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.4);
+    font-size: 0.72rem;
+    color: #aaa;
     font-style: italic;
-    border-top: 1px solid rgba(255,255,255,0.15);
+    border-top: 1px solid #e4e8f0;
     padding-top: 0.5rem;
 }
 .ask-results {
@@ -513,7 +518,7 @@ main p {
 }
 .resource-empty code {
     font-family: monospace;
-    background: #f4f6fb;
+    background: var(--page-bg);
     padding: 0.1rem 0.4rem;
     border-radius: 4px;
 }
@@ -593,7 +598,7 @@ details[open] .faq-question::after {
     color: #5ba3f5;
 }
 .mission-page pre {
-    background: #f4f6fb;
+    background: var(--page-bg);
     border: 1px solid #e4e8f0;
     border-radius: 8px;
     padding: 1rem 1.25rem;
