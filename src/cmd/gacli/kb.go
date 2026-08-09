@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"net/url"
 	"os"
 	"path/filepath"
-	"strings"
 	"time"
+
+	"iwebsite/src/cmd/gacli/knowledge"
 
 	"github.com/spf13/cobra"
 	"golang.org/x/net/html"
@@ -17,82 +17,6 @@ import (
 const kbDir = "site/kb"
 
 var httpClient = &http.Client{Timeout: 15 * time.Second}
-
-// normalizeToParagraphs groups lines of extracted text into coherent paragraphs
-// separated by double newlines, filtering out very short fragments.
-func normalizeToParagraphs(text string) string {
-	lines := strings.Split(text, "\n")
-	var paragraphs []string
-	var current []string
-	for _, line := range lines {
-		line = strings.TrimSpace(line)
-		if line == "" {
-			if len(current) > 0 {
-				para := strings.Join(current, " ")
-				if len(para) > 40 {
-					paragraphs = append(paragraphs, para)
-				}
-				current = nil
-			}
-		} else {
-			current = append(current, line)
-		}
-	}
-	if len(current) > 0 {
-		para := strings.Join(current, " ")
-		if len(para) > 40 {
-			paragraphs = append(paragraphs, para)
-		}
-	}
-	return strings.Join(paragraphs, "\n\n")
-}
-
-// contentTags are the only HTML elements from which text is extracted.
-var contentTags = map[string]struct{}{
-	"p": {}, "h1": {}, "h2": {}, "h3": {}, "h4": {}, "h5": {}, "h6": {},
-	"article": {}, "main": {}, "section": {}, "blockquote": {}, "li": {},
-}
-
-// allText recursively collects all text within a node and its descendants.
-func allText(n *html.Node) string {
-	if n.Type == html.TextNode {
-		return n.Data
-	}
-	var sb strings.Builder
-	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		sb.WriteString(allText(c))
-	}
-	return sb.String()
-}
-
-// extractText walks the HTML node tree and returns text only from known content elements.
-func extractText(n *html.Node) string {
-	if n.Type == html.ElementNode {
-		if _, ok := contentTags[n.Data]; ok {
-			text := strings.TrimSpace(allText(n))
-			if text != "" {
-				return text + "\n"
-			}
-			return ""
-		}
-	}
-	var sb strings.Builder
-	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		sb.WriteString(extractText(c))
-	}
-	return sb.String()
-}
-
-// urlToFilename converts a URL into a safe filename.
-func urlToFilename(rawURL string) string {
-	u, err := url.Parse(rawURL)
-	if err != nil {
-		return "unknown.txt"
-	}
-	name := strings.NewReplacer(".", "-", "/", "-").Replace(u.Hostname() + u.Path)
-	name = strings.Trim(name, "-")
-	return name + ".txt"
-}
 
 // fetchURL fetches a URL and returns the parsed HTML document.
 func fetchURL(u string) (*html.Node, error) {
@@ -115,8 +39,8 @@ func saveKBFile(orgName, u string) {
 		fmt.Fprintf(os.Stderr, "  Skipping %s: %v\n", u, err)
 		return
 	}
-	text := normalizeToParagraphs(extractText(doc))
-	outPath := filepath.Join(kbDir, urlToFilename(u))
+	text := knowledge.NormalizeToParagraphs(knowledge.ExtractText(doc))
+	outPath := filepath.Join(kbDir, knowledge.URLToFilename(u))
 	if err := os.WriteFile(outPath, []byte(text), 0644); err != nil {
 		fmt.Fprintf(os.Stderr, "  Error writing %s: %v\n", outPath, err)
 		return
