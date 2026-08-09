@@ -1,6 +1,6 @@
 :root {
     /* Change --page-bg to update the site background colour everywhere */
-    --page-bg: #f4f6fb;
+    --page-bg: #ede8f5;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
