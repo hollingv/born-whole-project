@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"sync"
 	"time"
 
 	"iwebsite/src/cmd/gacli/knowledge"
@@ -15,6 +16,7 @@ import (
 )
 
 const kbDir = "site/kb"
+const maxWorkers = 5
 
 var httpClient = &http.Client{Timeout: 15 * time.Second}
 
@@ -48,8 +50,28 @@ func saveKBFile(orgName, u string) {
 	fmt.Printf("  Saved to %s\n", outPath)
 }
 
-// buildTextKB fetches all org KB URLs and saves them as text files.
+type kbJob struct {
+	orgName string
+	url     string
+}
+
+// buildTextKB fetches all org KB URLs concurrently using a worker pool.
 func buildTextKB() {
+	jobs := make(chan kbJob)
+	var wg sync.WaitGroup
+
+	// Start worker pool
+	for i := 0; i < maxWorkers; i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for job := range jobs {
+				saveKBFile(job.orgName, job.url)
+			}
+		}()
+	}
+
+	// Send jobs
 	for _, group := range orgGroups {
 		for _, org := range group.Organizations {
 			urls := org.KBURLs
@@ -57,10 +79,12 @@ func buildTextKB() {
 				urls = []string{org.Website}
 			}
 			for _, u := range urls {
-				saveKBFile(org.Name, u)
+				jobs <- kbJob{orgName: org.Name, url: u}
 			}
 		}
 	}
+	close(jobs)
+	wg.Wait()
 }
 
 // writeManifest writes the list of KB text files to manifest.json.
