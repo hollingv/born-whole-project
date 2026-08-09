@@ -2,6 +2,32 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.5.0 - 2026-08-09
+#### Features
+- (**Resources**) add sections, toc and 'top' button - (d940b8c) - hollingv
+- (**kb**) add concurrency to the kb-build command - (2a2ffe6) - hollingv
+- (**ui**) add toc and 'top' button on organizations.html.tmpl - (823c9ca) - hollingv
+- (**ui**) consistent white color on all pages - (b046eb9) - hollingv
+- add 'status' command to show state of all needed env vars - (a8178ca) - hollingv
+- add youtube shorts to resources page - (fe3608f) - hollingv
+- introduce 'how to submit' your organization - (229327a) - hollingv
+#### Bug Fixes
+- (**ci.yaml**) replace problematic projectPrefix - (ca213e1) - hollingv
+- (**ci.yaml**) ensure 3 env vars are avail to all steps - (bc46cd1) - hollingv
+#### Documentation
+- (**index**) fix wording about consent - (391aa12) - hollingv
+#### Tests
+- add check of resources page - (f3e1a04) - hollingv
+#### Refactoring
+- (**ask.js**) extract functions to simplify - (e293f73) - hollingv
+- (**ci.yaml**) simplify the deployment steps - (617d194) - hollingv
+- (**kb.go**) create new package for helper functions - (0f9efa4) - hollingv
+- extract server.go into new files in the main package - (6b54a72) - hollingv
+- remove dead code and add comments and refactorings - (a015f26) - hollingv
+- introduce projectPrefix as constants and rename env vars - (712b9c3) - hollingv
+
+- - -
+
 ## v0.4.0 - 2026-08-07
 #### Features
 - (**UI**) make hero image smaller by 20% - (1e013b1) - hollingv
