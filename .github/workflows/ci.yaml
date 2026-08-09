@@ -28,6 +28,15 @@ jobs:
     name: Build and Deploy
     runs-on: ubuntu-latest
 
+    env:
+      # Resolved once from secrets — available to all steps
+      BIC_CF_API_TOKEN:  ${{ secrets[format('{0}_CF_API_TOKEN', env.PROJECT_PREFIX)] }}
+      BIC_CF_ACCOUNT_ID: ${{ secrets[format('{0}_CF_ACCOUNT_ID', env.PROJECT_PREFIX)] }}
+      BIC_YT_API_KEY:    ${{ secrets[format('{0}_YT_API_KEY', env.PROJECT_PREFIX)] }}
+      # wrangler requires these specific names
+      CLOUDFLARE_API_TOKEN:  ${{ secrets[format('{0}_CF_API_TOKEN', env.PROJECT_PREFIX)] }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets[format('{0}_CF_ACCOUNT_ID', env.PROJECT_PREFIX)] }}
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
@@ -51,9 +60,6 @@ jobs:
         run: |
           npx wrangler pages deploy site --project-name=global-autonomy --branch=${{ env.MAIN_BRANCH }}
           go test ./src/test-integ/... -url ${{ env.MAIN_URL }}
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets[format('{0}_CF_API_TOKEN', env.PROJECT_PREFIX)] }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets[format('{0}_CF_ACCOUNT_ID', env.PROJECT_PREFIX)] }}
 
       # -------------------------------------------------------------------------------------
       # Deploy env.DEVEL_BRANCH
@@ -63,6 +69,3 @@ jobs:
         run: |
           npx wrangler pages deploy site --project-name=global-autonomy --branch=${{ env.DEVEL_BRANCH }}
           go test ./src/test-integ/... -url ${{ env.DEVEL_URL }}
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets[format('{0}_CF_API_TOKEN', env.PROJECT_PREFIX)] }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets[format('{0}_CF_ACCOUNT_ID', env.PROJECT_PREFIX)] }}
