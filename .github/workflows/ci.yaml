@@ -46,27 +46,23 @@ jobs:
       # -------------------------------------------------------------------------------------
       # Deploy env.MAIN_BRANCH
       # -------------------------------------------------------------------------------------
-      - name: Deploy to Cloudflare Pages (main)
+      - name: Deploy and test (${{ env.MAIN_BRANCH }})
         if: github.ref == format('refs/heads/{0}', env.MAIN_BRANCH)
-        run: npx wrangler pages deploy site --project-name=global-autonomy --branch=${{ env.MAIN_BRANCH }}
+        run: |
+          npx wrangler pages deploy site --project-name=global-autonomy --branch=${{ env.MAIN_BRANCH }}
+          go test ./src/test-integ/... -url ${{ env.MAIN_URL }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets[format('{0}_CF_API_TOKEN', env.PROJECT_PREFIX)] }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets[format('{0}_CF_ACCOUNT_ID', env.PROJECT_PREFIX)] }}
-
-      - name: Integration tests (main)
-        if: github.ref == format('refs/heads/{0}', env.MAIN_BRANCH)
-        run: go test ./src/test-integ/... -url ${{ env.MAIN_URL }}
 
       # -------------------------------------------------------------------------------------
       # Deploy env.DEVEL_BRANCH
       # -------------------------------------------------------------------------------------
-      - name: Deploy to Cloudflare Pages (devel)
+      - name: Deploy and test (${{ env.DEVEL_BRANCH }})
         if: github.ref == format('refs/heads/{0}', env.DEVEL_BRANCH)
-        run: npx wrangler pages deploy site --project-name=global-autonomy --branch=${{ env.DEVEL_BRANCH }}
+        run: |
+          npx wrangler pages deploy site --project-name=global-autonomy --branch=${{ env.DEVEL_BRANCH }}
+          go test ./src/test-integ/... -url ${{ env.DEVEL_URL }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets[format('{0}_CF_API_TOKEN', env.PROJECT_PREFIX)] }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets[format('{0}_CF_ACCOUNT_ID', env.PROJECT_PREFIX)] }}
-
-      - name: Integration tests (devel)
-        if: github.ref == format('refs/heads/{0}', env.DEVEL_BRANCH)
-        run: go test ./src/test-integ/... -url ${{ env.DEVEL_URL }}
