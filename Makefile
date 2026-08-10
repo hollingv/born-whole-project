@@ -124,6 +124,10 @@ release: build release-preview ## Perform a full release. Set DRY_RUN=false to p
 		echo "[INFO] Release completed OK. CI will build and test.";\
 	fi
 
+whitepaper: ## Generate whitepaper
+	@echo "[ INFO ] Building whitepaper..."
+	docker run --rm -v $(PWD):/data pandoc/latex README-whitepaper.md -o zx.pdf
+	@echo "[ INFO ] Generated zx.pdf"
 
 app-tag: ## Print the current APP_TAG
 	@echo "$(APP_TAG)"
