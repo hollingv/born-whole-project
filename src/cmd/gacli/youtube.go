@@ -1,6 +1,6 @@
 // Package main — youtube.go
 // Fetches YouTube Shorts from a configured channel using the YouTube Data API v3.
-// Called by kb-build when BIC_YT_API_KEY is set. Resolves the channel handle to a
+// Called by harvest when BIC_YT_API_KEY is set. Resolves the channel handle to a
 // channel ID, pages through the search API filtering for short videos published in
 // the past 3 months, and writes the results to site/kb/resources.json for use by
 // the resources page. If the API key is not set, an empty resources.json is written.
@@ -37,7 +37,7 @@ type ytSearchResp struct {
 
 // buildYouTubeResources fetches Shorts from YouTube and saves them to resources.json.
 func buildYouTubeResources() {
-	// Always write an empty resources.json so the file exists after kb-build.
+	// Always write an empty resources.json so the file exists after harvest.
 	if err := os.WriteFile(resourcesPath, []byte("[]\n"), 0644); err != nil {
 		fmt.Fprintf(os.Stderr, "Error initialising %s: %v\n", resourcesPath, err)
 	}

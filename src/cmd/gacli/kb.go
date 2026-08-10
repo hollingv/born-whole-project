@@ -104,9 +104,9 @@ func writeManifest() {
 }
 
 var kbBuildCmd = &cobra.Command{
-	Use:   "kb-build",
-	Short: "Build the knowledge base from web sources",
-	Long:  `Fetches each configured web source, extracts the text content, and saves it to the kb/ directory`,
+	Use:   "harvest",
+	Short: "Harvest content from web sources and YouTube into the knowledge base",
+	Long:  `Fetches each configured web source and YouTube Shorts, and saves the results to the kb/ directory`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := os.RemoveAll(kbDir); err != nil {
 			fmt.Fprintf(os.Stderr, "Error clearing kb directory: %v\n", err)

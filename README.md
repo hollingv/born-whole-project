@@ -66,7 +66,7 @@ The harm of genital cutting is not widely understood. Many parents make decision
 | Local development server | Go (`go run ./src/server/server.go`) |
 | Deployment | Cloudflare Pages |
 | AI question answering | Cloudflare Workers AI (`llama-3.1-8b-instruct-fast`) |
-| Knowledge base | Plain text files built from organization websites (`gacli kb-build`) |
+| Knowledge base | Plain text files built from organization websites (`gacli harvest`) |
 
 ### Development platform
 
@@ -84,8 +84,8 @@ make init
 make build
 go run ./src/server/server.go
 
-# Rebuild the knowledge base
-make kb-build
+# Harvest content from web sources and YouTube
+./gacli harvest
 
 # Run tests
 make test

@@ -124,8 +124,6 @@ release: build release-preview ## Perform a full release. Set DRY_RUN=false to p
 		echo "[INFO] Release completed OK. CI will build and test.";\
 	fi
 
-kb-build: build ## Generate new knowledge base
-	./$(APP_NAME) kb-build
 
 app-tag: ## Print the current APP_TAG
 	@echo "$(APP_TAG)"
