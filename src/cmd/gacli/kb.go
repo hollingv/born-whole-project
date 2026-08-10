@@ -103,28 +103,54 @@ func writeManifest() {
 	fmt.Printf("Written %s\n", manifestPath)
 }
 
+const (
+	sourceAll           = "all"
+	sourceYouTube       = "youtube"
+	sourceOrganizations = "organizations"
+)
+
 var kbBuildCmd = &cobra.Command{
 	Use:   "harvest",
 	Short: "Harvest content from web sources and YouTube into the knowledge base",
-	Long:  `Fetches each configured web source and YouTube Shorts, and saves the results to the kb/ directory`,
+	Long:  `Fetches configured web sources and/or YouTube Shorts and saves results to the kb/ directory`,
 	Run: func(cmd *cobra.Command, args []string) {
-		if err := os.RemoveAll(kbDir); err != nil {
-			fmt.Fprintf(os.Stderr, "Error clearing kb directory: %v\n", err)
+		source, _ := cmd.Flags().GetString("source")
+
+		switch source {
+		case sourceAll, sourceYouTube, sourceOrganizations:
+			// valid
+		default:
+			fmt.Fprintf(os.Stderr, "Invalid --source value %q. Must be one of: %s, %s, %s\n", source, sourceAll, sourceYouTube, sourceOrganizations)
 			os.Exit(1)
 		}
+
 		if err := os.MkdirAll(kbDir, 0755); err != nil {
 			fmt.Fprintf(os.Stderr, "Error creating kb directory: %v\n", err)
 			os.Exit(1)
 		}
 
-		buildTextKB()
-		writeManifest()
-		buildYouTubeResources()
+		if source == sourceAll || source == sourceOrganizations {
+			if err := os.RemoveAll(kbDir); err != nil {
+				fmt.Fprintf(os.Stderr, "Error clearing kb directory: %v\n", err)
+				os.Exit(1)
+			}
+			if err := os.MkdirAll(kbDir, 0755); err != nil {
+				fmt.Fprintf(os.Stderr, "Error creating kb directory: %v\n", err)
+				os.Exit(1)
+			}
+			buildTextKB()
+			writeManifest()
+		}
 
-		fmt.Println("Knowledge base build complete.")
+		if source == sourceAll || source == sourceYouTube {
+			buildYouTubeResources()
+		}
+
+		fmt.Println("Harvest complete.")
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(kbBuildCmd)
+	kbBuildCmd.Flags().String("source", sourceAll, fmt.Sprintf("Content source to harvest: %s, %s, %s", sourceAll, sourceYouTube, sourceOrganizations))
 }
