@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bodily Integrity Commons — Project Overview</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11pt;
+    color: #1a1a1a;
+    line-height: 1.7;
+    background: #fff;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 22mm 22mm 20mm 22mm;
+    margin: 0 auto;
+    page-break-after: always;
+  }
+
+  @media print {
+    .page { margin: 0; box-shadow: none; }
+    @page { margin: 0; size: A4; }
+  }
+
+  /* Cover page */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 297mm;
+    background: linear-gradient(160deg, #0f1f3d 0%, #1a4a8a 70%, #2d6abf 100%);
+    padding: 30mm 25mm;
+    color: #fff;
+    page-break-after: always;
+  }
+  .cover-label {
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 1.5rem;
+  }
+  .cover h1 {
+    font-size: 36pt;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .cover-subtitle {
+    font-size: 14pt;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 3rem;
+  }
+  .cover-tagline {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #fff;
+    border-left: 4px solid #5ba3f5;
+    padding-left: 1rem;
+    margin-bottom: 4rem;
+  }
+  .cover-meta {
+    font-size: 9pt;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* Content pages */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ede8f5;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .page-header-title {
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #888;
+  }
+  .page-header-logo {
+    font-size: 8pt;
+    font-weight: 800;
+    color: #0f1f3d;
+  }
+
+  h2 {
+    font-size: 18pt;
+    font-weight: 800;
+    color: #0f1f3d;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #1a4a8a;
+    margin: 1.5rem 0 0.5rem;
+  }
+  p {
+    margin-bottom: 0.9rem;
+    color: #333;
+  }
+  ul {
+    margin: 0.5rem 0 0.9rem 1.5rem;
+  }
+  li {
+    margin-bottom: 0.4rem;
+    color: #333;
+  }
+  .highlight {
+    background: #ede8f5;
+    border-left: 4px solid #1a4a8a;
+    padding: 0.8rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0;
+    font-style: italic;
+    color: #0f1f3d;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 1rem 0;
+  }
+  .card {
+    background: #ede8f5;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  .card h4 {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #0f1f3d;
+    margin-bottom: 0.4rem;
+  }
+  .card p {
+    font-size: 9.5pt;
+    margin: 0;
+    color: #444;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 10pt;
+  }
+  th {
+    background: #0f1f3d;
+    color: #fff;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-weight: 700;
+  }
+  td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #e4e8f0;
+    color: #333;
+  }
+  tr:nth-child(even) td { background: #f9f8fc; }
+  code {
+    font-family: monospace;
+    font-size: 9pt;
+    background: #f0edf8;
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    color: #0f1f3d;
+  }
+  .page-footer {
+    position: absolute;
+    bottom: 15mm;
+    left: 22mm;
+    right: 22mm;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8pt;
+    color: #bbb;
+    border-top: 1px solid #e4e8f0;
+    padding-top: 0.4rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: COVER -->
+<div class="cover">
+  <div class="cover-label">Open Source Project Overview</div>
+  <h1>Bodily Integrity<br>Commons</h1>
+  <div class="cover-subtitle">Intactivist Infrastructure for the Digital Age</div>
+  <div class="cover-tagline">Learn. Understand. Take action.</div>
+  <div class="cover-meta">
+    github.com/hollingv/iwebsite &nbsp;·&nbsp; Open Source &nbsp;·&nbsp; Built with Go &amp; Cloudflare
+  </div>
+</div>
+
+<!-- PAGE 2: MISSION & OVERVIEW -->
+<div class="page" style="position:relative;">
+  <div class="page-header">
+    <span class="page-header-title">Mission &amp; Overview</span>
+    <span class="page-header-logo">Bodily Integrity Commons</span>
+  </div>
+
+  <h2>What is Bodily Integrity Commons?</h2>
+
+  <p>Bodily Integrity Commons (BIC) is an open-source advocacy hub dedicated to raising awareness about the harms of genital cutting, connecting people with trusted organizations, and empowering parents and the general public to make informed decisions.</p>
+
+  <div class="highlight">
+    "Every child deserves the right to bodily autonomy. Access to accurate, compassionate information can change outcomes for children around the world."
+  </div>
+
+  <p>BIC serves as a central resource — a dispatching hub — that aggregates information from dozens of advocacy organizations and makes it accessible through a modern, AI-powered web interface. Rather than duplicating the work of existing organizations, BIC amplifies it.</p>
+
+  <h3>Core Purpose</h3>
+  <ul>
+    <li><strong>Education</strong> — helping parents, healthcare providers and the general public understand the medical, ethical and legal dimensions of genital cutting</li>
+    <li><strong>Connection</strong> — directing people to the organizations leading the fight to protect children's bodily integrity</li>
+    <li><strong>Action</strong> — supporting the legal and advocacy efforts working to end this practice</li>
+    <li><strong>Infrastructure</strong> — providing a shared technical platform that grows stronger as more organizations participate</li>
+  </ul>
+
+  <h3>The Dispatching Hub Model</h3>
+  <p>BIC defines a lightweight protocol — a standard set of URL patterns that organizations publish content under. Organizations that adopt these patterns are automatically integrated into BIC's features, including the knowledge base, news aggregation, and AI question answering.</p>
+
+  <div class="two-col">
+    <div class="card">
+      <h4>For the Public</h4>
+      <p>A single place to find vetted organizations, watch educational videos, read FAQs, and ask natural language questions answered by AI.</p>
+    </div>
+    <div class="card">
+      <h4>For Organizations</h4>
+      <p>Automatic inclusion in a growing hub. Adopt standard URL patterns and your content is surfaced to a wider audience automatically.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Bodily Integrity Commons — Project Overview</span>
+    <span>Page 2</span>
+  </div>
+</div>
+
+<!-- PAGE 3: OPEN SOURCE & GITHUB -->
+<div class="page" style="position:relative;">
+  <div class="page-header">
+    <span class="page-header-title">Open Source &amp; Collaboration</span>
+    <span class="page-header-logo">Bodily Integrity Commons</span>
+  </div>
+
+  <h2>Built in the Open, Built Together</h2>
+
+  <p>BIC is developed entirely in the open on GitHub. Every line of code, every design decision, and every piece of content is publicly visible and open to contribution. This is not an accident — it is a deliberate choice that makes the project stronger.</p>
+
+  <h3>Why Open Source?</h3>
+  <ul>
+    <li><strong>Trust</strong> — anyone can audit the code, verify that no data is collected, and confirm that the AI is grounded in vetted sources</li>
+    <li><strong>Resilience</strong> — the project cannot be shut down, taken over, or defunded by any single party</li>
+    <li><strong>Velocity</strong> — developers, advocates and organizations can contribute improvements without waiting for permission</li>
+    <li><strong>Credibility</strong> — open code signals transparency and accountability to the public</li>
+  </ul>
+
+  <h3>How Organizations Join</h3>
+  <p>Any advocacy organization can add themselves to BIC with a simple GitHub pull request — no technical expertise beyond a GitHub account is required:</p>
+  <ul>
+    <li>Open <code>src/cmd/gacli/organizations.go</code> in the GitHub web editor</li>
+    <li>Add an entry with the organization's name, description, website, and content URLs</li>
+    <li>Submit a pull request — a maintainer reviews and merges</li>
+  </ul>
+
+  <div class="highlight">
+    The pull request model means every addition is reviewed, every organization is vetted, and the history of every change is permanently recorded.
+  </div>
+
+  <h3>How Developers Contribute</h3>
+  <p>BIC welcomes contributions across all areas of the project:</p>
+
+  <div class="two-col">
+    <div class="card">
+      <h4>Code</h4>
+      <p>Go backend, HTML templates, CSS, JavaScript, CI/CD pipeline, AI integration.</p>
+    </div>
+    <div class="card">
+      <h4>Content</h4>
+      <p>FAQ entries, organization listings, knowledge base URL curation, resource videos.</p>
+    </div>
+    <div class="card">
+      <h4>Design</h4>
+      <p>UI improvements, accessibility, mobile experience, visual identity.</p>
+    </div>
+    <div class="card">
+      <h4>Research</h4>
+      <p>Identifying high-quality sources, verifying organization information, curating YouTube content.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Bodily Integrity Commons — Project Overview</span>
+    <span>Page 3</span>
+  </div>
+</div>
+
+<!-- PAGE 4: TECHNICAL ARCHITECTURE -->
+<div class="page" style="position:relative;">
+  <div class="page-header">
+    <span class="page-header-title">Technical Architecture</span>
+    <span class="page-header-logo">Bodily Integrity Commons</span>
+  </div>
+
+  <h2>Technical Architecture</h2>
+
+  <p>BIC is built on a modern, low-cost, high-reliability stack. The guiding principle is simplicity — a static site with serverless functions, deployed to a global CDN.</p>
+
+  <table>
+    <thead>
+      <tr><th>Component</th><th>Technology</th><th>Purpose</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Site generation</td><td>Go (<code>gacli site</code>)</td><td>Renders HTML from Go templates and data</td></tr>
+      <tr><td>Local development</td><td>Go (<code>go run ./src/server</code>)</td><td>Full-featured local server with AI</td></tr>
+      <tr><td>Deployment</td><td>Cloudflare Pages</td><td>Global CDN, free tier, zero ops</td></tr>
+      <tr><td>AI question answering</td><td>Cloudflare Workers AI</td><td>Natural language answers from KB</td></tr>
+      <tr><td>Knowledge base</td><td>Go (<code>gacli harvest</code>)</td><td>Fetches and stores content from org sites</td></tr>
+      <tr><td>YouTube resources</td><td>YouTube Data API v3</td><td>Fetches recent Shorts from configured channels</td></tr>
+      <tr><td>CI/CD</td><td>GitHub Actions</td><td>Test, build and deploy on every push</td></tr>
+      <tr><td>Version control</td><td>Conventional Commits + cog</td><td>Automated changelog and semantic versioning</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The Knowledge Base Pipeline</h3>
+  <p>The AI question-answering feature is powered by a Retrieval-Augmented Generation (RAG) pipeline:</p>
+  <ul>
+    <li><strong>Harvest</strong> — <code>gacli harvest</code> fetches content from organization websites and YouTube, extracts meaningful prose, and stores it as text files committed to git</li>
+    <li><strong>Search</strong> — when a user submits a question, keywords are extracted and the most relevant paragraphs are identified</li>
+    <li><strong>Answer</strong> — the relevant content is sent to Cloudflare Workers AI along with the question; the LLM synthesizes a natural language answer grounded in the KB</li>
+  </ul>
+
+  <h3>Deployment Strategy</h3>
+  <p>Pushes to <code>main</code> deploy to the production site. Pushes to <code>devel</code> deploy to a separate preview URL, enabling safe testing before production release. Integration tests run automatically after every deployment.</p>
+
+  <div class="page-footer">
+    <span>Bodily Integrity Commons — Project Overview</span>
+    <span>Page 4</span>
+  </div>
+</div>
+
+<!-- PAGE 5: VISION & GETTING INVOLVED -->
+<div class="page" style="position:relative;">
+  <div class="page-header">
+    <span class="page-header-title">Vision &amp; Getting Involved</span>
+    <span class="page-header-logo">Bodily Integrity Commons</span>
+  </div>
+
+  <h2>Intactivist Infrastructure</h2>
+
+  <p>BIC's ambition extends beyond a single website. The goal is to become the shared technical infrastructure for the intactivist movement — a platform that every organization, advocate, researcher and parent can rely on.</p>
+
+  <h3>The URL Convention Protocol</h3>
+  <p>BIC defines a standard set of URL paths that organizations are encouraged to adopt. Organizations that publish content at these paths are automatically integrated into BIC's aggregation features:</p>
+
+  <table>
+    <thead><tr><th>Path</th><th>Content</th></tr></thead>
+    <tbody>
+      <tr><td><code>/about</code></td><td>Organization background and mission</td></tr>
+      <tr><td><code>/research</code></td><td>Academic and medical research</td></tr>
+      <tr><td><code>/legal-cases</code></td><td>Active and completed legal cases</td></tr>
+      <tr><td><code>/news</code></td><td>News and press coverage</td></tr>
+      <tr><td><code>/events</code></td><td>Upcoming events and actions</td></tr>
+    </tbody>
+  </table>
+
+  <p>This mirrors how RSS worked — sites that publish a feed get aggregated automatically. Organizations that adopt BIC's URL protocol gain visibility across all of BIC's current and future features.</p>
+
+  <h3>The Roadmap</h3>
+  <ul>
+    <li>Semantic search using embeddings (Cloudflare Vectorize) for more accurate AI answers</li>
+    <li>News and events aggregation pages that pull from all registered organizations</li>
+    <li>A legal case tracker drawing from organizations' <code>/legal-cases</code> pages</li>
+    <li>Multilingual support to reach parents globally</li>
+    <li>Conformance indicators showing which organizations support which URL patterns</li>
+  </ul>
+
+  <h3>Getting Involved</h3>
+  <div class="two-col">
+    <div class="card">
+      <h4>Organizations</h4>
+      <p>Submit a pull request to add your organization to <code>organizations.go</code>. Visit the Contribute page on the site for step-by-step instructions.</p>
+    </div>
+    <div class="card">
+      <h4>Developers</h4>
+      <p>Fork the repository on GitHub, explore the codebase, and open a pull request. All skill levels welcome.</p>
+    </div>
+    <div class="card">
+      <h4>Advocates</h4>
+      <p>Suggest organizations to feature, identify high-quality knowledge base URLs, or contribute to the FAQ.</p>
+    </div>
+    <div class="card">
+      <h4>Researchers</h4>
+      <p>Help identify the most informative pages on each organization's site to include in the knowledge base.</p>
+    </div>
+  </div>
+
+  <div class="highlight">
+    BIC is not owned by any single organization. It is shared infrastructure, built by the movement, for the movement. Every contribution — however small — makes it stronger.
+  </div>
+
+  <p style="margin-top:1rem; font-size:9.5pt; color:#888;">
+    <strong>Repository:</strong> github.com/hollingv/iwebsite &nbsp;·&nbsp;
+    <strong>Site:</strong> bodilyintegritycommons.org &nbsp;·&nbsp;
+    <strong>License:</strong> Open Source
+  </p>
+
+  <div class="page-footer">
+    <span>Bodily Integrity Commons — Project Overview</span>
+    <span>Page 5</span>
+  </div>
+</div>
+
+</body>
+</html>
