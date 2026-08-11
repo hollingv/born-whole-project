@@ -19,6 +19,8 @@
 :root {
     /* Change --page-bg to update the site background colour everywhere */
     --page-bg: #ede8f5;
+    /* Change --brand-size to update the site name font size in both nav and footer */
+    --brand-size: 1.1rem;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -82,7 +84,7 @@ nav a.brand {
     cursor: pointer;
     flex: 1;
     color: #fff;
-    font-size: 1.1rem;
+    font-size: var(--brand-size);
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -169,7 +171,7 @@ nav a.brand {
 }
 .footer-brand {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.43rem;
+    font-size: var(--brand-size);
     font-weight: 700;
     letter-spacing: 0.05em;
     color: rgba(255,255,255,0.7);
