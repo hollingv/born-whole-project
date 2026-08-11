@@ -109,7 +109,7 @@ const (
 	sourceOrganizations = "organizations"
 )
 
-var kbBuildCmd = &cobra.Command{
+var harvestCmd = &cobra.Command{
 	Use:   "harvest",
 	Short: "Harvest content from web sources and YouTube into the knowledge base",
 	Long:  `Fetches configured web sources and/or YouTube Shorts and saves results to the kb/ directory`,
@@ -151,6 +151,6 @@ var kbBuildCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(kbBuildCmd)
-	kbBuildCmd.Flags().String("source", sourceAll, fmt.Sprintf("Content source to harvest: %s, %s, %s", sourceAll, sourceYouTube, sourceOrganizations))
+	rootCmd.AddCommand(harvestCmd)
+	harvestCmd.Flags().String("source", sourceAll, fmt.Sprintf("Content source to harvest: %s, %s, %s", sourceAll, sourceYouTube, sourceOrganizations))
 }
