@@ -1,3 +1,21 @@
+/* =============================================================================
+   BODILY INTEGRITY COMMONS — STYLESHEET
+   Sections:
+     1. Variables & Reset
+     2. Base / Body
+     3. Navbar & Footer
+     4. Home Layout & Hero
+     5. Ask / AI Prompt
+     6. Organization Cards & Groups
+     7. Table of Contents & Utilities
+     8. Page Layouts (Mission, FAQ, Resources, Contact)
+   ============================================================================= */
+
+
+/* =============================================================================
+   1. Variables & Reset
+   ============================================================================= */
+
 :root {
     /* Change --page-bg to update the site background colour everywhere */
     --page-bg: #ede8f5;
@@ -9,6 +27,11 @@ html {
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
 }
+
+
+/* =============================================================================
+   2. Base / Body
+   ============================================================================= */
 
 .home-body {
     display: flex;
@@ -22,13 +45,47 @@ body {
     color: #1a1a1a;
 }
 
-/* Navbar */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+main h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #0f1f3d;
+    margin-bottom: 1.5rem;
+}
+main p {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.75;
+    color: #444;
+    margin-bottom: 0.75rem;
+    max-width: 720px;
+}
+
+
+/* =============================================================================
+   3. Navbar & Footer
+   ============================================================================= */
+
 nav {
     background-color: #0f1f3d;
     padding: 1rem 2rem;
     display: flex;
     align-items: center;
     position: relative;
+}
+nav a.brand {
+    text-decoration: none !important;
+    cursor: pointer;
+    flex: 1;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 .nav-links {
     display: flex;
@@ -46,26 +103,9 @@ nav {
     letter-spacing: 0.03em;
     transition: color 0.2s;
 }
-.nav-links a:hover {
-    color: #5ba3f5;
-}
-@media (min-width: 481px) {
-    .hamburger { display: none; }
-}
-@media (max-width: 480px) {
-    .nav-links { display: none; }
-}
-
-nav a.brand {
-    text-decoration: none !important;
-    cursor: pointer;
-    flex: 1;
-    color: #fff;
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
+.nav-links a:hover { color: #5ba3f5; }
+@media (min-width: 481px) { .hamburger { display: none; } }
+@media (max-width: 480px)  { .nav-links { display: none; } }
 
 .hamburger {
     background: none;
@@ -99,9 +139,7 @@ nav a.brand {
     box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     z-index: 100;
 }
-.nav-menu.open {
-    display: block;
-}
+.nav-menu.open { display: block; }
 .nav-menu li a {
     display: block;
     padding: 0.85rem 1.5rem;
@@ -111,6 +149,7 @@ nav a.brand {
     font-weight: 600;
     transition: background-color 0.2s;
 }
+.nav-menu li a:hover { background-color: #1a4a8a; }
 .nav-version {
     padding: 0.85rem 1.5rem;
     color: #5ba3f5;
@@ -119,18 +158,46 @@ nav a.brand {
     border-top: 1px solid rgba(255,255,255,0.1);
     margin-top: 0.25rem;
 }
-.nav-menu li a:hover {
-    background-color: #1a4a8a;
+
+.site-footer {
+    background-color: #1a2e50;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+}
+.footer-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.43rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+}
+.footer-tagline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.55);
+}
+.footer-version {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.94rem;
+    color: rgba(255,255,255,0.3);
 }
 
-/* Home two-column layout */
+
+/* =============================================================================
+   4. Home Layout & Hero
+   ============================================================================= */
+
 .home-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     flex: 1;
 }
-
-/* Left column — hero */
 .home-left {
     background-color: var(--page-bg);
     display: flex;
@@ -164,18 +231,14 @@ nav a.brand {
     padding-left: 1rem;
     margin-top: 0.5rem;
 }
-.hero-image {
-    flex-shrink: 1;
-}
+.hero-image { flex-shrink: 1; }
 .hero-image img {
     width: 80%;
     height: auto;
     border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     display: block;
 }
-
-/* Right column — Ask */
 .home-right {
     background-color: #fff;
     border-left: 1px solid #e4e8f0;
@@ -192,166 +255,26 @@ nav a.brand {
     margin: 0;
 }
 
-/* Responsive: single column on small screens */
 @media (max-width: 768px) {
-    .home-layout {
-        grid-template-columns: 1fr;
-    }
-    .home-left {
-        padding: 2rem 1.25rem;
-    }
-    .home-right {
-        min-height: 50vh;
-        padding: 1.5rem 1.25rem;
-    }
-    .hero-image {
-        display: none;
-    }
+    .home-layout { grid-template-columns: 1fr; }
+    .home-left   { padding: 2rem 1.25rem; }
+    .home-right  { min-height: 50vh; padding: 1.5rem 1.25rem; }
+    .hero-image  { display: none; }
 }
 
-/* Main */
-main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-}
-main h2 {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #0f1f3d;
-    margin-bottom: 1.5rem;
-}
 
-/* Main body text */
-main p {
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.75;
-    color: #444;
-    margin-bottom: 0.75rem;
-    max-width: 720px;
-}
+/* =============================================================================
+   5. Ask / AI Prompt
+   ============================================================================= */
 
-/* Org Groups */
-.org-group {
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-}
-.org-group h3 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #0f1f3d;
-    margin-bottom: 1rem;
-}
-
-/* Cards */
-.cards {
-    margin-top: 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-.organization-card {
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-.organization-card:hover {
-    transform: translateY(-8px) scale(1.06);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    border-color: #5ba3f5;
-    background-color: #fffde7;
-}
-.organization-card {
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-    border: 1px solid #e4e8f0;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 1.5rem;
-}
-.org-thumbnail-link {
-    display: block;
-    width: 100%;
-    margin-top: -0.25rem;
-}
-.org-thumbnail {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 8px;
-    display: block;
-    transition: opacity 0.2s;
-}
-.org-thumbnail-link:hover .org-thumbnail {
-    opacity: 0.8;
-}
-.org-body {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-.org-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    flex-shrink: 0;
-    width: 110px;
-}
-.organization-card h3 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    line-height: 1.5;
-}
-.organization-card p {
-    font-size: 0.82rem;
-    color: #555;
-    line-height: 1.6;
-}
-
-.org-link {
-    display: block;
-    width: 100%;
-    text-align: center;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #1a4a8a;
-    text-decoration: none;
-    padding: 0.3rem 0;
-    border: 1.5px solid #c8dff7;
-    border-radius: 50px;
-    background: transparent;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-}
-.org-link:hover {
-    background-color: #1a4a8a;
-    color: #fff;
-    border-color: #1a4a8a;
-}
-
-.organization-card .placeholder {
-    font-size: 0.85rem;
-    color: #aaa;
-    font-style: italic;
-}
-
-/* Ask / AI Prompt */
-.prompt-form {
-    flex-shrink: 0;
-}
+.prompt-form { flex-shrink: 0; }
 .prompt-input-wrapper {
     display: flex;
     align-items: center;
     background: #fff;
     border-radius: 50px;
     padding: 0.4rem 0.4rem 0.4rem 1.5rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
 }
 .prompt-input {
     flex: 1;
@@ -362,9 +285,7 @@ main p {
     color: #1a1a1a;
     background: transparent;
 }
-.prompt-input::placeholder {
-    color: #555;
-}
+.prompt-input::placeholder { color: #555; }
 .prompt-submit {
     background: linear-gradient(135deg, #1a4a8a, #5ba3f5);
     color: #fff;
@@ -378,6 +299,7 @@ main p {
     transition: opacity 0.2s;
     white-space: nowrap;
 }
+.prompt-submit:hover { opacity: 0.85; }
 .ask-response {
     flex: 1;
     min-height: 0;
@@ -443,26 +365,130 @@ main p {
     font-weight: 600;
     width: 180px;
 }
-.prompt-submit:hover {
-    opacity: 0.85;
-}
 
-/* Resources page */
-.resources-page {
-    max-width: 1100px;
-    margin: 4rem auto;
-    padding: 0 2rem;
+
+/* =============================================================================
+   6. Organization Cards & Groups
+   ============================================================================= */
+
+.org-group {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
 }
-.resources-page h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
+.org-group h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
     color: #0f1f3d;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
 }
-.resources-page > p {
-    color: #444;
-    margin-bottom: 2rem;
+.cards {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
 }
+.organization-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.organization-card:hover {
+    transform: translateY(-8px) scale(1.06);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    border-color: #5ba3f5;
+    background-color: #fffde7;
+}
+.organization-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border: 1px solid #e4e8f0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+.org-thumbnail-link {
+    display: block;
+    width: 100%;
+    margin-top: -0.25rem;
+}
+.org-thumbnail {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    transition: opacity 0.2s;
+}
+.org-thumbnail-link:hover .org-thumbnail { opacity: 0.8; }
+.org-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.org-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    width: 110px;
+}
+.organization-card h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.5;
+}
+.organization-card p {
+    font-size: 0.82rem;
+    color: #555;
+    line-height: 1.6;
+}
+.org-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #1a4a8a;
+    text-decoration: none;
+    padding: 0.3rem 0;
+    border: 1.5px solid #c8dff7;
+    border-radius: 50px;
+    background: transparent;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.org-link:hover {
+    background-color: #1a4a8a;
+    color: #fff;
+    border-color: #1a4a8a;
+}
+.organization-card .placeholder {
+    font-size: 0.85rem;
+    color: #aaa;
+    font-style: italic;
+}
+.org-invite {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+.org-invite a {
+    color: #1a4a8a;
+    font-weight: 600;
+    text-decoration: none;
+}
+.org-invite a:hover { color: #5ba3f5; }
+
+
+/* =============================================================================
+   7. Table of Contents & Utilities
+   ============================================================================= */
+
 .toc {
     background: #fff;
     border: 1px solid #e4e8f0;
@@ -493,70 +519,8 @@ main p {
     color: #1a4a8a;
     text-decoration: none;
 }
-.toc a:hover {
-    color: #5ba3f5;
-}
+.toc a:hover { color: #5ba3f5; }
 
-.resource-section {
-    margin-top: 2.5rem;
-}
-.resource-section h2 {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: #0f1f3d;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #e4e8f0;
-}
-.resource-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 1rem;
-}
-.resource-card {
-    display: flex;
-    flex-direction: column;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid #e4e8f0;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-}
-.resource-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    border-color: #5ba3f5;
-}
-.resource-thumbnail {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    display: block;
-}
-.resource-info {
-    padding: 1rem;
-    background: #fff;
-    flex: 1;
-}
-.resource-info h3 {
-    font-size: 0.71rem;
-    font-weight: 700;
-    color: #0f1f3d;
-    margin-bottom: 0.4rem;
-    line-height: 1.4;
-}
-.resource-info p {
-    font-size: 0.82rem;
-    color: #555;
-    line-height: 1.5;
-}
-.resource-count {
-    font-size: 0.85rem;
-    color: #888;
-    margin-bottom: 1.5rem;
-}
 .back-to-top {
     display: inline-block;
     margin-top: 3rem;
@@ -569,22 +533,79 @@ main p {
     font-weight: 700;
     transition: background-color 0.2s;
 }
-.back-to-top:hover {
-    background-color: #1a4a8a;
-}
+.back-to-top:hover { background-color: #1a4a8a; }
 
-.resource-empty {
-    color: #888;
-    font-style: italic;
+
+/* =============================================================================
+   8. Page Layouts
+   ============================================================================= */
+
+/* --- Mission / About / Contribute --- */
+.mission-page {
+    max-width: 720px;
+    margin: 4rem auto;
+    padding: 0 2rem;
 }
-.resource-empty code {
-    font-family: monospace;
+.mission-page h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f1f3d;
+    margin-bottom: 1.5rem;
+}
+.mission-page h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f1f3d;
+    margin: 2rem 0 0.75rem;
+}
+.mission-page p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 1.2rem;
+}
+.mission-page .tagline {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0f1f3d;
+    border-left: 4px solid #5ba3f5;
+    padding-left: 1rem;
+    margin-top: 2rem;
+}
+.mission-page pre {
     background: var(--page-bg);
-    padding: 0.1rem 0.4rem;
-    border-radius: 4px;
+    border: 1px solid #e4e8f0;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    margin: 1rem 0;
 }
+.mission-page code {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #0f1f3d;
+}
+.mission-page table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+}
+.mission-page th {
+    background: #0f1f3d;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    text-align: left;
+    font-weight: 700;
+}
+.mission-page td {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #e4e8f0;
+    color: #444;
+}
+.mission-page tr:nth-child(even) td { background: #f9f8fc; }
 
-/* FAQ page */
+/* --- FAQ --- */
 .faq-page {
     max-width: 720px;
     margin: 4rem auto;
@@ -632,74 +653,96 @@ main p {
     color: #5ba3f5;
     transition: transform 0.2s;
 }
-details[open] .faq-question::after {
-    transform: rotate(45deg);
-}
+details[open] .faq-question::after { transform: rotate(45deg); }
 .faq-answer {
-    padding: 0 1.5rem 1.2rem;
+    padding: 1rem 1.5rem 1.2rem;
     font-size: 0.95rem;
     line-height: 1.75;
     color: #444;
     border-top: 1px solid #e4e8f0;
-    padding-top: 1rem;
 }
 
-/* Contribute / invite text */
-.org-invite {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: #555;
-}
-.org-invite a {
-    color: #1a4a8a;
-    font-weight: 600;
-    text-decoration: none;
-}
-.org-invite a:hover {
-    color: #5ba3f5;
-}
-.mission-page pre {
-    background: var(--page-bg);
-    border: 1px solid #e4e8f0;
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
-    overflow-x: auto;
-    margin: 1rem 0;
-}
-.mission-page code {
-    font-family: monospace;
-    font-size: 0.9rem;
-    color: #0f1f3d;
-}
-
-/* Mission page */
-.mission-page {
-    max-width: 720px;
+/* --- Resources --- */
+.resources-page {
+    max-width: 1100px;
     margin: 4rem auto;
     padding: 0 2rem;
 }
-.mission-page h1 {
+.resources-page h1 {
     font-size: 2.5rem;
     font-weight: 800;
     color: #0f1f3d;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
 }
-.mission-page p {
-    font-size: 1.1rem;
-    line-height: 1.8;
+.resources-page > p {
     color: #444;
-    margin-bottom: 1.2rem;
+    margin-bottom: 2rem;
 }
-.mission-page .tagline {
-    font-size: 1.3rem;
+.resource-section { margin-top: 2.5rem; }
+.resource-section h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0f1f3d;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e4e8f0;
+}
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+}
+.resource-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e4e8f0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.resource-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    border-color: #5ba3f5;
+}
+.resource-thumbnail {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+}
+.resource-info {
+    padding: 1rem;
+    background: #fff;
+    flex: 1;
+}
+.resource-info h3 {
+    font-size: 0.71rem;
     font-weight: 700;
     color: #0f1f3d;
-    border-left: 4px solid #5ba3f5;
-    padding-left: 1rem;
-    margin-top: 2rem;
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+}
+.resource-count {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 1.5rem;
+}
+.resource-empty {
+    color: #888;
+    font-style: italic;
+}
+.resource-empty code {
+    font-family: monospace;
+    background: var(--page-bg);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
 }
 
-/* Contact */
+/* --- Contact --- */
 .contact-section {
     max-width: 1100px;
     margin: 0 auto;
@@ -724,36 +767,4 @@ details[open] .faq-question::after {
     text-decoration: none;
     font-size: 1rem;
 }
-.contact-link:hover {
-    color: #5ba3f5;
-}
-
-/* Footer */
-.site-footer {
-    background-color: #1a2e50;
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: auto;
-}
-.footer-brand {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.43rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: rgba(255,255,255,0.7);
-    text-transform: uppercase;
-}
-.footer-tagline {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: rgba(255,255,255,0.55);
-}
-.footer-version {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.94rem;
-    color: rgba(255,255,255,0.3);
-}
+.contact-link:hover { color: #5ba3f5; }
