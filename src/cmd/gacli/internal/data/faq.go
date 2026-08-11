@@ -1,4 +1,4 @@
-package main
+package data
 
 // FAQItem represents a single question and answer.
 type FAQItem struct {
@@ -6,8 +6,8 @@ type FAQItem struct {
 	Answer   string
 }
 
-// faqItems is the list of frequently asked questions.
-var faqItems = []FAQItem{
+// FAQItems is the list of frequently asked questions.
+var FAQItems = []FAQItem{
 	{
 		Question: "What is circumcision?",
 		Answer:   "Circumcision is the surgical removal of the foreskin, the retractable fold of skin that covers the head of the penis. It is typically performed on infant boys, often within days of birth. While practiced for cultural, religious, and purported medical reasons, it is an irreversible procedure performed on individuals who cannot consent.",

@@ -7,6 +7,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"iwebsite/src/cmd/gacli/internal/data"
+
 	"github.com/spf13/cobra"
 )
 
@@ -14,10 +16,10 @@ type templateData struct {
 	SiteName          string
 	Version           string
 	EnvPrefix         string
-	OrgGroups         []OrgGroup
-	FAQItems          []FAQItem
+	OrgGroups         []data.OrgGroup
+	FAQItems          []data.FAQItem
 	ContributeExample string
-	Resources         []Resource
+	Resources         []data.Resource
 }
 
 type page struct {
@@ -71,7 +73,15 @@ var siteCmd = &cobra.Command{
 	Long:  `Discovers all page templates and renders them to site/`,
 	Run: func(cmd *cobra.Command, args []string) {
 		version, _ := cmd.Flags().GetString("version")
-		data := templateData{SiteName: siteName, Version: version, EnvPrefix: projectPrefix, OrgGroups: orgGroups, FAQItems: faqItems, ContributeExample: ContributeExample, Resources: loadResources()}
+		tmplData := templateData{
+			SiteName:          siteName,
+			Version:           version,
+			EnvPrefix:         projectPrefix,
+			OrgGroups:         data.OrgGroups,
+			FAQItems:          data.FAQItems,
+			ContributeExample: data.ContributeExample,
+			Resources:         data.LoadResources(),
+		}
 
 		pages, err := discoverPages("templates")
 		if err != nil {
@@ -92,7 +102,7 @@ var siteCmd = &cobra.Command{
 				os.Exit(1)
 			}
 
-			if err := tmpl.Execute(f, data); err != nil {
+			if err := tmpl.Execute(f, tmplData); err != nil {
 				f.Close()
 				fmt.Fprintf(os.Stderr, "Error rendering %s: %v\n", p.output, err)
 				os.Exit(1)

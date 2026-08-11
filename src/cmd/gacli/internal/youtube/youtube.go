@@ -1,18 +1,22 @@
-// Package main — youtube.go
-// Fetches YouTube Shorts from a configured channel using the YouTube Data API v3.
-// Called by harvest when BIC_YT_API_KEY is set. Resolves the channel handle to a
-// channel ID, pages through the search API filtering for short videos published in
-// the past 3 months, and writes the results to site/kb/resources.json for use by
-// the resources page. If the API key is not set, an empty resources.json is written.
-package main
+// Package youtube fetches YouTube Shorts from a configured channel
+// using the YouTube Data API v3. Called by the harvest command when
+// BIC_YT_API_KEY is set.
+package youtube
 
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
 	"net/url"
 	"os"
 	"time"
+
+	"iwebsite/src/cmd/gacli/internal/data"
 )
+
+const Channel = "AttorneyClopper"
+
+var httpClient = &http.Client{Timeout: 15 * time.Second}
 
 // ytChannelResp is the response from the YouTube channels API.
 type ytChannelResp struct {
@@ -35,11 +39,10 @@ type ytSearchResp struct {
 	NextPageToken string `json:"nextPageToken"`
 }
 
-// buildYouTubeResources fetches Shorts from YouTube and saves them to resources.json.
-func buildYouTubeResources() {
-	// Always write an empty resources.json so the file exists after harvest.
-	if err := os.WriteFile(resourcesPath, []byte("[]\n"), 0644); err != nil {
-		fmt.Fprintf(os.Stderr, "Error initialising %s: %v\n", resourcesPath, err)
+// BuildResources fetches Shorts from YouTube and saves them to resources.json.
+func BuildResources(projectPrefix string) {
+	if err := os.WriteFile(data.ResourcesPath, []byte("[]\n"), 0644); err != nil {
+		fmt.Fprintf(os.Stderr, "Error initialising %s: %v\n", data.ResourcesPath, err)
 	}
 
 	envKey := projectPrefix + "_YT_API_KEY"
@@ -49,21 +52,21 @@ func buildYouTubeResources() {
 		return
 	}
 	fmt.Println("Fetching YouTube Shorts...")
-	resources, err := fetchYouTubeShorts(apiKey, youtubeChannel)
+	resources, err := FetchShorts(apiKey, Channel)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error fetching YouTube Shorts: %v\n", err)
 		return
 	}
-	data, _ := json.MarshalIndent(resources, "", "  ")
-	if err := os.WriteFile(resourcesPath, data, 0644); err != nil {
-		fmt.Fprintf(os.Stderr, "Error writing %s: %v\n", resourcesPath, err)
+	raw, _ := json.MarshalIndent(resources, "", "  ")
+	if err := os.WriteFile(data.ResourcesPath, raw, 0644); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing %s: %v\n", data.ResourcesPath, err)
 		return
 	}
-	fmt.Printf("Written %s (%d shorts)\n", resourcesPath, len(resources))
+	fmt.Printf("Written %s (%d shorts)\n", data.ResourcesPath, len(resources))
 }
 
-// fetchYouTubeShorts retrieves Shorts from a YouTube channel published in the past 3 months.
-func fetchYouTubeShorts(apiKey, handle string) ([]Resource, error) {
+// FetchShorts retrieves Shorts from a YouTube channel published in the past 3 months.
+func FetchShorts(apiKey, handle string) ([]data.Resource, error) {
 	channelID, err := resolveChannelID(apiKey, handle)
 	if err != nil {
 		return nil, err
@@ -96,9 +99,9 @@ func resolveChannelID(apiKey, handle string) (string, error) {
 }
 
 // searchShorts pages through the YouTube search API and returns all matching Shorts.
-func searchShorts(apiKey, channelID string) ([]Resource, error) {
+func searchShorts(apiKey, channelID string) ([]data.Resource, error) {
 	publishedAfter := time.Now().AddDate(0, -3, 0).UTC().Format(time.RFC3339)
-	var resources []Resource
+	var resources []data.Resource
 	pageToken := ""
 	for {
 		searchURL := fmt.Sprintf(
@@ -108,7 +111,6 @@ func searchShorts(apiKey, channelID string) ([]Resource, error) {
 		if pageToken != "" {
 			searchURL += "&pageToken=" + pageToken
 		}
-
 		resp, err := httpClient.Get(searchURL)
 		if err != nil {
 			return nil, fmt.Errorf("search: %w", err)
@@ -119,15 +121,13 @@ func searchShorts(apiKey, channelID string) ([]Resource, error) {
 		if err := json.NewDecoder(resp.Body).Decode(&searchResp); err != nil {
 			return nil, fmt.Errorf("search decode: %w", err)
 		}
-
 		for _, item := range searchResp.Items {
-			resources = append(resources, Resource{
+			resources = append(resources, data.Resource{
 				Title:       item.Snippet.Title,
 				Description: item.Snippet.Description,
 				VideoID:     item.ID.VideoID,
 			})
 		}
-
 		if searchResp.NextPageToken == "" {
 			break
 		}

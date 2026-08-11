@@ -9,6 +9,8 @@ import (
 	"sync"
 	"time"
 
+	"iwebsite/src/cmd/gacli/internal/data"
+	"iwebsite/src/cmd/gacli/internal/youtube"
 	"iwebsite/src/cmd/gacli/knowledge"
 
 	"github.com/spf13/cobra"
@@ -60,7 +62,6 @@ func buildTextKB() {
 	jobs := make(chan kbJob)
 	var wg sync.WaitGroup
 
-	// Start worker pool
 	for i := 0; i < maxWorkers; i++ {
 		wg.Add(1)
 		go func() {
@@ -71,8 +72,7 @@ func buildTextKB() {
 		}()
 	}
 
-	// Send jobs
-	for _, group := range orgGroups {
+	for _, group := range data.OrgGroups {
 		for _, org := range group.Organizations {
 			urls := org.KBURLs
 			if len(urls) == 0 {
@@ -143,7 +143,7 @@ var harvestCmd = &cobra.Command{
 		}
 
 		if source == sourceAll || source == sourceYouTube {
-			buildYouTubeResources()
+			youtube.BuildResources(projectPrefix)
 		}
 
 		fmt.Println("Harvest complete.")
