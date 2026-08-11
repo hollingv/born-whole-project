@@ -729,11 +729,31 @@ details[open] .faq-question::after {
 }
 
 /* Footer */
-footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.75rem;
-    color: #999;
-    border-top: 1px solid #e4e8f0;
-    margin-top: 2rem;
+.site-footer {
+    background-color: #1a2e50;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+}
+.footer-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.43rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+}
+.footer-tagline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.55);
+}
+.footer-version {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.94rem;
+    color: rgba(255,255,255,0.3);
 }
