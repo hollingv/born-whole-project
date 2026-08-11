@@ -328,6 +328,13 @@ nav a.brand {
     font-weight: 500;
     margin-bottom: 0;
 }
+.ask-sources a {
+    color: #5ba3f5;
+    text-decoration: none;
+}
+.ask-sources a:hover {
+    text-decoration: underline;
+}
 .ask-sources {
     margin-top: 1rem;
     font-size: 0.8rem;

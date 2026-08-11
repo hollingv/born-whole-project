@@ -55,7 +55,11 @@ func handleAsk(w http.ResponseWriter, r *http.Request, siteDir string) {
 	}
 
 	fmt.Fprintf(w, "<p>%s</p>", answer)
-	fmt.Fprintf(w, "<p class=\"ask-sources\">Sources: %s</p>", strings.Join(sources, ", "))
+	var sourceLinks []string
+	for _, s := range sources {
+		sourceLinks = append(sourceLinks, fmt.Sprintf(`<a href="https://%s" target="_blank">%s</a>`, s, s))
+	}
+	fmt.Fprintf(w, "<p class=\"ask-sources\">Sources: %s</p>", strings.Join(sourceLinks, ", "))
 	fmt.Fprintf(w, "<p class=\"ask-disclaimer\">Answers are generated from curated sources. Always verify with the linked organisations.</p>")
 }
 

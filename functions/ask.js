@@ -64,7 +64,8 @@ async function searchKB(q, requestUrl) {
 }
 
 async function askAI(q, chunks, context) {
-    const sources = [...new Set(chunks.map(c => c.source))];
+    const sourceNames = [...new Set(chunks.map(c => c.source))];
+    const sources = sourceNames.map(s => `<a href="https://${s}" target="_blank">${s}</a>`);
     const contextText = chunks.map(c => c.text).join('\n\n');
 
     try {
