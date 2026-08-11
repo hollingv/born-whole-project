@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.6.0 - 2026-08-11
+#### Features
+- (**Makefile**) add 'whitepaper' target - (412d48b) - hollingv
+- (**gacli**) add --source switch to the 'harvest' command - (351e085) - hollingv
+- (**ui**) add hyperlinks to the sources returned by ai query - (a69acce) - hollingv
+- (**ui**) remove version from hamburger drop-down - (cf5cd82) - hollingv
+- (**ui**) create better footer for all pages with siteName - (f4de045) - hollingv
+- (**ui**) site background is pale purple - (950fd83) - hollingv
+- add utility script to create pdf from md - (5bb3d43) - hollingv
+- change the kb-build command to harvest - (77e8d27) - hollingv
+#### Documentation
+- improved whitepaper for submission - (225cbc8) - hollingv
+- add README-whitepaper.md - (84903c8) - hollingv
+- add a project overview page - (c03526d) - hollingv
+#### Refactoring
+- (**kb.go**) rename to harvest.go and associated renames - (e5cc5ec) - hollingv
+- (**packages**) top level dir is commands and helpers - (8e3ded8) - hollingv
+- (**styles.css**) add --brand-size to :root in styles.css - (0b86dca) - hollingv
+- organize and document the styles.css - (1dde4a0) - hollingv
+
+- - -
+
 ## v0.5.0 - 2026-08-09
 #### Features
 - (**Resources**) add sections, toc and 'top' button - (d940b8c) - hollingv
