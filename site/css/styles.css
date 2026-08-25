@@ -35,22 +35,20 @@ html {
    2. Base / Body
    ============================================================================= */
 
-.home-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100dvh;
-}
-
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--page-bg);
     color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
 }
 
 main {
     max-width: 1100px;
     margin: 0 auto;
     padding: 3rem 2rem;
+    flex: 1;
 }
 main h2 {
     font-size: 1.6rem;
