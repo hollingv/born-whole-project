@@ -129,7 +129,8 @@ var harvestCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		if source == sourceAll || source == sourceOrganizations {
+		if source == sourceAll {
+			// Full rebuild — clear everything
 			if err := os.RemoveAll(kbDir); err != nil {
 				fmt.Fprintf(os.Stderr, "Error clearing kb directory: %v\n", err)
 				os.Exit(1)
@@ -137,6 +138,15 @@ var harvestCmd = &cobra.Command{
 			if err := os.MkdirAll(kbDir, 0755); err != nil {
 				fmt.Fprintf(os.Stderr, "Error creating kb directory: %v\n", err)
 				os.Exit(1)
+			}
+			buildTextKB()
+			writeManifest()
+		} else if source == sourceOrganizations {
+			// Partial rebuild — only remove .txt files, preserve resources.json
+			if files, err := filepath.Glob(filepath.Join(kbDir, "*.txt")); err == nil {
+				for _, f := range files {
+					os.Remove(f)
+				}
 			}
 			buildTextKB()
 			writeManifest()

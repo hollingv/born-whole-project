@@ -13,6 +13,7 @@ import (
 var ContentTags = map[string]struct{}{
 	"p": {}, "h1": {}, "h2": {}, "h3": {}, "h4": {}, "h5": {}, "h6": {},
 	"article": {}, "main": {}, "section": {}, "blockquote": {}, "li": {},
+	"tr": {}, // table rows — captures structured data like legal case listings
 }
 
 // AllText recursively collects all text within a node and its descendants.
