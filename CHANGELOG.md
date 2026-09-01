@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file. See [conven
 ## v0.6.0 - 2026-08-11
 #### Features
 - (**Makefile**) add 'whitepaper' target - (412d48b) - hollingv
-- (**gacli**) add --source switch to the 'harvest' command - (351e085) - hollingv
+- (**bictl**) add --source switch to the 'harvest' command - (351e085) - hollingv
 - (**ui**) add hyperlinks to the sources returned by ai query - (a69acce) - hollingv
 - (**ui**) remove version from hamburger drop-down - (cf5cd82) - hollingv
 - (**ui**) create better footer for all pages with siteName - (f4de045) - hollingv

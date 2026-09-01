@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"iwebsite/src/cmd/gacli/internal/data"
+	"iwebsite/src/cmd/bictl/internal/data"
 
 	"github.com/spf13/cobra"
 )

@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	"iwebsite/src/cmd/gacli/internal/data"
+	"iwebsite/src/cmd/bictl/internal/data"
 )
 
 func TestEachGroupHasOrganizations(t *testing.T) {

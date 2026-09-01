@@ -11,7 +11,7 @@ import (
 	"os"
 	"time"
 
-	"iwebsite/src/cmd/gacli/internal/data"
+	"iwebsite/src/cmd/bictl/internal/data"
 )
 
 const Channel = "AttorneyClopper"
