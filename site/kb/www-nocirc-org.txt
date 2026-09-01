@@ -1,1 +1,25 @@
-No national or international medical association recommends routine circumcision. Only the USA circumcises the majority of newborn boys without medical or religious reason. Medicalized circumcision began during the 1800s to prevent masturbation, which was believed to cause disease. Today's parents are learning that the foreskin is a normal, protective, functioning organ. Today's parents realize circumcision harms and has unnecessary risks. Circumcision denies a male's right to genital integrity and choice for his own body. Intact America NOCIRC is a member of the International Coalition for Genital Integrity. NOCIRC is an affiliate of the Alliance for Transforming the Lives of Children. Content ©1989-2026 National Organization of Circumcision Information Resource Centers - all rights reserved				Last update January 14, 2019
+No national or international medical association recommends routine circumcision.
+
+Only the USA circumcises the majority of newborn boys without medical or religious reason.
+
+Medicalized circumcision began during the 1800s to prevent masturbation, which was believed to cause disease.
+
+Today's parents are learning that the foreskin is a normal, protective, functioning organ.
+
+Today's parents realize circumcision harms and has unnecessary risks.
+
+Circumcision denies a male's right to genital integrity and choice for his own body.
+
+Please visit our Directory for important articles, and also read our educational pamphlets (click the box below).
+
+function validateAmount(amount){ if(amount.value.match( /^[0-9]+(\.([0-9]+))?$/)){ return true; }else{ alert('You must enter a valid donation.'); amount.focus(); return false; } }
+
+NOCIRC 20-minute educational DVD, featuring Dr. Dean EdellSee it!Best viewed in Quicktime
+
+History of Medicalized Circumcision(online slideshow) Doctors Opposing Circumcision Genital Integrity Policy Statement
+
+Penile Sensitivity Study Foreskin Deprived? Circumcision and AIDS 2009 resources on HIV/AIDS Genital Integrity Awareness Week Legal Aid
+
+www.CircumcisionDecisionMaker.com NOCIRC is a member of the International Coalition for Genital Integrity.
+
+NOCIRC is an affiliate of the Alliance for Transforming the Lives of Children. webmaster														Content ©1989-2026 National Organization of Circumcision Information Resource Centers - all rights reserved				Last update January 14, 2019  																				admin
