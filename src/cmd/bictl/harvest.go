@@ -9,9 +9,9 @@ import (
 	"sync"
 	"time"
 
-	"iwebsite/src/cmd/gacli/internal/data"
-	"iwebsite/src/cmd/gacli/internal/youtube"
-	"iwebsite/src/cmd/gacli/knowledge"
+	"iwebsite/src/cmd/bictl/internal/data"
+	"iwebsite/src/cmd/bictl/internal/youtube"
+	"iwebsite/src/cmd/bictl/knowledge"
 
 	"github.com/spf13/cobra"
 	"golang.org/x/net/html"

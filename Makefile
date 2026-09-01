@@ -1,7 +1,7 @@
 .PHONY: help init build test clean version-preview release-preview release
 .SILENT:
 
-APP_NAME    = gacli
+APP_NAME    = bictl
 GO_VERSION  = 1.26.1
 COG_VERSION = 7.0.0
 DRY_RUN    ?= true
