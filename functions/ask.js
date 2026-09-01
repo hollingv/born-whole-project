@@ -80,14 +80,14 @@ async function askAI(q, chunks, context) {
         });
         return respond(
             `<p>${aiResponse.response}</p>` +
-            `<p class="ask-sources">Sources: ${sources.join(', ')}</p>` +
+            `<p class="ask-sources">Sources:<br>${sources.join('<br>')}</p>` +
             `<p class="ask-disclaimer">Answers are generated from curated sources. Always verify with the linked organisations.</p>`
         );
     } catch (err) {
         let html = `<p>AI unavailable: <code>${sanitiseError(err)}</code></p>`;
         html += '<p>Here are relevant excerpts:</p><ul>';
         for (const c of chunks) html += `<li>${c.text}</li>`;
-        html += `</ul><p class="ask-sources">Sources: ${sources.join(', ')}</p>`;
+        html += `</ul><p class="ask-sources">Sources:<br>${sources.join('<br>')}</p>`;
         return respond(html);
     }
 }
