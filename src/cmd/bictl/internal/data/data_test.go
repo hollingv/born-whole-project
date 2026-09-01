@@ -1,0 +1,19 @@
+package data
+
+import "testing"
+
+func TestOrgGroupsNotEmpty(t *testing.T) {
+	for _, g := range OrgGroups {
+		for _, org := range g.Organizations {
+			if org.Name == "" {
+				t.Errorf("organization in group %q has empty Name", g.Type)
+			}
+			if org.Website == "" {
+				t.Errorf("organization %q has empty Website", org.Name)
+			}
+			if len(org.KBURLs) == 0 {
+				t.Errorf("organization %q has no KBURLs", org.Name)
+			}
+		}
+	}
+}
