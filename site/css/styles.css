@@ -77,6 +77,12 @@ nav {
     align-items: center;
     position: relative;
 }
+.brand-logo {
+    height: 3.0rem;
+    width: auto;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
 nav a.brand {
     text-decoration: none !important;
     cursor: pointer;
