@@ -45,7 +45,7 @@ var OrgGroups = []OrgGroup{
 				Description: "Leading the legal efforts to end the practice of circumcision by protecting all children from genital cutting",
 				Website:     "https://intactglobal.org",
 				Thumbnail:   "images/intactglobal.svg",
-				NewsUrl:     "https://intactglobal.org/news",
+				NewsUrl:     "https://intactglobal.org/press",
 				EventsUrl:   "https://intactglobal.org/events",
 				KBURLs: []string{
 					"https://intactglobal.org/about",
