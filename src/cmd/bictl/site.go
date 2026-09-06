@@ -60,7 +60,7 @@ func discoverPages(tmplDir string) ([]page, error) {
 		name := strings.TrimSuffix(filepath.Base(pt), ".tmpl")
 		pages = append(pages, page{
 			tmplFiles: append([]string{pt}, shared...),
-			output:    filepath.Join("site", name),
+			output:    filepath.Join(targetDir, name),
 		})
 	}
 

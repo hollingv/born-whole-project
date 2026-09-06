@@ -77,5 +77,5 @@ func newHandler(siteDir string) http.Handler {
 
 func main() {
 	log.Println("Serving on http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", newHandler("site")))
+	log.Fatal(http.ListenAndServe(":8080", newHandler(targetDir)))
 }

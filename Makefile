@@ -2,6 +2,7 @@
 .SILENT:
 
 APP_NAME    = bictl
+TARGET_DIR  = dist
 GO_VERSION  = 1.26.1
 COG_VERSION = 7.0.0
 DRY_RUN    ?= true
@@ -70,8 +71,10 @@ build: ## Build the binary and site
 	@echo "[ INFO ] Tidying Go modules..."
 	$(GO_BIN) mod tidy
 	@echo "Building $(APP_NAME) version $(APP_TAG)..."
-	CGO_ENABLED=0 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME) ./src/cmd/$(APP_NAME)
-	./$(APP_NAME) site --version $(APP_TAG)
+	mkdir -p $(TARGET_DIR)
+	CGO_ENABLED=0 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(TARGET_DIR)/$(APP_NAME) ./src/cmd/$(APP_NAME)
+	cp -r site/. $(TARGET_DIR)/
+	./$(TARGET_DIR)/$(APP_NAME) site --version $(APP_TAG)
 	@echo "Built: $(APP_NAME) at version $(APP_TAG)"
 
 test: build test-unit test-integ-local ## Build and run all tests
@@ -80,7 +83,7 @@ test-unit: build ## Run the go unit tests
 	$(GO_BIN) test ./src/cmd/$(APP_NAME)/... ./src/server/...
 
 test-env-vars: ## Chaeck the status of the environment variables used for testing
-	./$(APP_NAME) status --set-exit-code=true
+	./$(TARGET_DIR)/$(APP_NAME) status --set-exit-code=true
 
 test-integ-local: build test-env-vars ## Start server, run integration tests, stop server
 	@go run ./src/server > /dev/null 2>&1 & \
@@ -134,4 +137,4 @@ app-tag: ## Print the current APP_TAG
 
 clean: ## Remove built binaries
 	@echo "Cleaning up..."
-	rm -f $(APP_NAME) $(APP_NAME)-linux-amd64 $(APP_NAME)-darwin-arm64
+	rm -rf $(TARGET_DIR)/
