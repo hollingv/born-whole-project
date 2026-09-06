@@ -426,10 +426,10 @@ nav a.brand {
     margin-top: -0.25rem;
 }
 .org-thumbnail {
+    border-radius: 0;
     width: 100%;
     height: auto;
     object-fit: cover;
-    border-radius: 8px;
     display: block;
     transition: opacity 0.2s;
 }
