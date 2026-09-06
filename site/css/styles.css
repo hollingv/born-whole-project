@@ -110,6 +110,36 @@ nav a.brand {
     transition: color 0.2s;
 }
 .nav-links a:hover { color: #5ba3f5; }
+
+/* Dropdown submenu */
+.nav-links .dropdown { position: relative; }
+.nav-links .dropdown > a::after { content: ' \25BE'; font-size: 0.75em; }
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #0f1f3d;
+    list-style: none;
+    min-width: 160px;
+    border-top: 2px solid #5ba3f5;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    z-index: 200;
+    padding: 0;
+    margin: 0;
+}
+.dropdown-menu li a {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+}
+.dropdown-menu li a:hover { background-color: #1a4a8a; color: #5ba3f5; }
+.nav-links .dropdown:hover .dropdown-menu { display: block; }
 @media (min-width: 481px) { .hamburger { display: none; } }
 @media (max-width: 480px)  { .nav-links { display: none; } }
 
