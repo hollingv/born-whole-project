@@ -57,8 +57,8 @@ var OrgGroups = []OrgGroup{
 				Name:        "Intaction",
 				Description: "Advancing the health, well-being, and bodily autonomy of boys and men.",
 				Website:     "https://intaction.org",
-				Thumbnail:   PlaceholderImage,
-				NewsUrl:     "https://intaction.org/news",
+				Thumbnail:   "images/intaction.jpg",
+				NewsUrl:     "https://intaction.org/circumcision-news-complete-listing/",
 				EventsUrl:   "https://intaction.org/events",
 				KBURLs: []string{
 					"https://intaction.org",
@@ -70,7 +70,7 @@ var OrgGroups = []OrgGroup{
 				Name:        "Genital Autonomy Legal Defense and Education Fund",
 				Description: "To create a world in which the right of everyone to bodily integrity and the freedom to choose what's done to their genitals is legally protected on an equal basis.",
 				Website:     "https://www.galdef.org/",
-				Thumbnail:   PlaceholderImage,
+				Thumbnail:   "images/galdef.svg",
 				NewsUrl:     "https://www.galdef.org/news",
 				EventsUrl:   "https://www.galdef.org/events",
 				KBURLs: []string{
@@ -82,7 +82,7 @@ var OrgGroups = []OrgGroup{
 				Name:        "Circumcision Law Reform",
 				Description: "Protecting children, youth and parents from the harm of circumcision",
 				Website:     "https://circumcisionlawreform.org/",
-				Thumbnail:   PlaceholderImage,
+				Thumbnail:   "images/clr.png",
 				NewsUrl:     "https://circumcisionlawreform.org/news",
 				EventsUrl:   "https://circumcisionlawreform.org/events",
 				KBURLs: []string{
@@ -94,7 +94,7 @@ var OrgGroups = []OrgGroup{
 				Name:        "Attorneys For The Rights of the Child",
 				Description: "Protecting children, youth and parents from the harm of circumcision",
 				Website:     "https://www.arclaw.org/",
-				Thumbnail:   PlaceholderImage,
+				Thumbnail:   "images/arc.jpeg",
 				NewsUrl:     "https://www.arclaw.org/news",
 				EventsUrl:   "https://www.arclaw.org/events",
 				KBURLs: []string{
@@ -111,7 +111,7 @@ var OrgGroups = []OrgGroup{
 				Name:        "Doctors Opposing Circumcision",
 				Description: "An international network of physicians dedicated to protecting the genital integrity and eventual autonomy of all children",
 				Website:     "https://www.doctorsopposingcircumcision.org/",
-				Thumbnail:   PlaceholderImage,
+				Thumbnail:   "images/doc.svg",
 				NewsUrl:     "https://www.doctorsopposingcircumcision.org/news",
 				EventsUrl:   "https://www.doctorsopposingcircumcision.org/events",
 				KBURLs: []string{
@@ -142,7 +142,7 @@ var OrgGroups = []OrgGroup{
 				Name:        "Intact America",
 				Description: "Changing the Way America thinks about circumcision",
 				Website:     "https://intactamerica.org",
-				Thumbnail:   PlaceholderImage,
+				Thumbnail:   "images/intactamerica.png",
 				NewsUrl:     "https://intactamerica.org/news",
 				EventsUrl:   "https://intactamerica.org/events",
 				KBURLs: []string{
@@ -156,7 +156,7 @@ var OrgGroups = []OrgGroup{
 				Name:        "Your Whole Baby",
 				Description: "The trusted resource for information on circumcision and the foreskin",
 				Website:     "https://yourwholebaby.org",
-				Thumbnail:   PlaceholderImage,
+				Thumbnail:   "images/ywb.webp",
 				NewsUrl:     "https://yourwholebaby.org/news",
 				EventsUrl:   "https://yourwholebaby.org/events",
 				KBURLs: []string{
