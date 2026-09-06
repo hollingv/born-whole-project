@@ -6,6 +6,8 @@ on:
   pull_request:
 
 env:
+  TARGET_DIR: dist
+
   # Main production branch
   MAIN_BRANCH: main
   MAIN_URL: https://global-autonomy.pages.dev
@@ -56,7 +58,7 @@ jobs:
       - name: Deploy and test (${{ env.MAIN_BRANCH }})
         if: github.ref == format('refs/heads/{0}', env.MAIN_BRANCH)
         run: |
-          npx wrangler pages deploy site --project-name=global-autonomy --branch=${{ env.MAIN_BRANCH }}
+          npx wrangler pages deploy ${{ env.TARGET_DIR }} --project-name=global-autonomy --branch=${{ env.MAIN_BRANCH }}
           go test ./src/test-integ/... -url ${{ env.MAIN_URL }}
 
       # -------------------------------------------------------------------------------------
@@ -65,5 +67,5 @@ jobs:
       - name: Deploy and test (${{ env.DEVEL_BRANCH }})
         if: github.ref == format('refs/heads/{0}', env.DEVEL_BRANCH)
         run: |
-          npx wrangler pages deploy site --project-name=global-autonomy --branch=${{ env.DEVEL_BRANCH }}
+          npx wrangler pages deploy ${{ env.TARGET_DIR }} --project-name=global-autonomy --branch=${{ env.DEVEL_BRANCH }}
           go test ./src/test-integ/... -url ${{ env.DEVEL_URL }}
