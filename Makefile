@@ -1,7 +1,7 @@
 .PHONY: help init build test clean version-preview release-preview release
 .SILENT:
 
-APP_NAME    = bictl
+APP_NAME    = bwctl
 TARGET_DIR  = dist
 GO_VERSION  = 1.26.1
 COG_VERSION = 7.0.0

@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	"iwebsite/src/cmd/bictl/internal/data"
+	"born-whole-project/src/cmd/bwctl/internal/data"
 )
 
 func TestEachGroupHasOrganizations(t *testing.T) {

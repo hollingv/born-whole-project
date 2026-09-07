@@ -1,4 +1,4 @@
-module iwebsite
+module born-whole-project
 
 go 1.26.1
 

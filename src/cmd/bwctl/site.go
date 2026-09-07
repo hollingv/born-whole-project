@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"iwebsite/src/cmd/bictl/internal/data"
+	"born-whole-project/src/cmd/bwctl/internal/data"
 
 	"github.com/spf13/cobra"
 )

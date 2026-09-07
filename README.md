@@ -22,11 +22,11 @@ This project is built openly on GitHub and welcomes contributions from developer
 
 ### How you can contribute
 
-- **Organizations** — if you run an advocacy organization in this space, you can register your site by submitting a pull request to add your details to `src/cmd/bictl/organizations.go`. Following a consistent URL structure (e.g. `/about`, `/research`, `/legal-cases`) ensures your content is automatically included in the knowledge base and surfaced through the Ask feature.
+- **Organizations** — if you run an advocacy organization in this space, you can register your site by submitting a pull request to add your details to `src/cmd/bwctl/organizations.go`. Following a consistent URL structure (e.g. `/about`, `/research`, `/legal-cases`) ensures your content is automatically included in the knowledge base and surfaced through the Ask feature.
 
 - **Developers** — the site is built with Go, HTML templates, and Cloudflare Pages. Contributions to the codebase, knowledge base, FAQ, and AI question-answering features are welcome.
 
-- **Researchers and writers** — contributions to the FAQ (`src/cmd/bictl/faq.go`) and knowledge base sources help improve the accuracy and depth of answers provided to the public.
+- **Researchers and writers** — contributions to the FAQ (`src/cmd/bwctl/faq.go`) and knowledge base sources help improve the accuracy and depth of answers provided to the public.
 
 All contributions are reviewed before merging to ensure they align with the site's mission.
 
@@ -62,11 +62,11 @@ The harm of genital cutting is not widely understood. Many parents make decision
 
 | Component | Technology |
 |---|---|
-| Site generation | Go (`bictl site`) |
+| Site generation | Go (`bwctl site`) |
 | Local development server | Go (`go run ./src/server/server.go`) |
 | Deployment | Cloudflare Pages |
 | AI question answering | Cloudflare Workers AI (`llama-3.1-8b-instruct-fast`) |
-| Knowledge base | Plain text files built from organization websites (`bictl harvest`) |
+| Knowledge base | Plain text files built from organization websites (`bwctl harvest`) |
 
 ### Development platform
 
@@ -85,7 +85,7 @@ make build
 go run ./src/server/server.go
 
 # Harvest content from web sources and YouTube
-./bictl harvest
+./bwctl harvest
 
 # Run tests
 make test
