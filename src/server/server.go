@@ -1,4 +1,4 @@
-// Package main implements the local development server for Bodily Integrity Commons.
+// Package main implements the local development server for siteName
 // The /ask handler logic mirrors functions/ask.js — keep both in sync when making changes.
 package main
 
