@@ -1,7 +1,6 @@
 const exampleQuestions = [
     'What is circumcision?',
     'What are the medical risks?',
-    'Do children have the right to choose?',
     'What do doctors say about circumcision?',
     'Is circumcision legal?',
     'How common is circumcision worldwide?',
