@@ -9,6 +9,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/nav.js" defer></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {{range $i, $f := .FAQItems}}{{if $i}},{{end}}
+            {
+                "@type": "Question",
+                "name": {{js $f.Question}},
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": {{js $f.Answer}}
+                }
+            }
+            {{end}}
+        ]
+    }
+    </script>
 </head>
 <body>
 
