@@ -9,9 +9,9 @@ import (
 	"sync"
 	"time"
 
-	"iwebsite/src/cmd/bictl/internal/data"
-	"iwebsite/src/cmd/bictl/internal/youtube"
-	"iwebsite/src/cmd/bictl/knowledge"
+	"born-whole-project/src/cmd/bwctl/internal/data"
+	"born-whole-project/src/cmd/bwctl/internal/youtube"
+	"born-whole-project/src/cmd/bwctl/knowledge"
 
 	"github.com/spf13/cobra"
 	"golang.org/x/net/html"

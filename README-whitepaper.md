@@ -75,7 +75,7 @@ This model is analogous to RSS — organizations that publish a standard feed ar
 
 ### 4.2 The Knowledge Base
 
-The `bictl harvest` command fetches content from each registered organization's designated pages, extracts meaningful prose, and stores it as committed text files. This knowledge base powers the AI question-answering feature and can be updated at any time by running the harvest command and committing the results.
+The `bwctl harvest` command fetches content from each registered organization's designated pages, extracts meaningful prose, and stores it as committed text files. This knowledge base powers the AI question-answering feature and can be updated at any time by running the harvest command and committing the results.
 
 ---
 
@@ -85,11 +85,11 @@ BIC is designed for low operational cost, high reliability, and ease of contribu
 
 | Component | Technology | Role |
 |---|---|---|
-| Site generation | Go / `bictl site` | Renders HTML from templates and data at build time |
+| Site generation | Go / `bwctl site` | Renders HTML from templates and data at build time |
 | Local development | Go (`src/server`) | Full server with AI and KB search for local testing |
 | Hosting & CDN | Cloudflare Pages | Global distribution, zero-ops deployment |
 | AI answering | Cloudflare Workers AI | LLM-powered answers grounded in the KB |
-| Content harvest | Go / `bictl harvest` | Fetches org content and YouTube Shorts |
+| Content harvest | Go / `bwctl harvest` | Fetches org content and YouTube Shorts |
 | CI/CD | GitHub Actions | Test, build, deploy and integration-test on push |
 | Versioning | Conventional Commits + cog | Automated changelog and semantic versioning |
 | Automated Testing | Go testing framework | Automated testing on any push |
