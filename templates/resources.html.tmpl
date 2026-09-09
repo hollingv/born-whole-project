@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/nav.js" defer></script>
     <script src="js/toc.js" defer></script>
+    <script src="js/ask.js" defer></script>
 </head>
 <body>
 
@@ -20,6 +21,18 @@
         <p>A curated collection of resources to help you learn and share information about bodily autonomy and genital integrity.</p>
 
         <nav class="toc" id="toc"></nav>
+
+        <section class="resource-section">
+            <h2>Ask curated AI</h2>
+            <p>Ask a question and get an answer grounded in content from the organisations featured on this site — no outside knowledge, no hallucination.</p>
+            <form class="prompt-form" action="/ask" method="get">
+                <div class="prompt-input-wrapper">
+                    <input type="text" class="prompt-input" name="q" placeholder="What is genital cutting?" autocomplete="off" />
+                    <button type="submit" class="prompt-submit">Ask</button>
+                </div>
+            </form>
+            <div id="ask-response" class="ask-response"></div>
+        </section>
 
         <section class="resource-section">
             <h2>YouTube Informational Shorts</h2>
@@ -44,10 +57,6 @@
             {{end}}
         </section>
 
-        <section class="resource-section">
-            <h2>TBD</h2>
-            <p class="resource-empty">Coming soon.</p>
-        </section>
 
         <a href="#" class="back-to-top">&#8679; Top</a>
     </main>
