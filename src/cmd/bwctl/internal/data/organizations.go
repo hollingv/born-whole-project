@@ -42,7 +42,7 @@ var OrgGroups = []OrgGroup{
 		Organizations: []Organization{
 			{
 				Name:        "Intact Global",
-				Description: "Leading the legal efforts to end the practice of circumcision by protecting all children from genital cutting",
+				Description: "Support our mission to protect all children from forced, non-religious genital cutting.",
 				Website:     "https://intactglobal.org",
 				Thumbnail:   "images/intactglobal.svg",
 				NewsUrl:     "https://intactglobal.org/press",
