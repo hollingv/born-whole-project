@@ -2,6 +2,38 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.7.0 - 2026-09-09
+#### Features
+- (**Makefile**) use the SITE_NAME extracted from config.go - (cc12399) - hollingv
+- (**build**) place all generated files into TARGET_DIR=dist - (8ddc5e1) - hollingv
+- (**cli**) rename cli tool and all directories to 'bw' - (2872b42) - hollingv
+- (**cli**) rename gacli to bictl - (52f90e0) - hollingv
+- (**kb**) update the kb with 'bictl harvest' - (81acfe0) - hollingv
+- (**kb**) update kb for intaction and nocirc - (31154b4) - hollingv
+- (**kb**) harvest latest info from remote sites - (d19aad6) - hollingv
+- (**organizations**) add thumbnail images to org page - (9bfbc33) - hollingv
+- (**ui**) relocate version string to below brand name on header - (4f94166) - hollingv
+- (**ui**) organization cards have buttons along bottom - (a5118f4) - hollingv
+- (**ui**) Use clearer 'genital cutting' language - (941f598) - hollingv
+- (**ui**) change verbiage around genital cutting - (9822bab) - hollingv
+- (**ui**) add drop down menu for parents and intactivists - (ddab487) - hollingv
+- (**ui**) collapse mission and about pages - (6af24d1) - hollingv
+- (**ui**) add IntactGlobal thumbnail image - (4dfbc2b) - hollingv
+- (**ui**) add the brand-logo to the nav bar - (78c8fec) - hollingv
+- (**ui**) render the Sources one per line - (d53e63d) - hollingv
+- (**ui**) place footer always at the bottom - (413281b) - hollingv
+- (**ui**) increase font on the header links - (97b4dd5) - hollingv
+#### Bug Fixes
+- (**kbextract**) add tags for proper extraction of legal kb - (81987ad) - hollingv
+- (**organization**) adjust Intact Global news to be /press - (3f96416) - hollingv
+- (**ui**) remove example question about choice - (9fcaabc) - hollingv
+#### Tests
+- add unit tests to eliminate no-test-file warnings - (1063e3e) - hollingv
+#### Refactoring
+- change 'bodily integrity commons' to 'born whole' - (5c6bcad) - hollingv
+
+- - -
+
 ## v0.6.0 - 2026-08-11
 #### Features
 - (**Makefile**) add 'whitepaper' target - (412d48b) - hollingv
