@@ -11,7 +11,7 @@ import (
 	"os"
 	"time"
 
-	"iwebsite/src/cmd/bictl/internal/data"
+	"born-whole-project/src/cmd/bwctl/internal/data"
 )
 
 const Channel = "AttorneyClopper"

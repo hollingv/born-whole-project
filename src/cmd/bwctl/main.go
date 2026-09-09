@@ -8,9 +8,9 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "bictl",
+	Use:   "bwctl",
 	Short: "Command line tools for automation",
-	Long:  `bictl - Command line tools for automation`,
+	Long:  `bwctl - Command line tools for automation`,
 	Run: func(cmd *cobra.Command, args []string) {
 		cmd.Help()
 	},

@@ -30,7 +30,7 @@ const (
 var statusCmd = &cobra.Command{
 	Use:   "status",
 	Short: "Display status of required environment variables",
-	Long:  `Display the status of required environment variables for bictl`,
+	Long:  `Display the status of required environment variables for bwctl`,
 	Run: func(cmd *cobra.Command, args []string) {
 		silent, _ := cmd.Flags().GetBool(flagNameSilent)
 		setExitCode, _ := cmd.Flags().GetBool(flagNameSetExitCode)

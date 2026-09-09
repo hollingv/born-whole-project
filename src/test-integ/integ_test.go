@@ -134,7 +134,7 @@ func TestResourcesPageLoads(t *testing.T) {
 func TestResourcesShortsAvailable(t *testing.T) {
 	resp := get(t, "/resources.html")
 	if !strings.Contains(body(t, resp), "shorts available") {
-		t.Error("expected resources page to contain 'shorts available' — run ./bictl harvest with BIC_YT_API_KEY set")
+		t.Error("expected resources page to contain 'shorts available' — run ./bwctl harvest with BIC_YT_API_KEY set")
 	}
 }
 
