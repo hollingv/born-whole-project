@@ -2,6 +2,7 @@
 .SILENT:
 
 APP_NAME    = bwctl
+SITE_NAME   := $(shell grep 'const siteName' src/cmd/bwctl/config.go | sed 's/.*"\(.*\)".*/\1/')
 TARGET_DIR  = dist
 GO_VERSION  = 1.26.1
 COG_VERSION = 7.0.0
@@ -25,7 +26,7 @@ APP_TAG := $(shell \
 
 help:
 	@echo ""
-	@echo "Bodily Integrity Commons Website"
+	@echo "$(SITE_NAME)"
 	@echo "(version: $(APP_TAG))"
 	@echo ""
 	@grep -E '^[a-zA-Z0-9-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
