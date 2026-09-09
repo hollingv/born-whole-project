@@ -1,15 +1,15 @@
 {{define "organization-card"}}
 <article class="organization-card">
+    {{if .Thumbnail}}
+    <a href="{{.Website}}" target="_blank" class="org-thumbnail-link">
+        <img class="org-thumbnail" src="{{.Thumbnail}}" alt="{{.Name}}" />
+    </a>
+    {{end}}
     <div class="org-body">
         <h3>{{.Name}}</h3>
         <p>{{.Description}}</p>
     </div>
     <div class="org-nav">
-        {{if .Thumbnail}}
-        <a href="{{.Website}}" target="_blank" class="org-thumbnail-link">
-            <img class="org-thumbnail" src="{{.Thumbnail}}" alt="{{.Name}}" />
-        </a>
-        {{end}}
         <a href="{{.Website}}" target="_blank" class="org-link">Visit Site</a>
         <a href="{{if .NewsUrl}}{{.NewsUrl}}{{else}}#{{end}}" class="org-link">News</a>
         <a href="{{if .EventsUrl}}{{.EventsUrl}}{{else}}#{{end}}" class="org-link">Events</a>
