@@ -1,9 +1,9 @@
 const exampleQuestions = [
-    'What is circumcision?',
+    'What is genital cutting?',
     'What are the medical risks?',
-    'What do doctors say about circumcision?',
-    'Is circumcision legal?',
-    'How common is circumcision worldwide?',
+    'What do doctors say about genital cutting?',
+    'Is genital cutting legal?',
+    'How common is genital cutting worldwide?',
     'What is bodily autonomy?',
     'What does the law say about genital cutting?',
 ];
