@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.9.0 - 2026-09-09
+#### Features
+- (**kb**) update intaction circumcision facts - (b6508d0) - hollingv
+
+- - -
+
 ## v0.8.0 - 2026-09-09
 #### Features
 - (**ui**) add AI prompt to Resources page - (ccfe5ec) - hollingv
