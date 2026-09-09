@@ -12,6 +12,8 @@ import (
 
 var baseURL = flag.String("url", "http://localhost:8080", "base URL of the site to test")
 
+const siteName = "Born Whole"
+
 func waitForSite(timeout time.Duration) error {
 	deadline := time.Now().Add(timeout)
 	for time.Now().Before(deadline) {
@@ -66,8 +68,8 @@ func TestSiteResponds(t *testing.T) {
 
 func TestIndexContainsSiteName(t *testing.T) {
 	resp := get(t, "/")
-	if !strings.Contains(body(t, resp), "Bodily Integrity Commons") {
-		t.Error("expected page to contain 'Bodily Integrity Commons'")
+	if !strings.Contains(body(t, resp), siteName) {
+		t.Errorf("expected page to contain %q", siteName)
 	}
 }
 
