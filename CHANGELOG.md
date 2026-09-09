@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.10.0 - 2026-09-09
+#### Features
+- (**seo**) add faqs for SEO optimization - (8e3c45d) - hollingv
+
+- - -
+
 ## v0.9.0 - 2026-09-09
 #### Features
 - (**kb**) update intaction circumcision facts - (b6508d0) - hollingv
