@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if ! command -v cog &> /dev/null; then
     echo "Error: cog is not installed. Run 'make init' to install it."
