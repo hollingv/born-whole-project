@@ -1,4 +1,4 @@
-# Bodily Integrity Commons: Shared Infrastructure for the Intactivist Movement
+# Born Whole Project: Shared Infrastructure for the Intactivist Movement
 
 **Document type:** White Paper  
 **Status:** Active Development  
@@ -8,7 +8,7 @@
 
 ## Abstract
 
-This paper describes Bodily Integrity Commons (BIC), an open-source web platform serving as shared digital infrastructure for the intactivist movement. BIC aggregates information from advocacy organizations, provides AI-assisted public education, and establishes a collaborative protocol through which organizations can contribute to and benefit from a shared resource hub. Built on GitHub, deployed on Cloudflare, and developed entirely in the open, BIC demonstrates how distributed collaboration can create durable, trustworthy infrastructure for the bodily integrity movement.  This paper describes existing functionality as well as future plans for the project.
+This paper describes Born Whole Project (BWP), an open-source web platform serving as shared digital infrastructure for the intactivist movement. BWP aggregates information from advocacy organizations, provides AI-assisted public education, and establishes a collaborative protocol through which organizations can contribute to and benefit from a shared resource hub. Built on GitHub, deployed on Cloudflare, and developed entirely in the open, BWP demonstrates how distributed collaboration can create durable, trustworthy infrastructure for the bodily integrity movement.  This paper describes existing functionality as well as future plans for the project.
 
 ---
 
@@ -16,7 +16,7 @@ This paper describes Bodily Integrity Commons (BIC), an open-source web platform
 
 The movement to end the genital cutting of minors is global, growing, and fragmented. Dozens of organizations operate independently — each maintaining their own website, publishing their own research, news and events, and reaching their own audience. This fragmentation limits impact: a parent seeking information may not know where to look, a researcher may not find the most relevant evidence, and an advocate may not know which organizations are most active in their region.
 
-BIC addresses this fragmentation *not by replacing existing organizations, but by providing a shared platform that aggregates, connects, and amplifies their work.* BIC is conceived as infrastructure: like a road network or an internet protocol, its value grows with the number of participants.
+BWP addresses this fragmentation *not by replacing existing organizations, but by providing a shared platform that aggregates, connects, and amplifies their work.* BWP is conceived as infrastructure: like a road network or an internet protocol, its value grows with the number of participants.
 
 ---
 
@@ -31,13 +31,13 @@ Several structural problems compound this:
 - **Accessibility:** Technical content (medical research, legal arguments) is not easily accessible to general audiences.
 - **Sustainability:** Individual organizations face resource constraints that limit their technical capacity.
 
-BIC addresses each of these problems through a collaborative, open-source model.
+BWP addresses each of these problems through a collaborative, open-source model.
 
 ---
 
 ## 3. The Open Source Model
 
-BIC is developed entirely in the open on GitHub under an open-source license. This is not incidental — it is the foundation of the project's credibility, resilience, and collaborative potential.
+BWP is developed entirely in the open on GitHub under an open-source license. This is not incidental — it is the foundation of the project's credibility, resilience, and collaborative potential.
 
 ### 3.1 Transparency and Trust
 
@@ -57,13 +57,13 @@ GitHub's pull request model provides a structured mechanism for all contribution
 
 ## 4. The Dispatching Hub Architecture
 
-BIC operates as a dispatching hub — a central resource that directs users to the most relevant organizations and content, rather than attempting to replicate or compete with existing work.
+BWP operates as a dispatching hub — a central resource that directs users to the most relevant organizations and content, rather than attempting to replicate or compete with existing work.
 
 ### 4.1 The URL Convention Protocol
 
-BIC defines a lightweight protocol: a standard set of URL paths that participating organizations are encouraged to publish content under. Organizations that adopt these conventions are automatically integrated into BIC's aggregation and AI features.
+BWP defines a lightweight protocol: a standard set of URL paths that participating organizations are encouraged to publish content under. Organizations that adopt these conventions are automatically integrated into BWP's aggregation and AI features.
 
-| Path | Expected Content | BIC Feature |
+| Path | Expected Content | BWP Feature |
 |---|---|---|
 | `/about` | Organization background | Knowledge base |
 | `/research` | Academic & medical research | Knowledge base, AI answers |
@@ -71,7 +71,7 @@ BIC defines a lightweight protocol: a standard set of URL paths that participati
 | `/news` | Press coverage | News aggregator (planned) |
 | `/events` | Upcoming events | Events calendar (planned) |
 
-This model is analogous to RSS — organizations that publish a standard feed are automatically included in feed readers. BIC functions as the feed reader for the intactivist movement.
+This model is analogous to RSS — organizations that publish a standard feed are automatically included in feed readers. BWP functions as the feed reader for the intactivist movement.
 
 ### 4.2 The Knowledge Base
 
@@ -81,7 +81,7 @@ The `bwctl harvest` command fetches content from each registered organization's 
 
 ## 5. Technical Architecture
 
-BIC is designed for low operational cost, high reliability, and ease of contribution. The architecture favours static generation over dynamic server-side rendering, serverless functions over managed servers, and committed content in GitHub over live database queries.
+BWP is designed for low operational cost, high reliability, and ease of contribution. The architecture favours static generation over dynamic server-side rendering, serverless functions over managed servers, and committed content in GitHub over live database queries.
 
 | Component | Technology | Role |
 |---|---|---|
@@ -96,7 +96,7 @@ BIC is designed for low operational cost, high reliability, and ease of contribu
 
 ### 5.1 AI Question Answering
 
-BIC implements a Retrieval-Augmented Generation (RAG) pipeline. When a user submits a question, meaningful keywords are extracted and the most relevant paragraphs from the knowledge base are identified. These paragraphs, together with the question, are sent to Cloudflare Workers AI, which generates a natural language response *grounded exclusively in the curated knowledge base.* Sources are cited in every response, and a disclaimer reminds users to verify information with the linked organizations.
+BWP implements a Retrieval-Augmented Generation (RAG) pipeline. When a user submits a question, meaningful keywords are extracted and the most relevant paragraphs from the knowledge base are identified. These paragraphs, together with the question, are sent to Cloudflare Workers AI, which generates a natural language response *grounded exclusively in the curated knowledge base.* Sources are cited in every response, and a disclaimer reminds users to verify information with the linked organizations.
 
 ### 5.2 Deployment and Quality Assurance
 
@@ -106,15 +106,15 @@ Every push to the `main` branch triggers an automated pipeline: unit tests, inte
 
 ## 6. Participation Model
 
-BIC is structured to accommodate contributors at every level of technical proficiency that range from writers, UI designers, to developers.
+BWP is structured to accommodate contributors at every level of technical proficiency that range from writers, UI designers, to developers.
 
 ### 6.1 Writers and Organizations
 
-Any advocacy organization can add itself to BIC by editing a single source file on GitHub and submitting a pull request. The Contribute page on the BIC website provides step-by-step instructions requiring no local development environment. Organizations that additionally adopt BIC's URL conventions receive automatic integration into the knowledge base and future aggregation features.
+Any advocacy organization can add itself to BWP by editing a single source file on GitHub and submitting a pull request. The Contribute page on the BWP website provides step-by-step instructions requiring no local development environment. Organizations that additionally adopt BWP's URL conventions receive automatic integration into the knowledge base and future aggregation features.
 
 ### 6.2 UI Designers
 
-UI designers may contribute to the design of the BIC website and UI components. They are responsible for creating visually appealing and user-friendly interfaces.
+UI designers may contribute to the design of the BWP website and UI components. They are responsible for creating visually appealing and user-friendly interfaces.
 
 ### 6.3 Developers
 
@@ -128,7 +128,7 @@ Non-technical contributors play an equally important role. Identifying high-qual
 
 ## 7. Strategic Vision
 
-BIC's long-term vision is to become the canonical digital infrastructure for the intactivist movement — a platform that every organization, advocate, researcher, and parent can rely on, and that grows stronger with each new participant.
+BWP's long-term vision is to become the canonical digital infrastructure for the intactivist movement — a platform that every organization, advocate, researcher, and parent can rely on, and that grows stronger with each new participant.
 
 ### 7.1 Near-term Development
 
@@ -146,17 +146,17 @@ BIC's long-term vision is to become the canonical digital infrastructure for the
 
 ### 7.3 The Network Effect
 
-The value of BIC's infrastructure model compounds as participation grows. Each additional organization enriches the knowledge base, expands the directory, and increases the platform's utility for the public. Each developer contribution improves the experience for all users. This network effect is the core strategic rationale for the open-source, collaborative approach.
+The value of BWP's infrastructure model compounds as participation grows. Each additional organization enriches the knowledge base, expands the directory, and increases the platform's utility for the public. Each developer contribution improves the experience for all users. This network effect is the core strategic rationale for the open-source, collaborative approach.
 
-> "BIC is not owned by any single organization. It is shared infrastructure, built by the movement, for the movement. Every contribution — however small — makes it stronger."
+> "BWP is not owned by any single organization. It is shared infrastructure, built by the movement, for the movement. Every contribution — however small — makes it stronger."
 
 ---
 
 ## 8. Conclusion
 
-Bodily Integrity Commons represents a new model for advocacy infrastructure: open-source, collaboratively maintained, AI-augmented, and designed to grow with the movement it serves. By providing shared technical infrastructure, BIC enables individual organizations to focus on their core work while collectively achieving greater reach, credibility, and impact than any could achieve independently.
+Born Whole Project represents a new model for advocacy infrastructure: open-source, collaboratively maintained, AI-augmented, and designed to grow with the movement it serves. By providing shared technical infrastructure, BWP enables individual organizations to focus on their core work while collectively achieving greater reach, credibility, and impact than any could achieve independently.
 
-The platform is operational, deployed globally, and open to contributions today. Organizations wishing to participate may submit a pull request to the public GitHub repository or visit the Contribute page at the BIC website for guided instructions.
+The platform is operational, deployed globally, and open to contributions today. Organizations wishing to participate may submit a pull request to the public GitHub repository or visit the Contribute page at the BWP website for guided instructions.
 
 The code is open. The movement is welcome.
 
