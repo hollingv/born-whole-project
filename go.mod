@@ -5,7 +5,7 @@ go 1.26.1
 require (
 	github.com/olekukonko/tablewriter v1.0.6
 	github.com/spf13/cobra v1.10.2
-	golang.org/x/net v0.40.0
+	golang.org/x/net v0.55.0
 )
 
 require (
@@ -18,5 +18,5 @@ require (
 	github.com/olekukonko/ll v0.0.8-0.20250516010636-22ea57d81985 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/spf13/pflag v1.0.9 // indirect
-	golang.org/x/sys v0.33.0 // indirect
+	golang.org/x/sys v0.45.0 // indirect
 )
