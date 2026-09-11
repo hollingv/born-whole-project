@@ -13,6 +13,7 @@ import (
 var baseURL = flag.String("url", "http://localhost:8080", "base URL of the site to test")
 
 const siteName = "Born Whole"
+const projectPrefix = "BWP"
 
 func waitForSite(timeout time.Duration) error {
 	deadline := time.Now().Add(timeout)
@@ -134,7 +135,7 @@ func TestResourcesPageLoads(t *testing.T) {
 func TestResourcesShortsAvailable(t *testing.T) {
 	resp := get(t, "/resources.html")
 	if !strings.Contains(body(t, resp), "shorts available") {
-		t.Error("expected resources page to contain 'shorts available' — run ./bwctl harvest with BIC_YT_API_KEY set")
+		t.Errorf("expected resources page to contain 'shorts available' — run ./bwctl harvest with %s_YT_API_KEY set", projectPrefix)
 	}
 }
 
