@@ -10,6 +10,39 @@ Thank you for your interest in contributing. Born Whole Project is an open-sourc
 
 - **Researchers and writers** — contributions to the FAQ (`src/cmd/bwctl/faq.go`) and knowledge base sources help improve the accuracy and depth of answers provided to the public.
 
+## Technical overview
+
+| Component | Technology |
+|---|---|
+| Site generation | Go (`bwctl site`) |
+| Local development server | Go (`go run ./src/server/server.go`) |
+| Deployment | Cloudflare Pages |
+| AI question answering | Cloudflare Workers AI (`llama-3.1-8b-instruct-fast`) |
+| Knowledge base | Plain text files built from organization websites (`bwctl harvest`) |
+
+## Development platform
+
+This project is developed and tested on **Linux**. It will likely also work on **macOS** with little or no modification.
+
+**Windows developers** must use a virtual machine running Ubuntu or a similar Linux distribution or possibly WSL. Nothing has been tested on Windows.
+
+## Getting started
+
+```sh
+# Install dependencies
+make init
+
+# Build the site and run locally
+make build
+go run ./src/server/server.go
+
+# Harvest content from organization web sources and YouTube
+./bwctl harvest
+
+# Run tests
+make test
+```
+
 ## Submitting a contribution
 
 1. Fork this repository on GitHub
