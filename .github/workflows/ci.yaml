@@ -30,12 +30,12 @@ jobs:
 
     env:
       # Resolved once from secrets — available to all steps
-      BIC_CF_API_TOKEN:  ${{ secrets.BIC_CF_API_TOKEN }}
-      BIC_CF_ACCOUNT_ID: ${{ secrets.BIC_CF_ACCOUNT_ID }}
-      BIC_YT_API_KEY:    ${{ secrets.BIC_YT_API_KEY }}
+      BWP_CF_API_TOKEN:  ${{ secrets.BWP_CF_API_TOKEN }}
+      BWP_CF_ACCOUNT_ID: ${{ secrets.BWP_CF_ACCOUNT_ID }}
+      BWP_YT_API_KEY:    ${{ secrets.BWP_YT_API_KEY }}
       # wrangler requires these specific names
-      CLOUDFLARE_API_TOKEN:  ${{ secrets.BIC_CF_API_TOKEN }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.BIC_CF_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN:  ${{ secrets.BWP_CF_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.BWP_CF_ACCOUNT_ID }}
 
     steps:
       - name: Check out repository
