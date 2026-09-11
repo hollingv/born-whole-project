@@ -1,6 +1,6 @@
 // Package youtube fetches YouTube Shorts from a configured channel
 // using the YouTube Data API v3. Called by the harvest command when
-// BIC_YT_API_KEY is set.
+// {projectPrefix}_YT_API_KEY is set.
 package youtube
 
 import (
