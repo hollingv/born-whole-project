@@ -11,8 +11,8 @@
     </div>
     <div class="org-nav">
         <a href="{{.Website}}" target="_blank" class="org-link">Visit Site</a>
-        <a href="{{if .NewsUrl}}{{.NewsUrl}}{{else}}#{{end}}" class="org-link">News</a>
-        <a href="{{if .EventsUrl}}{{.EventsUrl}}{{else}}#{{end}}" class="org-link">Events</a>
+        {{if .NewsUrl}}<a href="{{.NewsUrl}}" class="org-link">News</a>{{else}}<span class="org-link org-link--disabled">News</span>{{end}}
+        {{if .EventsUrl}}<a href="{{.EventsUrl}}" class="org-link">Events</a>{{else}}<span class="org-link org-link--disabled">Events</span>{{end}}
     </div>
 </article>
 {{end}}

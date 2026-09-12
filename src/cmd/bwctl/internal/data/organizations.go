@@ -46,7 +46,7 @@ var OrgGroups = []OrgGroup{
 				Website:     "https://intactglobal.org",
 				Thumbnail:   "images/intactglobal.svg",
 				NewsUrl:     "https://intactglobal.org/press",
-				EventsUrl:   "https://intactglobal.org/events",
+				EventsUrl:   "",
 				KBURLs: []string{
 					"https://intactglobal.org/about",
 					"https://intactglobal.org/initiatives",
@@ -59,7 +59,7 @@ var OrgGroups = []OrgGroup{
 				Website:     "https://intaction.org",
 				Thumbnail:   "images/intaction.jpg",
 				NewsUrl:     "https://intaction.org/circumcision-news-complete-listing/",
-				EventsUrl:   "https://intaction.org/events",
+				EventsUrl:   "",
 				KBURLs: []string{
 					"https://intaction.org",
 					"https://intaction.org/ethics-of-circumcision/",
@@ -71,8 +71,8 @@ var OrgGroups = []OrgGroup{
 				Description: "To create a world in which the right of everyone to bodily integrity and the freedom to choose what's done to their genitals is legally protected on an equal basis.",
 				Website:     "https://www.galdef.org/",
 				Thumbnail:   "images/galdef.svg",
-				NewsUrl:     "https://www.galdef.org/news",
-				EventsUrl:   "https://www.galdef.org/events",
+				NewsUrl:     "https://www.galdef.org/news/",
+				EventsUrl:   "",
 				KBURLs: []string{
 					"https://www.galdef.org/about",
 					"https://www.galdef.org/legal-defense",
@@ -83,8 +83,8 @@ var OrgGroups = []OrgGroup{
 				Description: "Protecting children, youth and parents from the harm of circumcision",
 				Website:     "https://circumcisionlawreform.org/",
 				Thumbnail:   "images/clr.png",
-				NewsUrl:     "https://circumcisionlawreform.org/news",
-				EventsUrl:   "https://circumcisionlawreform.org/events",
+				NewsUrl:     "",
+				EventsUrl:   "",
 				KBURLs: []string{
 					"https://circumcisionlawreform.org/about",
 					"https://circumcisionlawreform.org/legal-reform",
@@ -112,8 +112,8 @@ var OrgGroups = []OrgGroup{
 				Description: "An international network of physicians dedicated to protecting the genital integrity and eventual autonomy of all children",
 				Website:     "https://www.doctorsopposingcircumcision.org/",
 				Thumbnail:   "images/doc.svg",
-				NewsUrl:     "https://www.doctorsopposingcircumcision.org/news",
-				EventsUrl:   "https://www.doctorsopposingcircumcision.org/events",
+				NewsUrl:     "",
+				EventsUrl:   "",
 				KBURLs: []string{
 					"https://www.doctorsopposingcircumcision.org/information/",
 					"https://www.doctorsopposingcircumcision.org/for-professionals/",
@@ -131,8 +131,8 @@ var OrgGroups = []OrgGroup{
 				Description: "National Organization of Circumcision Information Resource Centers",
 				Website:     "https://www.nocirc.org/",
 				Thumbnail:   PlaceholderImage,
-				NewsUrl:     "https://www.nocirc.org/news",
-				EventsUrl:   "https://www.nocirc.org/events",
+				NewsUrl:     "",
+				EventsUrl:   "",
 				KBURLs: []string{
 					"https://www.nocirc.org",
 					"https://www.nocirc.org/publish/pamphlet.html",
@@ -143,7 +143,7 @@ var OrgGroups = []OrgGroup{
 				Description: "Changing the Way America thinks about circumcision",
 				Website:     "https://intactamerica.org",
 				Thumbnail:   "images/intactamerica.png",
-				NewsUrl:     "https://intactamerica.org/news",
+				NewsUrl:     "",
 				EventsUrl:   "https://intactamerica.org/events",
 				KBURLs: []string{
 					"https://intactamerica.org/resources/",
@@ -157,8 +157,8 @@ var OrgGroups = []OrgGroup{
 				Description: "The trusted resource for information on circumcision and the foreskin",
 				Website:     "https://yourwholebaby.org",
 				Thumbnail:   "images/ywb.webp",
-				NewsUrl:     "https://yourwholebaby.org/news",
-				EventsUrl:   "https://yourwholebaby.org/events",
+				NewsUrl:     "",
+				EventsUrl:   "",
 				KBURLs: []string{
 					"https://yourwholebaby.org/researching-parents/",
 					"https://yourwholebaby.org/healthcare-providers/",

@@ -520,6 +520,11 @@ nav a.brand {
     color: #fff;
     border-color: #1a4a8a;
 }
+.org-link--disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+}
 .organization-card .placeholder {
     font-size: 0.85rem;
     color: #aaa;
