@@ -9,4 +9,5 @@ user_agent = "Mozilla/5.0"
 exclude = [
     "https://fonts.googleapis.com",
     "https://fonts.gstatic.com",
+    "https://intactamerica.org",
 ]
