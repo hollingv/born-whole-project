@@ -1,0 +1,12 @@
+# Lychee link checker configuration
+# https://lychee.cli.rs/usage/config/
+
+timeout = 20
+max_retries = 3
+user_agent = "Mozilla/5.0"
+
+# Exclude URLs known to block automated requests
+exclude = [
+    "https://fonts.googleapis.com",
+    "https://fonts.gstatic.com",
+]

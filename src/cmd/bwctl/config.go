@@ -3,6 +3,9 @@ package main
 // siteName is the full name of the site.
 const siteName = "Born Whole"
 
+// repoName is the GitHub repository name for this project.
+const repoName = "born-whole-project"
+
 // projectPrefix is the acronym of siteName, used as a prefix for all environment variables.
 const projectPrefix = "BWP"
 
