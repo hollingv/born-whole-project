@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main class="events-page">
+        <h1>Events</h1>
+        <p>Upcoming events from organizations working to protect every child's right to bodily autonomy.</p>
+
+        <table class="events-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Links</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{range .Events}}
+                <tr>
+                    <td class="events-date">{{.Date}}</td>
+                    <td>{{.Description}}</td>
+                    <td><a href="{{.URL}}" target="_blank" class="events-link">Register</a></td>
+                </tr>
+                {{end}}
+            </tbody>
+        </table>
+    </main>
+
+    {{template "footer" .}}
+
+</body>
+</html>

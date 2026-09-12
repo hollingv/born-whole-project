@@ -10,4 +10,5 @@ exclude = [
     "https://fonts.googleapis.com",
     "https://fonts.gstatic.com",
     "https://intactamerica.org",
+    "https://www.tickettailor.com",
 ]
