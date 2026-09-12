@@ -2,6 +2,27 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.11.0 - 2026-09-12
+#### Features
+- (**Makefile**) test-links runs with test-integ-local - (98e8b65) - hollingv
+- (**ui**) add Events page with Sep 14 Portland event - (d372ecf) - hollingv
+- (**ui**) add subtitle 'Protecting all children...' to nav - (7bfd746) - hollingv
+- (**ui**) improved brand thumbnail with sparkles - (67816af) - hollingv
+- lychee link checker via docker; wire repoName into contribute - (9865be9) - hollingv
+#### Bug Fixes
+- (**ci**) change BIC to BWP prefix in the ci.yaml - (a84c69c) - hollingv
+- (**env**) change BIC* to BWP* env variables - (0537c17) - hollingv
+- (**hooks**) add -e to scripts to ensure proper fails - (bcb8b36) - hollingv
+- (**msg**) change BIC to BWP in the error message - (ee34bcf) - hollingv
+- (**organizations**) correct the urls for lychee and org cards - (7f50a7b) - hollingv
+#### Documentation
+- (**md**) move technical details from readme to CONTRIBUTING - (6fdda3d) - hollingv
+- add CONTRIBUTING.md and adjust project name in md files - (603c396) - hollingv
+#### Miscellaneous Chores
+- (**deps**) bump golang.org/x/net - (f911bdc) - dependabot[bot]
+
+- - -
+
 ## v0.10.0 - 2026-09-09
 #### Features
 - (**seo**) add faqs for SEO optimization - (8e3c45d) - hollingv
