@@ -1,12 +1,15 @@
-.PHONY: help init build test clean version-preview release-preview release
+.PHONY: help init build test clean version-preview release-preview release docker-build test-links
 .SILENT:
 
-APP_NAME    = bwctl
-SITE_NAME   := $(shell grep 'const siteName' src/cmd/bwctl/config.go | sed 's/.*"\(.*\)".*/\1/')
-TARGET_DIR  = dist
-GO_VERSION  = 1.26.1
-COG_VERSION = 7.0.0
-DRY_RUN    ?= true
+APP_NAME       = bwctl
+SITE_NAME      := $(shell grep 'const siteName' src/cmd/bwctl/config.go | sed 's/.*"\(.*\)".*/\1/')
+TARGET_DIR     = dist
+GO_VERSION     = 1.26.1
+COG_VERSION    = 7.0.0
+LYCHEE_VERSION = 0.15.1
+DOCKER_IMAGE   = born-whole-project
+DRY_RUN       ?= true
+DEBUG         ?= false
 
 # Resolve Go binary: prefer whatever is in PATH, fall back to the standard install location.
 GO_BIN := $(shell command -v go 2>/dev/null || echo /usr/local/go/bin/go)
@@ -85,6 +88,16 @@ test-unit: build ## Run the go unit tests
 
 test-env-vars: ## Chaeck the status of the environment variables used for testing
 	./$(TARGET_DIR)/$(APP_NAME) status --set-exit-code=true
+
+docker-build: ## Build the development Docker image
+	docker build --build-arg LYCHEE_VERSION=$(LYCHEE_VERSION) -t $(DOCKER_IMAGE) .
+
+test-links: build docker-build ## Check all links in the built site using lychee
+	docker run --rm \
+		-v $(PWD)/$(TARGET_DIR):/dist:ro \
+		-v $(PWD)/.lychee.toml:/.lychee.toml:ro \
+		$(DOCKER_IMAGE) \
+		lychee --config /.lychee.toml '/dist/**/*.html'
 
 test-integ-local: build test-env-vars ## Start server, run integration tests, stop server
 	@go run ./src/server > /dev/null 2>&1 & \
