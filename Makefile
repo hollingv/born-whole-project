@@ -32,7 +32,13 @@ help:
 	@echo "$(SITE_NAME)"
 	@echo "(version: $(APP_TAG))"
 	@echo ""
-	@grep -E '^[a-zA-Z0-9-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+	@awk 'BEGIN {FS = ":.*?## "} \
+		/^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } \
+		/^[a-zA-Z0-9-]+:.*?## / { printf "  \033[36m%-28s\033[0m %s\n", $$1, $$2 }' \
+		$(MAKEFILE_LIST)
+	@echo ""
+
+##@ Basic
 
 init: ## Install Go if not already present (run once after cloning)
 	# --- Go ---
@@ -83,21 +89,17 @@ build: ## Build the binary and site
 
 test: build test-unit test-integ-local ## Build and run all tests
 
+clean: ## Remove built binaries
+	@echo "Cleaning up..."
+	rm -rf $(TARGET_DIR)/
+
+##@ Advanced
+
 test-unit: build ## Run the go unit tests
 	$(GO_BIN) test ./src/cmd/$(APP_NAME)/... ./src/server/...
 
-test-env-vars: ## Chaeck the status of the environment variables used for testing
+test-env-vars: ## Check the status of the environment variables used for testing
 	./$(TARGET_DIR)/$(APP_NAME) status --set-exit-code=true
-
-docker-build: ## Build the development Docker image
-	docker build --build-arg LYCHEE_VERSION=$(LYCHEE_VERSION) -t $(DOCKER_IMAGE) .
-
-test-links: build docker-build ## Check all links in the built site using lychee
-	docker run --rm \
-		-v $(PWD)/$(TARGET_DIR):/dist:ro \
-		-v $(PWD)/.lychee.toml:/.lychee.toml:ro \
-		$(DOCKER_IMAGE) \
-		lychee --config /.lychee.toml '/dist/**/*.html'
 
 test-integ-local: build test-env-vars test-links ## Start server, run integration tests, stop server
 	@go run ./src/server > /dev/null 2>&1 & \
@@ -111,6 +113,26 @@ test-integ-local: build test-env-vars test-links ## Start server, run integratio
 	kill $$(lsof -t -i:8080) 2>/dev/null; \
 	if [ $$TEST_EXIT -eq 0 ]; then echo "Tests PASSED"; else echo "Tests FAILED"; fi; \
 	exit $$TEST_EXIT
+
+docker-build: ## Build the development Docker image
+	docker build --build-arg LYCHEE_VERSION=$(LYCHEE_VERSION) -t $(DOCKER_IMAGE) .
+
+test-links: build docker-build ## Check all links in the built site using lychee
+	docker run --rm \
+		-v $(PWD)/$(TARGET_DIR):/dist:ro \
+		-v $(PWD)/.lychee.toml:/.lychee.toml:ro \
+		$(DOCKER_IMAGE) \
+		lychee --config /.lychee.toml '/dist/**/*.html'
+
+app-tag: ## Print the current APP_TAG
+	@echo "$(APP_TAG)"
+
+whitepaper: ## Generate whitepaper PDF from README-whitepaper.md
+	@echo "[ INFO ] Building whitepaper..."
+	docker run --rm -v $(PWD):/data pandoc/latex README-whitepaper.md -o zx.pdf
+	@echo "[ INFO ] Generated zx.pdf"
+
+##@ Release
 
 version-preview: ## Show the next semantic version based on commits since last tag
 	@echo "Current version: $(APP_TAG)"
@@ -140,15 +162,3 @@ release: build release-preview ## Perform a full release. Set DRY_RUN=false to p
 		echo "";\
 		echo "[INFO] Release completed OK. CI will build and test.";\
 	fi
-
-whitepaper: ## Generate whitepaper
-	@echo "[ INFO ] Building whitepaper..."
-	docker run --rm -v $(PWD):/data pandoc/latex README-whitepaper.md -o zx.pdf
-	@echo "[ INFO ] Generated zx.pdf"
-
-app-tag: ## Print the current APP_TAG
-	@echo "$(APP_TAG)"
-
-clean: ## Remove built binaries
-	@echo "Cleaning up..."
-	rm -rf $(TARGET_DIR)/
