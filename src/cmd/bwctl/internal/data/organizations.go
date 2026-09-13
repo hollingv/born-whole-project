@@ -167,4 +167,21 @@ var OrgGroups = []OrgGroup{
 			},
 		},
 	},
+	{
+		Type: "Public Outreach",
+		Organizations: []Organization{
+			{
+				Name:        "Blood Stained Men",
+				Description: "To warn the American people that circumcision is cruel, worthless, and destructive",
+				Website:     "https://bloodstainedmen.com",
+				Thumbnail:   "images/bsm.png",
+				NewsUrl:     "",
+				EventsUrl:   "https://www.bloodstainedmen.com/about-us/events/",
+				KBURLs: []string{
+					"https://www.bloodstainedmen.com/about-circumcision/about-foreskin/",
+					"https://www.bloodstainedmen.com/about-circumcision/medical-advice/",
+				},
+			},
+		},
+	},
 }
