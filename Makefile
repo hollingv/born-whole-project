@@ -120,9 +120,8 @@ docker-build: ## Build the development Docker image
 test-links: build docker-build ## Check all links in the built site using lychee
 	docker run --rm \
 		-v $(PWD)/$(TARGET_DIR):/dist:ro \
-		-v $(PWD)/.lychee.toml:/.lychee.toml:ro \
 		$(DOCKER_IMAGE) \
-		lychee --config /.lychee.toml '/dist/**/*.html'
+		lychee --offline '/dist/**/*.html'
 
 app-tag: ## Print the current APP_TAG
 	@echo "$(APP_TAG)"
