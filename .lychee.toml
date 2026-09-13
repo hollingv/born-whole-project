@@ -1,11 +1,12 @@
 # Lychee link checker configuration
 # https://lychee.cli.rs/usage/config/
+#
+# Runs in offline mode — checks only internal links within the built site.
+# External URLs are skipped entirely to avoid false positives from bot-blocking.
 
-timeout = 20
-max_retries = 3
-user_agent = "Mozilla/5.0"
+offline = true
 
-# Exclude URLs known to block automated requests
+# Exclude patterns (also applies when offline = false)
 exclude = [
     "https://fonts.googleapis.com",
     "https://fonts.gstatic.com",
