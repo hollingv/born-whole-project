@@ -64,6 +64,7 @@ var OrgGroups = []OrgGroup{
 					"https://intaction.org",
 					"https://intaction.org/ethics-of-circumcision/",
 					"https://intaction.org/circumcision-facts/",
+					"https://intaction.org/circumcisions-psychological-damage/",
 				},
 			},
 			{
