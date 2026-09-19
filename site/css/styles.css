@@ -69,7 +69,7 @@ main p {
    3. Navbar & Footer
    ============================================================================= */
 
-nav {
+nav.site-nav {
     background-color: #0f1f3d;
     padding: 1rem 2rem;
     display: flex;
@@ -82,7 +82,7 @@ nav {
     vertical-align: middle;
     margin-right: 0.5rem;
 }
-nav a.brand {
+nav.site-nav a.brand {
     text-decoration: none !important;
     cursor: pointer;
     flex: 1;
