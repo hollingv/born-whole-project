@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.12.0 - 2026-09-19
+#### Features
+- (**Makefile**) add categories to the target - (70c710a) - hollingv
+- (**kb**) new kb url and update with harvesting - (7af0911) - hollingv
+- (**organizations**) add Blood Stained Men org and links - (21062b8) - hollingv
+- (**ui**) add donate buttons and urls to organizations - (d798afc) - hollingv
+- (**ui**) adjust wording to include 'forced' - (bcc7b94) - hollingv
+- (**ui**) add org image column to Events page - (a31da73) - hollingv
+- (**ui**) add link to IGs fact sheet to the Resources Page - (893880c) - hollingv
+- (**ui**) improved drop down appearance on nav bar - (418667b) - hollingv
+#### Bug Fixes
+- (**lychee**) use offline mode to be explicit for cicd - (5838242) - hollingv
+- (**ui**) minor tense change of 'protect' - (ad4b8ac) - hollingv
+
+- - -
+
 ## v0.11.0 - 2026-09-12
 #### Features
 - (**Makefile**) test-links runs with test-integ-local - (98e8b65) - hollingv
