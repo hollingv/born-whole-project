@@ -866,6 +866,20 @@ details[open] .faq-question::after { transform: rotate(45deg); }
     color: #888;
     margin-bottom: 1.5rem;
 }
+.resource-link-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.65rem 1.5rem;
+    background: linear-gradient(135deg, #1a4a8a, #5ba3f5);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: opacity 0.2s;
+}
+.resource-link-btn:hover { opacity: 0.85; }
+
 .resource-empty {
     color: #888;
     font-style: italic;
