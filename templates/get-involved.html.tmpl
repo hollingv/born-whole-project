@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Involved — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main class="get-involved-page">
+        <h1>Get Involved</h1>
+        <p>{{.SiteName}} is an open-source project and welcomes contributions from everyone. You don't need to be a developer — there are meaningful ways to help regardless of your background. Find your path below.</p>
+
+        <div class="get-involved-audience">
+
+            <section class="get-involved-section">
+                <h2>Developers</h2>
+                <p>The project is built with Go, HTML templates, and Cloudflare Pages. If you're comfortable with code, there's plenty to work on.</p>
+
+                <h3>Getting started</h3>
+                <pre><code>git clone https://github.com/hollingv/{{.RepoName}}
+cd {{.RepoName}}
+make init    # install Go, cog, and git hooks
+make build   # build the binary and site
+make test    # run all tests</code></pre>
+
+                <h3>Ways to contribute</h3>
+                <ul>
+                    <li>Browse <a href="https://github.com/hollingv/{{.RepoName}}/issues" target="_blank">open issues</a> — look for <code>good first issue</code> labels</li>
+                    <li>Improve the AI question-answering pipeline in <code>src/server/ai.go</code> and <code>functions/ask.js</code></li>
+                    <li>Improve the knowledge base search in <code>src/server/search.go</code></li>
+                    <li>Add integration tests to <code>src/test-integ/</code></li>
+                    <li>Implement features from the <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/README-whitepaper.md" target="_blank">technical roadmap</a> — news aggregation, events calendar, legal case tracker</li>
+                    <li>Improve the <code>bwctl harvest</code> command to extract richer content from org websites</li>
+                    <li>Add support for additional CI checks or tooling to the <code>Dockerfile</code></li>
+                </ul>
+
+                <a href="https://github.com/hollingv/{{.RepoName}}" target="_blank" class="get-involved-btn">View the repository</a>
+                <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/CONTRIBUTING.md" target="_blank" class="get-involved-btn get-involved-btn--secondary">Read CONTRIBUTING.md</a>
+            </section>
+
+            <section class="get-involved-section">
+                <h2>Web &amp; UI Designers</h2>
+                <p>The site's visual design lives entirely in <code>site/css/styles.css</code> and the HTML templates in <code>templates/</code>. No build tools or compiled assets — just CSS and HTML.</p>
+
+                <h3>Ways to contribute</h3>
+                <ul>
+                    <li>Improve mobile responsiveness — the site is functional on small screens but has room for polish</li>
+                    <li>Improve accessibility (a11y) — aria labels, focus states, colour contrast, keyboard navigation</li>
+                    <li>Design or improve organization thumbnails and logos in <code>site/images/</code></li>
+                    <li>Improve the organization card layout and information hierarchy</li>
+                    <li>Improve the resource card grid on the For Parents page</li>
+                    <li>Refine typography, spacing, and visual consistency across pages</li>
+                    <li>Design a dark mode variant</li>
+                    <li>Improve the hero section on the home page</li>
+                </ul>
+
+                <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/site/css/styles.css" target="_blank" class="get-involved-btn">View styles.css on GitHub</a>
+            </section>
+
+            <section class="get-involved-section">
+                <h2>Technically Interested</h2>
+                <p>No coding experience required. If you can use a web browser and GitHub, you can make a real difference to the site's content and accuracy.</p>
+
+                <h3>Add a FAQ entry</h3>
+                <p>The FAQ directly affects how the site ranks in search results. Adding a well-chosen question and answer is one of the highest-impact contributions you can make. Edit <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/src/cmd/bwctl/internal/data/faq.go" target="_blank"><code>faq.go</code></a> directly on GitHub — no local setup needed.</p>
+
+                <h3>Add or verify an organization</h3>
+                <p>If you know of an advocacy organization that should be listed, or if an existing organization's details are out of date, edit <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/src/cmd/bwctl/internal/data/organizations.go" target="_blank"><code>organizations.go</code></a> on GitHub.</p>
+
+                <h3>Submit an event</h3>
+                <p>Know of an upcoming event relevant to the intactivist movement? Add it to <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/src/cmd/bwctl/internal/data/events.go" target="_blank"><code>events.go</code></a> on GitHub.</p>
+
+                <h3>Report a broken link or error</h3>
+                <p>If you find a broken link, outdated information, or anything that looks wrong, <a href="https://github.com/hollingv/{{.RepoName}}/issues/new" target="_blank">open an issue</a> and describe what you found. No technical knowledge required.</p>
+
+                <h3>Improve the whitepaper</h3>
+                <p>The <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/README-whitepaper.md" target="_blank">technical whitepaper</a> describes the project's architecture and vision. Corrections, clarifications, and additions are welcome.</p>
+
+                <a href="https://github.com/hollingv/{{.RepoName}}/issues/new" target="_blank" class="get-involved-btn">Open an issue on GitHub</a>
+            </section>
+
+        </div>
+
+    </main>
+
+    {{template "footer" .}}
+
+</body>
+</html>
