@@ -9,6 +9,7 @@ type Organization struct {
 	Thumbnail   string
 	NewsUrl     string
 	EventsUrl   string
+	DonateUrl   string
 	KBURLs      []string // specific pages to include in the knowledge base
 }
 
@@ -29,6 +30,7 @@ const ContributeExample = `{
     Thumbnail:   "images/placeholder.jpg",
     NewsUrl:     "https://yourwebsite.org/news",
     EventsUrl:   "https://yourwebsite.org/events",
+    DonateUrl:   "https://yourwebsite.org/donate",
     KBURLs: []string{
         "https://yourwebsite.org/about",
         "https://yourwebsite.org/research",
@@ -47,6 +49,7 @@ var OrgGroups = []OrgGroup{
 				Thumbnail:   "images/intactglobal.svg",
 				NewsUrl:     "https://intactglobal.org/press",
 				EventsUrl:   "",
+				DonateUrl:   "https://www.intactglobal.org/support/donate",
 				KBURLs: []string{
 					"https://intactglobal.org/about",
 					"https://intactglobal.org/initiatives",
@@ -60,6 +63,7 @@ var OrgGroups = []OrgGroup{
 				Thumbnail:   "images/intaction.jpg",
 				NewsUrl:     "https://intaction.org/circumcision-news-complete-listing/",
 				EventsUrl:   "",
+				DonateUrl:   "https://www.zeffy.com/en-US/embed/donation-form/donate-to-make-a-difference-3786?modal=true",
 				KBURLs: []string{
 					"https://intaction.org",
 					"https://intaction.org/ethics-of-circumcision/",
@@ -74,6 +78,7 @@ var OrgGroups = []OrgGroup{
 				Thumbnail:   "images/galdef.svg",
 				NewsUrl:     "https://www.galdef.org/news/",
 				EventsUrl:   "",
+				DonateUrl:   "https://www.galdef.org/donate/",
 				KBURLs: []string{
 					"https://www.galdef.org/about",
 					"https://www.galdef.org/legal-defense",
@@ -86,6 +91,7 @@ var OrgGroups = []OrgGroup{
 				Thumbnail:   "images/clr.png",
 				NewsUrl:     "",
 				EventsUrl:   "",
+				DonateUrl:   "",
 				KBURLs: []string{
 					"https://circumcisionlawreform.org/about",
 					"https://circumcisionlawreform.org/legal-reform",
@@ -98,6 +104,7 @@ var OrgGroups = []OrgGroup{
 				Thumbnail:   "images/arc.jpeg",
 				NewsUrl:     "https://www.arclaw.org/news",
 				EventsUrl:   "https://www.arclaw.org/events",
+				DonateUrl:   "https://www.arclaw.org/donate",
 				KBURLs: []string{
 					"https://www.arclaw.org/about",
 					"https://www.arclaw.org/legal-resources",
@@ -115,11 +122,13 @@ var OrgGroups = []OrgGroup{
 				Thumbnail:   "images/doc.svg",
 				NewsUrl:     "",
 				EventsUrl:   "",
+				DonateUrl:   "",
 				KBURLs: []string{
 					"https://www.doctorsopposingcircumcision.org/information/",
 					"https://www.doctorsopposingcircumcision.org/for-professionals/",
 					"https://www.doctorsopposingcircumcision.org/for-parents/",
 					"https://www.doctorsopposingcircumcision.org/resources/",
+					"https://www.doctorsopposingcircumcision.org/for-parents/reasons-to-keep-your-son-whole/",
 				},
 			},
 		},
@@ -134,6 +143,7 @@ var OrgGroups = []OrgGroup{
 				Thumbnail:   PlaceholderImage,
 				NewsUrl:     "",
 				EventsUrl:   "",
+				DonateUrl:   "",
 				KBURLs: []string{
 					"https://www.nocirc.org",
 					"https://www.nocirc.org/publish/pamphlet.html",
@@ -146,6 +156,7 @@ var OrgGroups = []OrgGroup{
 				Thumbnail:   "images/intactamerica.png",
 				NewsUrl:     "",
 				EventsUrl:   "https://intactamerica.org/events",
+				DonateUrl:   "https://intactamerica.org/donate/",
 				KBURLs: []string{
 					"https://intactamerica.org/resources/",
 					"https://intactamerica.org/resources/fact-sheets/",
@@ -160,6 +171,7 @@ var OrgGroups = []OrgGroup{
 				Thumbnail:   "images/ywb.webp",
 				NewsUrl:     "",
 				EventsUrl:   "",
+				DonateUrl:   "https://www.yourwholebaby.org/donate",
 				KBURLs: []string{
 					"https://yourwholebaby.org/researching-parents/",
 					"https://yourwholebaby.org/healthcare-providers/",
@@ -178,6 +190,7 @@ var OrgGroups = []OrgGroup{
 				Thumbnail:   "images/bsm.png",
 				NewsUrl:     "",
 				EventsUrl:   "https://www.bloodstainedmen.com/about-us/events/",
+				DonateUrl:   "https://www.bloodstainedmen.com/donate/",
 				KBURLs: []string{
 					"https://www.bloodstainedmen.com/about-circumcision/about-foreskin/",
 					"https://www.bloodstainedmen.com/about-circumcision/medical-advice/",

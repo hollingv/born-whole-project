@@ -13,6 +13,7 @@
         <a href="{{.Website}}" target="_blank" class="org-link">Visit Site</a>
         {{if .NewsUrl}}<a href="{{.NewsUrl}}" class="org-link">News</a>{{else}}<span class="org-link org-link--disabled">News</span>{{end}}
         {{if .EventsUrl}}<a href="{{.EventsUrl}}" class="org-link">Events</a>{{else}}<span class="org-link org-link--disabled">Events</span>{{end}}
+        {{if .DonateUrl}}<a href="{{.DonateUrl}}" target="_blank" class="org-link org-link--donate">Donate</a>{{else}}<span class="org-link org-link--disabled">Donate</span>{{end}}
     </div>
 </article>
 {{end}}

@@ -552,6 +552,17 @@ nav a.brand {
     cursor: not-allowed;
     pointer-events: none;
 }
+.org-link--donate {
+    color: #fff;
+    background: linear-gradient(135deg, #1a4a8a, #5ba3f5);
+    border-color: transparent;
+}
+.org-link--donate:hover {
+    opacity: 0.85;
+    background: linear-gradient(135deg, #1a4a8a, #5ba3f5);
+    color: #fff;
+    border-color: transparent;
+}
 .organization-card .placeholder {
     font-size: 0.85rem;
     color: #aaa;
