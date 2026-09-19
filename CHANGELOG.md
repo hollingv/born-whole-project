@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.13.0 - 2026-09-19
+#### Features
+- (**ui**) organize toc on the org page with buttons - (da02b4e) - hollingv
+- (**ui**) reorg the get-involved pg to use toc at top - (17b9c55) - hollingv
+- add Get Involved page and rename nav entry - (0dd061c) - hollingv
+#### Bug Fixes
+- (**css**)  top nav styles are now scoped to 'nav.site-nav' - (bef9d90) - hollingv
+
+- - -
+
 ## v0.12.0 - 2026-09-19
 #### Features
 - (**Makefile**) add categories to the target - (70c710a) - hollingv
