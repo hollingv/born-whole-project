@@ -732,6 +732,16 @@ nav a.brand {
     color: #555;
     font-weight: 600;
 }
+.events-org {
+    text-align: center;
+}
+.events-org-thumbnail {
+    height: 2.5rem;
+    width: auto;
+    object-fit: contain;
+    transition: opacity 0.2s;
+}
+.events-org-thumbnail:hover { opacity: 0.75; }
 .events-link {
     color: #1a4a8a;
     font-weight: 700;

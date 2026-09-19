@@ -23,6 +23,7 @@
                 <tr>
                     <th>Date</th>
                     <th>Description</th>
+                    <th>Organization</th>
                     <th>Links</th>
                 </tr>
             </thead>
@@ -31,6 +32,13 @@
                 <tr>
                     <td class="events-date">{{.Date}}</td>
                     <td>{{.Description}}</td>
+                    <td class="events-org">
+                        {{if .OrgThumbnail}}
+                        <a href="{{.OrgWebsiteUrl}}" target="_blank" title="{{.OrgName}}">
+                            <img src="{{.OrgThumbnail}}" alt="{{.OrgName}}" class="events-org-thumbnail" />
+                        </a>
+                        {{else}}{{.OrgName}}{{end}}
+                    </td>
                     <td><a href="{{.URL}}" target="_blank" class="events-link">Register</a></td>
                 </tr>
                 {{end}}
