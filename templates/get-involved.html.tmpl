@@ -18,9 +18,15 @@
         <h1>Get Involved</h1>
         <p>{{.SiteName}} is an open-source project and welcomes contributions from everyone. You don't need to be a developer — there are meaningful ways to help regardless of your background. Find your path below.</p>
 
+        <div class="get-involved-nav">
+            <a href="#developers" class="get-involved-nav-link">Developers</a>
+            <a href="#designers" class="get-involved-nav-link">Web &amp; UI Designers</a>
+            <a href="#technically-interested" class="get-involved-nav-link">Technically Interested</a>
+        </div>
+
         <div class="get-involved-audience">
 
-            <section class="get-involved-section">
+            <section class="get-involved-section" id="developers">
                 <h2>Developers</h2>
                 <p>The project is built with Go, HTML templates, and Cloudflare Pages. If you're comfortable with code, there's plenty to work on.</p>
 
@@ -46,7 +52,7 @@ make test    # run all tests</code></pre>
                 <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/CONTRIBUTING.md" target="_blank" class="get-involved-btn get-involved-btn--secondary">Read CONTRIBUTING.md</a>
             </section>
 
-            <section class="get-involved-section">
+            <section class="get-involved-section" id="designers">
                 <h2>Web &amp; UI Designers</h2>
                 <p>The site's visual design lives entirely in <code>site/css/styles.css</code> and the HTML templates in <code>templates/</code>. No build tools or compiled assets — just CSS and HTML.</p>
 
@@ -65,7 +71,7 @@ make test    # run all tests</code></pre>
                 <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/site/css/styles.css" target="_blank" class="get-involved-btn">View styles.css on GitHub</a>
             </section>
 
-            <section class="get-involved-section">
+            <section class="get-involved-section" id="technically-interested">
                 <h2>Technically Interested</h2>
                 <p>No coding experience required. If you can use a web browser and GitHub, you can make a real difference to the site's content and accuracy.</p>
 
