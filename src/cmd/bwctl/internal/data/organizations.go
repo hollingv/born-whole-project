@@ -184,6 +184,16 @@ var OrgGroups = []OrgGroup{
 		Type: "Public Outreach",
 		Organizations: []Organization{
 			{
+				Name:        "Prevail Over The System",
+				Description: "Connecting Intactivism with businesses",
+				Website:     "https://www.prevailoverthesystem.com",
+				Thumbnail:   PlaceholderImage,
+				NewsUrl:     "",
+				EventsUrl:   "",
+				DonateUrl:   "https://ko-fi.com/potsltd",
+				KBURLs:      []string{},
+			},
+			{
 				Name:        "Blood Stained Men",
 				Description: "To warn the American people that circumcision is cruel, worthless, and destructive",
 				Website:     "https://bloodstainedmen.com",
