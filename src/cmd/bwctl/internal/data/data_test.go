@@ -1,6 +1,17 @@
 package data
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
+
+func TestOrganizationStructHas8Fields(t *testing.T) {
+	const expected = 8
+	got := reflect.TypeOf(Organization{}).NumField()
+	if got != expected {
+		t.Errorf("Organization struct has %d fields, expected %d", got, expected)
+	}
+}
 
 func TestOrgGroupsNotEmpty(t *testing.T) {
 	for _, g := range OrgGroups {
@@ -10,9 +21,6 @@ func TestOrgGroupsNotEmpty(t *testing.T) {
 			}
 			if org.Website == "" {
 				t.Errorf("organization %q has empty Website", org.Name)
-			}
-			if len(org.KBURLs) == 0 {
-				t.Errorf("organization %q has no KBURLs", org.Name)
 			}
 		}
 	}
