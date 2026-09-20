@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.15.0 - 2026-09-20
+#### Features
+- (**ui**) add 'News' section with IG entry - (4d0354a) - hollingv
+
+- - -
+
 ## v0.14.0 - 2026-09-20
 #### Features
 - (**Makefile**) add 'testing' section - (d325f4b) - hollingv
