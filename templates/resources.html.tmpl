@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/nav.js" defer></script>
-    <script src="js/toc.js" defer></script>
+
     <script src="js/ask.js" defer></script>
 </head>
 <body>
@@ -20,10 +20,14 @@
         <h1>Resources</h1>
         <p>A curated collection of resources to help you learn and share information about bodily autonomy and genital integrity.</p>
 
-        <nav class="toc" id="toc"></nav>
+        <div class="get-involved-nav">
+            <a href="#ask-curated-ai" class="get-involved-nav-link">Ask the Knowledge Base</a>
+            <a href="#key-facts" class="get-involved-nav-link">Key Facts</a>
+            <a href="#youtube-shorts" class="get-involved-nav-link">YouTube Shorts</a>
+        </div>
 
-        <section class="resource-section">
-            <h2>Ask curated AI</h2>
+        <section class="resource-section" id="ask-curated-ai">
+            <h2>Ask the Knowledge Base</h2>
             <p>Ask a question and get an answer grounded in content from the organisations featured on this site — no outside knowledge, no hallucination.</p>
             <form class="prompt-form" action="/ask" method="get">
                 <div class="prompt-input-wrapper">
@@ -34,13 +38,13 @@
             <div id="ask-response" class="ask-response"></div>
         </section>
 
-        <section class="resource-section">
+        <section class="resource-section" id="key-facts">
             <h2>Key Facts</h2>
             <p>A concise, evidence-based overview of what genital cutting is, why it happens, and what the medical and ethical arguments against it are. A good starting point for anyone new to the topic.</p>
             <a href="https://www.intactglobal.org/about/facts" target="_blank" class="resource-link-btn">Read the facts from Intact Global</a>
         </section>
 
-        <section class="resource-section">
+        <section class="resource-section" id="youtube-shorts">
             <h2>YouTube Informational Shorts</h2>
             {{if .Resources}}
             <p class="resource-count">{{len .Resources}} shorts available</p>
