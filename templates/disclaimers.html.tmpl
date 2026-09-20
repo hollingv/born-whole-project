@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disclaimers — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main class="disclaimers-page">
+        <h1>Disclaimers</h1>
+        <p>Please read the following disclaimers carefully before using this site.</p>
+
+        <section class="disclaimer-section">
+            <h2>Medical Disclaimer</h2>
+            <p>The information provided on {{.SiteName}} is intended for general informational purposes only and does not constitute medical advice. Nothing on this site should be interpreted as a substitute for professional medical advice, diagnosis, or treatment.</p>
+            <p>Always seek the advice of a qualified healthcare provider with any questions you may have regarding a medical condition or procedure. Never disregard professional medical advice or delay seeking it because of something you have read on this site.</p>
+        </section>
+
+        <section class="disclaimer-section">
+            <h2>Legal Disclaimer</h2>
+            <p>The information provided on {{.SiteName}} about legal cases, legislation, and children's rights is for general informational purposes only and does not constitute legal advice. It should not be relied upon as a substitute for consultation with a qualified legal professional.</p>
+            <p>Laws vary by jurisdiction and are subject to change. {{.SiteName}} makes no representations as to the accuracy, completeness, or applicability of any legal information presented on this site.</p>
+        </section>
+
+        <section class="disclaimer-section">
+            <h2>AI-Generated Content</h2>
+            <p>The "Ask the Knowledge Base" feature on this site uses an AI language model to generate answers based exclusively on a curated set of sources harvested from featured advocacy organisations. While every effort has been made to ensure the quality and accuracy of these sources, AI-generated answers may be incomplete, imprecise, or occasionally incorrect.</p>
+            <p>All AI-generated responses include citations to the source material used. Users are strongly encouraged to verify any information with the linked organisations before acting on it. {{.SiteName}} accepts no responsibility for decisions made on the basis of AI-generated content.</p>
+        </section>
+
+        <section class="disclaimer-section">
+            <h2>Independence</h2>
+            <p>{{.SiteName}} is an independent advocacy resource. We are not affiliated with, endorsed by, or acting on behalf of any of the organisations featured on this site. The inclusion of an organisation does not imply endorsement of every position they hold, nor does it imply that they endorse this site.</p>
+        </section>
+
+        <section class="disclaimer-section">
+            <h2>Third-Party Content</h2>
+            <p>The knowledge base used to power the Ask feature is built from publicly available content harvested from third-party websites. {{.SiteName}} does not control this content, cannot guarantee its accuracy or currency, and accepts no responsibility for changes made to source material after it was harvested.</p>
+            <p>Links to external websites are provided for convenience only. {{.SiteName}} has no control over the content of linked sites and accepts no responsibility for their content or availability.</p>
+        </section>
+
+        <section class="disclaimer-section">
+            <h2>No Warranty</h2>
+            <p>This site is provided on an "as is" basis without warranties of any kind, either express or implied. {{.SiteName}} makes no warranty that the site will be uninterrupted, error-free, or free of viruses or other harmful components.</p>
+        </section>
+
+    </main>
+
+    {{template "footer" .}}
+
+</body>
+</html>

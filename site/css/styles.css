@@ -884,6 +884,46 @@ nav.site-nav a.brand {
     text-decoration: underline;
 }
 
+.disclaimers-page {
+    max-width: 760px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+.disclaimers-page h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f1f3d;
+    margin-bottom: 0.75rem;
+}
+.disclaimers-page > p {
+    color: #444;
+    margin-bottom: 2.5rem;
+}
+.disclaimer-section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid #e4e8f0;
+}
+.disclaimer-section:last-child { border-bottom: none; }
+.disclaimer-section h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0f1f3d;
+    margin-bottom: 0.75rem;
+}
+.disclaimer-section p {
+    color: #444;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+}
+.footer-disclaimers {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+.footer-disclaimers:hover { color: #fff; }
+
 .faq-page {
     max-width: 720px;
     margin: 4rem auto;
