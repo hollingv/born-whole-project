@@ -22,6 +22,7 @@ type templateData struct {
 	ContributeExample string
 	Resources         []data.Resource
 	Events            []data.Event
+	NewsItems         []data.NewsItem
 }
 
 type page struct {
@@ -85,6 +86,7 @@ var siteCmd = &cobra.Command{
 			ContributeExample: data.ContributeExample,
 			Resources:         data.LoadResources(),
 			Events:            data.Events,
+			NewsItems:         data.NewsItems,
 		}
 
 		pages, err := discoverPages("templates")
