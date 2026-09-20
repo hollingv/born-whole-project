@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main class="events-page">
+        <h1>News</h1>
+        <p>Recent news and press coverage from organizations working to protect every child's right to bodily autonomy.</p>
+
+        {{if .NewsItems}}
+        <table class="events-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Organization</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{range .NewsItems}}
+                <tr>
+                    <td class="events-date">{{.Date}}</td>
+                    <td>{{.Description}}</td>
+                    <td class="events-org">
+                        {{if .OrgThumbnail}}
+                        <a href="{{.OrgWebsiteUrl}}" target="_blank" title="{{.OrgName}}">
+                            <img src="{{.OrgThumbnail}}" alt="{{.OrgName}}" class="events-org-thumbnail" />
+                        </a>
+                        {{else}}{{.OrgName}}{{end}}
+                    </td>
+                    <td><a href="{{.URL}}" target="_blank" class="events-link">Read</a></td>
+                </tr>
+                {{end}}
+            </tbody>
+        </table>
+        {{else}}
+        <p class="resource-empty">No news items yet. Add entries to <code>src/cmd/bwctl/internal/data/news.go</code> to populate this page.</p>
+        {{end}}
+    </main>
+
+    {{template "footer" .}}
+
+</body>
+</html>
