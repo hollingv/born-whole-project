@@ -16,14 +16,18 @@
 
     <main class="mission-page">
         <h1>About {{.SiteName}}</h1>
-        <p>
-            {{.SiteName}} is an independent advocacy resource connecting people with organizations
-            working to end genital cutting and protect every child's right to bodily autonomy.
-        </p>
-        <p>
-            We are not affiliated with any single organization. We amplify the work of those already
-            engaged in this cause by making knowledge openly accessible and easier to act on by both parents and intactivists.
-        </p>
+
+        <section class="about-mission">
+            <h2>Our Mission</h2>
+            <p class="about-mission-statement">To protect every child's right to a whole body by connecting parents, doctors, lawyers, advocates, and the public with the knowledge and
+            organizations needed to understand, oppose, and ultimately end non-religious genital cutting.</p>
+        </section>
+
+        <br>
+        <p>{{.SiteName}} is an independent, open-source advocacy resource. We are not affiliated with any single organization — we
+        amplify the work of those already engaged in this cause by making knowledge openly accessible and encouraging collaboration
+        with accepted open source practices.</p>
+
     </main>
 
     {{template "footer" .}}
