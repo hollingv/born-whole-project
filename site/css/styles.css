@@ -700,6 +700,21 @@ nav.site-nav a.brand {
     color: #444;
 }
 .mission-page tr:nth-child(even) td { background: #f9f8fc; }
+.about-mission {
+    margin-top: 2.5rem;
+    padding: 1.5rem 2rem;
+    background: #fff;
+    border-radius: 12px;
+    border-left: 4px solid #5ba3f5;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.about-mission-statement {
+    font-size: 1.2rem !important;
+    font-weight: 600;
+    color: #0f1f3d !important;
+    line-height: 1.7;
+    margin-bottom: 0 !important;
+}
 
 /* --- FAQ --- */
 .get-involved-page {
