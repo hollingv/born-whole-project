@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.14.0 - 2026-09-20
+#### Features
+- (**Makefile**) add 'testing' section - (d325f4b) - hollingv
+- (**get-involved**) add task description to update KBURLs - (e5e9e11) - hollingv
+- (**kb**) add harvested org into knowledge base - (6427524) - hollingv
+- (**mission**) add mission statement to About page - (68ea47c) - hollingv
+- (**nav**) Change wording to align with Intact Global's - (17ce3cb) - hollingv
+- (**organizations**) add Prevail Over The System - (978bffd) - hollingv
+- (**ui**) change Born Whole footer to be link to Home - (06d5eca) - hollingv
+- (**ui**) simplify wording of home page - (89545f0) - hollingv
+- (**ui**) add 'Disclaimers' page and links - (e5371d9) - hollingv
+- (**ui**) add octocat github thumbnail - (3976afa) - hollingv
+- (**ui**) reconcile CONTRIBUTE.md and get-involved.html - (b4210e9) - hollingv
+- (**ui**) replace 'Ask' with 'Ask the knowledge base' - (54826e3) - hollingv
+- (**ui**) use the same blue button toc for resources pg - (6702187) - hollingv
+#### Bug Fixes
+- (**ui**) reorder the resources section put devs at bottom - (0576aae) - hollingv
+#### Tests
+- (**Makefile**) lychee to test links in get-involved.html - (6942ee0) - hollingv
+- (**unit**) remove KBURLs check and add org key check - (e0afe2c) - hollingv
+
+- - -
+
 ## v0.13.0 - 2026-09-19
 #### Features
 - (**ui**) organize toc on the org page with buttons - (da02b4e) - hollingv
