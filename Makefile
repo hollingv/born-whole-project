@@ -1,4 +1,4 @@
-.PHONY: help init build test clean version-preview release-preview release docker-build test-links
+.PHONY: help init build test clean version-preview release-preview release docker-build test-links test-links-get-involved
 .SILENT:
 
 APP_NAME       = bwctl
@@ -117,7 +117,16 @@ test-integ-local: build test-env-vars test-links ## Start server, run integratio
 docker-build: ## Build the development Docker image
 	docker build --build-arg LYCHEE_VERSION=$(LYCHEE_VERSION) -t $(DOCKER_IMAGE) .
 
-test-links: build docker-build ## Check all links in the built site using lychee
+test-links-get-involved: build docker-build ## Check external links on the Get Involved page using lychee
+	docker run --rm \
+		-v $(PWD)/$(TARGET_DIR):/dist:ro \
+		$(DOCKER_IMAGE) \
+		lychee \
+			--exclude 'https://fonts.googleapis.com' \
+			--exclude 'https://fonts.gstatic.com' \
+			'/dist/get-involved.html'
+
+test-links: build docker-build test-links-get-involved ## Check all links in the built site using lychee
 	docker run --rm \
 		-v $(PWD)/$(TARGET_DIR):/dist:ro \
 		$(DOCKER_IMAGE) \
