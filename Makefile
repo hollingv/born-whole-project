@@ -1,4 +1,4 @@
-.PHONY: help init build test clean version-preview release-preview release docker-build test-links test-links-get-involved
+.PHONY: help init build test clean version-preview release-preview release docker-build test-links test-links-get-involved test-unit test-env-vars test-integ-local
 .SILENT:
 
 APP_NAME       = bwctl
@@ -93,7 +93,7 @@ clean: ## Remove built binaries
 	@echo "Cleaning up..."
 	rm -rf $(TARGET_DIR)/
 
-##@ Advanced
+##@ Testing
 
 test-unit: build ## Run the go unit tests
 	$(GO_BIN) test ./src/cmd/$(APP_NAME)/... ./src/server/...
@@ -114,9 +114,6 @@ test-integ-local: build test-env-vars test-links ## Start server, run integratio
 	if [ $$TEST_EXIT -eq 0 ]; then echo "Tests PASSED"; else echo "Tests FAILED"; fi; \
 	exit $$TEST_EXIT
 
-docker-build: ## Build the development Docker image
-	docker build --build-arg LYCHEE_VERSION=$(LYCHEE_VERSION) -t $(DOCKER_IMAGE) .
-
 test-links-get-involved: build docker-build ## Check external links on the Get Involved page using lychee
 	docker run --rm \
 		-v $(PWD)/$(TARGET_DIR):/dist:ro \
@@ -131,6 +128,11 @@ test-links: build docker-build test-links-get-involved ## Check all links in the
 		-v $(PWD)/$(TARGET_DIR):/dist:ro \
 		$(DOCKER_IMAGE) \
 		lychee --offline '/dist/**/*.html'
+
+##@ Advanced
+
+docker-build: ## Build the development Docker image
+	docker build --build-arg LYCHEE_VERSION=$(LYCHEE_VERSION) -t $(DOCKER_IMAGE) .
 
 app-tag: ## Print the current APP_TAG
 	@echo "$(APP_TAG)"
