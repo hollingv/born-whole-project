@@ -69,26 +69,8 @@
 
             <section class="get-involved-section" id="developers">
                 <h2>Developers</h2>
-                <p>The project is built with Go, HTML templates, and Cloudflare Pages. If you're comfortable with code, there's plenty to work on.</p>
-
-                <h3>Getting started</h3>
-                <pre><code>git clone https://github.com/hollingv/{{.RepoName}}
-cd {{.RepoName}}
-make init    # install Go, cog, and git hooks
-make build   # build the binary and site
-make test    # run all tests</code></pre>
-
-                <h3>Ways to contribute</h3>
-                <ul>
-                    <li>Browse <a href="https://github.com/hollingv/{{.RepoName}}/issues" target="_blank">open issues</a> — look for <code>good first issue</code> labels</li>
-                    <li>Improve the AI question-answering pipeline in <code>src/server/ai.go</code> and <code>functions/ask.js</code></li>
-                    <li>Improve the knowledge base search in <code>src/server/search.go</code></li>
-                    <li>Add integration tests to <code>src/test-integ/</code></li>
-                    <li>Implement features from the <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/README-whitepaper.md" target="_blank">technical roadmap</a> — news aggregation, events calendar, legal case tracker</li>
-                    <li>Improve the <code>bwctl harvest</code> command to extract richer content from org websites</li>
-                    <li>Add support for additional CI checks or tooling to the <code>Dockerfile</code></li>
-                </ul>
-
+                <p>The project is built with Go, HTML templates, and Cloudflare Pages. If you're comfortable with code, there's plenty to work on — from improving the AI question-answering pipeline and knowledge base search, to adding new features from the <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/README-whitepaper.md" target="_blank">technical roadmap</a>.</p>
+                <p>Full setup instructions, tech stack details, commit conventions, and contribution guidelines are in <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/CONTRIBUTING.md" target="_blank"><code>CONTRIBUTING.md</code></a>. Open issues are a good place to find something to work on — look for <code>good first issue</code> labels.</p>
                 <a href="https://github.com/hollingv/{{.RepoName}}" target="_blank" class="get-involved-btn">View the repository</a>
                 <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/CONTRIBUTING.md" target="_blank" class="get-involved-btn get-involved-btn--secondary">Read CONTRIBUTING.md</a>
             </section>
