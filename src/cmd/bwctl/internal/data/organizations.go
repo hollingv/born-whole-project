@@ -51,8 +51,6 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:   "",
 				DonateUrl:   "https://www.intactglobal.org/support/donate",
 				KBURLs: []string{
-					"https://intactglobal.org/about",
-					"https://intactglobal.org/initiatives",
 					"https://intactglobal.org/litigation",
 				},
 			},
@@ -65,7 +63,6 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:   "",
 				DonateUrl:   "https://www.zeffy.com/en-US/embed/donation-form/donate-to-make-a-difference-3786?modal=true",
 				KBURLs: []string{
-					"https://intaction.org",
 					"https://intaction.org/ethics-of-circumcision/",
 					"https://intaction.org/circumcision-facts/",
 					"https://intaction.org/circumcisions-psychological-damage/",
@@ -80,7 +77,6 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:   "",
 				DonateUrl:   "https://www.galdef.org/donate/",
 				KBURLs: []string{
-					"https://www.galdef.org/about",
 					"https://www.galdef.org/legal-defense",
 				},
 			},
@@ -107,7 +103,6 @@ var OrgGroups = []OrgGroup{
 				DonateUrl:   "https://www.arclaw.org/donate",
 				KBURLs: []string{
 					"https://www.arclaw.org/about",
-					"https://www.arclaw.org/legal-resources",
 				},
 			},
 		},
@@ -174,7 +169,6 @@ var OrgGroups = []OrgGroup{
 				DonateUrl:   "https://www.yourwholebaby.org/donate",
 				KBURLs: []string{
 					"https://yourwholebaby.org/researching-parents/",
-					"https://yourwholebaby.org/healthcare-providers/",
 					"https://yourwholebaby.org/circumcision/",
 				},
 			},
