@@ -157,7 +157,28 @@ var harvestCmd = &cobra.Command{
 	},
 }
 
+var harvestListCmd = &cobra.Command{
+	Use:   "list",
+	Short: "List all organizations and their KBURLs",
+	Run: func(cmd *cobra.Command, args []string) {
+		for _, group := range data.OrgGroups {
+			fmt.Printf("\n[%s]\n", group.Type)
+			for _, org := range group.Organizations {
+				fmt.Printf("  %s\n", org.Name)
+				if len(org.KBURLs) == 0 {
+					fmt.Printf("    (no KBURLs)\n")
+				} else {
+					for _, u := range org.KBURLs {
+						fmt.Printf("    %s\n", u)
+					}
+				}
+			}
+		}
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(harvestCmd)
+	harvestCmd.AddCommand(harvestListCmd)
 	harvestCmd.Flags().String("source", sourceAll, fmt.Sprintf("Content source to harvest: %s, %s, %s", sourceAll, sourceYouTube, sourceOrganizations))
 }
