@@ -74,11 +74,7 @@ func buildTextKB() {
 
 	for _, group := range data.OrgGroups {
 		for _, org := range group.Organizations {
-			urls := org.KBURLs
-			if len(urls) == 0 {
-				urls = []string{org.Website}
-			}
-			for _, u := range urls {
+			for _, u := range org.KBURLs {
 				jobs <- kbJob{orgName: org.Name, url: u}
 			}
 		}
