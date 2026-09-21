@@ -43,9 +43,11 @@ func saveKBFile(orgName, u string) {
 		fmt.Fprintf(os.Stderr, "  Skipping %s: %v\n", u, err)
 		return
 	}
-	text := knowledge.NormalizeToParagraphs(knowledge.ExtractText(doc))
+	header := fmt.Sprintf("# Source: %s\n# Organization: %s\n# Harvested: %s\n\n",
+		u, orgName, time.Now().Format("2006-01-02 15:04:05"))
+	body := knowledge.NormalizeToParagraphs(knowledge.ExtractText(doc))
 	outPath := filepath.Join(kbDir, knowledge.URLToFilename(u))
-	if err := os.WriteFile(outPath, []byte(text), 0644); err != nil {
+	if err := os.WriteFile(outPath, []byte(header+body), 0644); err != nil {
 		fmt.Fprintf(os.Stderr, "  Error writing %s: %v\n", outPath, err)
 		return
 	}

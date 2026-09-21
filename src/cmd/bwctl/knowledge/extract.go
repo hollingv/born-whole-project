@@ -9,10 +9,19 @@ import (
 	"golang.org/x/net/html"
 )
 
+// HeadingTags maps HTML heading elements to their Markdown prefix.
+var HeadingTags = map[string]string{
+	"h1": "# ",
+	"h2": "## ",
+	"h3": "### ",
+	"h4": "#### ",
+	"h5": "##### ",
+	"h6": "###### ",
+}
+
 // ContentTags are the only HTML elements from which text is extracted.
 var ContentTags = map[string]struct{}{
-	"p": {}, "h1": {}, "h2": {}, "h3": {}, "h4": {}, "h5": {}, "h6": {},
-	"article": {}, "main": {}, "section": {}, "blockquote": {}, "li": {},
+	"p": {}, "article": {}, "main": {}, "section": {}, "blockquote": {}, "li": {},
 	"tr": {}, // table rows — captures structured data like legal case listings
 }
 
@@ -29,8 +38,16 @@ func AllText(n *html.Node) string {
 }
 
 // ExtractText walks the HTML node tree and returns text only from known content elements.
+// Headings are prefixed with Markdown-style markers (##, ###, etc.).
 func ExtractText(n *html.Node) string {
 	if n.Type == html.ElementNode {
+		if prefix, ok := HeadingTags[n.Data]; ok {
+			text := strings.TrimSpace(AllText(n))
+			if text != "" {
+				return prefix + text + "\n"
+			}
+			return ""
+		}
 		if _, ok := ContentTags[n.Data]; ok {
 			text := strings.TrimSpace(AllText(n))
 			if text != "" {
