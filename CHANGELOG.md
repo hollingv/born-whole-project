@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.16.0 - 2026-09-22
+#### Features
+- (**bwctl**) add bwctl harvest 'list' subcommand - (38f818e) - hollingv
+- (**bwctl**) harvest only KBURLs nothing else - (bb161f9) - hollingv
+- (**kb**) add clearer text creation in harvest commmand - (1b83d3d) - hollingv
+- (**ui**) Replace link to contribute.html with get-involved.html - (64326ac) - hollingv
+- (**web**) add shared head-og template partial for favicon and Open Graph tags - (19ee11f) - hollingv
+#### Bug Fixes
+- (**kb**) remove timestamp from kb files for git clarity - (dca90f8) - hollingv
+- (**kb**) remove low-quality KBURLs from organizations - (8ca8688) - hollingv
+- delete dead file bic_logo.webp - (935feb2) - hollingv
+
+- - -
+
 ## v0.15.0 - 2026-09-20
 #### Features
 - (**ui**) add 'News' section with IG entry - (4d0354a) - hollingv
