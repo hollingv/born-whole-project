@@ -142,3 +142,13 @@ func TestResourcesShortsAvailable(t *testing.T) {
 func TestUsage(t *testing.T) {
 	fmt.Printf("Running integration tests against: %s\n", *baseURL)
 }
+
+func TestOGTagsPresent(t *testing.T) {
+	resp := get(t, "/")
+	b := body(t, resp)
+	for _, tag := range []string{"og:image", "og:title", "og:description", "og:site_name"} {
+		if !strings.Contains(b, tag) {
+			t.Errorf("expected page to contain %q", tag)
+		}
+	}
+}

@@ -15,8 +15,9 @@ import (
 type templateData struct {
 	RepoName          string
 	SiteName          string
+	SiteUrl           string
 	Version           string
-	EnvPrefix         string
+	ProjectPrefix     string
 	OrgGroups         []data.OrgGroup
 	FAQItems          []data.FAQItem
 	ContributeExample string
@@ -78,9 +79,10 @@ var siteCmd = &cobra.Command{
 		version, _ := cmd.Flags().GetString("version")
 		tmplData := templateData{
 			SiteName:          siteName,
+			SiteUrl:           siteUrl,
 			RepoName:          repoName,
 			Version:           version,
-			EnvPrefix:         projectPrefix,
+			ProjectPrefix:     projectPrefix,
 			OrgGroups:         data.OrgGroups,
 			FAQItems:          data.FAQItems,
 			ContributeExample: data.ContributeExample,
