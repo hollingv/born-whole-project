@@ -10,7 +10,6 @@ type Organization struct {
 	NewsUrl     string
 	EventsUrl   string
 	DonateUrl   string
-	KBURLs      []string // specific pages to include in the knowledge base
 }
 
 // OrgGroup represents a category of organizations.
@@ -31,10 +30,6 @@ const ContributeExample = `{
     NewsUrl:     "https://yourwebsite.org/news",
     EventsUrl:   "https://yourwebsite.org/events",
     DonateUrl:   "https://yourwebsite.org/donate",
-    KBURLs: []string{
-        "https://yourwebsite.org/about",
-        "https://yourwebsite.org/research",
-    },
 },`
 
 // OrgGroups is the list of organization groups to display on the site.
@@ -50,9 +45,6 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "https://intactglobal.org/press",
 				EventsUrl:   "",
 				DonateUrl:   "https://www.intactglobal.org/support/donate",
-				KBURLs: []string{
-					"https://intactglobal.org/litigation",
-				},
 			},
 			{
 				Name:        "Intaction",
@@ -62,7 +54,6 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "https://intaction.org/circumcision-news-complete-listing/",
 				EventsUrl:   "",
 				DonateUrl:   "https://www.zeffy.com/en-US/embed/donation-form/donate-to-make-a-difference-3786?modal=true",
-				KBURLs:      []string{},
 			},
 			{
 				Name:        "Genital Autonomy Legal Defense and Education Fund",
@@ -72,7 +63,6 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "https://www.galdef.org/news/",
 				EventsUrl:   "",
 				DonateUrl:   "https://www.galdef.org/donate/",
-				KBURLs:      []string{},
 			},
 			{
 				Name:        "Circumcision Law Reform",
@@ -82,9 +72,6 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "",
 				EventsUrl:   "",
 				DonateUrl:   "",
-				KBURLs: []string{
-					"https://circumcisionlawreform.org/about",
-				},
 			},
 			{
 				Name:        "Attorneys For The Rights of the Child",
@@ -94,9 +81,6 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "https://www.arclaw.org/news",
 				EventsUrl:   "https://www.arclaw.org/events",
 				DonateUrl:   "https://www.arclaw.org/donate",
-				KBURLs: []string{
-					"https://www.arclaw.org/about",
-				},
 			},
 		},
 	},
@@ -111,12 +95,6 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "",
 				EventsUrl:   "",
 				DonateUrl:   "",
-				KBURLs: []string{
-					"https://www.doctorsopposingcircumcision.org/for-professionals/",
-					"https://www.doctorsopposingcircumcision.org/resources/",
-					"https://www.doctorsopposingcircumcision.org/for-parents/reasons-to-keep-your-son-whole/",
-					"https://www.doctorsopposingcircumcision.org/for-parents/frequently-asked-questions/",
-				},
 			},
 		},
 	},
@@ -131,7 +109,6 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "",
 				EventsUrl:   "",
 				DonateUrl:   "",
-				KBURLs:      []string{},
 			},
 			{
 				Name:        "Intact America",
@@ -141,9 +118,6 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "",
 				EventsUrl:   "https://intactamerica.org/events",
 				DonateUrl:   "https://intactamerica.org/donate/",
-				KBURLs: []string{
-					"https://intactamerica.org/resources/talking-points/",
-				},
 			},
 			{
 				Name:        "Your Whole Baby",
@@ -153,7 +127,6 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "",
 				EventsUrl:   "",
 				DonateUrl:   "https://www.yourwholebaby.org/donate",
-				KBURLs:      []string{},
 			},
 		},
 	},
@@ -168,7 +141,6 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "",
 				EventsUrl:   "",
 				DonateUrl:   "https://ko-fi.com/potsltd",
-				KBURLs:      []string{},
 			},
 			{
 				Name:        "Blood Stained Men",
@@ -178,9 +150,6 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "",
 				EventsUrl:   "https://www.bloodstainedmen.com/about-us/events/",
 				DonateUrl:   "https://www.bloodstainedmen.com/donate/",
-				KBURLs: []string{
-					"https://www.bloodstainedmen.com/about-circumcision/medical-advice/",
-				},
 			},
 		},
 	},
