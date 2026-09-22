@@ -2,6 +2,27 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.17.0 - 2026-09-22
+#### Features
+- (**harvest**) change harvest to remove spurious elements - (d43b26a) - hollingv
+- (**kb**) static files for all orgs - (a281736) - hollingv
+- (**kb**) step 1 to create static kb files - (2a39545) - hollingv
+- (**orgs**) add new KBURL for DOC - (5f07440) - hollingv
+#### Bug Fixes
+- (**ai**) increase response limit to 1024 - (a34ab58) - hollingv
+- (**ask**) properly cite the source organization - (266493d) - hollingv
+- (**harvest**) add appropriate spaces to the kb files - (41b2b72) - hollingv
+- (**ui**) updated wording on the index html - (a4790fb) - hollingv
+- (**ui**) adjust spacing on footer words - (99d4feb) - hollingv
+- update site name to be the DNS 'bornwhole.org' - (87b6fb5) - hollingv
+#### Documentation
+- (**contributing**) kb should be summaries not verbatim - (d18d336) - hollingv
+- update whitepaper with current project state - (ee92f2a) - hollingv
+#### Tests
+- (**bwctl**) ensure kb txt files have valid Source URL - (6b24381) - hollingv
+
+- - -
+
 ## v0.16.0 - 2026-09-22
 #### Features
 - (**bwctl**) add bwctl harvest 'list' subcommand - (38f818e) - hollingv
