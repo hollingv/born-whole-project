@@ -19,6 +19,11 @@ var HeadingTags = map[string]string{
 	"h6": "###### ",
 }
 
+// SkipTags are elements whose entire subtree is excluded from extraction.
+var SkipTags = map[string]struct{}{
+	"script": {}, "style": {}, "iframe": {}, "noscript": {}, "svg": {},
+}
+
 // ContentTags are the only HTML elements from which text is extracted.
 var ContentTags = map[string]struct{}{
 	"p": {}, "article": {}, "main": {}, "section": {}, "blockquote": {}, "li": {},
@@ -39,8 +44,12 @@ func AllText(n *html.Node) string {
 
 // ExtractText walks the HTML node tree and returns text only from known content elements.
 // Headings are prefixed with Markdown-style markers (##, ###, etc.).
+// Elements in SkipTags (script, style, iframe, etc.) are silently ignored.
 func ExtractText(n *html.Node) string {
 	if n.Type == html.ElementNode {
+		if _, skip := SkipTags[n.Data]; skip {
+			return ""
+		}
 		if prefix, ok := HeadingTags[n.Data]; ok {
 			text := strings.TrimSpace(AllText(n))
 			if text != "" {
