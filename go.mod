@@ -5,7 +5,6 @@ go 1.26.1
 require (
 	github.com/olekukonko/tablewriter v1.0.6
 	github.com/spf13/cobra v1.10.2
-	golang.org/x/net v0.55.0
 )
 
 require (
