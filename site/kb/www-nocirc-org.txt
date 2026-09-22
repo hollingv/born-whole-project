@@ -17,12 +17,12 @@ Please visit our Directory for important articles, and also read our educational
 
 function validateAmount(amount){ if(amount.value.match( /^[0-9]+(\.([0-9]+))?$/)){ return true; }else{ alert('You must enter a valid donation.'); amount.focus(); return false; } }
 
-NOCIRC 20-minute educational DVD, featuring Dr. Dean EdellSee it!Best viewed in Quicktime
+NOCIRC 20-minute educational DVD, featuring Dr. Dean Edell See it! Best viewed in Quicktime
 
-History of Medicalized Circumcision(online slideshow) Doctors Opposing Circumcision Genital Integrity Policy Statement
+History of Medicalized Circumcision (online slideshow) Doctors Opposing Circumcision Genital Integrity Policy Statement
 
 Penile Sensitivity Study Foreskin Deprived? Circumcision and AIDS 2009 resources on HIV/AIDS Genital Integrity Awareness Week Legal Aid
 
-www.CircumcisionDecisionMaker.com NOCIRC is a member of the International Coalition for Genital Integrity.
+www.CircumcisionDecisionMaker.com NOCIRC is a member of the International Coalition for Genital Integrity .
 
-NOCIRC is an affiliate of the Alliance for Transforming the Lives of Children. webmaster														Content ©1989-2026 National Organization of Circumcision Information Resource Centers - all rights reserved				Last update January 14, 2019  																				admin
+NOCIRC is an affiliate of the Alliance for Transforming the Lives of Children . webmaster 			 							 				 Content ©1989-2026 National Organization of Circumcision Information Resource Centers - all rights reserved 				Last update January 14, 2019  				 			 					 				 				 admin
