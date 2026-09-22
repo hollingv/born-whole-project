@@ -42,6 +42,10 @@ make test
 3. Follow the [Conventional Commits](https://www.conventionalcommits.org/) format for commit messages — this is enforced by a commit-msg hook
 4. Submit a pull request with a clear description of your change
 
+## Knowledge base contributions
+
+The knowledge base (`site/kb/`) consists of hand-written plain text files summarising the work and key information of each featured organisation. When contributing to these files, please write original summaries and paraphrases in your own words rather than reproducing verbatim text from third-party websites. Copyright protects the expression of ideas, not the facts or ideas themselves — factual information about circumcision, medical positions, legal cases, and organisational missions may be freely summarised, but copying large passages of text directly from another site is not appropriate.
+
 ## Review
 
 All contributions are reviewed before merging to ensure they align with the site's mission. A maintainer will respond to your pull request as soon as possible.
