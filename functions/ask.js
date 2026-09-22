@@ -49,7 +49,7 @@ async function searchKB(q, requestUrl) {
         const resp = await fetch(new URL(`/kb/${file}`, requestUrl));
         if (!resp.ok) continue;
         const text = await resp.text();
-        const source = fileToSource(file);
+        const source = sourceFromContent(text, file);
         for (const para of text.split('\n\n')) {
             const trimmed = para.trim();
             if (!trimmed) continue;
@@ -65,7 +65,7 @@ async function searchKB(q, requestUrl) {
 
 async function askAI(q, chunks, context) {
     const sourceNames = [...new Set(chunks.map(c => c.source))];
-    const sources = sourceNames.map(s => `<a href="https://${s}" target="_blank">${s}</a>`);
+    const sources = sourceNames.map(s => `<a href="${s}" target="_blank">${s}</a>`);
     const contextText = chunks.map(c => c.text).join('\n\n');
 
     try {
@@ -98,11 +98,14 @@ function extractKeywords(query) {
         .filter(w => w.length > 2 && !STOP_WORDS.has(w));
 }
 
-function fileToSource(filename) {
-    let name = filename.replace(/\.txt$/, '');
-    const idx = name.lastIndexOf('-org');
-    if (idx !== -1) name = name.slice(0, idx) + '.org';
-    return name.replace(/-/g, '.');
+function sourceFromContent(text, filename) {
+    for (const line of text.split('\n').slice(0, 5)) {
+        const trimmed = line.trim();
+        if (trimmed.startsWith('# Source:')) {
+            return trimmed.replace('# Source:', '').trim();
+        }
+    }
+    return filename.replace(/\.txt$/, '');
 }
 
 function sanitiseError(err) {

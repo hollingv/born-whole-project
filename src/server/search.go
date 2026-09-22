@@ -41,13 +41,16 @@ func extractKeywords(query string) []string {
 	return words
 }
 
-// filenameToSource converts a KB filename to a readable source name.
-func filenameToSource(filename string) string {
-	name := strings.TrimSuffix(filepath.Base(filename), ".txt")
-	if idx := strings.LastIndex(name, "-org"); idx != -1 {
-		name = name[:idx] + ".org"
+// sourceFromContent extracts the source URL from the "# Source: ..." header
+// line of a KB file. Falls back to the filename if no header is found.
+func sourceFromContent(content, filename string) string {
+	for _, line := range strings.SplitN(content, "\n", 5) {
+		line = strings.TrimSpace(line)
+		if strings.HasPrefix(line, "# Source:") {
+			return strings.TrimSpace(strings.TrimPrefix(line, "# Source:"))
+		}
 	}
-	return strings.ReplaceAll(name, "-", ".")
+	return strings.TrimSuffix(filepath.Base(filename), ".txt")
 }
 
 // searchKB loads the KB manifest and returns scored, sorted chunks matching the query.
@@ -72,7 +75,7 @@ func searchKB(q, siteDir string) ([]chunk, error) {
 		if err != nil {
 			continue
 		}
-		source := filenameToSource(name)
+		source := sourceFromContent(string(content), name)
 		for _, para := range strings.Split(string(content), "\n\n") {
 			para = strings.TrimSpace(para)
 			if para == "" {
