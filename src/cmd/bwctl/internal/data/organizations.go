@@ -62,11 +62,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "https://intaction.org/circumcision-news-complete-listing/",
 				EventsUrl:   "",
 				DonateUrl:   "https://www.zeffy.com/en-US/embed/donation-form/donate-to-make-a-difference-3786?modal=true",
-				KBURLs: []string{
-					"https://intaction.org/ethics-of-circumcision/",
-					"https://intaction.org/circumcision-facts/",
-					"https://intaction.org/circumcisions-psychological-damage/",
-				},
+				KBURLs:      []string{},
 			},
 			{
 				Name:        "Genital Autonomy Legal Defense and Education Fund",
@@ -76,9 +72,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "https://www.galdef.org/news/",
 				EventsUrl:   "",
 				DonateUrl:   "https://www.galdef.org/donate/",
-				KBURLs: []string{
-					"https://www.galdef.org/legal-defense",
-				},
+				KBURLs:      []string{},
 			},
 			{
 				Name:        "Circumcision Law Reform",
@@ -90,7 +84,6 @@ var OrgGroups = []OrgGroup{
 				DonateUrl:   "",
 				KBURLs: []string{
 					"https://circumcisionlawreform.org/about",
-					"https://circumcisionlawreform.org/legal-reform",
 				},
 			},
 			{
@@ -119,10 +112,7 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:   "",
 				DonateUrl:   "",
 				KBURLs: []string{
-					"https://www.doctorsopposingcircumcision.org/information/",
-					"https://www.doctorsopposingcircumcision.org",
 					"https://www.doctorsopposingcircumcision.org/for-professionals/",
-					"https://www.doctorsopposingcircumcision.org/for-parents/",
 					"https://www.doctorsopposingcircumcision.org/resources/",
 					"https://www.doctorsopposingcircumcision.org/for-parents/reasons-to-keep-your-son-whole/",
 					"https://www.doctorsopposingcircumcision.org/for-parents/frequently-asked-questions/",
@@ -141,10 +131,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "",
 				EventsUrl:   "",
 				DonateUrl:   "",
-				KBURLs: []string{
-					"https://www.nocirc.org",
-					"https://www.nocirc.org/publish/pamphlet.html",
-				},
+				KBURLs:      []string{},
 			},
 			{
 				Name:        "Intact America",
@@ -155,10 +142,7 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:   "https://intactamerica.org/events",
 				DonateUrl:   "https://intactamerica.org/donate/",
 				KBURLs: []string{
-					"https://intactamerica.org/resources/",
-					"https://intactamerica.org/resources/fact-sheets/",
 					"https://intactamerica.org/resources/talking-points/",
-					"https://intactamerica.org/our-positions/",
 				},
 			},
 			{
@@ -169,10 +153,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:     "",
 				EventsUrl:   "",
 				DonateUrl:   "https://www.yourwholebaby.org/donate",
-				KBURLs: []string{
-					"https://yourwholebaby.org/researching-parents/",
-					"https://yourwholebaby.org/circumcision/",
-				},
+				KBURLs:      []string{},
 			},
 		},
 	},
@@ -198,7 +179,6 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:   "https://www.bloodstainedmen.com/about-us/events/",
 				DonateUrl:   "https://www.bloodstainedmen.com/donate/",
 				KBURLs: []string{
-					"https://www.bloodstainedmen.com/about-circumcision/about-foreskin/",
 					"https://www.bloodstainedmen.com/about-circumcision/medical-advice/",
 				},
 			},
