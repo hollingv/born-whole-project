@@ -120,10 +120,12 @@ var OrgGroups = []OrgGroup{
 				DonateUrl:   "",
 				KBURLs: []string{
 					"https://www.doctorsopposingcircumcision.org/information/",
+					"https://www.doctorsopposingcircumcision.org",
 					"https://www.doctorsopposingcircumcision.org/for-professionals/",
 					"https://www.doctorsopposingcircumcision.org/for-parents/",
 					"https://www.doctorsopposingcircumcision.org/resources/",
 					"https://www.doctorsopposingcircumcision.org/for-parents/reasons-to-keep-your-son-whole/",
+					"https://www.doctorsopposingcircumcision.org/for-parents/frequently-asked-questions/",
 				},
 			},
 		},

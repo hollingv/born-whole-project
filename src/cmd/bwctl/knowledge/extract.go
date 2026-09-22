@@ -31,13 +31,26 @@ var ContentTags = map[string]struct{}{
 }
 
 // AllText recursively collects all text within a node and its descendants.
+// A space is inserted between adjacent chunks to prevent words merging
+// when HTML elements have no whitespace between them.
 func AllText(n *html.Node) string {
 	if n.Type == html.TextNode {
 		return n.Data
 	}
 	var sb strings.Builder
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		sb.WriteString(AllText(c))
+		chunk := AllText(c)
+		if chunk == "" {
+			continue
+		}
+		if sb.Len() > 0 {
+			last := sb.String()
+			if last[len(last)-1] != ' ' && last[len(last)-1] != '\n' &&
+				chunk[0] != ' ' && chunk[0] != '\n' {
+				sb.WriteString(" ")
+			}
+		}
+		sb.WriteString(chunk)
 	}
 	return sb.String()
 }
