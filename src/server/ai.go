@@ -23,7 +23,8 @@ type cfAIMessage struct {
 }
 
 type cfAIRequest struct {
-	Messages []cfAIMessage `json:"messages"`
+	Messages  []cfAIMessage `json:"messages"`
+	MaxTokens int           `json:"max_tokens"`
 }
 
 type cfAIResponse struct {
@@ -43,6 +44,7 @@ func callCloudflareAI(question string, chunks []string) (string, error) {
 
 	context := strings.Join(chunks, "\n\n")
 	req := cfAIRequest{
+		MaxTokens: 1024,
 		Messages: []cfAIMessage{
 			{Role: "system", Content: systemPrompt},
 			{Role: "user", Content: fmt.Sprintf("Context:\n%s\n\nQuestion: %s", context, question)},
