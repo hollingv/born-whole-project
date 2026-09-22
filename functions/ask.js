@@ -73,6 +73,7 @@ async function askAI(q, chunks, context) {
             throw new Error('AI binding not configured — add the AI binding in the Cloudflare Pages dashboard under Settings → Functions → AI Bindings');
         }
         const aiResponse = await context.env.AI.run(AI_MODEL, {
+            max_tokens: 1024,
             messages: [
                 { role: 'system', content: SYSTEM_PROMPT },
                 { role: 'user', content: `Context:\n${contextText}\n\nQuestion: ${q}` }
