@@ -7,7 +7,7 @@ const siteName = "Born Whole"
 const repoName = "born-whole-project"
 
 // siteUrl is the canonical production URL of the site.
-const siteUrl = "https://global-autonomy.pages.dev"
+const siteUrl = "https://bornwhole.org"
 
 // projectPrefix is the acronym of siteName, used as a prefix for all environment variables.
 const projectPrefix = "BWP"

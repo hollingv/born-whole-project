@@ -10,7 +10,7 @@ env:
 
   # Main production branch
   MAIN_BRANCH: main
-  MAIN_URL: https://global-autonomy.pages.dev
+  MAIN_URL: https://bornwhole.org
 
   # Development branch
   DEVEL_BRANCH: devel
