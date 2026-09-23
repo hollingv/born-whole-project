@@ -1,13 +1,20 @@
 /* =============================================================================
+   BORN WHOLE — STYLESHEET
    Sections:
-     1. Variables & Reset
-     2. Base / Body
-     3. Navbar & Footer
-     4. Home Layout & Hero
-     5. Ask / AI Prompt
-     6. Organization Cards & Groups
-     7. Table of Contents & Utilities
-     8. Page Layouts (Mission, FAQ, Resources, Contact)
+     1.  Variables & Reset
+     2.  Base / Body
+     3.  Navigation
+     4.  Footer
+     5.  Home Page & Hero
+     6.  Ask / AI Prompt
+     7.  Organization Cards & Groups
+     8.  Shared Components (TOC, Back to Top, Nav Buttons)
+     9.  About Page
+     10. Get Involved Page
+     11. Events & News Pages
+     12. FAQ Page
+     13. Resources Page
+     14. Disclaimers Page
    ============================================================================= */
 
 
@@ -66,7 +73,7 @@ main p {
 
 
 /* =============================================================================
-   3. Navbar & Footer
+   3. Navigation
    ============================================================================= */
 
 nav.site-nav {
@@ -239,6 +246,11 @@ nav.site-nav a.brand {
     margin-top: 0.25rem;
 }
 
+
+/* =============================================================================
+   4. Footer
+   ============================================================================= */
+
 .site-footer {
     background-color: #1a2e50;
     padding: 1rem 2rem;
@@ -264,17 +276,35 @@ nav.site-nav a.brand {
     letter-spacing: 0.05em;
     color: rgba(255,255,255,0.55);
 }
-
+.footer-disclaimers {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+.footer-disclaimers:hover { color: #fff; }
+.footer-github {
+    color: rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+.footer-github:hover { color: #fff; }
+.footer-github-logo {
+    width: 1.2rem;
+    height: 1.2rem;
+    display: block;
+}
 
 
 /* =============================================================================
-   4. Home Layout & Hero
+   5. Home Page & Hero
    ============================================================================= */
 
 .home-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    flex: 1;
+    height: calc(100dvh - 4rem);
+    overflow: hidden;
 }
 .home-left {
     background-color: var(--page-bg);
@@ -287,44 +317,42 @@ nav.site-nav a.brand {
 .hero-text {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1rem;
 }
 .hero-text h1 {
-    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-size: 3rem;
     font-weight: 800;
+    color: #0f1f3d;
     letter-spacing: -0.02em;
     line-height: 1.1;
-    color: #0f1f3d;
 }
 .hero-text p {
-    font-size: clamp(0.95rem, 1.2vw, 1.2rem);
-    line-height: 1.75;
-    color: #444;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #333;
+    max-width: 480px;
 }
 .hero-text .tagline {
-    font-size: clamp(1rem, 1.3vw, 1.3rem);
+    font-size: 1.3rem;
     font-weight: 700;
     color: #0f1f3d;
     border-left: 4px solid #5ba3f5;
     padding-left: 1rem;
-    margin-top: 0.5rem;
+    margin-top: 2rem;
 }
-.hero-image { flex-shrink: 1; }
 .hero-image img {
-    width: 80%;
-    height: auto;
+    width: 100%;
+    max-width: 420px;
     border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-    display: block;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
 }
 .home-right {
-    background-color: #fff;
-    border-left: 1px solid #e4e8f0;
+    background-color: #0f1f3d;
     display: flex;
     flex-direction: column;
-    padding: 2.5rem 2rem;
-    gap: 1.25rem;
-    overflow: hidden;
+    gap: 1.5rem;
+    padding: 3rem 2.5rem;
+    overflow-y: auto;
 }
 .ask-heading {
     font-size: 1.3rem;
@@ -332,17 +360,16 @@ nav.site-nav a.brand {
     color: #0f1f3d;
     margin: 0;
 }
-
 @media (max-width: 768px) {
-    .home-layout { grid-template-columns: 1fr; }
-    .home-left   { padding: 2rem 1.25rem; }
-    .home-right  { min-height: 50vh; padding: 1.5rem 1.25rem; }
+    .home-layout { grid-template-columns: 1fr; height: auto; }
+    .home-left   { padding: 2rem 1.5rem; }
+    .home-right  { padding: 2rem 1.5rem; }
     .hero-image  { display: none; }
 }
 
 
 /* =============================================================================
-   5. Ask / AI Prompt
+   6. Ask / AI Prompt
    ============================================================================= */
 
 .prompt-form { flex-shrink: 0; }
@@ -409,9 +436,7 @@ nav.site-nav a.brand {
     color: #5ba3f5;
     text-decoration: none;
 }
-.ask-sources a:hover {
-    text-decoration: underline;
-}
+.ask-sources a:hover { text-decoration: underline; }
 .ask-sources {
     margin-top: 1rem;
     font-size: 0.8rem;
@@ -426,35 +451,10 @@ nav.site-nav a.brand {
     border-top: 1px solid #e4e8f0;
     padding-top: 0.5rem;
 }
-.ask-results {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-    font-size: 0.9rem;
-}
-.ask-results th {
-    text-align: left;
-    padding: 0.5rem 1rem;
-    background-color: rgba(255,255,255,0.15);
-    color: #fff;
-    border-bottom: 2px solid #5ba3f5;
-}
-.ask-results td {
-    padding: 0.5rem 1rem;
-    color: #fff;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    vertical-align: top;
-}
-.ask-results td:first-child {
-    white-space: nowrap;
-    color: #5ba3f5;
-    font-weight: 600;
-    width: 180px;
-}
 
 
 /* =============================================================================
-   6. Organization Cards & Groups
+   7. Organization Cards & Groups
    ============================================================================= */
 
 .org-group {
@@ -584,9 +584,10 @@ nav.site-nav a.brand {
 
 
 /* =============================================================================
-   7. Table of Contents & Utilities
+   8. Shared Components (TOC, Back to Top, Nav Buttons)
    ============================================================================= */
 
+/* Used on organizations and resources pages */
 .toc {
     background: #fff;
     border: 1px solid #e4e8f0;
@@ -633,12 +634,32 @@ nav.site-nav a.brand {
 }
 .back-to-top:hover { background-color: #1a4a8a; }
 
+/* Gradient pill nav buttons — used on organizations, resources, and get-involved pages */
+.get-involved-nav {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0 3rem;
+    flex-wrap: wrap;
+}
+.get-involved-nav-link {
+    flex: 1;
+    text-align: center;
+    padding: 0.65rem 1.5rem;
+    background: linear-gradient(135deg, #1a4a8a, #5ba3f5);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: opacity 0.2s;
+}
+.get-involved-nav-link:hover { opacity: 0.85; }
+
 
 /* =============================================================================
-   8. Page Layouts
+   9. About Page
    ============================================================================= */
 
-/* --- Mission / About / Contribute --- */
 .mission-page {
     max-width: 720px;
     margin: 4rem auto;
@@ -718,32 +739,17 @@ nav.site-nav a.brand {
     margin-bottom: 0 !important;
 }
 
-/* --- FAQ --- */
+
+/* =============================================================================
+   10. Get Involved Page
+   ============================================================================= */
+
 .get-involved-page {
     max-width: 760px;
     margin: 4rem auto;
     padding: 0 2rem;
     scroll-behavior: smooth;
 }
-.get-involved-nav {
-    display: flex;
-    gap: 1rem;
-    margin: 2rem 0 3rem;
-    flex-wrap: wrap;
-}
-.get-involved-nav-link {
-    flex: 1;
-    text-align: center;
-    padding: 0.65rem 1.5rem;
-    background: linear-gradient(135deg, #1a4a8a, #5ba3f5);
-    color: #fff;
-    font-weight: 700;
-    font-size: 0.9rem;
-    text-decoration: none;
-    border-radius: 50px;
-    transition: opacity 0.2s;
-}
-.get-involved-nav-link:hover { opacity: 0.85; }
 .get-involved-header {
     display: flex;
     align-items: center;
@@ -777,9 +783,7 @@ nav.site-nav a.brand {
     padding-bottom: 3rem;
     border-bottom: 1px solid #e4e8f0;
 }
-.get-involved-section:last-child {
-    border-bottom: none;
-}
+.get-involved-section:last-child { border-bottom: none; }
 .get-involved-section h2 {
     font-size: 1.4rem;
     font-weight: 800;
@@ -840,6 +844,43 @@ nav.site-nav a.brand {
     flex-direction: column;
     gap: 0;
 }
+.get-involved-community {
+    margin-top: 3rem;
+    border-top: 1px solid #e4e8f0;
+    padding-top: 2rem;
+}
+.community-link {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: linear-gradient(135deg, #1a4a8a, #5ba3f5);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    text-decoration: none;
+    color: #fff;
+    transition: opacity 0.2s;
+}
+.community-link:hover { opacity: 0.9; }
+.community-github-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+}
+.community-link span {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+.community-link strong { font-size: 1.1rem; }
+.community-link small {
+    font-size: 0.85rem;
+    opacity: 0.85;
+}
+
+
+/* =============================================================================
+   11. Events & News Pages
+   ============================================================================= */
 
 .events-page {
     max-width: 900px;
@@ -874,17 +915,13 @@ nav.site-nav a.brand {
     border-bottom: 1px solid #e4e8f0;
     vertical-align: top;
 }
-.events-table tr:hover td {
-    background-color: #f5f7fc;
-}
+.events-table tr:hover td { background-color: #f5f7fc; }
 .events-date {
     white-space: nowrap;
     color: #555;
     font-weight: 600;
 }
-.events-org {
-    text-align: center;
-}
+.events-org { text-align: center; }
 .events-org-thumbnail {
     height: 2.5rem;
     width: auto;
@@ -897,95 +934,12 @@ nav.site-nav a.brand {
     font-weight: 700;
     text-decoration: none;
 }
-.events-link:hover {
-    text-decoration: underline;
-}
+.events-link:hover { text-decoration: underline; }
 
-.disclaimers-page {
-    max-width: 760px;
-    margin: 4rem auto;
-    padding: 0 2rem;
-}
-.disclaimers-page h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #0f1f3d;
-    margin-bottom: 0.75rem;
-}
-.disclaimers-page > p {
-    color: #444;
-    margin-bottom: 2.5rem;
-}
-.disclaimer-section {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid #e4e8f0;
-}
-.disclaimer-section:last-child { border-bottom: none; }
-.disclaimer-section h2 {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: #0f1f3d;
-    margin-bottom: 0.75rem;
-}
-.disclaimer-section p {
-    color: #444;
-    font-size: 1.05rem;
-    line-height: 1.8;
-    margin-bottom: 0.75rem;
-}
-.footer-disclaimers {
-    color: rgba(255,255,255,0.5);
-    font-size: 0.8rem;
-    text-decoration: none;
-}
-.footer-disclaimers:hover { color: #fff; }
-.footer-github {
-    color: rgba(255,255,255,0.5);
-    display: flex;
-    align-items: center;
-    transition: color 0.2s;
-}
-.footer-github:hover { color: #fff; }
-.footer-github-logo {
-    width: 1.2rem;
-    height: 1.2rem;
-    display: block;
-}
-.get-involved-community {
-    margin-top: 3rem;
-    border-top: 1px solid #e4e8f0;
-    padding-top: 2rem;
-}
-.community-link {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    background: linear-gradient(135deg, #1a4a8a, #5ba3f5);
-    border-radius: 12px;
-    padding: 1.5rem 2rem;
-    text-decoration: none;
-    color: #fff;
-    transition: opacity 0.2s;
-}
-.community-link:hover { opacity: 0.9; }
-.community-github-logo {
-    width: 2.5rem;
-    height: 2.5rem;
-    flex-shrink: 0;
-}
-.community-link span {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-.community-link strong {
-    font-size: 1.1rem;
-}
-.community-link small {
-    font-size: 0.85rem;
-    opacity: 0.85;
-}
+
+/* =============================================================================
+   12. FAQ Page
+   ============================================================================= */
 
 .faq-page {
     max-width: 720px;
@@ -1043,7 +997,11 @@ details[open] .faq-question::after { transform: rotate(45deg); }
     border-top: 1px solid #e4e8f0;
 }
 
-/* --- Resources --- */
+
+/* =============================================================================
+   13. Resources Page
+   ============================================================================= */
+
 .resources-page {
     max-width: 1100px;
     margin: 4rem auto;
@@ -1125,7 +1083,6 @@ details[open] .faq-question::after { transform: rotate(45deg); }
     transition: opacity 0.2s;
 }
 .resource-link-btn:hover { opacity: 0.85; }
-
 .resource-empty {
     color: #888;
     font-style: italic;
@@ -1137,29 +1094,41 @@ details[open] .faq-question::after { transform: rotate(45deg); }
     border-radius: 4px;
 }
 
-/* --- Contact --- */
-.contact-section {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-    border-top: 1px solid #e4e8f0;
+
+/* =============================================================================
+   14. Disclaimers Page
+   ============================================================================= */
+
+.disclaimers-page {
+    max-width: 760px;
+    margin: 4rem auto;
+    padding: 0 2rem;
 }
-.contact-section h2 {
-    font-size: 1.6rem;
+.disclaimers-page h1 {
+    font-size: 2.5rem;
     font-weight: 800;
     color: #0f1f3d;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
-.contact-section p {
-    font-size: 1rem;
+.disclaimers-page > p {
     color: #444;
-    margin-bottom: 1rem;
+    margin-bottom: 2.5rem;
 }
-.contact-link {
-    display: inline-block;
-    color: #1a4a8a;
-    font-weight: 600;
-    text-decoration: none;
-    font-size: 1rem;
+.disclaimer-section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid #e4e8f0;
 }
-.contact-link:hover { color: #5ba3f5; }
+.disclaimer-section:last-child { border-bottom: none; }
+.disclaimer-section h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0f1f3d;
+    margin-bottom: 0.75rem;
+}
+.disclaimer-section p {
+    color: #444;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+}
