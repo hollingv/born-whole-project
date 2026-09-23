@@ -47,8 +47,8 @@
                 <h3>Submit an event</h3>
                 <p>Know of an upcoming event relevant to the intactivist movement? Add it to <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/src/cmd/bwctl/internal/data/events.go" target="_blank"><code>events.go</code></a> on GitHub.</p>
 
-                <h3>Expand the AI knowledge base</h3>
-                <p>The "Ask the Knowledge Base" feature answers questions using content harvested from specific pages on each organization's website. These pages are listed as <code>KBURLs</code> in <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/src/cmd/bwctl/internal/data/organizations.go" target="_blank"><code>organizations.go</code></a>. If you know of a high-quality page on a listed organization's site — a research summary, a legal brief, a detailed FAQ — you can add its URL to that organization's <code>KBURLs</code> list. The next time the knowledge base is harvested, that content will be included and available to answer questions.</p>
+                <h3>Improve the AI knowledge base</h3>
+                <p>The "Ask the Knowledge Base" feature answers questions using hand-written plain text files in <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/site/kb/" target="_blank"><code>site/kb/</code></a> — one file per featured organization. If you know an organization's work well, you can improve their entry by editing the relevant file directly on GitHub. Write in your own words rather than copying text from their site. Accurate, well-written summaries of key facts, arguments, and resources make the AI's answers more useful for parents and advocates.</p>
 
                 <h3>Report a broken link or error</h3>
                 <p>If you find a broken link, outdated information, or anything that looks wrong, <a href="https://github.com/hollingv/{{.RepoName}}/issues/new" target="_blank">open an issue</a> and describe what you found. No technical knowledge required.</p>
