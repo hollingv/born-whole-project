@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.20.0 - 2026-09-24
+#### Features
+- (**Makefile**) align version number in version-preview - (a98b3ba) - hollingv
+- (**Makefile**) ensure docker service is installed and running - (e0ce015) - hollingv
+- (**Makefile**) add docker installation to init target - (359177c) - hollingv
+#### Refactoring
+- (**css**) reorganize the css to have toc and sections - (099ce2c) - hollingv
+
+- - -
+
 ## v0.19.0 - 2026-09-23
 #### Features
 - (**ui**) include github discussions social media links - (0e59a5e) - hollingv
