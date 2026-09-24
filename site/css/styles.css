@@ -303,7 +303,7 @@ nav.site-nav a.brand {
 .home-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: calc(100dvh - 4rem);
+    flex: 1;
     overflow: hidden;
 }
 .home-left {
