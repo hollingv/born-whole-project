@@ -40,7 +40,7 @@ help:
 
 ##@ Basic
 
-init: ## Install Go if not already present (run once after cloning)
+init: ## Install any tools and dependencies (run once after cloning)
 	# --- Go ---
 	@if [ ! -f "$(GO_BIN)" ]; then \
 		echo "[ INFO ] Installing Go $(GO_VERSION)..."; \
@@ -78,7 +78,7 @@ init: ## Install Go if not already present (run once after cloning)
 		sudo install -m 0755 -d /etc/apt/keyrings; \
 		sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc; \
 		sudo chmod a+r /etc/apt/keyrings/docker.asc; \
-		echo "deb [arch=$$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $$(. /etc/os-release && echo $$VERSION_CODENAME) stable" \
+		echo "deb [arch=$$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $$(. /etc/os-release && echo $${UBUNTU_CODENAME:-$$VERSION_CODENAME}) stable" \
 			| sudo tee /etc/apt/sources.list.d/docker.list > /dev/null; \
 		sudo apt-get update -q; \
 		sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin; \
@@ -86,6 +86,10 @@ init: ## Install Go if not already present (run once after cloning)
 	else \
 		echo "[ INFO ] Docker already installed: $$(docker --version)"; \
 	fi
+	@echo "[ INFO ] Ensuring Docker daemon is enabled and running..."
+	@sudo systemctl enable docker > /dev/null 2>&1
+	@sudo systemctl start docker > /dev/null 2>&1
+	@echo "[ INFO ] Docker daemon status: $$(sudo systemctl is-active docker)"
 	@if ! groups | grep -q docker; then \
 		echo "[ INFO ] Adding $$USER to docker group..."; \
 		sudo usermod -aG docker $$USER; \
