@@ -69,6 +69,30 @@ init: ## Install Go if not already present (run once after cloning)
 	else \
 		echo "[ INFO ] cog already installed: $$(cog --version)"; \
 	fi
+	# --- Docker ---
+	@echo "[ INFO ] Checking for Docker..."
+	@if ! command -v docker > /dev/null 2>&1; then \
+		echo "[ INFO ] Installing Docker from official repository..."; \
+		sudo apt-get update -q; \
+		sudo apt-get install -y ca-certificates curl; \
+		sudo install -m 0755 -d /etc/apt/keyrings; \
+		sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc; \
+		sudo chmod a+r /etc/apt/keyrings/docker.asc; \
+		echo "deb [arch=$$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $$(. /etc/os-release && echo $$VERSION_CODENAME) stable" \
+			| sudo tee /etc/apt/sources.list.d/docker.list > /dev/null; \
+		sudo apt-get update -q; \
+		sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin; \
+		echo "[ INFO ] Docker installed: $$(docker --version)"; \
+	else \
+		echo "[ INFO ] Docker already installed: $$(docker --version)"; \
+	fi
+	@if ! groups | grep -q docker; then \
+		echo "[ INFO ] Adding $$USER to docker group..."; \
+		sudo usermod -aG docker $$USER; \
+		echo "[ INFO ] Docker group configured — run 'newgrp docker' or log out and back in for it to take effect"; \
+	else \
+		echo "[ INFO ] User already in docker group"; \
+	fi
 	# --- git hooks ---
 	@echo "[ INFO ] Installing git hooks..."
 	cp scripts/hooks/commit-msg.sh .git/hooks/commit-msg
