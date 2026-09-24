@@ -173,9 +173,8 @@ whitepaper: ## Generate whitepaper PDF from README-whitepaper.md
 ##@ Release
 
 version-preview: ## Show the next semantic version based on commits since last tag
-	@echo "Current version: $(APP_TAG)"
-	@echo "Next version would be:"
-	@cog bump --dry-run --auto
+	@printf "Current version:       %s\n" "$(APP_TAG)"
+	@printf "Next version would be: %s\n" "$$(cog bump --dry-run --auto)"
 
 release-preview: ## Dry run showing next version and full changelog without making any changes
 	@echo "[INFO] Changelog"
