@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.20.1 - 2026-09-24
+#### Bug Fixes
+- (**ui**) adjust home-layout to keep footer at bottom - (5a351cc) - hollingv
+
+- - -
+
 ## v0.20.0 - 2026-09-24
 #### Features
 - (**Makefile**) align version number in version-preview - (a98b3ba) - hollingv
