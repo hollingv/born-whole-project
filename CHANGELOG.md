@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.22.1 - 2026-09-29
+#### Bug Fixes
+- (**ui**) adjust spacing between Ask and input field - (e801128) - hollingv
+
+- - -
+
 ## v0.22.0 - 2026-09-29
 #### Features
 - (**kb**) improved example questions for KB query - (0c67bb2) - hollingv
