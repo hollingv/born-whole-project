@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.21.0 - 2026-09-29
+#### Features
+- (**ui**) add 'Beginners' section to get-involved - (0ed7fcd) - hollingv
+#### Miscellaneous Chores
+- (**Makefile**) reduce code duplication in the preview targets - (72c976c) - hollingv
+
+- - -
+
 ## v0.20.1 - 2026-09-24
 #### Bug Fixes
 - (**ui**) adjust home-layout to keep footer at bottom - (5a351cc) - hollingv
