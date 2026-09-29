@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.22.0 - 2026-09-29
+#### Features
+- (**kb**) improved example questions for KB query - (0c67bb2) - hollingv
+- (**ui**) improved layout of home Ask AI section - (a9b2944) - hollingv
+
+- - -
+
 ## v0.21.0 - 2026-09-29
 #### Features
 - (**ui**) add 'Beginners' section to get-involved - (0ed7fcd) - hollingv
