@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.23.0 - 2026-09-29
+#### Features
+- (**kb**) regenerate kb manifest file to include static kbs - (0abaf36) - hollingv
+
+- - -
+
 ## v0.22.1 - 2026-09-29
 #### Bug Fixes
 - (**ui**) adjust spacing between Ask and input field - (e801128) - hollingv
