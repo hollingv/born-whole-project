@@ -9,6 +9,9 @@ const repoName = "born-whole-project"
 // siteUrl is the canonical production URL of the site.
 const siteUrl = "https://bornwhole.org"
 
+// contactEmail is the primary contact email address for the project.
+const contactEmail = "hollingv@protonmail.com"
+
 // projectPrefix is the acronym of siteName, used as a prefix for all environment variables.
 const projectPrefix = "BWP"
 

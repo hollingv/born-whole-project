@@ -16,6 +16,7 @@ type templateData struct {
 	RepoName          string
 	SiteName          string
 	SiteUrl           string
+	ContactEmail      string
 	Version           string
 	ProjectPrefix     string
 	OrgGroups         []data.OrgGroup
@@ -80,6 +81,7 @@ var siteCmd = &cobra.Command{
 		tmplData := templateData{
 			SiteName:          siteName,
 			SiteUrl:           siteUrl,
+			ContactEmail:      contactEmail,
 			RepoName:          repoName,
 			Version:           version,
 			ProjectPrefix:     projectPrefix,
