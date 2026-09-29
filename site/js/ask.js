@@ -1,11 +1,9 @@
 const exampleQuestions = [
     'What is genital cutting?',
-    'What are the medical risks?',
+    'What is circumcision?',
+    'How to care for the intact foreskin?',
     'What do doctors say about genital cutting?',
-    'Is genital cutting legal?',
     'How common is genital cutting worldwide?',
-    'What is bodily autonomy?',
-    'What does the law say about genital cutting?',
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
