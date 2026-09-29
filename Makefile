@@ -179,11 +179,8 @@ version-preview: ## Show the next semantic version based on commits since last t
 release-preview: ## Dry run showing next version and full changelog without making any changes
 	@echo "[INFO] Changelog"
 	@cog changelog v0.0.4..HEAD
-	@echo "[INFO] Version"
-	@echo "[INFO] Current: $(APP_TAG)"
-	@echo "[INFO] Next:"
-	@cog bump --dry-run --auto
 	@echo ""
+	@$(MAKE) --no-print-directory version-preview
 
 release: build release-preview ## Perform a full release. Set DRY_RUN=false to perform the actual release.
 	@if [ "$(DRY_RUN)" = "true" ]; then \
