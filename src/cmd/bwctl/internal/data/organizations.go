@@ -128,6 +128,15 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:   "",
 				DonateUrl:   "https://www.yourwholebaby.org/donate",
 			},
+			{
+				Name:        "Hegemon Media",
+				Description: "Brendon Marotta is a filmmaker, author, and journalist.",
+				Website:     "https://www.hegemonmedia.com/",
+				Thumbnail:   "images/hegemonmedia.png",
+				NewsUrl:     "",
+				EventsUrl:   "",
+				DonateUrl:   "",
+			},
 		},
 	},
 	{
