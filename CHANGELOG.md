@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.24.0 - 2026-09-30
+#### Features
+- (**organization**) add POTS image - (10d3f57) - hollingv
+- (**organization**) add Hegemon Media site/org - (18f05ac) - hollingv
+- (**organizations**) add some featured donation campaigns - (3625b1a) - hollingv
+- (**ui**) make all org card buttons work consistently - (cee45ff) - hollingv
+- (**ui**) add donate page with featured campaign functionality - (fef5cf7) - hollingv
+- (**ui**) relocate news and events into Organization drop down - (040ee11) - hollingv
+#### Continuous Integration
+- Only deploy tags and only from main - (2c6c269) - hollingv
+#### Refactoring
+- (**organizations**) Create a map and lookup function - (fcd32fa) - hollingv
+
+- - -
+
 ## v0.23.0 - 2026-09-29
 #### Features
 - (**kb**) regenerate kb manifest file to include static kbs - (0abaf36) - hollingv
