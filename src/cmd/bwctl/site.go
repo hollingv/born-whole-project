@@ -25,6 +25,7 @@ type templateData struct {
 	Resources         []data.Resource
 	Events            []data.Event
 	NewsItems         []data.NewsItem
+	DonationItems     []data.DonationItem
 }
 
 type page struct {
@@ -91,6 +92,7 @@ var siteCmd = &cobra.Command{
 			Resources:         data.LoadResources(),
 			Events:            data.Events,
 			NewsItems:         data.NewsItems,
+			DonationItems:     data.DonationItems,
 		}
 
 		pages, err := discoverPages("templates")

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+    {{template "head-og" .}}
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main class="events-page">
+        <h1>Donate</h1>
+        <p>Support the organizations working to protect every child's right to a whole body. Every contribution helps fund legal challenges, public education, and advocacy efforts.</p>
+
+        {{if .DonationItems}}
+        <h2>Featured Campaigns</h2>
+        <table class="events-table" style="margin-bottom: 2.5rem;">
+            <thead>
+                <tr>
+                    <th>Organization</th>
+                    <th>Description</th>
+                    <th>Donate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{range .DonationItems}}
+                <tr>
+                    <td class="events-org">
+                        {{if .OrgThumbnail}}
+                        <a href="{{.OrgWebsiteUrl}}" target="_blank" title="{{.OrgName}}">
+                            <img src="{{.OrgThumbnail}}" alt="{{.OrgName}}" class="events-org-thumbnail" />
+                        </a>
+                        {{else}}{{.OrgName}}{{end}}
+                    </td>
+                    <td>{{.Description}}</td>
+                    <td><a href="{{.URL}}" target="_blank" class="events-link">Donate</a></td>
+                </tr>
+                {{end}}
+            </tbody>
+        </table>
+        {{end}}
+
+        <h2>Support the Organizations</h2>
+        <table class="events-table">
+            <thead>
+                <tr>
+                    <th>Organization</th>
+                    <th>Description</th>
+                    <th>Donate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{range .OrgGroups}}
+                {{range .Organizations}}
+                {{if .DonateUrl}}
+                <tr>
+                    <td class="events-org">
+                        {{if .Thumbnail}}
+                        <a href="{{.Website}}" target="_blank" title="{{.Name}}">
+                            <img src="{{.Thumbnail}}" alt="{{.Name}}" class="events-org-thumbnail" />
+                        </a>
+                        {{else}}{{.Name}}{{end}}
+                    </td>
+                    <td>{{.Description}}</td>
+                    <td><a href="{{.DonateUrl}}" target="_blank" class="events-link">Donate</a></td>
+                </tr>
+                {{end}}
+                {{end}}
+                {{end}}
+            </tbody>
+        </table>
+    </main>
+
+    {{template "footer" .}}
+
+</body>
+</html>
