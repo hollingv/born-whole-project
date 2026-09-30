@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.27.0 - 2026-09-30
+#### Features
+- (**Makefile**) revert back to the double push - (22dd5ca) - hollingv
+
+- - -
+
 ## v0.26.0 - 2026-09-30
 #### Features
 - (**ci**) use tags: v* in the on event - (5a0a0a5) - hollingv
