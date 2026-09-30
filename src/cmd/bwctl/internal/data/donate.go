@@ -20,4 +20,18 @@ var DonationItems = []DonationItem{
 		OrgThumbnail:  "images/intactglobal.svg",
 		OrgWebsiteUrl: "https://intactglobal.org",
 	},
+	{
+		Description:   "Back Intact Global’s Fight for Equal Protection in Colorado",
+		URL:           "https://www.gofundme.com/f/back-intact-globals-fight-for-equal-protection-in-colorado",
+		OrgName:       "Intact Global",
+		OrgThumbnail:  "images/intactglobal.svg",
+		OrgWebsiteUrl: "https://intactglobal.org",
+	},
+	{
+		Description:   "Critical Call to Support Boys' and Men's Well Being",
+		URL:           "https://www.zeffy.com/en-US/donation-form/hec-washington-dc?modal=true",
+		OrgName:       "Intaction",
+		OrgThumbnail:  "images/intaction.jpg",
+		OrgWebsiteUrl: "https://intaction.org",
+	},
 }
