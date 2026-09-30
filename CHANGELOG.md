@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.26.0 - 2026-09-30
+#### Features
+- (**ci**) use tags: v* in the on event - (5a0a0a5) - hollingv
+
+- - -
+
 ## v0.25.0 - 2026-09-30
 #### Features
 - (**Makefile**) use --tags instead of --follow-tags - (9e60c35) - hollingv
