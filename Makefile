@@ -8,6 +8,7 @@ GO_VERSION     = 1.26.1
 COG_VERSION    = 7.0.0
 LYCHEE_VERSION = 0.15.1
 DOCKER_IMAGE   = born-whole-project
+MAIN_BRANCH    = main
 DRY_RUN       ?= true
 DEBUG         ?= false
 
@@ -183,6 +184,11 @@ release-preview: ## Dry run showing next version and full changelog without maki
 	@$(MAKE) --no-print-directory version-preview
 
 release: build release-preview ## Perform a full release. Set DRY_RUN=false to perform the actual release.
+	@CURRENT_BRANCH=$$(git rev-parse --abbrev-ref HEAD); \
+	if [ "$$CURRENT_BRANCH" != "$(MAIN_BRANCH)" ]; then \
+		echo "[ERROR] Release must be run from $(MAIN_BRANCH) branch (currently on $$CURRENT_BRANCH)"; \
+		exit 1; \
+	fi
 	@if [ "$(DRY_RUN)" = "true" ]; then \
 		echo "[INFO] Dry run complete";\
 		echo "[INFO] Run 'make release DRY_RUN=false' to perform the actual release.";\
@@ -190,9 +196,7 @@ release: build release-preview ## Perform a full release. Set DRY_RUN=false to p
 		echo "[INFO] Bumping version";\
 		cog bump --auto;\
 		echo "[INFO] Pushing commits and tags";\
-		git push origin HEAD;\
-		NEW_TAG=$$(git describe --tags --abbrev=0 --match "v*"); \
-		git push origin $$NEW_TAG;\
+		git push --follow-tags origin $(MAIN_BRANCH);\
 		echo "";\
 		echo "[INFO] Release completed OK. CI will build and test.";\
 	fi
