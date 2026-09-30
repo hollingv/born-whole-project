@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.28.0 - 2026-09-30
+#### Features
+- (**ci**) remove the v* - (4a317f0) - hollingv
+
+- - -
+
 ## v0.27.0 - 2026-09-30
 #### Features
 - (**Makefile**) revert back to the double push - (22dd5ca) - hollingv
