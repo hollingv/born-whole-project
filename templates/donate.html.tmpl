@@ -33,11 +33,11 @@
                 {{range .DonationItems}}
                 <tr>
                     <td class="events-org">
-                        {{if .OrgThumbnail}}
-                        <a href="{{.OrgWebsiteUrl}}" target="_blank" title="{{.OrgName}}">
-                            <img src="{{.OrgThumbnail}}" alt="{{.OrgName}}" class="events-org-thumbnail" />
+                        {{with .Org}}{{if .Thumbnail}}
+                        <a href="{{.Website}}" target="_blank" title="{{.Name}}">
+                            <img src="{{.Thumbnail}}" alt="{{.Name}}" class="events-org-thumbnail" />
                         </a>
-                        {{else}}{{.OrgName}}{{end}}
+                        {{else}}{{.Name}}{{end}}{{end}}
                     </td>
                     <td>{{.Description}}</td>
                     <td><a href="{{.URL}}" target="_blank" class="events-link">Donate</a></td>
