@@ -190,6 +190,16 @@ var OrgGroups = []OrgGroup{
 				DonateUrl:   "https://ko-fi.com/potsltd",
 			},
 			{
+				ID:          "giaw",
+				Name:        "Genital Integrity Awareness Week",
+				Description: "To raise public awareness of the basic human right to genital autonomy of all individuals, regardless of sex.",
+				Website:     "https://giaw.org",
+				Thumbnail:   PlaceholderImage,
+				NewsUrl:     "",
+				EventsUrl:   "https://giaw.org",
+				DonateUrl:   "",
+			},
+			{
 				ID:          "blood-stained-men",
 				Name:        "Blood Stained Men",
 				Description: "To warn the American people that circumcision is cruel, worthless, and destructive",

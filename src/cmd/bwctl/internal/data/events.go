@@ -21,4 +21,10 @@ var Events = []Event{
 		URL:         "https://www.tickettailor.com/events/intactglobal/2332513",
 		OrgID:       "intact-global",
 	},
+	{
+		Date:        "2027-03-29",
+		Description: "Genital Integrity Awareness Week",
+		URL:         "",
+		OrgID:       "giaw",
+	},
 }
