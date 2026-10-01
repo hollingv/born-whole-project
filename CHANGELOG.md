@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.33.0 - 2026-10-01
+#### Features
+- (**faq**) add 'What is circumcision' - (2e524be) - hollingv
+#### Bug Fixes
+- (**Makefile**) add -e to ensure proper error handling - (47affae) - hollingv
+
+- - -
+
 ## v0.32.0 - 2026-10-01
 #### Features
 - (**kb**) enrich kb files with circumcision and genital integrity terminology - (774b582) - hollingv
