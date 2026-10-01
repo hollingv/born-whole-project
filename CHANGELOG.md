@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.31.0 - 2026-10-01
+#### Features
+- (**harvest**) add new youtube shorts harvested - (ced0ed2) - hollingv
+- (**organizations**) add giaw capital bldg image - (c21ec47) - hollingv
+- (**organizations**) add giaw as an org AND event - (73826cd) - hollingv
+- (**ui**) events button enabled if URL present - (003ad52) - hollingv
+
+- - -
+
 ## v0.30.2 - 2026-10-01
 #### Bug Fixes
 - (**Makefile**) restore the double push release process - (6d3fe88) - hollingv
