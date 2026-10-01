@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file. See [conven
 - - -
 ## v0.32.0 - 2026-10-01
 #### Features
+- (**kb**) enrich kb files with circumcision and genital integrity terminology - (774b582) - hollingv
+- (**organizations**) update the bsm thumbnail for resolution - (c7698d5) - hollingv
+- (**organizations**) add 'Saving Our Sons' - (a171028) - hollingv
+
+- - -
+
+## v0.32.0 - 2026-10-01
+#### Features
 - (**kb**) add glossary of terminology and revise org summaries - (f90b077) - hollingv
 
 - - -
