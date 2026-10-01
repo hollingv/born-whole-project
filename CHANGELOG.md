@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.29.0 - 2026-10-01
+#### Features
+- (**ci**) put back original ci.yaml - (d917af8) - hollingv
+
+- - -
+
 ## v0.28.0 - 2026-09-30
 #### Features
 - (**ci**) remove the v* - (4a317f0) - hollingv
