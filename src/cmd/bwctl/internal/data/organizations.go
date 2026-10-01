@@ -197,7 +197,17 @@ var OrgGroups = []OrgGroup{
 				Thumbnail:   "images/giaw.webp",
 				NewsUrl:     "",
 				EventsUrl:   "https://giaw.org",
-				DonateUrl:   "",
+				DonateUrl:   "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=G6VLETWSGSR22&ssrt=1790887007235",
+			},
+			{
+				ID:          "saving-our-sons",
+				Name:        "Saving Our Sons",
+				Description: "An educational grassroots effort providing research based materials on intact health and circumcision.",
+				Website:     "https://savingsons.org",
+				Thumbnail:   "images/savingoursons.jpg",
+				NewsUrl:     "",
+				EventsUrl:   "",
+				DonateUrl:   "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=G6VLETWSGSR22&ssrt=1790887007235",
 			},
 			{
 				ID:          "blood-stained-men",
