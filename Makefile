@@ -8,6 +8,7 @@ GO_VERSION     = 1.26.1
 COG_VERSION    = 7.0.0
 LYCHEE_VERSION = 0.15.1
 DOCKER_IMAGE   = born-whole-project
+MAIN_BRANCH    = main
 DRY_RUN       ?= true
 DEBUG         ?= false
 
