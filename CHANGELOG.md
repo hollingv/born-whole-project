@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.30.1 - 2026-10-01
+#### Bug Fixes
+- (**ci**) app-tag is 1 back from correct - (6e14e17) - hollingv
+
+- - -
+
 ## v0.30.0 - 2026-10-01
 #### Features
 - (**ci**) add diagnostic print of app-tag in Makefile - (cca0387) - hollingv
