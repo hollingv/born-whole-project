@@ -21,7 +21,7 @@ APP_TAG := $(shell \
 	else \
 		TAG=$$(git describe --tags --match "v*" 2>/dev/null || git rev-parse --short=7 HEAD); \
 		BRANCH=$$(git rev-parse --abbrev-ref HEAD); \
-		if [ "$$BRANCH" = "main" ]; then \
+		if [ "$$BRANCH" = "main" ] || [ "$$BRANCH" = "HEAD" ]; then \
 			echo "$$TAG"; \
 		else \
 			echo "$$TAG-$$BRANCH"; \
