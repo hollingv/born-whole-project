@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.37.0 - 2026-10-01
+#### Features
+- (**Makefile**) ensure the MAIN_BRANCH is defined - (8d0f423) - hollingv
+
+- - -
+
 ## v0.36.0 - 2026-10-01
 #### Features
 - (**ci**) use --tags instead of --follow-tags - (588a11b) - hollingv
