@@ -46,6 +46,9 @@ jobs:
       - name: Fetch all tags
         run: git fetch --tags --force
 
+      - name: Show app-tag
+        run: make app-tag
+
       - name: Run make init to initialize build env
         run: make init
 
