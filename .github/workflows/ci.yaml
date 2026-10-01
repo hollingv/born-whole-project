@@ -3,6 +3,8 @@ name: CI/CD
 on:
   push:
     branches: [main, devel]
+    tags:
+      - 'v*'
   pull_request:
 
 env:
