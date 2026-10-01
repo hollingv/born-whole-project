@@ -23,16 +23,14 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to get involved.
 ---
 ## Sharing News and Events
 
-A core goal of Born Whole Project is to become the go-to hub for news and events in the intactivist space. Each organization featured on the site is encouraged to publish updates at consistent URLs:
+Born Whole Project maintains curated news and events pages that highlight what is happening across the intactivist movement. News items and events are added manually via pull requests to `src/cmd/bwctl/internal/data/news.go` and `src/cmd/bwctl/internal/data/events.go`.
+
+Organizations are encouraged to publish content at consistent URL paths to support planned future aggregation features:
 
 | Path | Content |
 |---|---|
 | `/news` | Recent news and press coverage |
 | `/events` | Upcoming events, conferences, and actions |
-| `/research` | Academic and medical research |
-| `/legal-cases` | Active and completed legal cases |
-
-The site aggregates this content automatically — organizations that adopt these URL patterns are integrated into the hub without any manual effort.
 
 ---
 ## Educating Parents and the Public
