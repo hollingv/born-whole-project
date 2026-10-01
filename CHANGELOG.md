@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.35.0 - 2026-10-01
+#### Features
+- (**ci**) include v* as a push criteria 'on' event - (b3bcdea) - hollingv
+
+- - -
+
 ## v0.34.0 - 2026-10-01
 #### Features
 - (**ci**) use --follow-tags to push instead of 2 pushes - (eadc0ee) - hollingv
