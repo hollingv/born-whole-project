@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.32.0 - 2026-10-01
+#### Features
+- (**kb**) add glossary of terminology and revise org summaries - (f90b077) - hollingv
+
+- - -
+
 ## v0.31.0 - 2026-10-01
 #### Features
 - (**harvest**) add new youtube shorts harvested - (ced0ed2) - hollingv
