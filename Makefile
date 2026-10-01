@@ -187,6 +187,7 @@ release: build release-preview ## Perform a full release. Set DRY_RUN=false to p
 		echo "[INFO] Dry run complete";\
 		echo "[INFO] Run 'make release DRY_RUN=false' to perform the actual release.";\
 	else \
+		set -e; \
 		echo "[INFO] Bumping version";\
 		cog bump --auto;\
 		echo "[INFO] Pushing commits and tags";\
