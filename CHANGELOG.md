@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.42.0 - 2026-10-01
+#### Features
+- (**ci**) only deploy from main if the code is tagged - (97665d4) - hollingv
+
+- - -
+
 ## v0.41.0 - 2026-10-01
 #### Features
 - (**Makefile**) check for branch being main OR 'HEAD' - (30b1553) - hollingv
