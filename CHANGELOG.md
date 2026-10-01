@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.39.0 - 2026-10-01
+#### Features
+- (**Makefile**) remove v* from on: push: - (61d74dc) - hollingv
+
+- - -
+
 ## v0.38.0 - 2026-10-01
 #### Features
 - (**Makefile**) now use --follow-tags again - (c91f158) - hollingv
