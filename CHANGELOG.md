@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.38.0 - 2026-10-01
+#### Features
+- (**Makefile**) now use --follow-tags again - (c91f158) - hollingv
+
+- - -
+
 ## v0.37.0 - 2026-10-01
 #### Features
 - (**Makefile**) ensure the MAIN_BRANCH is defined - (8d0f423) - hollingv
