@@ -194,7 +194,7 @@ var OrgGroups = []OrgGroup{
 				Name:        "Genital Integrity Awareness Week",
 				Description: "To raise public awareness of the basic human right to genital autonomy of all individuals, regardless of sex.",
 				Website:     "https://giaw.org",
-				Thumbnail:   PlaceholderImage,
+				Thumbnail:   "images/giaw.webp",
 				NewsUrl:     "",
 				EventsUrl:   "https://giaw.org",
 				DonateUrl:   "",
