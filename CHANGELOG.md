@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.43.0 - 2026-10-02
+#### Features
+- (**ci**) check app-tag for startsWith v explicitly - (a86d5c1) - hollingv
+
+- - -
+
 ## v0.42.0 - 2026-10-01
 #### Features
 - (**ci**) only deploy from main if the code is tagged - (97665d4) - hollingv
