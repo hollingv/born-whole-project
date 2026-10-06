@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.46.0 - 2026-10-06
+#### Features
+- (**ui**) upgrade the nav bar to use button - (abc313e) - hollingv
+#### Refactoring
+- (**ci**) remove dead code - (c6e56a2) - hollingv
+
+- - -
+
 ## v0.45.0 - 2026-10-06
 #### Features
 - (**ci**) Declare IS_RELEASE_TAG and use in ci.yaml - (002a1a4) - hollingv
