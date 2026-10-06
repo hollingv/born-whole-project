@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.44.0 - 2026-10-06
+#### Features
+- (**organizations**) remove pots inadvertently added - (e2f4ce5) - hollingv
+#### Tests
+- test internal integrity of organization's events, etc - (15b8639) - hollingv
+
+- - -
+
 ## v0.43.0 - 2026-10-02
 #### Features
 - (**ci**) check app-tag for startsWith v explicitly - (a86d5c1) - hollingv
