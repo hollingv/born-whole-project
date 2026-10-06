@@ -50,7 +50,6 @@ jobs:
       - name: Compute app tag
         id: app_tag
         run: |
-          echo "value=$(make app-tag | grep 'App tag' | awk '{print $NF}')" >> $GITHUB_OUTPUT
           echo "is_release=$(make app-tag | grep 'Is release' | awk '{print $NF}')" >> $GITHUB_OUTPUT
 
       - name: Show app-tag
