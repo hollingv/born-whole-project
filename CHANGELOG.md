@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.45.0 - 2026-10-06
+#### Features
+- (**ci**) Declare IS_RELEASE_TAG and use in ci.yaml - (002a1a4) - hollingv
+
+- - -
+
 ## v0.44.0 - 2026-10-06
 #### Features
 - (**organizations**) remove pots inadvertently added - (e2f4ce5) - hollingv
