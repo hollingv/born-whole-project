@@ -28,6 +28,8 @@ APP_TAG := $(shell \
 		fi; \
 	fi)
 
+IS_RELEASE_TAG := $(shell echo "$(APP_TAG)" | grep -qE '^v[0-9]+\.[0-9]+\.[0-9]+$$' && echo true || echo false)
+
 help:
 	@echo ""
 	@echo "$(SITE_NAME)"
@@ -163,8 +165,9 @@ test-links: build docker-build test-links-get-involved ## Check all links in the
 docker-build: ## Build the development Docker image
 	docker build --build-arg LYCHEE_VERSION=$(LYCHEE_VERSION) -t $(DOCKER_IMAGE) .
 
-app-tag: ## Print the current APP_TAG
-	@echo "$(APP_TAG)"
+app-tag: ## Print the current APP_TAG and whether it is a release tag
+	@printf "App tag:          %s\n" "$(APP_TAG)"
+	@printf "Is release tag:   %s\n" "$(IS_RELEASE_TAG)"
 
 whitepaper: ## Generate whitepaper PDF from README-whitepaper.md
 	@echo "[ INFO ] Building whitepaper..."

@@ -49,10 +49,12 @@ jobs:
 
       - name: Compute app tag
         id: app_tag
-        run: echo "value=$(make app-tag)" >> $GITHUB_OUTPUT
+        run: |
+          echo "value=$(make app-tag | grep 'App tag' | awk '{print $NF}')" >> $GITHUB_OUTPUT
+          echo "is_release=$(make app-tag | grep 'Is release' | awk '{print $NF}')" >> $GITHUB_OUTPUT
 
       - name: Show app-tag
-        run: echo "App tag is ${{ steps.app_tag.outputs.value }}"
+        run: make app-tag
 
       - name: Run make init to initialize build env
         run: make init
@@ -64,7 +66,7 @@ jobs:
       # Deploy env.MAIN_BRANCH
       # -------------------------------------------------------------------------------------
       - name: Deploy and test (${{ env.MAIN_BRANCH }})
-        if: startsWith(steps.app_tag.outputs.value, 'v')
+        if: steps.app_tag.outputs.is_release == 'true'
         run: |
           npx wrangler pages deploy ${{ env.TARGET_DIR }} --project-name=global-autonomy --branch=${{ env.MAIN_BRANCH }}
           go test ./src/test-integ/... -url ${{ env.MAIN_URL }}
