@@ -13,6 +13,27 @@ func TestOrganizationStructHas8Fields(t *testing.T) {
 	}
 }
 
+func TestOrgIDReferencesAreValid(t *testing.T) {
+	// Verify every event references a valid organization ID
+	for _, event := range Events {
+		if event.OrgID != "" && FindOrgByID(event.OrgID) == nil {
+			t.Errorf("event %q references unknown OrgID %q", event.Description, event.OrgID)
+		}
+	}
+	// Verify every news item references a valid organization ID
+	for _, item := range NewsItems {
+		if item.OrgID != "" && FindOrgByID(item.OrgID) == nil {
+			t.Errorf("news item %q references unknown OrgID %q", item.Description, item.OrgID)
+		}
+	}
+	// Verify every donation item references a valid organization ID
+	for _, item := range DonationItems {
+		if item.OrgID != "" && FindOrgByID(item.OrgID) == nil {
+			t.Errorf("donation item %q references unknown OrgID %q", item.Description, item.OrgID)
+		}
+	}
+}
+
 func TestOrgGroupsNotEmpty(t *testing.T) {
 	for _, g := range OrgGroups {
 		for _, org := range g.Organizations {
