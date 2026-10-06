@@ -180,16 +180,6 @@ var OrgGroups = []OrgGroup{
 		Type: "Public Outreach",
 		Organizations: []Organization{
 			{
-				ID:          "pots",
-				Name:        "Prevail Over The System",
-				Description: "Connecting Intactivism with businesses",
-				Website:     "https://www.prevailoverthesystem.com",
-				Thumbnail:   "images/pots.png",
-				NewsUrl:     "",
-				EventsUrl:   "",
-				DonateUrl:   "https://ko-fi.com/potsltd",
-			},
-			{
 				ID:          "giaw",
 				Name:        "Genital Integrity Awareness Week",
 				Description: "To raise public awareness of the basic human right to genital autonomy of all individuals, regardless of sex.",
