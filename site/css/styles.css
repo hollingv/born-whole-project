@@ -308,15 +308,16 @@ nav.site-nav a.brand {
 
 .site-footer {
     background-color: #1a2e50;
-    padding: 1rem 2rem;
+    padding: 0.6rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
     margin-top: auto;
 }
 .footer-brand {
     font-family: 'Montserrat', sans-serif;
-    font-size: var(--brand-size);
+    font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 0.05em;
     color: rgba(255,255,255,0.7);
@@ -326,14 +327,14 @@ nav.site-nav a.brand {
 .footer-brand:hover { color: #fff; }
 .footer-tagline {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
     color: rgba(255,255,255,0.55);
 }
 .footer-disclaimers {
     color: rgba(255,255,255,0.5);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     text-decoration: none;
 }
 .footer-disclaimers:hover { color: #fff; }
@@ -345,9 +346,15 @@ nav.site-nav a.brand {
 }
 .footer-github:hover { color: #fff; }
 .footer-github-logo {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 2.4rem;
+    height: 2.4rem;
     display: block;
+}
+@media (max-width: 480px) {
+    .site-footer {
+        justify-content: space-around;
+        padding: 1rem;
+    }
 }
 
 
@@ -801,6 +808,19 @@ nav.site-nav a.brand {
     border-left: 4px solid #5ba3f5;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
+.about-tagline {
+    margin-top: 2.5rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f1f3d;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1.5rem 2rem;
+    border-top: 2px solid #5ba3f5;
+    border-bottom: 2px solid #5ba3f5;
+}
+
 .about-mission-statement {
     font-size: 1.2rem !important;
     font-weight: 600;
