@@ -39,8 +39,11 @@ type ytSearchResp struct {
 	NextPageToken string `json:"nextPageToken"`
 }
 
+// DefaultDays is the default number of days in the past to harvest YouTube Shorts.
+const DefaultDays = 90
+
 // BuildResources fetches Shorts from YouTube and saves them to resources.json.
-func BuildResources(projectPrefix string) {
+func BuildResources(projectPrefix string, days int) {
 	if err := os.WriteFile(data.ResourcesPath, []byte("[]\n"), 0644); err != nil {
 		fmt.Fprintf(os.Stderr, "Error initialising %s: %v\n", data.ResourcesPath, err)
 	}
@@ -51,8 +54,8 @@ func BuildResources(projectPrefix string) {
 		fmt.Printf("[ WARN ] %s not set — skipping YouTube Shorts fetch\n", envKey)
 		return
 	}
-	fmt.Println("Fetching YouTube Shorts...")
-	resources, err := FetchShorts(apiKey, Channel)
+	fmt.Printf("Fetching YouTube Shorts published in the last %d days...\n", days)
+	resources, err := FetchShorts(apiKey, Channel, days)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error fetching YouTube Shorts: %v\n", err)
 		return
@@ -65,13 +68,13 @@ func BuildResources(projectPrefix string) {
 	fmt.Printf("Written %s (%d shorts)\n", data.ResourcesPath, len(resources))
 }
 
-// FetchShorts retrieves Shorts from a YouTube channel published in the past 3 months.
-func FetchShorts(apiKey, handle string) ([]data.Resource, error) {
+// FetchShorts retrieves Shorts from a YouTube channel published within the past n days.
+func FetchShorts(apiKey, handle string, days int) ([]data.Resource, error) {
 	channelID, err := resolveChannelID(apiKey, handle)
 	if err != nil {
 		return nil, err
 	}
-	return searchShorts(apiKey, channelID)
+	return searchShorts(apiKey, channelID, days)
 }
 
 // resolveChannelID returns the YouTube channel ID for a given handle.
@@ -99,8 +102,8 @@ func resolveChannelID(apiKey, handle string) (string, error) {
 }
 
 // searchShorts pages through the YouTube search API and returns all matching Shorts.
-func searchShorts(apiKey, channelID string) ([]data.Resource, error) {
-	publishedAfter := time.Now().AddDate(0, -3, 0).UTC().Format(time.RFC3339)
+func searchShorts(apiKey, channelID string, days int) ([]data.Resource, error) {
+	publishedAfter := time.Now().AddDate(0, 0, -days).UTC().Format(time.RFC3339)
 	var resources []data.Resource
 	pageToken := ""
 	for {

@@ -34,7 +34,8 @@ var harvestCmd = &cobra.Command{
 	Short: "Fetch YouTube Shorts and update the knowledge base manifest",
 	Long:  `Fetches YouTube Shorts metadata and updates the kb/manifest.json`,
 	Run: func(cmd *cobra.Command, args []string) {
-		youtube.BuildResources(projectPrefix)
+		days, _ := cmd.Flags().GetInt("days")
+		youtube.BuildResources(projectPrefix, days)
 		writeManifest()
 		fmt.Println("Harvest complete.")
 	},
@@ -42,4 +43,5 @@ var harvestCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(harvestCmd)
+	harvestCmd.Flags().Int("days", youtube.DefaultDays, "Number of days in the past to harvest YouTube Shorts")
 }
