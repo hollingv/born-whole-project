@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-const HarvestedEventsPath = "site/kb/events-harvested.json"
+const HarvestedEventsPath = "dist/harvested/events-harvested.json"
 
 // LoadHarvestedEvents reads automatically harvested events from disk.
 // Returns an empty slice if the file does not exist or cannot be parsed.

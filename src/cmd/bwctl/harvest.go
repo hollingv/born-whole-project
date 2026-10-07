@@ -12,6 +12,7 @@ import (
 )
 
 const kbDir = "site/kb"
+const harvestedDir = "dist/harvested"
 
 // writeManifest writes the list of KB text files to manifest.json.
 func writeManifest() {
@@ -21,7 +22,7 @@ func writeManifest() {
 		filenames = append(filenames, filepath.Base(f))
 	}
 	manifest, _ := json.MarshalIndent(filenames, "", "  ")
-	manifestPath := filepath.Join(kbDir, "manifest.json")
+	manifestPath := filepath.Join(harvestedDir, "manifest.json")
 	if err := os.WriteFile(manifestPath, manifest, 0644); err != nil {
 		fmt.Fprintf(os.Stderr, "Error writing manifest: %v\n", err)
 		return
@@ -34,6 +35,10 @@ var harvestCmd = &cobra.Command{
 	Short: "Fetch YouTube Shorts and update the knowledge base manifest",
 	Long:  `Fetches YouTube Shorts metadata and updates the kb/manifest.json`,
 	Run: func(cmd *cobra.Command, args []string) {
+		if err := os.MkdirAll(harvestedDir, 0755); err != nil {
+			fmt.Fprintf(os.Stderr, "Error creating harvested directory: %v\n", err)
+			os.Exit(1)
+		}
 		days, _ := cmd.Flags().GetInt("days")
 		youtube.BuildResources(projectPrefix, days)
 		harvestBSMEvents()
