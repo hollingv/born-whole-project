@@ -19,6 +19,8 @@
         <h1>Events</h1>
         <p>Upcoming events from organizations working to protect every child's right to bodily autonomy.</p>
 
+        {{if .Events}}
+        <h2 class="events-section-heading">Featured Events</h2>
         <table class="events-table">
             <thead>
                 <tr>
@@ -45,6 +47,39 @@
                 {{end}}
             </tbody>
         </table>
+        {{end}}
+
+        {{if .HarvestedEvents}}
+        <h2 class="events-section-heading">Tour &amp; Protest Events</h2>
+        <p class="events-section-note">Automatically updated from organization websites.</p>
+        <table class="events-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Organization</th>
+                    <th>Links</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{range .HarvestedEvents}}
+                <tr>
+                    <td class="events-date">{{.Date}}</td>
+                    <td>{{.Description}}</td>
+                    <td class="events-org">
+                        {{with .Org}}{{if .Thumbnail}}
+                        <a href="{{.Website}}" target="_blank" title="{{.Name}}">
+                            <img src="{{.Thumbnail}}" alt="{{.Name}}" class="events-org-thumbnail" />
+                        </a>
+                        {{else}}{{.Name}}{{end}}{{end}}
+                    </td>
+                    <td>{{if .URL}}<a href="{{.URL}}" target="_blank" class="events-link">Learn more</a>{{end}}</td>
+                </tr>
+                {{end}}
+            </tbody>
+        </table>
+        {{end}}
+
     </main>
 
     {{template "footer" .}}

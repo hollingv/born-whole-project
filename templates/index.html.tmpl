@@ -40,12 +40,28 @@
         </div>
 
         <div class="home-events">
-            <h2 class="home-events-heading">Upcoming Events</h2>
-            {{if .Events}}
+            <div class="home-events-top">
+                <h2 class="home-events-heading">Upcoming Events</h2>
+                <a href="events.html" class="home-events-more">View all →</a>
+            </div>
+            {{if or .Events .HarvestedEvents}}
             <div class="home-events-list">
                 {{range .Events}}
                 <div class="home-event-item">
-                    <span class="home-event-date">{{.Date}}</span>
+                    <div class="home-event-header">
+                        <span class="home-event-date">{{.Date}}</span>
+                        {{with .Org}}{{if .Thumbnail}}<img src="{{.Thumbnail}}" alt="{{.Name}}" class="home-event-org-img" />{{end}}{{end}}
+                    </div>
+                    <span class="home-event-desc">{{.Description}}</span>
+                    {{if .URL}}<a href="{{.URL}}" target="_blank" class="home-event-link">Learn more</a>{{end}}
+                </div>
+                {{end}}
+                {{range .HarvestedEvents}}
+                <div class="home-event-item">
+                    <div class="home-event-header">
+                        <span class="home-event-date">{{.Date}}</span>
+                        {{with .Org}}{{if .Thumbnail}}<img src="{{.Thumbnail}}" alt="{{.Name}}" class="home-event-org-img" />{{end}}{{end}}
+                    </div>
                     <span class="home-event-desc">{{.Description}}</span>
                     {{if .URL}}<a href="{{.URL}}" target="_blank" class="home-event-link">Learn more</a>{{end}}
                 </div>

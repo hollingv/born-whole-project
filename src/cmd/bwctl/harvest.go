@@ -36,6 +36,7 @@ var harvestCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		days, _ := cmd.Flags().GetInt("days")
 		youtube.BuildResources(projectPrefix, days)
+		harvestBSMEvents()
 		writeManifest()
 		fmt.Println("Harvest complete.")
 	},

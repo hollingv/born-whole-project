@@ -24,6 +24,7 @@ type templateData struct {
 	ContributeExample string
 	Resources         []data.Resource
 	Events            []data.Event
+	HarvestedEvents   []data.Event
 	NewsItems         []data.NewsItem
 	DonationItems     []data.DonationItem
 }
@@ -91,6 +92,7 @@ var siteCmd = &cobra.Command{
 			ContributeExample: data.ContributeExample,
 			Resources:         data.LoadResources(),
 			Events:            data.Events,
+			HarvestedEvents:   data.LoadHarvestedEvents(),
 			NewsItems:         data.NewsItems,
 			DonationItems:     data.DonationItems,
 		}
