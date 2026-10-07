@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.47.0 - 2026-10-07
+#### Features
+- (**ui**) relocate tagline from footer to About - (13bc5df) - hollingv
+#### Bug Fixes
+- (**ui**) nav bar properly works on mobile and desktop - (45a7928) - hollingv
+
+- - -
+
 ## v0.46.0 - 2026-10-06
 #### Features
 - (**ui**) upgrade the nav bar to use button - (abc313e) - hollingv
