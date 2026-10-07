@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div class="home-right">
+        <div class="home-middle">
             <h2 class="ask-heading">What question do you have about genital cutting of children?</h2>
             <form class="prompt-form" action="/ask" method="get">
                 <div class="prompt-input-wrapper">
@@ -37,6 +37,24 @@
                 <button type="submit" class="prompt-submit">Ask the Knowledge Base</button>
             </form>
             <div id="ask-response" class="ask-response"></div>
+        </div>
+
+        <div class="home-events">
+            <h2 class="home-events-heading">Upcoming Events</h2>
+            {{if .Events}}
+            <div class="home-events-list">
+                {{range .Events}}
+                <div class="home-event-item">
+                    <span class="home-event-date">{{.Date}}</span>
+                    <span class="home-event-desc">{{.Description}}</span>
+                    {{if .URL}}<a href="{{.URL}}" target="_blank" class="home-event-link">Learn more</a>{{end}}
+                </div>
+                {{end}}
+            </div>
+            {{else}}
+            <p class="home-events-empty">No upcoming events. <a href="events.html">View all events</a>.</p>
+            {{end}}
+            <a href="events.html" class="home-events-more">View all events →</a>
         </div>
 
     </div>
