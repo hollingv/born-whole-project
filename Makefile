@@ -1,4 +1,4 @@
-.PHONY: help init build test clean version-preview release-preview release docker-build test-links test-links-get-involved test-unit test-env-vars test-integ-local
+.PHONY: help init build site-build test clean version-preview release-preview release docker-build test-links test-links-get-involved test-unit test-env-vars test-integ-local
 .SILENT:
 
 APP_NAME       = bwctl
@@ -108,17 +108,21 @@ init: ## Install any tools and dependencies (run once after cloning)
 	chmod +x .git/hooks/pre-push
 	@echo "[ INFO ] git hooks installed"
 
-build: ## Build the binary and site
+build: ## Compile the bwctl Go binary
 	@echo "[ INFO ] Tidying Go modules..."
 	$(GO_BIN) mod tidy
-	@echo "Building $(APP_NAME) version $(APP_TAG)..."
+	@echo "[ INFO ] Building $(APP_NAME) version $(APP_TAG)..."
 	mkdir -p $(TARGET_DIR)
 	CGO_ENABLED=0 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(TARGET_DIR)/$(APP_NAME) ./src/cmd/$(APP_NAME)
-	cp -r site/. $(TARGET_DIR)/
-	./$(TARGET_DIR)/$(APP_NAME) site --version $(APP_TAG)
-	@echo "Built: $(APP_NAME) at version $(APP_TAG)"
+	@echo "[ INFO ] Binary built: $(TARGET_DIR)/$(APP_NAME)"
 
-test: build test-unit test-integ-local ## Build and run all tests
+site-build: build ## Harvest data and generate the full site
+	cp -r site/. $(TARGET_DIR)/
+	./$(TARGET_DIR)/$(APP_NAME) harvest
+	./$(TARGET_DIR)/$(APP_NAME) site --version $(APP_TAG)
+	@echo "[ INFO ] Site built at version $(APP_TAG)"
+
+test: site-build test-unit test-integ-local ## Build and run all tests
 
 clean: ## Remove built binaries
 	@echo "Cleaning up..."
@@ -126,13 +130,13 @@ clean: ## Remove built binaries
 
 ##@ Testing
 
-test-unit: build ## Run the go unit tests
+test-unit: build ## Run the go unit tests (binary only, no site required)
 	$(GO_BIN) test ./src/cmd/$(APP_NAME)/... ./src/server/...
 
 test-env-vars: ## Check the status of the environment variables used for testing
 	./$(TARGET_DIR)/$(APP_NAME) status --set-exit-code=true
 
-test-integ-local: build test-env-vars test-links ## Start server, run integration tests, stop server
+test-integ-local: site-build test-env-vars test-links ## Start server, run integration tests, stop server
 	@go run ./src/server > /dev/null 2>&1 & \
 	SERVER_PID=$$!; \
 	trap "kill $$SERVER_PID 2>/dev/null; wait $$SERVER_PID 2>/dev/null; kill $$(lsof -t -i:8080) 2>/dev/null" EXIT INT TERM; \
@@ -145,7 +149,7 @@ test-integ-local: build test-env-vars test-links ## Start server, run integratio
 	if [ $$TEST_EXIT -eq 0 ]; then echo "Tests PASSED"; else echo "Tests FAILED"; fi; \
 	exit $$TEST_EXIT
 
-test-links-get-involved: build docker-build ## Check external links on the Get Involved page using lychee
+test-links-get-involved: site-build docker-build ## Check external links on the Get Involved page using lychee
 	docker run --rm \
 		-v $(PWD)/$(TARGET_DIR):/dist:ro \
 		$(DOCKER_IMAGE) \
@@ -154,7 +158,7 @@ test-links-get-involved: build docker-build ## Check external links on the Get I
 			--exclude 'https://fonts.gstatic.com' \
 			'/dist/get-involved.html'
 
-test-links: build docker-build test-links-get-involved ## Check all links in the built site using lychee
+test-links: site-build docker-build test-links-get-involved ## Check all links in the built site using lychee
 	docker run --rm \
 		-v $(PWD)/$(TARGET_DIR):/dist:ro \
 		$(DOCKER_IMAGE) \
@@ -186,7 +190,7 @@ release-preview: ## Dry run showing next version and full changelog without maki
 	@echo ""
 	@$(MAKE) --no-print-directory version-preview
 
-release: build release-preview ## Perform a full release. Set DRY_RUN=false to perform the actual release.
+release: site-build release-preview ## Perform a full release. Set DRY_RUN=false to perform the actual release.
 	@if [ "$(DRY_RUN)" = "true" ]; then \
 		echo "[INFO] Dry run complete";\
 		echo "[INFO] Run 'make release DRY_RUN=false' to perform the actual release.";\
