@@ -135,6 +135,16 @@ var OrgGroups = []OrgGroup{
 		Type: "Informational",
 		Organizations: []Organization{
 			{
+				ID:          "nocirc-michigan",
+				Name:        "NOCIRC of Michigan",
+				Description: "Preventing Circumcision in Michigan",
+				Website:     "https://nocircofmi.org/",
+				Thumbnail:   "images/nocirc-michigan.webp",
+				NewsUrl:     "",
+				EventsUrl:   "https://nocircofmi.org/events/",
+				DonateUrl:   "https://nocircofmi.org/donate/",
+			},
+			{
 				ID:          "nocirc",
 				Name:        "NOCIRC",
 				Description: "National Organization of Circumcision Information Resource Centers",
