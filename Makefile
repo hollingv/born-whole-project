@@ -107,6 +107,10 @@ init: ## Install any tools and dependencies (run once after cloning)
 	cp scripts/hooks/pre-push.sh .git/hooks/pre-push
 	chmod +x .git/hooks/pre-push
 	@echo "[ INFO ] git hooks installed"
+	# --- soft link to the target binary
+	@echo "[ INFO ] Creating soft link to $(APP_NAME) binary..."
+	ln -sf ./$(TARGET_DIR)/$(APP_NAME) ./$(APP_NAME)
+	@echo "[ INFO ] Soft link created.  Run '$(APP_NAME)' to use the binary.  Ensure '.' is in your PATH."
 
 build: ## Compile the bwctl Go binary
 	@echo "[ INFO ] Tidying Go modules..."
@@ -114,7 +118,7 @@ build: ## Compile the bwctl Go binary
 	@echo "[ INFO ] Building $(APP_NAME) version $(APP_TAG)..."
 	mkdir -p $(TARGET_DIR)
 	CGO_ENABLED=0 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(TARGET_DIR)/$(APP_NAME) ./src/cmd/$(APP_NAME)
-	@echo "[ INFO ] Binary built: $(TARGET_DIR)/$(APP_NAME)"
+	@echo "[ INFO ] Binary built: ./$(TARGET_DIR)/$(APP_NAME).   Can also be run from current directory."
 
 site-build: build ## Harvest data and generate the full site
 	cp -r site/. $(TARGET_DIR)/
