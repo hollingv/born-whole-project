@@ -21,6 +21,7 @@ type templateData struct {
 	ProjectPrefix     string
 	OrgGroups         []data.OrgGroup
 	FAQItems          []data.FAQItem
+	SiteFAQItems      []data.FAQItem
 	ContributeExample string
 	Resources         []data.Resource
 	Events            []data.Event
@@ -89,6 +90,7 @@ var siteCmd = &cobra.Command{
 			ProjectPrefix:     projectPrefix,
 			OrgGroups:         data.OrgGroups,
 			FAQItems:          data.FAQItems,
+			SiteFAQItems:      data.SiteFAQItems,
 			ContributeExample: data.ContributeExample,
 			Resources:         data.LoadResources(),
 			Events:            data.Events,
