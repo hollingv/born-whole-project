@@ -24,6 +24,17 @@
                 }
             }
             {{end}}
+            {{if .FAQItems}},{{end}}
+            {{range $i, $f := .SiteFAQItems}}{{if $i}},{{end}}
+            {
+                "@type": "Question",
+                "name": {{js $f.Question}},
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": {{js $f.Answer}}
+                }
+            }
+            {{end}}
         ]
     }
     </script>
@@ -35,13 +46,25 @@
 
     <main class="faq-page">
         <h1>Frequently Asked Questions</h1>
-        <p>Common questions about genital cutting, bodily autonomy, and the work of the organizations featured on this site.</p>
 
+        <h2 class="faq-section-heading">About Genital Cutting</h2>
+        <p>Common questions about genital cutting, bodily autonomy, and the organizations working to end this practice.</p>
         <div class="faq-list">
             {{range .FAQItems}}
             <details class="faq-item">
                 <summary class="faq-question">{{.Question}}</summary>
-                <div class="faq-answer">{{.Answer}}</div>
+                <div class="faq-answer">{{.Answer}}{{if .ActionURL}} <a href="{{.ActionURL}}" class="faq-action-link">{{.ActionText}} →</a>{{end}}</div>
+            </details>
+            {{end}}
+        </div>
+
+        <h2 class="faq-section-heading">About This Site</h2>
+        <p>Questions about how Born Whole works, who runs it, and how to get involved.</p>
+        <div class="faq-list">
+            {{range .SiteFAQItems}}
+            <details class="faq-item">
+                <summary class="faq-question">{{.Question}}</summary>
+                <div class="faq-answer">{{.Answer}}{{if .ActionURL}} <a href="{{.ActionURL}}" class="faq-action-link">{{.ActionText}} →</a>{{end}}</div>
             </details>
             {{end}}
         </div>
