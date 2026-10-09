@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.48.0 - 2026-10-09
+#### Features
+- (**Makefile**) create softlink to bwctl on 'make init' - (8bf1ecb) - hollingv
+- (**Makefile**) add site-build which depends on build - (9ee84c3) - hollingv
+- (**events**) BSM events parsed and placed on home and events - (80bd33e) - hollingv
+- (**harvest**) add --days option to the harvest command - (ec820eb) - hollingv
+- (**kb**) add harvested youtube shorts - (89c2766) - hollingv
+- (**organizations**) add NOCIRC of Michigan - (3e52117) - hollingv
+- (**ui**) surface the events onto home page - (1653763) - hollingv
+#### Bug Fixes
+- (**CONTRIBUTING**) bring doc up to date - (d0144a1) - hollingv
+#### Refactoring
+- remove dead code toc.js - (12dcdc9) - hollingv
+- move all harvested data from site/ to dist/ - (b29c2ad) - hollingv
+
+- - -
+
 ## v0.47.0 - 2026-10-07
 #### Features
 - (**ui**) relocate tagline from footer to About - (13bc5df) - hollingv
