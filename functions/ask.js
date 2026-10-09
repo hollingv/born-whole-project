@@ -37,7 +37,7 @@ async function handleRequest(context) {
 }
 
 async function searchKB(q, requestUrl) {
-    const manifestResp = await fetch(new URL('/harvested/manifest.json', requestUrl));
+    const manifestResp = await fetch(new URL('/harvested/generated-kb-file-list.json', requestUrl));
     if (!manifestResp.ok) return [];
     const filenames = await manifestResp.json();
 

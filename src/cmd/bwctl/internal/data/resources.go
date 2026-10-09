@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-const ResourcesPath = "dist/harvested/youtube-shorts.json"
+const ResourcesPath = "dist/harvested/harvested-youtube-shorts.json"
 
 // Resource represents a YouTube Short to feature on the resources page.
 type Resource struct {
