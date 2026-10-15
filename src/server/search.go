@@ -71,7 +71,7 @@ func searchKB(q, siteDir string) ([]chunk, error) {
 
 	var chunks []chunk
 	for _, name := range filenames {
-		content, err := os.ReadFile(filepath.Join(siteDir, "kb", name))
+		content, err := os.ReadFile(filepath.Join(siteDir, name))
 		if err != nil {
 			continue
 		}
