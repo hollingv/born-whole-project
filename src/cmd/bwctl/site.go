@@ -25,9 +25,41 @@ type templateData struct {
 	ContributeExample string
 	Resources         []data.Resource
 	Events            []data.Event
-	HarvestedEvents   []data.Event
 	NewsItems         []data.NewsItem
 	DonationItems     []data.DonationItem
+}
+
+// EventGroup is a slice of events sharing the same Kind, used for template rendering.
+type EventGroup struct {
+	Kind   data.EventKind
+	Label  string
+	Events []data.Event
+}
+
+// groupEventsByKind partitions events into groups by Kind, preserving the order
+// in which each Kind is first encountered. It is registered as a template function.
+func groupEventsByKind(events []data.Event) []EventGroup {
+	var order []data.EventKind
+	seen := map[data.EventKind]bool{}
+	byKind := map[data.EventKind][]data.Event{}
+
+	for _, e := range events {
+		if !seen[e.Kind] {
+			seen[e.Kind] = true
+			order = append(order, e.Kind)
+		}
+		byKind[e.Kind] = append(byKind[e.Kind], e)
+	}
+
+	groups := make([]EventGroup, 0, len(order))
+	for _, k := range order {
+		groups = append(groups, EventGroup{
+			Kind:   k,
+			Label:  k.Label(),
+			Events: byKind[k],
+		})
+	}
+	return groups
 }
 
 type page struct {
@@ -93,8 +125,7 @@ var siteCmd = &cobra.Command{
 			SiteFAQItems:      data.SiteFAQItems,
 			ContributeExample: data.ContributeExample,
 			Resources:         data.LoadResources(),
-			Events:            data.Events,
-			HarvestedEvents:   data.LoadHarvestedEvents(),
+			Events:            data.AllEvents(),
 			NewsItems:         data.NewsItems,
 			DonationItems:     data.DonationItems,
 		}
@@ -105,8 +136,12 @@ var siteCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
+		funcMap := template.FuncMap{
+			"groupEventsByKind": groupEventsByKind,
+		}
+
 		for _, p := range pages {
-			tmpl, err := template.ParseFiles(p.tmplFiles...)
+			tmpl, err := template.New(filepath.Base(p.tmplFiles[0])).Funcs(funcMap).ParseFiles(p.tmplFiles...)
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "Error parsing templates %v: %v\n", p.tmplFiles, err)
 				os.Exit(1)

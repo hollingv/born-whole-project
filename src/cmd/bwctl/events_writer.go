@@ -13,6 +13,38 @@ import (
 	"golang.org/x/net/html"
 )
 
+// bsmDateFormats is the ordered list of date layouts tried when parsing BSM event dates.
+// Weekday-prefixed formats are listed first so that strings like
+// "Monday, October 14, 2026" are consumed cleanly without leaving the
+// weekday name in the output.
+var bsmDateFormats = []string{
+	"Monday, January 2, 2006",
+	"Mon, January 2, 2006",
+	"Monday, Jan 2, 2006",
+	"Mon, Jan 2, 2006",
+	"Monday January 2, 2006",
+	"Mon Jan 2, 2006",
+	"2006-01-02",
+	"January 2, 2006",
+	"Jan 2, 2006",
+	"01/02/2006",
+	"1/2/2006",
+	"January 2006",
+}
+
+// parseBSMDate attempts to parse a date string from the BSM events page.
+// Returns a zero Date and logs a warning if no known format matches.
+func parseBSMDate(s string) data.Date {
+	s = strings.TrimSpace(s)
+	for _, layout := range bsmDateFormats {
+		if t, err := time.Parse(layout, s); err == nil {
+			return data.Date{Time: t}
+		}
+	}
+	fmt.Fprintf(os.Stderr, "  [ WARN ] Could not parse BSM date %q\n", s)
+	return data.Date{}
+}
+
 const bsmEventsURL = "https://www.bloodstainedmen.com/about-us/events/"
 const bsmOrgID = "blood-stained-men"
 
@@ -110,13 +142,14 @@ func fetchAndParseBSMEvents() ([]data.Event, error) {
 
 	var events []data.Event
 	var campaignTitle string
+	var sectionDate data.Date // date set by a single-cell date-header row
 	var pendingEvent *data.Event
 
 	for _, row := range rows {
 		cells := row.cells
 		first := strings.TrimSpace(cells[0])
 
-		// Skip header rows
+		// Skip column header rows
 		if strings.EqualFold(first, "event page") || strings.EqualFold(first, "event") {
 			continue
 		}
@@ -132,16 +165,27 @@ func fetchAndParseBSMEvents() ([]data.Event, error) {
 			continue
 		}
 
-		// Single-cell non-location row → campaign title
+		// Single-cell row: if it parses as a date it is a day-header row (e.g.
+		// "Wednesday, September 30, 2026"); otherwise treat it as a campaign title.
 		if len(cells) == 1 {
-			campaignTitle = first
+			if d := parseBSMDate(first); !d.IsZero() {
+				sectionDate = d
+			} else {
+				campaignTitle = first
+			}
 			continue
 		}
 
 		// Event row: Day N | date | city | time
+		// When a sectionDate has been set by a day-header row the date column may
+		// be absent; fall back to sectionDate if cells[1] does not parse.
 		if len(cells) >= 3 {
 			if pendingEvent != nil {
 				events = append(events, *pendingEvent)
+			}
+			eventDate := parseBSMDate(cells[1])
+			if eventDate.IsZero() {
+				eventDate = sectionDate
 			}
 			desc := cells[2] // city
 			if len(cells) >= 4 {
@@ -151,10 +195,11 @@ func fetchAndParseBSMEvents() ([]data.Event, error) {
 				desc = "[" + campaignTitle + "] " + desc
 			}
 			pendingEvent = &data.Event{
-				Date:        cells[1],
+				Date:        eventDate,
 				Description: desc,
 				URL:         row.href,
 				OrgID:       bsmOrgID,
+				Kind:        data.EventKindHarvested,
 			}
 		}
 	}
