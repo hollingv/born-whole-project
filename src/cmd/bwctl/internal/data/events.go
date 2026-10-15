@@ -119,13 +119,6 @@ func (e Event) Org() *Organization {
 // Events is the manually curated list of featured events.
 var Events = []Event{
 	{
-		Date:        MustParseDate("2026-09-14"),
-		Description: "Historic Hadachek v. Oregon Court Hearing",
-		URL:         "https://www.tickettailor.com/events/intactglobal/2332513",
-		OrgID:       "intact-global",
-		Kind:        EventKindFeatured,
-	},
-	{
 		Date:        MustParseDate("2027-03-29"),
 		Description: "Genital Integrity Awareness Week",
 		URL:         "",
