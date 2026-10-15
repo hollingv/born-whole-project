@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"born-whole-project/src/cmd/bwctl/internal/data"
@@ -34,6 +35,51 @@ type EventGroup struct {
 	Kind   data.EventKind
 	Label  string
 	Events []data.Event
+}
+
+// HomeEventGroup holds an organisation and its capped list of events for the home page.
+type HomeEventGroup struct {
+	Org    *data.Organization
+	Events []data.Event
+}
+
+// homeEventGroups prepares the home page event list: events are grouped by
+// organisation (sorted by org name), with at most 2 events per org.
+// The input is assumed to already be date-sorted, so the first 2 kept per org
+// are the earliest upcoming.
+func homeEventGroups(events []data.Event) []HomeEventGroup {
+	var order []string
+	seen := map[string]bool{}
+	byOrg := map[string]*HomeEventGroup{}
+
+	for _, e := range events {
+		if !seen[e.OrgID] {
+			seen[e.OrgID] = true
+			order = append(order, e.OrgID)
+			byOrg[e.OrgID] = &HomeEventGroup{Org: e.Org()}
+		}
+		grp := byOrg[e.OrgID]
+		if len(grp.Events) < 2 {
+			grp.Events = append(grp.Events, e)
+		}
+	}
+
+	sort.Slice(order, func(i, j int) bool {
+		ni, nj := order[i], order[j]
+		if byOrg[ni].Org != nil {
+			ni = byOrg[ni].Org.Name
+		}
+		if byOrg[nj].Org != nil {
+			nj = byOrg[nj].Org.Name
+		}
+		return ni < nj
+	})
+
+	result := make([]HomeEventGroup, 0, len(order))
+	for _, id := range order {
+		result = append(result, *byOrg[id])
+	}
+	return result
 }
 
 // groupEventsByKind partitions events into groups by Kind, preserving the order
@@ -138,6 +184,7 @@ var siteCmd = &cobra.Command{
 
 		funcMap := template.FuncMap{
 			"groupEventsByKind": groupEventsByKind,
+			"homeEventGroups":   homeEventGroups,
 		}
 
 		for _, p := range pages {
