@@ -75,7 +75,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:      "https://intactglobal.org/press",
 				EventsUrl:    "",
 				DonateUrl:    "https://www.intactglobal.org/support/donate",
-				ContactUsUrl: "",
+				ContactUsUrl: "https://www.intactglobal.org/contact",
 			},
 			{
 				ID:           "intaction",
@@ -86,7 +86,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:      "https://intaction.org/circumcision-news-complete-listing/",
 				EventsUrl:    "",
 				DonateUrl:    "https://www.zeffy.com/en-US/embed/donation-form/donate-to-make-a-difference-3786?modal=true",
-				ContactUsUrl: "",
+				ContactUsUrl: "https://intaction.org/contact-us/",
 			},
 			{
 				ID:           "galdef",
@@ -97,7 +97,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:      "https://www.galdef.org/news/",
 				EventsUrl:    "",
 				DonateUrl:    "https://www.galdef.org/donate/",
-				ContactUsUrl: "",
+				ContactUsUrl: "https://www.galdef.org/contact/",
 			},
 			{
 				ID:           "circumcision-law-reform",
@@ -108,7 +108,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:      "",
 				EventsUrl:    "",
 				DonateUrl:    "",
-				ContactUsUrl: "",
+				ContactUsUrl: "https://circumcisionlawreform.org/contact/",
 			},
 			{
 				ID:           "arc",
@@ -119,7 +119,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:      "https://www.arclaw.org/news",
 				EventsUrl:    "https://www.arclaw.org/events",
 				DonateUrl:    "https://www.arclaw.org/donate",
-				ContactUsUrl: "",
+				ContactUsUrl: "https://www.arclaw.org/contact",
 			},
 		},
 	},
@@ -135,7 +135,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:      "",
 				EventsUrl:    "",
 				DonateUrl:    "",
-				ContactUsUrl: "",
+				ContactUsUrl: "https://www.doctorsopposingcircumcision.org/contact/",
 			},
 		},
 	},
@@ -151,7 +151,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:      "",
 				EventsUrl:    "https://nocircofmi.org/events/",
 				DonateUrl:    "https://nocircofmi.org/donate/",
-				ContactUsUrl: "",
+				ContactUsUrl: "https://nocircofmi.org/contact/",
 			},
 			{
 				ID:           "nocirc",
@@ -162,7 +162,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:      "",
 				EventsUrl:    "",
 				DonateUrl:    "",
-				ContactUsUrl: "",
+				ContactUsUrl: "https://www.nocirc.org/contact.php",
 			},
 			{
 				ID:           "intact-america",
@@ -184,7 +184,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:      "",
 				EventsUrl:    "",
 				DonateUrl:    "https://www.yourwholebaby.org/donate",
-				ContactUsUrl: "",
+				ContactUsUrl: "https://www.yourwholebaby.org/contact",
 			},
 			{
 				ID:           "intacivist-circle",
@@ -233,7 +233,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:      "",
 				EventsUrl:    "",
 				DonateUrl:    "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=G6VLETWSGSR22&ssrt=1790887007235",
-				ContactUsUrl: "",
+				ContactUsUrl: "http://www.savingsons.org/p/contact.html",
 			},
 			{
 				ID:           "blood-stained-men",
@@ -244,7 +244,7 @@ var OrgGroups = []OrgGroup{
 				NewsUrl:      "",
 				EventsUrl:    "https://www.bloodstainedmen.com/about-us/events/",
 				DonateUrl:    "https://www.bloodstainedmen.com/donate/",
-				ContactUsUrl: "",
+				ContactUsUrl: "https://www.bloodstainedmen.com/contact/",
 			},
 		},
 	},
