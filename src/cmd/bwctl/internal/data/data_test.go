@@ -5,8 +5,8 @@ import (
 	"testing"
 )
 
-func TestOrganizationStructHas8Fields(t *testing.T) {
-	const expected = 8
+func TestOrganizationStructHas9Fields(t *testing.T) {
+	const expected = 9
 	got := reflect.TypeOf(Organization{}).NumField()
 	if got != expected {
 		t.Errorf("Organization struct has %d fields, expected %d", got, expected)

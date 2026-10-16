@@ -10,10 +10,10 @@
         <p>{{.Description}}</p>
     </div>
     <div class="org-nav">
-        <a href="{{.Website}}" target="_blank" class="org-link">Visit Site</a>
         {{if .NewsUrl}}<a href="{{.NewsUrl}}" class="org-link">News</a>{{else}}<span class="org-link org-link--disabled">News</span>{{end}}
         {{if .EventsUrl}}<a href="{{.EventsUrl}}" class="org-link">Events</a>{{else}}<span class="org-link org-link--disabled">Events</span>{{end}}
         {{if .DonateUrl}}<a href="{{.DonateUrl}}" target="_blank" class="org-link">Donate</a>{{else}}<span class="org-link org-link--disabled">Donate</span>{{end}}
+        {{if .ContactUsUrl}}<a href="{{.ContactUsUrl}}" target="_blank" class="org-link">Contact Us</a>{{else}}<span class="org-link org-link--disabled">Contact Us</span>{{end}}
     </div>
 </article>
 {{end}}
