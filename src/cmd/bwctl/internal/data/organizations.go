@@ -175,6 +175,16 @@ var OrgGroups = []OrgGroup{
 				DonateUrl:   "https://www.yourwholebaby.org/donate",
 			},
 			{
+				ID:          "intacivist-circle",
+				Name:        "Intactivist Circle",
+				Description: "Circumcision Ends with Us",
+				Website:     "https://intactivist.org",
+				Thumbnail:   "images/intactivist-circle.webp",
+				NewsUrl:     "",
+				EventsUrl:   "",
+				DonateUrl:   "",
+			},
+			{
 				ID:          "hegemon-media",
 				Name:        "Hegemon Media",
 				Description: "Brendon Marotta is a filmmaker, author, and journalist.",
