@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.49.0 - 2026-10-15
+#### Features
+- (**events**) remove expired IG event - (cecf4b7) - hollingv
+- (**harvest**) add switch for events/youtubeshorts - (e64aa1d) - hollingv
+- (**ui**) dim expired events and add org URL - (4b570d0) - hollingv
+- (**ui**) organize events on home page by org - (73adf4f) - hollingv
+- (**ui**) add 'site' faq with appropriate links - (0a622ed) - hollingv
+#### Bug Fixes
+- (**kb**) remove double 'kb' for local kb paths - (694ae89) - hollingv
+#### Refactoring
+- (**css**) reorganize and remove dead code - (be2c5b9) - hollingv
+- (**events**) use a true Date field for events - (a8d848d) - hollingv
+- (**harvest**) rename all 3 harvested json files - (d92682d) - hollingv
+- (**js**) rename ask.js to be more descriptive - (018b327) - hollingv
+
+- - -
+
 ## v0.48.0 - 2026-10-09
 #### Features
 - (**Makefile**) create softlink to bwctl on 'make init' - (8bf1ecb) - hollingv
