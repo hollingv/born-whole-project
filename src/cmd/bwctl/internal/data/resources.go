@@ -6,13 +6,14 @@ import (
 	"os"
 )
 
+// ResourcesPath is the location of the JSON file written by bwctl harvest containing harvested YouTube Shorts metadata.
 const ResourcesPath = "dist/harvested/harvested-youtube-shorts.json"
 
 // Resource represents a YouTube Short to feature on the resources page.
 type Resource struct {
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	VideoID     string `json:"video_id"`
+	Title       string `json:"title"`       // video title as returned by the YouTube Data API
+	Description string `json:"description"` // short video description
+	VideoID     string `json:"video_id"`    // YouTube video ID used to construct embed and watch URLs
 }
 
 // LoadResources reads resources from site/kb/resources.json.

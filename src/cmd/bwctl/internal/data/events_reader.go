@@ -7,6 +7,7 @@ import (
 	"sort"
 )
 
+// HarvestedEventsPath is the location of the JSON file written by bwctl harvest and read at site-build time.
 const HarvestedEventsPath = "dist/harvested/harvested-events.json"
 
 // LoadHarvestedEvents reads automatically harvested events from disk.
