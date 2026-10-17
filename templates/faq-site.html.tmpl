@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ — {{.SiteName}}</title>
+    <title>FAQ: About This Site — {{.SiteName}}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -14,17 +14,6 @@
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-            {{range $i, $f := .FAQItems}}{{if $i}},{{end}}
-            {
-                "@type": "Question",
-                "name": {{js $f.Question}},
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": {{js $f.Answer}}
-                }
-            }
-            {{end}}
-            {{if .FAQItems}},{{end}}
             {{range $i, $f := .SiteFAQItems}}{{if $i}},{{end}}
             {
                 "@type": "Question",
@@ -46,17 +35,6 @@
 
     <main class="faq-page">
         <h1>Frequently Asked Questions</h1>
-
-        <h2 class="faq-section-heading">About Genital Cutting</h2>
-        <p>Common questions about genital cutting, bodily autonomy, and the organizations working to end this practice.</p>
-        <div class="faq-list">
-            {{range .FAQItems}}
-            <details class="faq-item">
-                <summary class="faq-question">{{.Question}}</summary>
-                <div class="faq-answer">{{.Answer}}{{if .ActionURL}} <a href="{{.ActionURL}}" class="faq-action-link">{{.ActionText}} →</a>{{end}}</div>
-            </details>
-            {{end}}
-        </div>
 
         <h2 class="faq-section-heading">About This Site</h2>
         <p>Questions about how Born Whole works, who runs it, and how to get involved.</p>
