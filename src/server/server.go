@@ -1,4 +1,7 @@
-// Package main implements the local development server for siteName
+// Package main implements the local development server for Born Whole Project.
+// It serves the generated site from the dist/ directory and provides the /ask
+// endpoint, which performs knowledge-base search and calls the Cloudflare AI API
+// to generate grounded answers.
 // The /ask handler logic mirrors functions/ask.js — keep both in sync when making changes.
 package main
 

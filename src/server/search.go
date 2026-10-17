@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+// stopWords is the set of common words excluded from keyword extraction.
 var stopWords = map[string]struct{}{
 	"a": {}, "an": {}, "the": {}, "is": {}, "are": {}, "was": {},
 	"were": {}, "be": {}, "been": {}, "being": {}, "have": {}, "has": {},
@@ -22,9 +23,11 @@ var stopWords = map[string]struct{}{
 	"not": {}, "no": {}, "so": {}, "if": {}, "than": {}, "very": {},
 }
 
+// chunk is a scored paragraph extracted from a knowledge-base file.
 type chunk struct {
-	text, source string
-	score        int
+	text   string // raw paragraph text
+	source string // source URL or filename, cited in the AI response
+	score  int    // number of query keywords matched in this paragraph
 }
 
 // extractKeywords strips stop words and returns meaningful search terms.

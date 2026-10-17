@@ -2,9 +2,9 @@ package data
 
 // DonationItem represents a custom donation entry or campaign.
 type DonationItem struct {
-	Description string
-	URL         string
-	OrgID       string
+	Description string // campaign or appeal description shown to the visitor
+	URL         string // direct link to the donation page or fundraiser
+	OrgID       string // ID of the organisation running the campaign
 }
 
 // Org returns the organization associated with this donation item.

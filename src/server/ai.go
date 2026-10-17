@@ -17,21 +17,24 @@ bodily autonomy, and children's rights. Only use the text provided below as cont
 Do not use any outside knowledge. Be concise, factual, and compassionate.
 If the provided context does not contain enough information to answer, say so explicitly.`
 
+// cfAIMessage is a single chat message sent to the Cloudflare AI API.
 type cfAIMessage struct {
-	Role    string `json:"role"`
-	Content string `json:"content"`
+	Role    string `json:"role"`    // "system" or "user"
+	Content string `json:"content"` // message text
 }
 
+// cfAIRequest is the JSON body sent to the Cloudflare Workers AI chat endpoint.
 type cfAIRequest struct {
-	Messages  []cfAIMessage `json:"messages"`
-	MaxTokens int           `json:"max_tokens"`
+	Messages  []cfAIMessage `json:"messages"`   // ordered conversation turns
+	MaxTokens int           `json:"max_tokens"` // upper bound on generated tokens
 }
 
+// cfAIResponse is the JSON body returned by the Cloudflare Workers AI chat endpoint.
 type cfAIResponse struct {
 	Result struct {
-		Response string `json:"response"`
+		Response string `json:"response"` // generated answer text
 	} `json:"result"`
-	Success bool `json:"success"`
+	Success bool `json:"success"` // false if the API returned an error
 }
 
 // callCloudflareAI sends a question and context chunks to the Cloudflare AI API.

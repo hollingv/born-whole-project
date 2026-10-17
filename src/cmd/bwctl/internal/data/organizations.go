@@ -1,25 +1,26 @@
-// Package data contains the site's content data types and values.
+// Package data contains the site's static content — organization registry, events, news, FAQ, and donation entries — together with types and helpers for loading harvested runtime data.
 package data
 
 // Organization represents an advocacy organization to feature on the site.
 type Organization struct {
 	ID           string // unique identifier used to reference this org from other data structures
-	Name         string
-	Description  string
-	Website      string
-	Thumbnail    string
-	NewsUrl      string
-	EventsUrl    string
-	DonateUrl    string
-	ContactUsUrl string
+	Name         string // display name shown on cards and in navigation
+	Description  string // one-sentence summary shown on the organization card
+	Website      string // canonical home page URL; always populated
+	Thumbnail    string // path to logo image relative to dist/; use PlaceholderImage if unknown
+	NewsUrl      string // URL to the org's news or press page; empty if not available
+	EventsUrl    string // URL to the org's events page; empty if not available
+	DonateUrl    string // URL to the org's donation page; empty if not available
+	ContactUsUrl string // URL to the org's contact page; empty if not available
 }
 
 // OrgGroup represents a category of organizations.
 type OrgGroup struct {
-	Type          string
-	Organizations []Organization
+	Type          string         // category label displayed as a section heading on the organizations page
+	Organizations []Organization // ordered list of organizations in this category
 }
 
+// PlaceholderImage is the fallback thumbnail path used when an org has no logo.
 const PlaceholderImage = "images/placeholder.jpg"
 
 // ContributeExample is the canonical Go snippet shown on the contribute page.

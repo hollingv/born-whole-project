@@ -2,10 +2,10 @@ package data
 
 // NewsItem represents a single news article or press mention.
 type NewsItem struct {
-	Date        string
-	Description string
-	URL         string
-	OrgID       string
+	Date        string // publication date as "YYYY-MM-DD"
+	Description string // headline or short description of the article
+	URL         string // direct link to the article or press mention
+	OrgID       string // ID of the organisation associated with this item
 }
 
 // Org returns the organization associated with this news item.

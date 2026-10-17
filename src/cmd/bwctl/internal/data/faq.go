@@ -2,10 +2,10 @@ package data
 
 // FAQItem represents a single question and answer.
 type FAQItem struct {
-	Question   string
-	Answer     string
-	ActionURL  string // optional link shown after the answer
-	ActionText string // label for the optional link
+	Question   string // the question as displayed to the user
+	Answer     string // full answer text
+	ActionURL  string // optional URL for a follow-up action link; empty if not needed
+	ActionText string // label for the optional action link
 }
 
 // FAQItems is the list of frequently asked questions about genital cutting.

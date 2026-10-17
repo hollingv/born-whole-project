@@ -86,8 +86,8 @@ func (d *Date) UnmarshalJSON(b []byte) error {
 type EventKind string
 
 const (
-	EventKindFeatured  EventKind = "featured"
-	EventKindHarvested EventKind = "harvested"
+	EventKindFeatured  EventKind = "featured"  // manually curated, reviewed via pull request
+	EventKindHarvested EventKind = "harvested" // automatically fetched from an organisation's website
 )
 
 // Label returns a human-readable section heading for the event kind.
@@ -104,11 +104,11 @@ func (k EventKind) Label() string {
 
 // Event represents a single upcoming or past event.
 type Event struct {
-	Date        Date
-	Description string
-	URL         string
-	OrgID       string
-	Kind        EventKind
+	Date        Date      // calendar date of the event
+	Description string    // short human-readable label, may include location or campaign prefix
+	URL         string    // optional link to event details page; empty string if not available
+	OrgID       string    // ID of the hosting organisation; must match an Organization.ID value
+	Kind        EventKind // origin of the event, used for display grouping
 }
 
 // Org returns the organization associated with this event.
