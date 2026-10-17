@@ -107,23 +107,20 @@ init: ## Install any tools and dependencies (run once after cloning)
 	cp scripts/hooks/pre-push.sh .git/hooks/pre-push
 	chmod +x .git/hooks/pre-push
 	@echo "[ INFO ] git hooks installed"
-	# --- soft link to the target binary
-	@echo "[ INFO ] Creating soft link to $(APP_NAME) binary..."
-	ln -sf ./$(TARGET_DIR)/$(APP_NAME) ./$(APP_NAME)
-	@echo "[ INFO ] Soft link created.  Run '$(APP_NAME)' to use the binary.  Ensure '.' is in your PATH."
+	@echo "[ INFO ] Run 'make build' to compile the $(APP_NAME) binary to the project root.  Ensure '.' is in your PATH."
 
 build: ## Compile the bwctl Go binary
 	@echo "[ INFO ] Tidying Go modules..."
 	$(GO_BIN) mod tidy
 	@echo "[ INFO ] Building $(APP_NAME) version $(APP_TAG)..."
 	mkdir -p $(TARGET_DIR)
-	CGO_ENABLED=0 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(TARGET_DIR)/$(APP_NAME) ./src/cmd/$(APP_NAME)
-	@echo "[ INFO ] Binary built: ./$(TARGET_DIR)/$(APP_NAME).   Can also be run from current directory."
+	CGO_ENABLED=0 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME) ./src/cmd/$(APP_NAME)
+	@echo "[ INFO ] Binary built: ./$(APP_NAME).  Ensure '.' is in your PATH to run it as '$(APP_NAME)'."
 
 site-build: build ## Harvest data and generate the full site
 	cp -r site/. $(TARGET_DIR)/
-	./$(TARGET_DIR)/$(APP_NAME) harvest
-	./$(TARGET_DIR)/$(APP_NAME) site --version $(APP_TAG)
+	./$(APP_NAME) harvest
+	./$(APP_NAME) site --version $(APP_TAG)
 	@echo "[ INFO ] Site built at version $(APP_TAG)"
 
 test: site-build test-unit test-integ-local ## Build and run all tests
@@ -131,6 +128,7 @@ test: site-build test-unit test-integ-local ## Build and run all tests
 clean: ## Remove built binaries
 	@echo "Cleaning up..."
 	rm -rf $(TARGET_DIR)/
+	rm -f $(APP_NAME)
 
 ##@ Testing
 
@@ -138,7 +136,7 @@ test-unit: build ## Run the go unit tests (binary only, no site required)
 	$(GO_BIN) test ./src/cmd/$(APP_NAME)/... ./src/server/...
 
 test-env-vars: ## Check the status of the environment variables used for testing
-	./$(TARGET_DIR)/$(APP_NAME) status --set-exit-code=true
+	./$(APP_NAME) status --set-exit-code=true
 
 test-integ-local: site-build test-env-vars test-links ## Start server, run integration tests, stop server
 	@go run ./src/server > /dev/null 2>&1 & \
