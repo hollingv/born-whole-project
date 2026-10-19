@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.50.0 - 2026-10-19
+#### Features
+- (**organizations**) add the Little Images organization - (5ca6d4c) - hollingv
+- (**organizations**) add all known ContactUsUrl for orgs - (bfb6b9e) - hollingv
+- (**organizations**) add The Intactivist Circle org - (2062fda) - hollingv
+- (**ui**) reworked 2 FAQs to be their own drop-downs - (2ff352b) - hollingv
+- (**ui**) use 6 buttons on the org cards - (f3cfa47) - hollingv
+- (**ui**) add ContactUsUrl field to cards - (c920bb1) - hollingv
+#### Bug Fixes
+- (**Makefile**) relocate bwctl from dist to root to not deploy - (60736cc) - hollingv
+#### Documentation
+- add godoc comments to source files - (2680f72) - hollingv
+- updated Whitepaper with current functionality - (df9e8e2) - hollingv
+
+- - -
+
 ## v0.49.0 - 2026-10-15
 #### Features
 - (**events**) remove expired IG event - (cecf4b7) - hollingv
