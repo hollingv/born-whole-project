@@ -209,6 +209,17 @@ var OrgGroups = []OrgGroup{
 				DonateUrl:    "",
 				ContactUsUrl: "",
 			},
+			{
+				ID:           "little-images",
+				Name:         "Little Images",
+				Description:  "And God saw everything that he had made, and, behold, it was very good.",
+				Website:      "https://littleimages.org/",
+				Thumbnail:    "images/little-images.png",
+				NewsUrl:      "",
+				EventsUrl:    "",
+				DonateUrl:    "",
+				ContactUsUrl: "https://littleimages.org/contact/",
+			},
 		},
 	},
 	{
