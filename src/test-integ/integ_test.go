@@ -124,18 +124,18 @@ func TestAskReturnsResponse(t *testing.T) {
 	}
 }
 
-func TestResourcesPageLoads(t *testing.T) {
-	resp := get(t, "/resources.html")
+func TestYoutubeShortsPageLoads(t *testing.T) {
+	resp := get(t, "/youtube-shorts.html")
 	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
-		t.Errorf("expected 200 for resources page, got %d", resp.StatusCode)
+		t.Errorf("expected 200 for youtube shorts page, got %d", resp.StatusCode)
 	}
 }
 
-func TestResourcesShortsAvailable(t *testing.T) {
-	resp := get(t, "/resources.html")
+func TestYoutubeShortsAvailable(t *testing.T) {
+	resp := get(t, "/youtube-shorts.html")
 	if !strings.Contains(body(t, resp), "shorts available") {
-		t.Errorf("expected resources page to contain 'shorts available' — run ./bwctl harvest with %s_YT_API_KEY set", projectPrefix)
+		t.Errorf("expected youtube shorts page to contain 'shorts available' — run ./bwctl harvest with %s_YT_API_KEY set", projectPrefix)
 	}
 }
 

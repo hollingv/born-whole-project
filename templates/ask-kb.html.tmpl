@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask the Knowledge Base — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+    <script src="js/ask-kb-form.js" defer></script>
+    {{template "head-og" .}}
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main class="resources-page">
+        <h1>Ask the Knowledge Base</h1>
+        <p>Ask a question and get an answer grounded in content from the organisations featured on this site — no outside knowledge, no hallucination.</p>
+
+        <section class="resource-section">
+            <form class="prompt-form" action="/ask" method="get">
+                <div class="prompt-input-wrapper">
+                    <input type="text" class="prompt-input" name="q" placeholder="What is genital cutting?" autocomplete="off" />
+                </div>
+                <button type="submit" class="prompt-submit">Ask the Knowledge Base</button>
+            </form>
+            <div id="ask-response" class="ask-response"></div>
+        </section>
+    </main>
+
+    {{template "footer" .}}
+
+</body>
+</html>
