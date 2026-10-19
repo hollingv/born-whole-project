@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Facts — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+    {{template "head-og" .}}
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main class="resources-page">
+        <h1>Key Facts</h1>
+        <p>A concise, evidence-based overview of what genital cutting is, why it happens, and what the medical and ethical arguments against it are. A good starting point for anyone new to the topic.</p>
+
+        <section class="resource-section">
+            <a href="https://www.intactglobal.org/about/facts" target="_blank" class="resource-link-btn">Read the facts from Intact Global</a>
+        </section>
+    </main>
+
+    {{template "footer" .}}
+
+</body>
+</html>

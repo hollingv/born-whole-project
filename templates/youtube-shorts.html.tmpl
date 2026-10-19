@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Shorts — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+    {{template "head-og" .}}
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main class="resources-page">
+        <h1>YouTube Informational Shorts</h1>
+        <p>A curated collection of short videos to help you learn and share information about bodily autonomy and genital integrity.</p>
+
+        <section class="resource-section">
+            {{if .Resources}}
+            <p class="resource-count">{{len .Resources}} shorts available</p>
+            <div class="resource-grid">
+                {{range .Resources}}
+                <a class="resource-card" href="https://www.youtube.com/shorts/{{.VideoID}}" target="_blank">
+                    <img
+                        src="https://img.youtube.com/vi/{{.VideoID}}/hqdefault.jpg"
+                        alt="{{.Title}}"
+                        class="resource-thumbnail"
+                    />
+                    <div class="resource-info">
+                        <h3>{{.Title}}</h3>
+                    </div>
+                </a>
+                {{end}}
+            </div>
+            {{else}}
+            <p class="resource-empty">No shorts available yet. Run <code>./bwctl harvest</code> with a <code>{{.ProjectPrefix}}_YT_API_KEY</code> set to populate this page.</p>
+            {{end}}
+        </section>
+
+        <a href="#" class="back-to-top">&#8679; Top</a>
+    </main>
+
+    {{template "footer" .}}
+
+</body>
+</html>
