@@ -285,6 +285,17 @@ var OrgGroups = []OrgGroup{
 				DonateUrl:    "https://foregen.org/donate",
 				ContactUsUrl: "",
 			},
+			{
+				ID:           "jennamcclelland",
+				Name:         "Jenna McClelland",
+				Description:  "Spiritual Healer and Circumcision Researcher",
+				Website:      "https://students.alchemizewithjenna.com",
+				Thumbnail:    "images/jennamcclelland.jpg",
+				NewsUrl:      "",
+				EventsUrl:    "",
+				DonateUrl:    "",
+				ContactUsUrl: "",
+			},
 		},
 	},
 }
