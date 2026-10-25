@@ -271,4 +271,20 @@ var OrgGroups = []OrgGroup{
 			},
 		},
 	},
+	{
+		Type: "Healing",
+		Organizations: []Organization{
+			{
+				ID:           "foregen",
+				Name:         "Foregen",
+				Description:  "Advancing tissue engineering for circumcised men to reclaim their complete body",
+				Website:      "https://foregen.org",
+				Thumbnail:    "images/foregen.svg",
+				NewsUrl:      "https://foregen.org/updates",
+				EventsUrl:    "",
+				DonateUrl:    "https://foregen.org/donate",
+				ContactUsUrl: "",
+			},
+		},
+	},
 }
