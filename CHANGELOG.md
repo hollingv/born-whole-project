@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.51.0 - 2026-10-25
+#### Features
+- (**organizations**) add foregen organization - (e9acc32) - hollingv
+- (**organizations**) add cockfight organization - (4bca075) - hollingv
+- (**ui**) Restucture the resources.html page and nav dropdowns - (0212af1) - hollingv
+
+- - -
+
 ## v0.50.0 - 2026-10-19
 #### Features
 - (**organizations**) add the Little Images organization - (5ca6d4c) - hollingv
