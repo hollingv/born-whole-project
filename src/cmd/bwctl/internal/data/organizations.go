@@ -258,6 +258,17 @@ var OrgGroups = []OrgGroup{
 				DonateUrl:    "https://www.bloodstainedmen.com/donate/",
 				ContactUsUrl: "https://www.bloodstainedmen.com/contact/",
 			},
+			{
+				ID:           "cock-fight",
+				Name:         "CockFight",
+				Description:  "We empower the next generation of parents to safeguard the next generation of boys from circumcision.",
+				Website:      "https://cockfight.org",
+				Thumbnail:    "images/cock-fight.jpg",
+				NewsUrl:      "",
+				EventsUrl:    "",
+				DonateUrl:    "https://www.paypal.com/donate?token=1a0K98qZvMRP1fmmVgNzszVvMPbI40mfxCasBd8HXcJ_9jJGTdk-iKkYeUA-zf6lMASdKAdMHJyQhe0e",
+				ContactUsUrl: "",
+			},
 		},
 	},
 }
