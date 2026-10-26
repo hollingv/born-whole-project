@@ -8,7 +8,7 @@ import (
 )
 
 // HarvestedEventsPath is the location of the JSON file written by bwctl harvest and read at site-build time.
-const HarvestedEventsPath = "dist/harvested/harvested-events.json"
+const HarvestedEventsPath = "site/harvested/harvested-events.json"
 
 // LoadHarvestedEvents reads automatically harvested events from disk.
 // Returns an empty slice if the file does not exist or cannot be parsed.

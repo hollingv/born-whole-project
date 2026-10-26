@@ -12,7 +12,11 @@ import (
 )
 
 const kbDir = "site/kb"
-const harvestedDir = "dist/harvested"
+
+// harvestedDir is where bwctl harvest writes its output files.
+// These files are tracked by git so that a given tag always produces
+// identical site content regardless of when the build runs.
+const harvestedDir = "site/harvested"
 
 const (
 	sourceAll           = "all"
@@ -20,8 +24,10 @@ const (
 	sourceYouTubeShorts = "youtubeshorts"
 )
 
-// writeManifest writes the list of KB text files to generated-kb-file-list.json.
-// Paths are stored relative to dist/ (e.g. "kb/intact-global.txt" or "harvested/yt-xxx.txt").
+// writeManifest writes the list of KB text files to generated-kb-file-list.json
+// in dist/harvested/. Called by bwctl site at build time, not by bwctl harvest,
+// so the manifest is always in sync with whatever is on disk when the site is built.
+// Paths are stored relative to dist/ (e.g. "kb/intact-global.txt").
 func writeManifest() {
 	var paths []string
 	if files, _ := filepath.Glob(filepath.Join(kbDir, "*.txt")); files != nil {
@@ -35,7 +41,7 @@ func writeManifest() {
 		}
 	}
 	manifest, _ := json.MarshalIndent(paths, "", "  ")
-	manifestPath := filepath.Join(harvestedDir, "generated-kb-file-list.json")
+	manifestPath := filepath.Join(targetDir, "harvested", "generated-kb-file-list.json")
 	if err := os.WriteFile(manifestPath, manifest, 0644); err != nil {
 		fmt.Fprintf(os.Stderr, "Error writing manifest: %v\n", err)
 		return
@@ -45,9 +51,11 @@ func writeManifest() {
 
 var harvestCmd = &cobra.Command{
 	Use:   "harvest",
-	Short: "Harvest dynamic data and update the knowledge base manifest",
-	Long: `Harvests dynamic data and updates dist/harvested/.
-Use --source to select which data to harvest: events, youtubeshorts, or all (default).`,
+	Short: "Fetch live data into site/harvested/ for review and commit",
+	Long: `Fetches live data and writes it to site/harvested/ so it can be
+reviewed and committed to git. Run this manually when you want to
+refresh events or YouTube Shorts metadata.
+Use --source to select which data to harvest (default: all).`,
 	Run: func(cmd *cobra.Command, args []string) {
 		source, _ := cmd.Flags().GetString("source")
 		days, _ := cmd.Flags().GetInt("days")
@@ -56,7 +64,7 @@ Use --source to select which data to harvest: events, youtubeshorts, or all (def
 		case sourceAll, sourceEvents, sourceYouTubeShorts:
 			// valid
 		default:
-			fmt.Fprintf(os.Stderr, "Invalid --source %q. Must be one of: %s, %s, %s\n",
+			fmt.Fprintf(os.Stderr, "Invalid --source %q. Must be one of: %s, %s, or %s\n",
 				source, sourceAll, sourceEvents, sourceYouTubeShorts)
 			os.Exit(1)
 		}
@@ -73,8 +81,7 @@ Use --source to select which data to harvest: events, youtubeshorts, or all (def
 			youtube.BuildResources(projectPrefix, days)
 		}
 
-		writeManifest()
-		fmt.Println("Harvest complete.")
+		fmt.Println("Harvest complete. Review changes in site/harvested/ then commit.")
 	},
 }
 
