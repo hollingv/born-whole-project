@@ -117,11 +117,14 @@ build: ## Compile the bwctl Go binary
 	CGO_ENABLED=0 $(GO_BIN) build -ldflags '-X main.version=$(APP_TAG)' -o $(APP_NAME) ./src/cmd/$(APP_NAME)
 	@echo "[ INFO ] Binary built: ./$(APP_NAME).  Ensure '.' is in your PATH to run it as '$(APP_NAME)'."
 
-site-build: build ## Harvest data and generate the full site
+site-build: build ## Generate the site from committed content (no network calls)
 	cp -r site/. $(TARGET_DIR)/
-	./$(APP_NAME) harvest
 	./$(APP_NAME) site --version $(APP_TAG)
 	@echo "[ INFO ] Site built at version $(APP_TAG)"
+
+harvest: build ## Fetch live data into site/harvested/ — review and commit the result
+	./$(APP_NAME) harvest
+	@echo "[ INFO ] Review changes in site/harvested/ then: git add site/harvested/ && git commit"
 
 test: site-build test-unit test-integ-local ## Build and run all tests
 

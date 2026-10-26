@@ -176,6 +176,13 @@ var siteCmd = &cobra.Command{
 			DonationItems:     data.DonationItems,
 		}
 
+		// Ensure dist/harvested/ exists and generate the KB manifest.
+		if err := os.MkdirAll(filepath.Join(targetDir, "harvested"), 0755); err != nil {
+			fmt.Fprintf(os.Stderr, "Error creating harvested directory: %v\n", err)
+			os.Exit(1)
+		}
+		writeManifest()
+
 		pages, err := discoverPages("templates")
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error discovering templates: %v\n", err)
