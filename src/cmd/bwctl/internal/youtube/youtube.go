@@ -6,9 +6,11 @@ package youtube
 import (
 	"encoding/json"
 	"fmt"
+	"html"
 	"net/http"
 	"net/url"
 	"os"
+	"strings"
 	"time"
 
 	"born-whole-project/src/cmd/bwctl/internal/data"
@@ -101,6 +103,21 @@ func resolveChannelID(apiKey, handle string) (string, error) {
 	return channelID, nil
 }
 
+// stripNonASCII decodes HTML entities (e.g. &#39; → ') then removes any
+// character outside the printable ASCII range (32–126) and trims surrounding
+// whitespace. Applied to titles and descriptions before writing to the
+// harvested JSON file.
+func stripNonASCII(s string) string {
+	s = html.UnescapeString(s)
+	var b strings.Builder
+	for _, r := range s {
+		if r >= 32 && r <= 126 {
+			b.WriteRune(r)
+		}
+	}
+	return strings.TrimSpace(b.String())
+}
+
 // searchShorts pages through the YouTube search API and returns all matching Shorts.
 func searchShorts(apiKey, channelID string, days int) ([]data.Resource, error) {
 	publishedAfter := time.Now().AddDate(0, 0, -days).UTC().Format(time.RFC3339)
@@ -126,8 +143,8 @@ func searchShorts(apiKey, channelID string, days int) ([]data.Resource, error) {
 		}
 		for _, item := range searchResp.Items {
 			resources = append(resources, data.Resource{
-				Title:       item.Snippet.Title,
-				Description: item.Snippet.Description,
+				Title:       stripNonASCII(item.Snippet.Title),
+				Description: stripNonASCII(item.Snippet.Description),
 				VideoID:     item.ID.VideoID,
 			})
 		}
