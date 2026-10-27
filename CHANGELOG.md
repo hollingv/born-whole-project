@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.52.0 - 2026-10-27
+#### Features
+- (**ci**) harvested files now in git - (f419181) - hollingv
+- (**organizations**) add Jenna McClelland circumcision researcher - (fc15c03) - hollingv
+- (**resources**) add 'Elephant in the hospital' video - (0b03a4c) - hollingv
+- (**ui**) improved wording of key-facts page - (a95015e) - hollingv
+- (**youtube**) strip out non-ascii and html encoding - (a34b757) - hollingv
+
+- - -
+
 ## v0.51.0 - 2026-10-25
 #### Features
 - (**organizations**) add foregen organization - (e9acc32) - hollingv
