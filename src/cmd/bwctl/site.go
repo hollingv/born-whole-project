@@ -82,6 +82,38 @@ func homeEventGroups(events []data.Event) []HomeEventGroup {
 	return result
 }
 
+// OrgSocialEntry pairs an organisation with its URL for a specific social platform.
+type OrgSocialEntry struct {
+	Org data.Organization
+	URL string
+}
+
+// orgsBySocial returns all organisations across all groups that have the given
+// social platform set, paired with their URL for that platform.
+// platform must be "Facebook", "X", "Instagram", or "YouTube".
+func orgsBySocial(groups []data.OrgGroup, platform string) []OrgSocialEntry {
+	var entries []OrgSocialEntry
+	for _, g := range groups {
+		for _, org := range g.Organizations {
+			var url string
+			switch platform {
+			case "Facebook":
+				url = org.SocialSites.Facebook
+			case "X":
+				url = org.SocialSites.X
+			case "Instagram":
+				url = org.SocialSites.Instagram
+			case "YouTube":
+				url = org.SocialSites.YouTube
+			}
+			if url != "" {
+				entries = append(entries, OrgSocialEntry{Org: org, URL: url})
+			}
+		}
+	}
+	return entries
+}
+
 // groupEventsByKind partitions events into groups by Kind, preserving the order
 // in which each Kind is first encountered. It is registered as a template function.
 func groupEventsByKind(events []data.Event) []EventGroup {
@@ -192,6 +224,7 @@ var siteCmd = &cobra.Command{
 		funcMap := template.FuncMap{
 			"groupEventsByKind": groupEventsByKind,
 			"homeEventGroups":   homeEventGroups,
+			"orgsBySocial":      orgsBySocial,
 		}
 
 		for _, p := range pages {
