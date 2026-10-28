@@ -2,6 +2,8 @@
 
 For non-developer contributions — adding organizations, FAQ entries, events, or reporting issues — see the [Get Involved](https://bornwhole.org/get-involved.html) page on the site.
 
+**Organizations:** if you represent an advocacy organization and want to share your events automatically with BWP, see the [Organizations section of Get Involved](https://bornwhole.org/get-involved.html#organizations) for details on the JSON-LD and JSON feed conventions BWP supports.
+
 ## Tech stack
 
 | Component | Technology |
