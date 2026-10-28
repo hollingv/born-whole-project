@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.53.0 - 2026-10-28
+#### Features
+- (**organizations**) add all social media URLs - (332e453) - hollingv
+- (**ui**) add Organizations by Social Media page - (4399ef4) - hollingv
+- (**ui**) use svg images for all social media sites - (9be0269) - hollingv
+- (**ui**) introduce empty social links into organization cards - (930b15e) - hollingv
+- (**ui**) update md files with future json events protocol - (a59a928) - hollingv
+#### Bug Fixes
+- (**ui**) use 'List by Social Media' and indent the html - (d8abe87) - hollingv
+
+- - -
+
 ## v0.52.0 - 2026-10-27
 #### Features
 - (**ci**) harvested files now in git - (f419181) - hollingv
