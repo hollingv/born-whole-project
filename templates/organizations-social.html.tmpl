@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizations by Social Media — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+    {{template "head-og" .}}
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main class="orgs-social-page">
+        <h1>Organizations by Social Media</h1>
+        <p>Find and follow participating organizations on each social media platform.</p>
+
+        <div class="get-involved-nav">
+            <a href="#facebook" class="get-involved-nav-link">
+                <img src="images/social-facebook.svg" alt="Facebook" class="social-nav-icon"/> Facebook
+            </a>
+            <a href="#x" class="get-involved-nav-link">
+                <img src="images/social-x.svg" alt="X" class="social-nav-icon"/> X
+            </a>
+            <a href="#instagram" class="get-involved-nav-link">
+                <img src="images/social-instagram.svg" alt="Instagram" class="social-nav-icon"/> Instagram
+            </a>
+            <a href="#youtube" class="get-involved-nav-link">
+                <img src="images/social-youtube.svg" alt="YouTube" class="social-nav-icon"/> YouTube
+            </a>
+        </div>
+
+        <section class="social-platform-section" id="facebook">
+            <h2 class="social-platform-heading">
+                <img src="images/social-facebook.svg" alt="Facebook" class="social-heading-icon"/> Facebook
+            </h2>
+            <div class="social-org-list">
+                {{range orgsBySocial .OrgGroups "Facebook"}}
+                <a href="{{.URL}}" target="_blank" class="social-org-item">
+                    <img src="{{.Org.Thumbnail}}" alt="{{.Org.Name}}" class="social-org-thumbnail"/>
+                    <div class="social-org-info">
+                        <span class="social-org-name">{{.Org.Name}}</span>
+                        <span class="social-org-url">{{.URL}}</span>
+                    </div>
+                </a>
+                {{end}}
+            </div>
+        </section>
+
+        <section class="social-platform-section" id="x">
+            <h2 class="social-platform-heading">
+                <img src="images/social-x.svg" alt="X" class="social-heading-icon"/> X
+            </h2>
+            <div class="social-org-list">
+                {{range orgsBySocial .OrgGroups "X"}}
+                <a href="{{.URL}}" target="_blank" class="social-org-item">
+                    <img src="{{.Org.Thumbnail}}" alt="{{.Org.Name}}" class="social-org-thumbnail"/>
+                    <div class="social-org-info">
+                        <span class="social-org-name">{{.Org.Name}}</span>
+                        <span class="social-org-url">{{.URL}}</span>
+                    </div>
+                </a>
+                {{end}}
+            </div>
+        </section>
+
+        <section class="social-platform-section" id="instagram">
+            <h2 class="social-platform-heading">
+                <img src="images/social-instagram.svg" alt="Instagram" class="social-heading-icon"/> Instagram
+            </h2>
+            <div class="social-org-list">
+                {{range orgsBySocial .OrgGroups "Instagram"}}
+                <a href="{{.URL}}" target="_blank" class="social-org-item">
+                    <img src="{{.Org.Thumbnail}}" alt="{{.Org.Name}}" class="social-org-thumbnail"/>
+                    <div class="social-org-info">
+                        <span class="social-org-name">{{.Org.Name}}</span>
+                        <span class="social-org-url">{{.URL}}</span>
+                    </div>
+                </a>
+                {{end}}
+            </div>
+        </section>
+
+        <section class="social-platform-section" id="youtube">
+            <h2 class="social-platform-heading">
+                <img src="images/social-youtube.svg" alt="YouTube" class="social-heading-icon"/> YouTube
+            </h2>
+            <div class="social-org-list">
+                {{range orgsBySocial .OrgGroups "YouTube"}}
+                <a href="{{.URL}}" target="_blank" class="social-org-item">
+                    <img src="{{.Org.Thumbnail}}" alt="{{.Org.Name}}" class="social-org-thumbnail"/>
+                    <div class="social-org-info">
+                        <span class="social-org-name">{{.Org.Name}}</span>
+                        <span class="social-org-url">{{.URL}}</span>
+                    </div>
+                </a>
+                {{end}}
+            </div>
+        </section>
+
+        <a href="#" class="back-to-top">&#8679; Top</a>
+    </main>
+
+    {{template "footer" .}}
+
+</body>
+</html>
