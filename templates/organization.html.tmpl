@@ -17,5 +17,11 @@
         {{if .ContactUsUrl}}<a href="{{.ContactUsUrl}}" target="_blank" class="org-link">Contact Us</a>{{else}}<span class="org-link org-link--disabled">Contact Us</span>{{end}}
         <span class="org-link org-link--disabled">TBD</span>
     </div>
+    <div class="org-social">
+        {{if .SocialSites.Facebook}}<a href="{{.SocialSites.Facebook}}" target="_blank" class="org-social-link org-social-facebook">Facebook</a>{{else}}<span class="org-social-link org-social-facebook org-social--disabled">Facebook</span>{{end}}
+        {{if .SocialSites.X}}<a href="{{.SocialSites.X}}" target="_blank" class="org-social-link org-social-x">X</a>{{else}}<span class="org-social-link org-social-x org-social--disabled">X</span>{{end}}
+        {{if .SocialSites.Instagram}}<a href="{{.SocialSites.Instagram}}" target="_blank" class="org-social-link org-social-instagram">Instagram</a>{{else}}<span class="org-social-link org-social-instagram org-social--disabled">Instagram</span>{{end}}
+        {{if .SocialSites.YouTube}}<a href="{{.SocialSites.YouTube}}" target="_blank" class="org-social-link org-social-youtube">YouTube</a>{{else}}<span class="org-social-link org-social-youtube org-social--disabled">YouTube</span>{{end}}
+    </div>
 </article>
 {{end}}
