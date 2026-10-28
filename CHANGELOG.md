@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.53.1 - 2026-10-28
+#### Bug Fixes
+- (**ui**) the organization-social page mobile browser issue - (7fd296a) - hollingv
+
+- - -
+
 ## v0.53.0 - 2026-10-28
 #### Features
 - (**organizations**) add all social media URLs - (332e453) - hollingv
