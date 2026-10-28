@@ -1,17 +1,26 @@
 // Package data contains the site's static content — organization registry, events, news, FAQ, and donation entries — together with types and helpers for loading harvested runtime data.
 package data
 
+// SocialSites holds the social media profile URLs for an organization.
+type SocialSites struct {
+	Facebook  string // Facebook page URL; empty if not available
+	X         string // X (formerly Twitter) profile URL; empty if not available
+	Instagram string // Instagram profile URL; empty if not available
+	YouTube   string // YouTube channel URL; empty if not available
+}
+
 // Organization represents an advocacy organization to feature on the site.
 type Organization struct {
-	ID           string // unique identifier used to reference this org from other data structures
-	Name         string // display name shown on cards and in navigation
-	Description  string // one-sentence summary shown on the organization card
-	Website      string // canonical home page URL; always populated
-	Thumbnail    string // path to logo image relative to dist/; use PlaceholderImage if unknown
-	NewsUrl      string // URL to the org's news or press page; empty if not available
-	EventsUrl    string // URL to the org's events page; empty if not available
-	DonateUrl    string // URL to the org's donation page; empty if not available
-	ContactUsUrl string // URL to the org's contact page; empty if not available
+	ID           string     // unique identifier used to reference this org from other data structures
+	Name         string     // display name shown on cards and in navigation
+	Description  string     // one-sentence summary shown on the organization card
+	Website      string     // canonical home page URL; always populated
+	Thumbnail    string     // path to logo image relative to dist/; use PlaceholderImage if unknown
+	NewsUrl      string     // URL to the org's news or press page; empty if not available
+	EventsUrl    string     // URL to the org's events page; empty if not available
+	DonateUrl    string     // URL to the org's donation page; empty if not available
+	ContactUsUrl string     // URL to the org's contact page; empty if not available
+	SocialSites   SocialSites // social media profile URLs
 }
 
 // OrgGroup represents a category of organizations.
@@ -35,6 +44,12 @@ const ContributeExample = `{
     EventsUrl:   "https://yourwebsite.org/events",
     DonateUrl:    "https://yourwebsite.org/donate",
     ContactUsUrl: "https://yourwebsite.org/contact",
+    SocialSites: SocialSites{
+        Facebook:  "https://facebook.com/yourpage",
+        X:         "https://x.com/yourhandle",
+        Instagram: "https://instagram.com/yourhandle",
+        YouTube:   "https://youtube.com/@yourchannel",
+    },
 },`
 
 // OrganizationMap provides O(1) lookup of organizations by ID.
@@ -77,6 +92,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "",
 				DonateUrl:    "https://www.intactglobal.org/support/donate",
 				ContactUsUrl: "https://www.intactglobal.org/contact",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 			{
 				ID:           "intaction",
@@ -88,6 +109,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "",
 				DonateUrl:    "https://www.zeffy.com/en-US/embed/donation-form/donate-to-make-a-difference-3786?modal=true",
 				ContactUsUrl: "https://intaction.org/contact-us/",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 			{
 				ID:           "galdef",
@@ -99,6 +126,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "",
 				DonateUrl:    "https://www.galdef.org/donate/",
 				ContactUsUrl: "https://www.galdef.org/contact/",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 			{
 				ID:           "circumcision-law-reform",
@@ -110,6 +143,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "",
 				DonateUrl:    "",
 				ContactUsUrl: "https://circumcisionlawreform.org/contact/",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 			{
 				ID:           "arc",
@@ -121,6 +160,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "https://www.arclaw.org/events",
 				DonateUrl:    "https://www.arclaw.org/donate",
 				ContactUsUrl: "https://www.arclaw.org/contact",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 		},
 	},
@@ -137,6 +182,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "",
 				DonateUrl:    "",
 				ContactUsUrl: "https://www.doctorsopposingcircumcision.org/contact/",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 		},
 	},
@@ -153,6 +204,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "https://nocircofmi.org/events/",
 				DonateUrl:    "https://nocircofmi.org/donate/",
 				ContactUsUrl: "https://nocircofmi.org/contact/",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 			{
 				ID:           "nocirc",
@@ -164,6 +221,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "",
 				DonateUrl:    "",
 				ContactUsUrl: "https://www.nocirc.org/contact.php",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 			{
 				ID:           "intact-america",
@@ -175,6 +238,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "https://intactamerica.org/events",
 				DonateUrl:    "https://intactamerica.org/donate/",
 				ContactUsUrl: "",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 			{
 				ID:           "your-whole-baby",
@@ -186,6 +255,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "",
 				DonateUrl:    "https://www.yourwholebaby.org/donate",
 				ContactUsUrl: "https://www.yourwholebaby.org/contact",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 			{
 				ID:           "intacivist-circle",
@@ -197,6 +272,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "",
 				DonateUrl:    "",
 				ContactUsUrl: "https://intactivist.org/contact/",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 			{
 				ID:           "hegemon-media",
@@ -208,6 +289,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "",
 				DonateUrl:    "",
 				ContactUsUrl: "",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 			{
 				ID:           "little-images",
@@ -219,6 +306,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "",
 				DonateUrl:    "",
 				ContactUsUrl: "https://littleimages.org/contact/",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 		},
 	},
@@ -235,6 +328,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "https://giaw.org",
 				DonateUrl:    "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=G6VLETWSGSR22&ssrt=1790887007235",
 				ContactUsUrl: "",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 			{
 				ID:           "saving-our-sons",
@@ -246,6 +345,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "",
 				DonateUrl:    "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=G6VLETWSGSR22&ssrt=1790887007235",
 				ContactUsUrl: "http://www.savingsons.org/p/contact.html",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 			{
 				ID:           "blood-stained-men",
@@ -257,6 +362,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "https://www.bloodstainedmen.com/about-us/events/",
 				DonateUrl:    "https://www.bloodstainedmen.com/donate/",
 				ContactUsUrl: "https://www.bloodstainedmen.com/contact/",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 			{
 				ID:           "cock-fight",
@@ -268,6 +379,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "",
 				DonateUrl:    "https://www.paypal.com/donate?token=1a0K98qZvMRP1fmmVgNzszVvMPbI40mfxCasBd8HXcJ_9jJGTdk-iKkYeUA-zf6lMASdKAdMHJyQhe0e",
 				ContactUsUrl: "",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 		},
 	},
@@ -284,6 +401,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "",
 				DonateUrl:    "https://foregen.org/donate",
 				ContactUsUrl: "",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 			{
 				ID:           "jennamcclelland",
@@ -295,6 +418,12 @@ var OrgGroups = []OrgGroup{
 				EventsUrl:    "",
 				DonateUrl:    "",
 				ContactUsUrl: "",
+				SocialSites: SocialSites{
+						Facebook:  "",
+						X:         "",
+						Instagram: "",
+						YouTube:   "",
+					},
 			},
 		},
 	},
