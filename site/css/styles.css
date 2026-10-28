@@ -776,6 +776,8 @@ nav.site-nav a.brand {
     border: 1px solid rgba(0,0,0,0.08);
     border-radius: 6px;
     overflow: hidden;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 .social-org-item {
     display: grid;
