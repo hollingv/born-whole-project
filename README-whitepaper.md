@@ -61,13 +61,43 @@ BWP operates as a dispatching hub — a central resource that directs users to t
 
 ### 4.1 The URL Convention Protocol
 
-BWP encourages participating organizations to publish content at consistent URL paths, which supports future automated aggregation features planned for news, events, and legal case tracking.
+BWP encourages participating organizations to publish content at consistent URL paths, which supports automated aggregation of news, events, and legal case tracking.
 
 | Path | Expected Content | BWP Feature |
 |---|---|---|
 | `/news` | Press coverage | News aggregator (planned) |
 | `/events` | Upcoming events | Events calendar (live — see §4.3) |
 | `/legal-cases` | Active and completed cases | Legal tracker (planned) |
+
+#### Structured Data Protocol
+
+Organizations that wish their events to be harvested automatically should add machine-readable structured data to their `/events` page. BWP supports two complementary conventions that build on widely adopted web standards.
+
+**1. JSON-LD embedded in the page**
+
+Add a `<script type="application/ld+json">` block using the Schema.org `Event` type. This is the same markup Google uses for event rich results in search, so organizations that have already adopted it for SEO are already compliant:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Event Name",
+  "startDate": "2026-11-15",
+  "location": { "@type": "Place", "name": "City, State" },
+  "url": "https://yourorg.org/events/event-name"
+}
+```
+
+**2. A discoverable JSON feed**
+
+Expose a machine-readable JSON feed at a predictable URL (e.g. `/events.json`) and advertise it in the `<head>` of the `/events` page using the same convention as RSS feeds:
+
+```html
+<link rel="alternate" type="application/json"
+      href="/events.json" title="Events Feed" />
+```
+
+BWP's harvester can then automatically discover and fetch structured event data without fragile HTML parsing. Organizations that adopt both conventions will benefit from fully automated event harvesting as BWP's aggregation features mature.
 
 ### 4.2 The Knowledge Base
 

@@ -27,6 +27,7 @@
         <p>{{.SiteName}} is an open-source project and welcomes contributions from everyone. You don't need to be a developer — there are meaningful ways to help regardless of your background. Find your path below.</p>
 
         <div class="get-involved-nav">
+            <a href="#organizations" class="get-involved-nav-link">Organizations</a>
             <a href="#just-email" class="get-involved-nav-link">Beginners</a>
             <a href="#technically-interested" class="get-involved-nav-link">Technically Interested</a>
             <a href="#designers" class="get-involved-nav-link">Web &amp; UI Designers</a>
@@ -39,6 +40,23 @@
         </div>
 
         <div class="get-involved-audience">
+
+            <section class="get-involved-section" id="organizations">
+                <h2>Organizations</h2>
+                <p>If your organization works to protect children from forced genital cutting, there are two ways to participate in Born Whole Project.</p>
+
+                <h3>List your organization</h3>
+                <p>Get your organization into the BWP directory by <a href="mailto:{{.ContactEmail}}">emailing us</a> or by editing <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/src/cmd/bwctl/internal/data/organizations.go" target="_blank"><code>organizations.go</code></a> directly on GitHub. Your organization's name, description, logo, and links to your news, events, and donation pages will appear on the Organizations page and be included in the AI knowledge base.</p>
+
+                <h3>Share your events automatically</h3>
+                <p>BWP aggregates upcoming events from participating organizations. To have your events included automatically, add machine-readable structured data to your <code>/events</code> page. There are two complementary approaches:</p>
+                <ul>
+                    <li><strong>JSON-LD (recommended)</strong> — add a <code>&lt;script type="application/ld+json"&gt;</code> block to your <code>/events</code> page using the <a href="https://schema.org/Event" target="_blank">Schema.org Event</a> type. This is the same markup Google uses for event rich results in search, so many organizations have already done this for SEO purposes.</li>
+                    <li><strong>JSON feed</strong> — expose your events at a predictable URL such as <code>/events.json</code> and advertise it in your page <code>&lt;head&gt;</code> with <code>&lt;link rel="alternate" type="application/json" href="/events.json"&gt;</code>. BWP's harvester can then discover and fetch your events automatically without fragile HTML parsing.</li>
+                </ul>
+                <p>Full technical details are in the <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/README-whitepaper.md" target="_blank">BWP whitepaper</a>, §4.1.</p>
+                <a href="mailto:{{.ContactEmail}}" class="get-involved-btn">Email us to get listed</a>
+            </section>
 
             <section class="get-involved-section" id="just-email">
                 <h2>Beginners</h2>
