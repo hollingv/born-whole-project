@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Attorney Clopper — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+    <script src="js/ask-attorney-clopper-form.js" defer></script>
+    {{template "head-og" .}}
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main class="resources-page">
+        <h1>Ask Attorney Clopper</h1>
+        <p>Ask a question and get an answer grounded exclusively in transcripts from Attorney Eric Clopper's YouTube Shorts — no outside knowledge, no hallucination.</p>
+
+        <section class="resource-section">
+            <form class="prompt-form" action="/ask-attorney-clopper" method="get">
+                <div class="prompt-input-wrapper">
+                    <input type="text" class="prompt-input" name="q" placeholder="What does Attorney Clopper say about circumcision?" autocomplete="off" />
+                </div>
+                <button type="submit" class="prompt-submit">Ask Attorney Clopper</button>
+            </form>
+            <div id="ask-response" class="ask-response"></div>
+        </section>
+    </main>
+
+    {{template "footer" .}}
+
+</body>
+</html>

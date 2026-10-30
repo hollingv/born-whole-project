@@ -1,8 +1,9 @@
 // Package main implements the local development server for Born Whole Project.
 // It serves the generated site from the dist/ directory and provides the /ask
-// endpoint, which performs knowledge-base search and calls the Cloudflare AI API
-// to generate grounded answers.
-// The /ask handler logic mirrors functions/ask.js — keep both in sync when making changes.
+// and /ask-attorney-clopper endpoints, each searching a different KB manifest
+// and calling the Cloudflare AI API to generate grounded answers.
+// The handler logic mirrors functions/ask.js and functions/ask-attorney-clopper.js
+// — keep both in sync when making changes.
 package main
 
 import (
@@ -25,12 +26,13 @@ func uniqueSources(chunks []chunk) []string {
 	return sources
 }
 
-// handleAsk processes the /ask request — searches KB and calls AI.
-func handleAsk(w http.ResponseWriter, r *http.Request, siteDir string) {
+// handleAsk is the generic ask handler. It searches the given KB manifest and
+// calls the Cloudflare AI API to produce a grounded answer.
+func handleAsk(w http.ResponseWriter, r *http.Request, siteDir, manifestFile, disclaimer string) {
 	q := r.URL.Query().Get("q")
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
-	chunks, err := searchKB(q, siteDir)
+	chunks, err := searchKB(q, siteDir, manifestFile)
 	if err != nil {
 		fmt.Fprintf(w, "<p>%s</p>", err.Error())
 		return
@@ -63,15 +65,25 @@ func handleAsk(w http.ResponseWriter, r *http.Request, siteDir string) {
 		sourceLinks = append(sourceLinks, fmt.Sprintf(`<a href="%s" target="_blank">%s</a>`, s, s))
 	}
 	fmt.Fprintf(w, "<p class=\"ask-sources\">Sources:<br>%s</p>", strings.Join(sourceLinks, "<br>"))
-	fmt.Fprintf(w, "<p class=\"ask-disclaimer\">Answers are generated from curated sources. Always verify with the linked organisations.</p>")
+	fmt.Fprintf(w, "<p class=\"ask-disclaimer\">%s</p>", disclaimer)
 }
 
 func newHandler(siteDir string) http.Handler {
 	fs := http.FileServer(http.Dir(siteDir))
 	mux := http.NewServeMux()
+
 	mux.HandleFunc("/ask", func(w http.ResponseWriter, r *http.Request) {
-		handleAsk(w, r, siteDir)
+		handleAsk(w, r, siteDir,
+			"generated-kb-file-list.json",
+			"Answers are generated from curated sources. Always verify with the linked organisations.")
 	})
+
+	mux.HandleFunc("/ask-attorney-clopper", func(w http.ResponseWriter, r *http.Request) {
+		handleAsk(w, r, siteDir,
+			"generated-attyclopper-kb-file-list.json",
+			"Answers are drawn from Attorney Clopper's YouTube Shorts transcripts. Always verify with the source videos.")
+	})
+
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fs.ServeHTTP(w, r)
 	})

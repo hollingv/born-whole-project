@@ -56,9 +56,10 @@ func sourceFromContent(content, filename string) string {
 	return strings.TrimSuffix(filepath.Base(filename), ".txt")
 }
 
-// searchKB loads the KB manifest and returns scored, sorted chunks matching the query.
-func searchKB(q, siteDir string) ([]chunk, error) {
-	manifestData, err := os.ReadFile(filepath.Join(siteDir, "harvested", "generated-kb-file-list.json"))
+// searchKB loads the named KB manifest and returns scored, sorted chunks matching the query.
+// manifestFile is the filename within siteDir/harvested/ (e.g. "generated-kb-file-list.json").
+func searchKB(q, siteDir, manifestFile string) ([]chunk, error) {
+	manifestData, err := os.ReadFile(filepath.Join(siteDir, "harvested", manifestFile))
 	if err != nil {
 		return nil, fmt.Errorf("KB not available: %w", err)
 	}
