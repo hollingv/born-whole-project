@@ -562,6 +562,12 @@ nav.site-nav a.brand {
     min-height: 0;
     overflow-y: auto;
 }
+/* On standalone ask pages the response div is not inside a flex container */
+.resources-page .ask-response {
+    flex: none;
+    display: block;
+    width: 100%;
+}
 .ask-question {
     font-size: 0.85rem;
     color: #888;
