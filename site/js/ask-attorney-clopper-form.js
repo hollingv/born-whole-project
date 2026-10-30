@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const q = input.value.trim();
         if (!q) return;
 
+        responseDiv.classList.add('has-content');
         responseDiv.innerHTML = `<p class="ask-question">You asked: <strong>${q}</strong></p><p>Thinking...</p>`;
 
         const resp = await fetch(`/ask-attorney-clopper?q=${encodeURIComponent(q)}`);

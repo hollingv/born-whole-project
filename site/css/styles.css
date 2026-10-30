@@ -575,9 +575,10 @@ nav.site-nav a.brand {
     padding-bottom: 0.75rem;
     border-bottom: 1px solid #e4e8f0;
 }
+.ask-response.has-content,
 .ask-response:not(:empty) {
     margin-top: 1rem;
-    background: var(--page-bg);
+    background: #ffffff;
     border: 1px solid #e4e8f0;
     border-radius: 12px;
     padding: 1.5rem;
