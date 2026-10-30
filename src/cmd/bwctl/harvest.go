@@ -80,7 +80,6 @@ Use --source to select which data to harvest (default: all).`,
 		if source == sourceAll || source == sourceYouTubeShorts {
 			youtube.BuildResources(projectPrefix, days)
 		}
-
 		fmt.Println("Harvest complete. Review changes in site/harvested/ then commit.")
 	},
 }
