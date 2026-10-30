@@ -25,7 +25,12 @@ var FAQItems = []FAQItem{
 }
 
 // SiteFAQItems is the list of frequently asked questions about this site.
+// The first entry is the mission statement, displayed as an expandable question on the About page.
 var SiteFAQItems = []FAQItem{
+	{
+		Question: "What is Born Whole's mission?",
+		Answer:   "To protect every child's right to a whole body by connecting parents, doctors, lawyers, advocates, and the public with the knowledge and organizations needed to understand, oppose, and ultimately end non-religious genital cutting.\n\nBorn Whole is an independent, open-source advocacy resource. We are not affiliated with any single organization — we amplify the work of those already engaged in this cause by making knowledge openly accessible and encouraging collaboration with accepted open source practices.",
+	},
 	{
 		Question: "What is Born Whole?",
 		Answer:   "Born Whole is an independent, open-source advocacy platform connecting parents, doctors, lawyers, advocates, and the public with the organizations and information working to end forced genital cutting of children.",
