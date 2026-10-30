@@ -10,8 +10,32 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"regexp"
 	"strings"
 )
+
+// sentenceRe matches a single sentence ending with . ! or ?
+var sentenceRe = regexp.MustCompile(`[^.!?]*[.!?]+\s*`)
+
+// formatParagraphs splits plain AI response text into <p> elements by grouping
+// every two sentences, regardless of how the model chose to format its output.
+func formatParagraphs(text string) string {
+	sentences := sentenceRe.FindAllString(text, -1)
+	if len(sentences) == 0 {
+		return "<p>" + text + "</p>"
+	}
+	var paras []string
+	for i := 0; i < len(sentences); i += 2 {
+		end := i + 2
+		if end > len(sentences) {
+			end = len(sentences)
+		}
+		if para := strings.TrimSpace(strings.Join(sentences[i:end], "")); para != "" {
+			paras = append(paras, "<p>"+para+"</p>")
+		}
+	}
+	return strings.Join(paras, "\n")
+}
 
 // uniqueSources returns deduplicated source names from a slice of chunks.
 func uniqueSources(chunks []chunk) []string {
@@ -59,7 +83,7 @@ func handleAsk(w http.ResponseWriter, r *http.Request, siteDir, manifestFile, di
 		return
 	}
 
-	fmt.Fprintf(w, "<p>%s</p>", answer)
+	fmt.Fprintf(w, "%s", formatParagraphs(answer))
 	var sourceLinks []string
 	for _, s := range sources {
 		sourceLinks = append(sourceLinks, fmt.Sprintf(`<a href="%s" target="_blank">%s</a>`, s, s))

@@ -1,5 +1,6 @@
 // Cloudflare Pages Function handling the /ask endpoint for the siteName
 // The logic in this file mirrors src/server/server.go — keep both in sync when making changes.
+import { formatParagraphs } from './_shared.js';
 
 const AI_MODEL = '@cf/meta/llama-3.1-8b-instruct-fast';
 
@@ -80,7 +81,7 @@ async function askAI(q, chunks, context) {
             ]
         });
         return respond(
-            `<p>${aiResponse.response}</p>` +
+            formatParagraphs(aiResponse.response) +
             `<p class="ask-sources">Sources:<br>${sources.join('<br>')}</p>` +
             `<p class="ask-disclaimer">Answers are generated from curated sources. Always verify with the linked organisations.</p>`
         );
