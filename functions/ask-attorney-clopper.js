@@ -1,4 +1,5 @@
 // Cloudflare Pages Function handling the /ask-attorney-clopper endpoint.
+import { formatParagraphs } from './_shared.js';
 // Searches transcripts from Attorney Eric Clopper's YouTube Shorts and
 // returns AI-generated answers grounded exclusively in that content.
 // Mirrors the pattern in functions/ask.js — keep both in sync when making changes.
@@ -87,7 +88,7 @@ async function askAI(q, chunks, context) {
             ]
         });
         return respond(
-            `<p>${aiResponse.response}</p>` +
+            formatParagraphs(aiResponse.response) +
             `<p class="ask-sources">Sources:<br>${sources.join('<br>')}</p>` +
             `<p class="ask-disclaimer">Answers are drawn from Attorney Clopper's YouTube Shorts transcripts. Always verify with the source videos.</p>`
         );
