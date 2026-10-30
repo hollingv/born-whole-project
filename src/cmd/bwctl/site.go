@@ -115,23 +115,45 @@ func orgsBySocial(groups []data.OrgGroup, platform string) []OrgSocialEntry {
 	return entries
 }
 
-// writeAttyClopperManifest writes the list of Attorney Clopper transcript files
-// to dist/harvested/generated-attyclopper-kb-file-list.json so the
-// /ask-attorney-clopper endpoint can search them. Paths are stored relative
-// to dist/ (e.g. "kb/attyClopper/dQw4w9WgXcQ.txt").
-func writeAttyClopperManifest() {
-	files, _ := filepath.Glob(filepath.Join(attyClopperKBDir, "*.txt"))
-	var paths []string
+// writeKBBundle reads all main KB text files and writes their contents as a JSON
+// array to dist/harvested/kb-bundle.json. The /ask endpoint fetches this single
+// file instead of making one subrequest per KB file.
+func writeKBBundle() {
+	files, _ := filepath.Glob(filepath.Join(kbDir, "*.txt"))
+	var contents []string
 	for _, f := range files {
-		paths = append(paths, "kb/attyClopper/"+filepath.Base(f))
+		data, err := os.ReadFile(f)
+		if err == nil {
+			contents = append(contents, string(data))
+		}
 	}
-	raw, _ := json.MarshalIndent(paths, "", "  ")
-	manifestPath := filepath.Join(targetDir, "harvested", "generated-attyclopper-kb-file-list.json")
-	if err := os.WriteFile(manifestPath, raw, 0644); err != nil {
-		fmt.Fprintf(os.Stderr, "Error writing Attorney Clopper manifest: %v\n", err)
+	raw, _ := json.MarshalIndent(contents, "", "  ")
+	bundlePath := filepath.Join(targetDir, "harvested", "kb-bundle.json")
+	if err := os.WriteFile(bundlePath, raw, 0644); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing KB bundle: %v\n", err)
 		return
 	}
-	fmt.Printf("Written %s (%d files)\n", manifestPath, len(paths))
+	fmt.Printf("Written %s (%d files)\n", bundlePath, len(contents))
+}
+
+// writeAttyClopperBundle reads all Attorney Clopper transcript files and writes
+// their contents as a JSON array to dist/harvested/attyclopper-kb-bundle.json.
+func writeAttyClopperBundle() {
+	files, _ := filepath.Glob(filepath.Join(attyClopperKBDir, "*.txt"))
+	var contents []string
+	for _, f := range files {
+		data, err := os.ReadFile(f)
+		if err == nil {
+			contents = append(contents, string(data))
+		}
+	}
+	raw, _ := json.MarshalIndent(contents, "", "  ")
+	bundlePath := filepath.Join(targetDir, "harvested", "attyclopper-kb-bundle.json")
+	if err := os.WriteFile(bundlePath, raw, 0644); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing Attorney Clopper bundle: %v\n", err)
+		return
+	}
+	fmt.Printf("Written %s (%d files)\n", bundlePath, len(contents))
 }
 
 // groupEventsByKind partitions events into groups by Kind, preserving the order
@@ -234,7 +256,8 @@ var siteCmd = &cobra.Command{
 			os.Exit(1)
 		}
 		writeManifest()
-		writeAttyClopperManifest()
+		writeKBBundle()
+		writeAttyClopperBundle()
 
 		pages, err := discoverPages("templates")
 		if err != nil {
