@@ -9,6 +9,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/nav.js" defer></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {{range $i, $f := .SiteFAQItems}}{{if $i}},{{end}}
+            {
+                "@type": "Question",
+                "name": {{js $f.Question}},
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": {{js $f.Answer}}
+                }
+            }
+            {{end}}
+        ]
+    }
+    </script>
     {{template "head-og" .}}
 </head>
 <body>
@@ -17,6 +35,17 @@
 
     <main class="mission-page">
         <h1>About {{.SiteName}}</h1>
+
+        <h2 class="faq-section-heading">About This Site</h2>
+        <p>Questions about how Born Whole works, who runs it, and how to get involved.</p>
+        <div class="faq-list">
+            {{range .SiteFAQItems}}
+            <details class="faq-item">
+                <summary class="faq-question">{{.Question}}</summary>
+                <div class="faq-answer">{{.Answer}}{{if .ActionURL}} <a href="{{.ActionURL}}" class="faq-action-link">{{.ActionText}} →</a>{{end}}</div>
+            </details>
+            {{end}}
+        </div>
 
         <section class="about-mission">
             <h2>Our Mission</h2>
