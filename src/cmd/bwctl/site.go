@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"os"
@@ -114,6 +115,25 @@ func orgsBySocial(groups []data.OrgGroup, platform string) []OrgSocialEntry {
 	return entries
 }
 
+// writeAttyClopperManifest writes the list of Attorney Clopper transcript files
+// to dist/harvested/generated-attyclopper-kb-file-list.json so the
+// /ask-attorney-clopper endpoint can search them. Paths are stored relative
+// to dist/ (e.g. "kb/attyClopper/dQw4w9WgXcQ.txt").
+func writeAttyClopperManifest() {
+	files, _ := filepath.Glob(filepath.Join(attyClopperKBDir, "*.txt"))
+	var paths []string
+	for _, f := range files {
+		paths = append(paths, "kb/attyClopper/"+filepath.Base(f))
+	}
+	raw, _ := json.MarshalIndent(paths, "", "  ")
+	manifestPath := filepath.Join(targetDir, "harvested", "generated-attyclopper-kb-file-list.json")
+	if err := os.WriteFile(manifestPath, raw, 0644); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing Attorney Clopper manifest: %v\n", err)
+		return
+	}
+	fmt.Printf("Written %s (%d files)\n", manifestPath, len(paths))
+}
+
 // groupEventsByKind partitions events into groups by Kind, preserving the order
 // in which each Kind is first encountered. It is registered as a template function.
 func groupEventsByKind(events []data.Event) []EventGroup {
@@ -214,6 +234,7 @@ var siteCmd = &cobra.Command{
 			os.Exit(1)
 		}
 		writeManifest()
+		writeAttyClopperManifest()
 
 		pages, err := discoverPages("templates")
 		if err != nil {
