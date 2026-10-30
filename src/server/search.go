@@ -56,16 +56,17 @@ func sourceFromContent(content, filename string) string {
 	return strings.TrimSuffix(filepath.Base(filename), ".txt")
 }
 
-// searchKB loads the named KB manifest and returns scored, sorted chunks matching the query.
-// manifestFile is the filename within siteDir/harvested/ (e.g. "generated-kb-file-list.json").
-func searchKB(q, siteDir, manifestFile string) ([]chunk, error) {
-	manifestData, err := os.ReadFile(filepath.Join(siteDir, "harvested", manifestFile))
+// searchKB loads a pre-built KB bundle and returns the top scored chunks matching
+// the query. bundleFile is the filename within siteDir/harvested/ (e.g. "kb-bundle.json").
+// The bundle is a JSON array of file-content strings, one per KB file.
+func searchKB(q, siteDir, bundleFile string) ([]chunk, error) {
+	bundleData, err := os.ReadFile(filepath.Join(siteDir, "harvested", bundleFile))
 	if err != nil {
 		return nil, fmt.Errorf("KB not available: %w", err)
 	}
-	var filenames []string
-	if err := json.Unmarshal(manifestData, &filenames); err != nil {
-		return nil, fmt.Errorf("KB manifest error: %w", err)
+	var fileContents []string
+	if err := json.Unmarshal(bundleData, &fileContents); err != nil {
+		return nil, fmt.Errorf("KB bundle error: %w", err)
 	}
 
 	keywords := extractKeywords(q)
@@ -74,15 +75,11 @@ func searchKB(q, siteDir, manifestFile string) ([]chunk, error) {
 	}
 
 	var chunks []chunk
-	for _, name := range filenames {
-		content, err := os.ReadFile(filepath.Join(siteDir, name))
-		if err != nil {
-			continue
-		}
-		source := sourceFromContent(string(content), name)
-		for _, para := range strings.Split(string(content), "\n\n") {
+	for _, content := range fileContents {
+		source := sourceFromContent(content, "")
+		for _, para := range strings.Split(content, "\n\n") {
 			para = strings.TrimSpace(para)
-			if para == "" {
+			if para == "" || strings.HasPrefix(para, "#") {
 				continue
 			}
 			paraLower := strings.ToLower(para)

@@ -98,13 +98,13 @@ func newHandler(siteDir string) http.Handler {
 
 	mux.HandleFunc("/ask", func(w http.ResponseWriter, r *http.Request) {
 		handleAsk(w, r, siteDir,
-			"generated-kb-file-list.json",
+			"kb-bundle.json",
 			"Answers are generated from curated sources. Always verify with the linked organisations.")
 	})
 
 	mux.HandleFunc("/ask-attorney-clopper", func(w http.ResponseWriter, r *http.Request) {
 		handleAsk(w, r, siteDir,
-			"generated-attyclopper-kb-file-list.json",
+			"attyclopper-kb-bundle.json",
 			"Answers are drawn from Attorney Clopper's YouTube Shorts transcripts. Always verify with the source videos.")
 	})
 
