@@ -39,6 +39,10 @@
         <h2 class="faq-section-heading">About This Site</h2>
         <p>Questions about how Born Whole works, who runs it, and how to get involved.</p>
         <div class="faq-list">
+            <details class="faq-item">
+                <summary class="faq-question">What is {{.SiteName}}'s mission?</summary>
+                <div class="faq-answer">To protect every child's right to a whole body by connecting parents, doctors, lawyers, advocates, and the public with the knowledge and organizations needed to understand, oppose, and ultimately end non-religious genital cutting.<br><br>{{.SiteName}} is an independent, open-source advocacy resource. We are not affiliated with any single organization — we amplify the work of those already engaged in this cause by making knowledge openly accessible and encouraging collaboration with accepted open source practices.</div>
+            </details>
             {{range .SiteFAQItems}}
             <details class="faq-item">
                 <summary class="faq-question">{{.Question}}</summary>
@@ -46,19 +50,6 @@
             </details>
             {{end}}
         </div>
-
-        <section class="about-mission">
-            <h2>Our Mission</h2>
-            <p class="about-mission-statement">To protect every child's right to a whole body by connecting parents, doctors, lawyers, advocates, and the public with the knowledge and
-            organizations needed to understand, oppose, and ultimately end non-religious genital cutting.</p>
-        </section>
-
-        <br>
-        <p>{{.SiteName}} is an independent, open-source advocacy resource. We are not affiliated with any single organization — we
-        amplify the work of those already engaged in this cause by making knowledge openly accessible and encouraging collaboration
-        with accepted open source practices.</p>
-
-        <p class="about-tagline">Learn.&nbsp; Understand.&nbsp; Take action.</p>
 
     </main>
 
