@@ -1,25 +1,9 @@
-const exampleQuestions = [
-    'What are the legal arguments against infant circumcision?',
-    'How does circumcision affect bodily autonomy?',
-    'What do you have to say about consent?',
-];
-
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('.prompt-form');
     const responseDiv = document.getElementById('ask-response');
     const input = form.querySelector('.prompt-input');
 
-    // Cycle example questions as actual input value every 3 seconds.
-    // Stop cycling once the user starts typing.
-    let index = 0;
-    let userTyped = false;
-    input.value = exampleQuestions[0];
-    input.addEventListener('input', () => { userTyped = true; });
-    setInterval(() => {
-        if (userTyped) return;
-        index = (index + 1) % exampleQuestions.length;
-        input.value = exampleQuestions[index];
-    }, 3000);
+    input.value = 'Is genital cutting illegal for both girls and boys?';
 
     // Handle form submission
     form.addEventListener('submit', async (e) => {

@@ -52,7 +52,7 @@ func uniqueSources(chunks []chunk) []string {
 
 // handleAsk is the generic ask handler. It searches the given KB manifest and
 // calls the Cloudflare AI API to produce a grounded answer.
-func handleAsk(w http.ResponseWriter, r *http.Request, siteDir, manifestFile, disclaimer string) {
+func handleAsk(w http.ResponseWriter, r *http.Request, siteDir, manifestFile, sysPrompt, disclaimer string) {
 	q := r.URL.Query().Get("q")
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
@@ -72,7 +72,7 @@ func handleAsk(w http.ResponseWriter, r *http.Request, siteDir, manifestFile, di
 		texts = append(texts, c.text)
 	}
 
-	answer, err := callCloudflareAI(q, texts)
+	answer, err := callCloudflareAI(q, texts, sysPrompt)
 	if err != nil {
 		log.Printf("AI call failed: %v", err)
 		fmt.Fprintf(w, "<p>AI unavailable. Here are relevant excerpts:</p><ul>")
@@ -99,12 +99,14 @@ func newHandler(siteDir string) http.Handler {
 	mux.HandleFunc("/ask", func(w http.ResponseWriter, r *http.Request) {
 		handleAsk(w, r, siteDir,
 			"kb-bundle.json",
+			systemPrompt,
 			"Answers are generated from curated sources. Always verify with the linked organisations.")
 	})
 
 	mux.HandleFunc("/ask-attorney-clopper", func(w http.ResponseWriter, r *http.Request) {
 		handleAsk(w, r, siteDir,
 			"attyclopper-kb-bundle.json",
+			attyClopperSystemPrompt,
 			"Answers are drawn from Attorney Clopper's YouTube Shorts transcripts. Always verify with the source videos.")
 	})
 

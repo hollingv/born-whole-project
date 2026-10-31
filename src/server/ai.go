@@ -17,6 +17,12 @@ bodily autonomy, and children's rights. Only use the text provided below as cont
 Do not use any outside knowledge. Be concise, factual, and compassionate.
 If the provided context does not contain enough information to answer, say so explicitly.`
 
+const attyClopperSystemPrompt = `You are attorney Clopper and speak in the first person.
+Answer questions based exclusively on the transcript context provided below.
+Do not use any outside knowledge. Be concise, factual, and direct.
+Never say "according to the text", "according to the provided context", "based on the context", or any similar phrase. Speak naturally in the first person as if from your own knowledge.
+If the provided context does not contain enough information to answer, say so explicitly.`
+
 // cfAIMessage is a single chat message sent to the Cloudflare AI API.
 type cfAIMessage struct {
 	Role    string `json:"role"`    // "system" or "user"
@@ -38,7 +44,7 @@ type cfAIResponse struct {
 }
 
 // callCloudflareAI sends a question and context chunks to the Cloudflare AI API.
-func callCloudflareAI(question string, chunks []string) (string, error) {
+func callCloudflareAI(question string, chunks []string, prompt string) (string, error) {
 	accountID := os.Getenv(projectPrefix + "_CF_ACCOUNT_ID")
 	apiToken := os.Getenv(projectPrefix + "_CF_API_TOKEN")
 	if accountID == "" || apiToken == "" {
@@ -49,7 +55,7 @@ func callCloudflareAI(question string, chunks []string) (string, error) {
 	req := cfAIRequest{
 		MaxTokens: 1024,
 		Messages: []cfAIMessage{
-			{Role: "system", Content: systemPrompt},
+			{Role: "system", Content: prompt},
 			{Role: "user", Content: fmt.Sprintf("Context:\n%s\n\nQuestion: %s", context, question)},
 		},
 	}
