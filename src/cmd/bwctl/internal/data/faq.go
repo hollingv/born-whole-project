@@ -37,7 +37,7 @@ var SiteFAQItems = []FAQItem{
 	},
 	{
 		Question: "How does the AI knowledge base work?",
-		Answer:   "The Ask the Knowledge Base feature uses an AI language model that answers questions based exclusively on a curated set of plain-text files sourced from featured advocacy organizations. It does not use the open internet and will tell you if it cannot find relevant information.",
+		Answer:   "The Ask the Knowledge Base feature uses an AI language model that answers questions based exclusively on a curated set of plain-text files sourced from featured advocacy organizations or video transcripts. It does not use the open internet and will tell you if it cannot find relevant information.",
 	},
 	{
 		Question:   "How can I contribute to this site?",
