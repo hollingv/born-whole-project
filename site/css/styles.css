@@ -584,6 +584,9 @@ nav.site-nav a.brand {
     padding: 1.5rem;
     text-align: left;
 }
+.ask-response-meta {
+    margin-top: 0.75rem;
+}
 .ask-response p {
     color: #1a1a1a;
     font-size: 1.15rem;
@@ -599,13 +602,13 @@ nav.site-nav a.brand {
 .ask-sources a:hover { text-decoration: underline; }
 .ask-sources {
     margin-top: 1rem;
-    font-size: 0.8rem;
+    font-size: 1.44rem;
     color: #888;
     font-style: italic;
 }
 .ask-disclaimer {
     margin-top: 0.5rem;
-    font-size: 0.72rem;
+    font-size: 1.44rem;
     color: #aaa;
     font-style: italic;
     border-top: 1px solid #e4e8f0;

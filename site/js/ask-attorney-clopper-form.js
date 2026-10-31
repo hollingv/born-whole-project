@@ -17,5 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const resp = await fetch(`/ask-attorney-clopper?q=${encodeURIComponent(q)}`);
         const text = await resp.text();
         responseDiv.innerHTML = `<p class="ask-question">You asked: <strong>${q}</strong></p>${text}`;
+        const meta = document.getElementById('ask-response-meta');
+        if (meta) {
+            meta.innerHTML = '';
+            ['ask-sources', 'ask-disclaimer'].forEach(cls => {
+                const el = responseDiv.querySelector('.' + cls);
+                if (el) meta.appendChild(el);
+            });
+        }
     });
 });
