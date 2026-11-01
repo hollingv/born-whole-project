@@ -26,20 +26,36 @@
         </div>
         <p>{{.SiteName}} is an open-source project and welcomes contributions from everyone. You don't need to be a developer — there are meaningful ways to help regardless of your background. Find your path below.</p>
 
-        <div class="get-involved-nav">
-            <a href="#organizations" class="get-involved-nav-link">Organizations</a>
-            <a href="#just-email" class="get-involved-nav-link">Beginners</a>
-            <a href="#technically-interested" class="get-involved-nav-link">Technically Interested</a>
-            <a href="#designers" class="get-involved-nav-link">Web &amp; UI Designers</a>
-            <a href="#developers" class="get-involved-nav-link">Developers</a>
-        </div>
-        <div class="tech-scale">
-            <span class="tech-scale-label"><span class="tech-scale-arrow">&#10229;</span> No technical knowledge needed</span>
-            <div class="tech-scale-bar"></div>
-            <span class="tech-scale-label">Developer skills needed <span class="tech-scale-arrow">&#10230;</span></span>
-        </div>
+        <nav class="toc">
+            <div class="toc-key">
+                <span class="toc-key-label">No technical knowledge</span>
+                <div class="toc-key-bar"></div>
+                <span class="toc-key-label">Developer skills</span>
+            </div>
+            <ol class="toc-list">
+                <li><a href="#just-email" class="toc-link toc-1">Beginners</a></li>
+                <li><a href="#organizations" class="toc-link toc-2">Organizations</a></li>
+                <li><a href="#technically-interested" class="toc-link toc-3">Technically Interested</a></li>
+                <li><a href="#designers" class="toc-link toc-4">Web &amp; UI Designers</a></li>
+                <li><a href="#developers" class="toc-link toc-5">Developers</a></li>
+            </ol>
+        </nav>
 
         <div class="get-involved-audience">
+
+            <section class="get-involved-section" id="just-email">
+                <h2>Beginners</h2>
+                <p>You don't need a GitHub account or any technical knowledge to help this project. If you have an idea, a suggestion, a correction, or simply want to get in touch, just send an email to <a href="mailto:{{.ContactEmail}}">{{.ContactEmail}}</a>.</p>
+                <p>Ideas that are welcome include:</p>
+                <ul>
+                    <li>Suggesting an organization that should be listed</li>
+                    <li>Recommending a FAQ question and answer</li>
+                    <li>Reporting something that looks wrong or outdated</li>
+                    <li>Sharing feedback on the site</li>
+                    <li>Anything else you think would help</li>
+                </ul>
+                <a href="mailto:{{.ContactEmail}}" class="get-involved-btn">Email {{.ContactEmail}}</a>
+            </section>
 
             <section class="get-involved-section" id="organizations">
                 <h2>Organizations</h2>
@@ -56,20 +72,6 @@
                 </ul>
                 <p>Full technical details are in the <a href="https://github.com/hollingv/{{.RepoName}}/blob/main/README-whitepaper.md" target="_blank">BWP whitepaper</a>, §4.1.</p>
                 <a href="mailto:{{.ContactEmail}}" class="get-involved-btn">Email us to get listed</a>
-            </section>
-
-            <section class="get-involved-section" id="just-email">
-                <h2>Beginners</h2>
-                <p>You don't need a GitHub account or any technical knowledge to help this project. If you have an idea, a suggestion, a correction, or simply want to get in touch, just send an email to <a href="mailto:{{.ContactEmail}}">{{.ContactEmail}}</a>.</p>
-                <p>Ideas that are welcome include:</p>
-                <ul>
-                    <li>Suggesting an organization that should be listed</li>
-                    <li>Recommending a FAQ question and answer</li>
-                    <li>Reporting something that looks wrong or outdated</li>
-                    <li>Sharing feedback on the site</li>
-                    <li>Anything else you think would help</li>
-                </ul>
-                <a href="mailto:{{.ContactEmail}}" class="get-involved-btn">Email {{.ContactEmail}}</a>
             </section>
 
             <section class="get-involved-section" id="technically-interested">
