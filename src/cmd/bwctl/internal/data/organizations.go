@@ -189,6 +189,23 @@ var OrgGroups = []OrgGroup{
 					YouTube:   "https://www.youtube.com/@doctorsopposingcircumcisio116",
 				},
 			},
+			{
+				ID:           "foregen",
+				Name:         "Foregen",
+				Description:  "Advancing tissue engineering for circumcised men to reclaim their complete body",
+				Website:      "https://foregen.org",
+				Thumbnail:    "images/foregen.svg",
+				NewsUrl:      "https://foregen.org/updates",
+				EventsUrl:    "",
+				DonateUrl:    "https://foregen.org/donate",
+				ContactUsUrl: "",
+				SocialSites: SocialSites{
+					Facebook:  "https://www.facebook.com/foregen",
+					X:         "https://x.com/foregen",
+					Instagram: "",
+					YouTube:   "https://www.youtube.com/@Foregen",
+				},
+			},
 		},
 	},
 	{
@@ -391,23 +408,6 @@ var OrgGroups = []OrgGroup{
 	{
 		Type: "Healing",
 		Organizations: []Organization{
-			{
-				ID:           "foregen",
-				Name:         "Foregen",
-				Description:  "Advancing tissue engineering for circumcised men to reclaim their complete body",
-				Website:      "https://foregen.org",
-				Thumbnail:    "images/foregen.svg",
-				NewsUrl:      "https://foregen.org/updates",
-				EventsUrl:    "",
-				DonateUrl:    "https://foregen.org/donate",
-				ContactUsUrl: "",
-				SocialSites: SocialSites{
-					Facebook:  "https://www.facebook.com/foregen",
-					X:         "https://x.com/foregen",
-					Instagram: "",
-					YouTube:   "https://www.youtube.com/@Foregen",
-				},
-			},
 			{
 				ID:           "jennamcclelland",
 				Name:         "Jenna McClelland",
