@@ -2,6 +2,41 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.54.0 - 2026-11-09
+#### Features
+- (**bwctl**) add bwctl yt-shorts command - (e570f37) - hollingv
+- (**get-involved**) added color coded 'ways to help' hierarchy - (e701173) - hollingv
+- (**kb**) add harvested youtube shorts transcripts - (74d090f) - hollingv
+- (**kb**) harvested new yt shorts with transcripts - (992e71d) - hollingv
+- (**kb**) reply box only for reply text - (5007fb0) - hollingv
+- (**kb**) replace rotating questions and make replies natural - (987325c) - hollingv
+- (**kb**) bundle the kb files to minimize the cloudflare subrequests - (1de11de) - hollingv
+- (**kb**) ensure the kb replies have paragraphs - (0006a67) - hollingv
+- (**kb**) add more atty clopper transcripts and harvested shorts - (db8a6ea) - hollingv
+- (**kb**) add many more Atty Clopper yt transcripts - (6361ff2) - hollingv
+- (**kb**) Ask Attorney Clopper form and associated KB querying - (a136247) - hollingv
+- (**kb**) add about a dozen yt transcripts - (eec3d72) - hollingv
+- (**organizations**) relocate Foregen to the 'medical' org type - (684925e) - Your Name
+- (**ui**) include link to youtube shorts on attorney-clopper page - (ac891e7) - hollingv
+- (**ui**) convert Our Mission to FAQ-style question on About page - (dc84724) - hollingv
+- (**ui**) merge About This Site FAQ into About page, remove faq-site page - (38d8781) - hollingv
+- (**ui**) move Ask Attorney Clopper to top of Resources dropdown - (1998213) - hollingv
+- (**ui**) move FAQ pages under About dropdown, remove FAQ nav item - (cc49f1e) - hollingv
+#### Bug Fixes
+- (**ui**) add white text box to enclose "AI" replies - (c0bc7f9) - hollingv
+- (**ui**) remove redundant 'About' headers - (a43f762) - hollingv
+- (**ui**) remove duplicate About This Site nav entry - (0c3fa0a) - hollingv
+- (**ui**) add white reply box to Ask Attorney Clopper page - (6b13eef) - hollingv
+- (**ui**) rename Ask Attorney Clopper page to avoid Cloudflare function URL collision - (d061e9a) - hollingv
+#### Documentation
+- (**get-involved**) remove the 'No build tools' - (9497650) - hollingv
+- add 'video transcripts' to how AI works - (ebb3416) - hollingv
+- remove 'no hallucination' from the Ask pages - (cdf8030) - hollingv
+#### Refactoring
+- (**data**) move Our Mission into SiteFAQItems in faq.go - (029eb77) - hollingv
+
+- - -
+
 ## v0.53.1 - 2026-10-28
 #### Bug Fixes
 - (**ui**) the organization-social page mobile browser issue - (7fd296a) - hollingv
