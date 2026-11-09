@@ -32,14 +32,23 @@ var bsmDateFormats = []string{
 	"January 2006",
 }
 
-// parseBSMDate attempts to parse a date string from the BSM events page.
-// Returns a zero Date and logs a warning if no known format matches.
-func parseBSMDate(s string) data.Date {
+// tryParseBSMDate attempts to parse a date string silently.
+// Returns a zero Date if no known format matches (no warning emitted).
+func tryParseBSMDate(s string) data.Date {
 	s = strings.TrimSpace(s)
 	for _, layout := range bsmDateFormats {
 		if t, err := time.Parse(layout, s); err == nil {
 			return data.Date{Time: t}
 		}
+	}
+	return data.Date{}
+}
+
+// parseBSMDate attempts to parse a date string from the BSM events page.
+// Returns a zero Date and logs a warning if no known format matches.
+func parseBSMDate(s string) data.Date {
+	if d := tryParseBSMDate(s); !d.IsZero() {
+		return d
 	}
 	fmt.Fprintf(os.Stderr, "  [ WARN ] Could not parse BSM date %q\n", s)
 	return data.Date{}
@@ -167,8 +176,9 @@ func fetchAndParseBSMEvents() ([]data.Event, error) {
 
 		// Single-cell row: if it parses as a date it is a day-header row (e.g.
 		// "Wednesday, September 30, 2026"); otherwise treat it as a campaign title.
+		// Use the silent variant — campaign titles are expected to fail date parsing.
 		if len(cells) == 1 {
-			if d := parseBSMDate(first); !d.IsZero() {
+			if d := tryParseBSMDate(first); !d.IsZero() {
 				sectionDate = d
 			} else {
 				campaignTitle = first
