@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"time"
 
 	"born-whole-project/src/cmd/bwctl/internal/youtube"
 
@@ -59,6 +60,24 @@ Use --source to select which data to harvest (default: all).`,
 	Run: func(cmd *cobra.Command, args []string) {
 		source, _ := cmd.Flags().GetString("source")
 		days, _ := cmd.Flags().GetInt("days")
+		sinceStr, _ := cmd.Flags().GetString("since")
+
+		if sinceStr != "" && cmd.Flags().Changed("days") {
+			fmt.Fprintf(os.Stderr, "--since and --days are mutually exclusive\n")
+			os.Exit(1)
+		}
+
+		var publishedAfter time.Time
+		if sinceStr != "" {
+			var err error
+			publishedAfter, err = time.Parse("2006-01-02", sinceStr)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "Invalid --since date %q: expected YYYY-MM-DD\n", sinceStr)
+				os.Exit(1)
+			}
+		} else {
+			publishedAfter = time.Now().AddDate(0, 0, -days)
+		}
 
 		switch source {
 		case sourceAll, sourceEvents, sourceYouTubeShorts:
@@ -78,7 +97,7 @@ Use --source to select which data to harvest (default: all).`,
 			harvestBSMEvents()
 		}
 		if source == sourceAll || source == sourceYouTubeShorts {
-			youtube.BuildResources(projectPrefix, days)
+			youtube.BuildResources(projectPrefix, publishedAfter)
 		}
 		fmt.Println("Harvest complete. Review changes in site/harvested/ then commit.")
 	},
@@ -90,4 +109,6 @@ func init() {
 		fmt.Sprintf("Data to harvest: %s, %s, or %s", sourceEvents, sourceYouTubeShorts, sourceAll))
 	harvestCmd.Flags().Int("days", youtube.DefaultDays,
 		"Number of days in the past to harvest YouTube Shorts (only applies with --source youtubeshorts or all)")
+	harvestCmd.Flags().String("since", "",
+		"Harvest YouTube Shorts published on or after this date (YYYY-MM-DD); mutually exclusive with --days")
 }
