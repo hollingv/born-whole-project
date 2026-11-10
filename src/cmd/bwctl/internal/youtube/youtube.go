@@ -20,6 +20,13 @@ const Channel = "AttorneyClopper"
 
 var httpClient = &http.Client{Timeout: 15 * time.Second}
 
+// excludedVideoIDs is the set of video IDs that should never appear in harvested
+// resources, regardless of when they were published.
+var excludedVideoIDs = map[string]bool{
+	"FhKRZbBfTAE": true,
+	"JeNSSF81SB4": true,
+}
+
 // ytChannelResp is the response from the YouTube channels API.
 type ytChannelResp struct {
 	Items []struct {
@@ -142,6 +149,9 @@ func searchShorts(apiKey, channelID string, days int) ([]data.Resource, error) {
 			return nil, fmt.Errorf("search decode: %w", err)
 		}
 		for _, item := range searchResp.Items {
+			if excludedVideoIDs[item.ID.VideoID] {
+				continue
+			}
 			resources = append(resources, data.Resource{
 				Title:       stripNonASCII(item.Snippet.Title),
 				Description: stripNonASCII(item.Snippet.Description),
