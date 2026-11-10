@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.55.0 - 2026-11-10
+#### Features
+- (**bwctl**) remove [music] when grabbing transcripts - (0f9c425) - hollingv
+- (**bwctl**) add --since <YYYY-MM-DD> switch - (86744e3) - hollingv
+- (**kb**) update Atty Clopper transcripts --since 2026-04-01 - (dea0239) - hollingv
+- (**organizations**) remove nocirc site since appears un-maintained - (288b03f) - hollingv
+- (**ui**) transcript font is italic and opens 10% to the right - (f2e8a7a) - hollingv
+- (**ui**) close the '+' click if any other click happens - (b1acf9a) - hollingv
+- (**ui**) add grid/list toggle and transcript expansion to YT Shorts page - (e8133af) - hollingv
+- (**ui**) implement grid/list switching on resources page - (9bc4479) - hollingv
+#### Bug Fixes
+- (**bwctl**) create exclude list of yt video IDS - (972c748) - hollingv
+- (**harvest**) silence false-positive date-parse warnings for BSM campaign titles - (8d6f3bd) - hollingv
+- (**kb**) remove [music] from existing attyClopper transcripts files - (b5fcbda) - hollingv
+- (**organizations**) remove the kb associated with nocirc - (10d050e) - hollingv
+- (**ui**) align the yt short titles with video images in list layout - (b03c215) - hollingv
+- (**ui**) restore blue buttons to organizations-social html - (a185716) - hollingv
+- (**ui**) add blue buttons to toc via styles.css - (dc437d0) - hollingv
+#### Miscellaneous Chores
+- (**revert**) implement grid/list switching on resources page - (8c3da5c) - hollingv
+
+- - -
+
 ## v0.54.0 - 2026-11-09
 #### Features
 - (**bwctl**) add bwctl yt-shorts command - (e570f37) - hollingv
