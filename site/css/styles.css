@@ -920,6 +920,26 @@ nav.site-nav a.brand {
 .back-to-top:hover { background-color: #1a4a8a; }
 
 /* Gradient pill nav buttons — used on organizations, resources, and get-involved pages */
+.get-involved-nav {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0 3rem;
+    flex-wrap: wrap;
+}
+.get-involved-nav-link {
+    flex: 1;
+    text-align: center;
+    padding: 0.65rem 1.5rem;
+    background: linear-gradient(135deg, #1a4a8a, #5ba3f5);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: opacity 0.2s;
+}
+.get-involved-nav-link:hover { opacity: 0.85; }
+
 .toc {
     display: inline-block;
     border: 1px solid #e4e8f0;
