@@ -115,6 +115,31 @@ func orgsBySocial(groups []data.OrgGroup, platform string) []OrgSocialEntry {
 	return entries
 }
 
+// enrichResourceTranscripts loads transcript text from site/kb/attyClopper/ and
+// populates the Transcript field on each Resource whose VideoID has a matching file.
+func enrichResourceTranscripts(resources []data.Resource) []data.Resource {
+	for i, r := range resources {
+		raw, err := os.ReadFile(filepath.Join(attyClopperKBDir, r.VideoID+".txt"))
+		if err != nil {
+			continue
+		}
+		resources[i].Transcript = parseTranscriptBody(string(raw))
+	}
+	return resources
+}
+
+// parseTranscriptBody strips the # header comment lines from a transcript file
+// and returns the plain-text body.
+func parseTranscriptBody(content string) string {
+	var lines []string
+	for _, line := range strings.Split(content, "\n") {
+		if !strings.HasPrefix(strings.TrimSpace(line), "#") {
+			lines = append(lines, line)
+		}
+	}
+	return strings.TrimSpace(strings.Join(lines, "\n"))
+}
+
 // writeKBBundle reads all main KB text files and writes their contents as a JSON
 // array to dist/harvested/kb-bundle.json. The /ask endpoint fetches this single
 // file instead of making one subrequest per KB file.
@@ -244,7 +269,7 @@ var siteCmd = &cobra.Command{
 			FAQItems:          data.FAQItems,
 			SiteFAQItems:      data.SiteFAQItems,
 			ContributeExample: data.ContributeExample,
-			Resources:         data.LoadResources(),
+			Resources:         enrichResourceTranscripts(data.LoadResources()),
 			Events:            data.AllEvents(),
 			NewsItems:         data.NewsItems,
 			DonationItems:     data.DonationItems,
