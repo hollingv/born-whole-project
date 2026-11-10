@@ -33,19 +33,38 @@
 
     // --- Transcript expand / collapse ---
 
+    function closeAllTranscripts() {
+        document.querySelectorAll('.resource-transcript').forEach(function (t) {
+            if (!t.hidden) {
+                t.hidden = true;
+                var b = t.closest('.resource-list-item').querySelector('.expand-btn');
+                if (b) { b.setAttribute('aria-expanded', 'false'); b.textContent = '+'; }
+            }
+        });
+    }
+
     document.addEventListener('click', function (e) {
         var btn = e.target.closest('.expand-btn');
-        if (!btn) return;
+
+        // Click outside any expand button or transcript panel — close all.
+        if (!btn) {
+            if (!e.target.closest('.resource-transcript')) {
+                closeAllTranscripts();
+            }
+            return;
+        }
 
         var item       = btn.closest('.resource-list-item');
         var transcript = item && item.querySelector('.resource-transcript');
         if (!transcript) return;
 
-        var expanded = btn.getAttribute('aria-expanded') === 'true';
-        expanded = !expanded;
-        transcript.hidden = !expanded;
-        btn.setAttribute('aria-expanded', String(expanded));
-        btn.textContent = expanded ? '−' : '+';
+        var wasExpanded = btn.getAttribute('aria-expanded') === 'true';
+        closeAllTranscripts();
+        if (!wasExpanded) {
+            transcript.hidden = false;
+            btn.setAttribute('aria-expanded', 'true');
+            btn.textContent = '−';
+        }
     });
 
 }());
