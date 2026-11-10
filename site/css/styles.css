@@ -1556,12 +1556,13 @@ details[open] .faq-question::after { transform: rotate(45deg); }
 }
 .resource-list-item:first-child { border-top: 1px solid #e4e8f0; }
 .resource-list-row {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 0.65rem;
+    align-items: start;
     padding: 0.55rem 0.25rem;
 }
-.resource-list-thumb-link { flex-shrink: 0; }
+.resource-list-thumb-link { display: block; }
 .resource-list-thumb {
     width: 72px;
     height: 40px;
@@ -1570,16 +1571,12 @@ details[open] .faq-question::after { transform: rotate(45deg); }
     display: block;
 }
 .resource-list-title {
-    flex: 1;
-    min-width: 0;
     overflow-wrap: break-word;
     font-size: 0.88rem;
     font-weight: 600;
     color: #0f1f3d;
-    text-decoration: none;
     line-height: 1.4;
 }
-.resource-list-title:hover { color: #1a4a8a; text-decoration: underline; }
 .resource-link-btn {
     display: inline-block;
     margin-top: 1rem;
