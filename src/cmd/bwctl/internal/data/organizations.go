@@ -229,23 +229,6 @@ var OrgGroups = []OrgGroup{
 				},
 			},
 			{
-				ID:           "nocirc",
-				Name:         "NOCIRC",
-				Description:  "National Organization of Circumcision Information Resource Centers",
-				Website:      "https://www.nocirc.org/",
-				Thumbnail:    PlaceholderImage,
-				NewsUrl:      "",
-				EventsUrl:    "",
-				DonateUrl:    "",
-				ContactUsUrl: "https://www.nocirc.org/contact.php",
-				SocialSites: SocialSites{
-					Facebook:  "",
-					X:         "",
-					Instagram: "",
-					YouTube:   "",
-				},
-			},
-			{
 				ID:           "intact-america",
 				Name:         "Intact America",
 				Description:  "Changing the Way America thinks about circumcision",
