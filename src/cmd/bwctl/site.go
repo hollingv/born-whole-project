@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 
@@ -13,6 +14,9 @@ import (
 
 	"github.com/spf13/cobra"
 )
+
+// musicAnnotationRe matches YouTube auto-caption music annotations such as "[music]" or "[Music]".
+var musicAnnotationRe = regexp.MustCompile(`(?i)\[music\]`)
 
 type templateData struct {
 	RepoName          string
@@ -128,7 +132,8 @@ func enrichResourceTranscripts(resources []data.Resource) []data.Resource {
 	return resources
 }
 
-// parseTranscriptBody strips # header lines from a transcript file and returns the plain-text body.
+// parseTranscriptBody strips # header lines from a transcript file, removes
+// auto-generated music annotations (e.g. "[music]"), and returns the plain-text body.
 func parseTranscriptBody(content string) string {
 	var lines []string
 	for _, line := range strings.Split(content, "\n") {
@@ -136,7 +141,12 @@ func parseTranscriptBody(content string) string {
 			lines = append(lines, line)
 		}
 	}
-	return strings.TrimSpace(strings.Join(lines, "\n"))
+	body := strings.Join(lines, "\n")
+	// Remove [music] annotations (case-insensitive) left by YouTube auto-captions.
+	body = musicAnnotationRe.ReplaceAllString(body, "")
+	// Collapse runs of whitespace that may be left behind.
+	body = strings.Join(strings.Fields(body), " ")
+	return strings.TrimSpace(body)
 }
 
 // writeKBBundle reads all main KB text files and writes their contents as a JSON
