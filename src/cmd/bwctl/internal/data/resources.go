@@ -14,6 +14,7 @@ type Resource struct {
 	Title       string `json:"title"`       // video title as returned by the YouTube Data API
 	Description string `json:"description"` // short video description
 	VideoID     string `json:"video_id"`    // YouTube video ID used to construct embed and watch URLs
+	Transcript  string `json:"-"`           // transcript body loaded at build time; not persisted to JSON
 }
 
 // LoadResources reads resources from site/kb/resources.json.
