@@ -58,7 +58,12 @@
             <div class="resource-list" id="view-list" hidden>
                 {{range .Resources}}
                 <div class="resource-list-item">
-                    <p><a href="https://www.youtube.com/shorts/{{.VideoID}}" target="_blank"><img src="https://img.youtube.com/vi/{{.VideoID}}/hqdefault.jpg" alt="" width="72" height="40" style="vertical-align:middle;margin-right:0.5rem;"/></a>{{.Title}}{{if .Transcript}}&nbsp;<button class="expand-btn" aria-expanded="false">+</button>{{end}}</p>
+                    <div class="resource-list-row">
+                        <a href="https://www.youtube.com/shorts/{{.VideoID}}" target="_blank" class="resource-list-thumb-link">
+                            <img src="https://img.youtube.com/vi/{{.VideoID}}/hqdefault.jpg" alt="" width="72" height="40" class="resource-list-thumb"/>
+                        </a>
+                        <span class="resource-list-title">{{.Title}}{{if .Transcript}}&nbsp;<button class="expand-btn" aria-expanded="false">+</button>{{end}}</span>
+                    </div>
                     {{if .Transcript}}<div class="resource-transcript" hidden>{{.Transcript}}</div>{{end}}
                 </div>
                 {{end}}
