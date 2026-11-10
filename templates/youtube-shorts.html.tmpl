@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/nav.js" defer></script>
-    <script src="js/youtube-shorts.js" defer></script>
     {{template "head-og" .}}
 </head>
 <body>
@@ -22,25 +21,8 @@
 
         <section class="resource-section">
             {{if .Resources}}
-            <div class="resource-toolbar">
-                <p class="resource-count">{{len .Resources}} shorts available</p>
-                <div class="view-toggle" role="group" aria-label="View mode">
-                    <button class="view-btn view-btn--active" id="btn-grid" aria-pressed="true" aria-label="Grid view" title="Grid view">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
-                            <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
-                        </svg>
-                    </button>
-                    <button class="view-btn" id="btn-list" aria-pressed="false" aria-label="List view" title="List view">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
-                            <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <div class="resource-grid" id="view-grid">
+            <p class="resource-count">{{len .Resources}} shorts available</p>
+            <div class="resource-grid">
                 {{range .Resources}}
                 <a class="resource-card" href="https://www.youtube.com/shorts/{{.VideoID}}" target="_blank">
                     <img
@@ -54,32 +36,6 @@
                 </a>
                 {{end}}
             </div>
-
-            <div class="resource-list" id="view-list" hidden>
-                {{range .Resources}}
-                <div class="resource-list-item">
-                    <div class="resource-list-row">
-                        <a href="https://www.youtube.com/shorts/{{.VideoID}}" target="_blank" class="resource-list-thumb-link" tabindex="-1" aria-hidden="true">
-                            <img
-                                src="https://img.youtube.com/vi/{{.VideoID}}/hqdefault.jpg"
-                                alt=""
-                                class="resource-list-thumb"
-                            />
-                        </a>
-                        <a href="https://www.youtube.com/shorts/{{.VideoID}}" target="_blank" class="resource-list-title">{{.Title}}</a>
-                        {{if .Transcript}}
-                        <button class="resource-expand-btn" aria-expanded="false" aria-label="Show transcript for {{.Title}}">+</button>
-                        {{else}}
-                        <span class="resource-expand-btn resource-expand-btn--none" aria-hidden="true" title="No transcript available">+</span>
-                        {{end}}
-                    </div>
-                    {{if .Transcript}}
-                    <div class="resource-transcript" hidden>{{.Transcript}}</div>
-                    {{end}}
-                </div>
-                {{end}}
-            </div>
-
             {{else}}
             <p class="resource-empty">No shorts available yet. Run <code>./bwctl harvest</code> with a <code>{{.ProjectPrefix}}_YT_API_KEY</code> set to populate this page.</p>
             {{end}}
