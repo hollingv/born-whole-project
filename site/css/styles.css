@@ -121,13 +121,7 @@ nav.site-nav a.brand {
     color: rgba(255,255,255,0.75);
     line-height: 1;
 }
-.brand-version {
-    font-size: 0.6rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    color: rgba(255,255,255,0.65);
-    line-height: 1;
-}
+
 .nav-links {
     display: flex;
     list-style: none;
@@ -321,6 +315,11 @@ nav.site-nav a.brand {
     text-decoration: none;
 }
 .footer-brand:hover { color: #fff; }
+.footer-version {
+    font-size: 0.63rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
 
 .footer-disclaimers {
     color: rgba(255,255,255,0.5);
@@ -1078,6 +1077,7 @@ nav.site-nav a.brand {
     border-top: 2px solid #5ba3f5;
     border-bottom: 2px solid #5ba3f5;
 }
+
 
 .about-mission-statement {
     font-size: 1.2rem !important;

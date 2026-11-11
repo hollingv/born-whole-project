@@ -38,6 +38,13 @@
 
         <p>Questions about how Born Whole works, who runs it, and how to get involved.</p>
         <div class="faq-list">
+            <details class="faq-item">
+                <summary class="faq-question">About this site</summary>
+                <div class="faq-answer">
+                    <p>Version: <strong>{{.Version}}</strong></p>
+                    <p>{{.SiteName}} is an open-source project. Source code and contribution guidelines are available on <a href="https://github.com/hollingv/{{.RepoName}}" target="_blank">GitHub</a>.</p>
+                </div>
+            </details>
             {{range .SiteFAQItems}}
             <details class="faq-item">
                 <summary class="faq-question">{{.Question}}</summary>
