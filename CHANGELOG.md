@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.56.0 - 2026-11-11
+#### Features
+- (**ui**) remove the grid layout of yt shorts and favor only list - (1fb3da3) - hollingv
+#### Bug Fixes
+- (**ui**) keep left margin consistent on grid/list clicks - (b2433c0) - hollingv
+
+- - -
+
 ## v0.55.0 - 2026-11-10
 #### Features
 - (**bwctl**) remove [music] when grabbing transcripts - (0f9c425) - hollingv
