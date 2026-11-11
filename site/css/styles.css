@@ -1428,7 +1428,7 @@ details[open] .faq-question::after { transform: rotate(45deg); }
     color: #444;
     margin-bottom: 2rem;
 }
-.resource-section { margin-top: 2.5rem; }
+.resource-section { margin-top: .3rem; }
 .resource-section h2 {
     font-size: 1.4rem;
     font-weight: 800;
@@ -1515,7 +1515,7 @@ details[open] .faq-question::after { transform: rotate(45deg); }
 .resource-list {
     display: flex;
     flex-direction: column;
-    margin-top: 2rem;
+    margin-top: 0.3rem;
 }
 .resource-list-item {
     border-bottom: 1px solid #e4e8f0;
