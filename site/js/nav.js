@@ -1,7 +1,3 @@
-const version = document.querySelector('footer').dataset.version;
-const navVersion = document.getElementById('nav-version');
-if (navVersion) navVersion.textContent = `v: ${version}`;
-
 // Dropdown toggle: tap/click to expand, again to collapse
 document.querySelectorAll('.nav-links .dropdown > a').forEach(trigger => {
     trigger.addEventListener('click', e => {
