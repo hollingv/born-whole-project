@@ -37,6 +37,22 @@
         <a href="#" class="back-to-top">&#8679; Top</a>
     </main>
 
+    <dialog class="org-overview-modal" id="org-overview-modal" onclick="if(event.target===this)this.close()">
+        <div class="org-overview-modal-bar">
+            <button type="button" class="org-overview-modal-close" onclick="this.closest('dialog').close()" aria-label="Close">&times;</button>
+        </div>
+        <iframe id="org-overview-frame" class="org-overview-frame" src="" title="Organization overview"></iframe>
+    </dialog>
+
+    <script>
+    function openOrgOverview(id, event) {
+        var d     = document.getElementById('org-overview-modal');
+        var frame = document.getElementById('org-overview-frame');
+        frame.src = id + '-overview.html';
+        d.showModal();
+    }
+    </script>
+
     {{template "footer" .}}
 
 </body>
