@@ -6,7 +6,7 @@
     </a>
     {{end}}
     <div class="org-body">
-        <h3>{{.Name}}{{if hasOverview .ID}} <a class="org-learn-more" href="#" onclick="openOrgOverview('{{.ID}}', event);return false;">Learn more</a>{{end}}</h3>
+        <h3>{{.Name}}{{if hasOverview .ID}} <a class="org-learn-more" href="#" onclick="openOrgOverview('{{.ID}}', event);return false;">Overview</a>{{end}}</h3>
         <p>{{.Description}}</p>
     </div>
     <div class="org-nav">
