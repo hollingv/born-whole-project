@@ -149,6 +149,65 @@ func parseTranscriptBody(content string) string {
 	return strings.TrimSpace(body)
 }
 
+// orgOverviewExists returns a set of org IDs for which a {id}-overview.html.tmpl
+// file exists in the templates/overviews/ directory.
+func orgOverviewExists() map[string]bool {
+	set := map[string]bool{}
+	for _, group := range data.OrgGroups {
+		for _, org := range group.Organizations {
+			path := filepath.Join("templates", "overviews", org.ID+"-overview.html.tmpl")
+			if _, err := os.Stat(path); err == nil {
+				set[org.ID] = true
+			}
+		}
+	}
+	return set
+}
+
+// generateOverviewPages renders every file in templates/overviews/ to dist/
+// using the standard shared templates and funcMap.
+func generateOverviewPages(tmplData templateData, funcMap template.FuncMap) {
+	// Collect shared templates from the main templates directory.
+	sharedEntries, _ := os.ReadDir("templates")
+	var shared []string
+	for _, e := range sharedEntries {
+		if e.IsDir() || !strings.HasSuffix(e.Name(), ".tmpl") {
+			continue
+		}
+		path := filepath.Join("templates", e.Name())
+		content, _ := os.ReadFile(path)
+		if strings.Contains(string(content), "{{define") {
+			shared = append(shared, path)
+		}
+	}
+	// Render each overview template.
+	overviewDir := filepath.Join("templates", "overviews")
+	entries, _ := os.ReadDir(overviewDir)
+	for _, e := range entries {
+		if e.IsDir() || !strings.HasSuffix(e.Name(), ".tmpl") {
+			continue
+		}
+		tmplPath := filepath.Join(overviewDir, e.Name())
+		outName := strings.TrimSuffix(e.Name(), ".tmpl")
+		tmplFiles := append([]string{tmplPath}, shared...)
+		tmpl, err := template.New(e.Name()).Funcs(funcMap).ParseFiles(tmplFiles...)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error parsing %s: %v\n", tmplPath, err)
+			continue
+		}
+		f, err := os.Create(filepath.Join(targetDir, outName))
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error creating %s: %v\n", outName, err)
+			continue
+		}
+		if err := tmpl.Execute(f, tmplData); err != nil {
+			fmt.Fprintf(os.Stderr, "Error rendering %s: %v\n", outName, err)
+		}
+		f.Close()
+		fmt.Printf("Generated %s\n", filepath.Join(targetDir, outName))
+	}
+}
+
 // writeKBBundle reads all main KB text files and writes their contents as a JSON
 // array to dist/harvested/kb-bundle.json. The /ask endpoint fetches this single
 // file instead of making one subrequest per KB file.
@@ -224,6 +283,7 @@ type page struct {
 // discoverPages scans the templates directory and builds the list of pages to
 // generate. Files containing {{define are treated as shared templates and
 // included with every page. All other .tmpl files are treated as page templates.
+// Subdirectories (e.g. overviews/) are not scanned and are handled separately.
 func discoverPages(tmplDir string) ([]page, error) {
 	entries, err := os.ReadDir(tmplDir)
 	if err != nil {
@@ -299,11 +359,15 @@ var siteCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
+		overwithOverview := orgOverviewExists()
 		funcMap := template.FuncMap{
 			"groupEventsByKind": groupEventsByKind,
 			"homeEventGroups":   homeEventGroups,
 			"orgsBySocial":      orgsBySocial,
+			"hasOverview":       func(id string) bool { return overwithOverview[id] },
 		}
+
+		generateOverviewPages(tmplData, funcMap)
 
 		for _, p := range pages {
 			tmpl, err := template.New(filepath.Base(p.tmplFiles[0])).Funcs(funcMap).ParseFiles(p.tmplFiles...)
