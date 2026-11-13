@@ -408,6 +408,23 @@ var OrgGroups = []OrgGroup{
 					YouTube:   "https://www.youtube.com/@jenna_mcclelland",
 				},
 			},
+			{
+				ID:           "gac",
+				Name:         "Genital Autonomy Collective",
+				Description:  "Spaces for people seeking support for (violated) genital autonomy who support intersectional ideals.",
+				Website:      "https://autonomycollective.org/",
+				Thumbnail:    "images/gac.jpeg",
+				NewsUrl:      "",
+				EventsUrl:    "",
+				DonateUrl:    "",
+				ContactUsUrl: "",
+				SocialSites: SocialSites{
+					Facebook:  "",
+					X:         "",
+					Instagram: "",
+					YouTube:   "",
+				},
+			},
 		},
 	},
 }
