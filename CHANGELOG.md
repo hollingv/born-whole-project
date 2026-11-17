@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.57.0 - 2026-11-17
+#### Features
+- (**news**) add the Oregon Plaintiff's Notice of Appeal - (9a25b54) - hollingv
+- (**organization**) configure Jenna McClelland overview page - (f1d7008) - hollingv
+- (**organizations**) update with jenna mcclelland feedback - (2a5d7de) - hollingv
+- (**organizations**) add Genital Autonomy Collective - (ef570e9) - hollingv
+- (**ui**) organizations can have an overview page - (ca43c04) - hollingv
+- (**ui**) relocate the APP_TAG information - (67e9938) - hollingv
+- (**ui**) remove the About Genital Cutting page - (2e084a6) - hollingv
+#### Bug Fixes
+- (**ui**) footer has version after BORN WHOLE - (898ee3e) - hollingv
+#### Refactoring
+- (**css**) organize the css file with TOC - (9001568) - hollingv
+- remove dead image pots.png - (8644a61) - hollingv
+
+- - -
+
 ## v0.56.0 - 2026-11-11
 #### Features
 - (**ui**) remove the grid layout of yt shorts and favor only list - (1fb3da3) - hollingv
