@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Parents — {{.SiteName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/nav.js" defer></script>
+    {{template "head-og" .}}
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main class="for-parents-page">
+
+        <h1>Circumcision 101</h1>
+        <p class="for-parents-intro">Understanding circumcision is one of the most important decisions you will make for your child. These resources are designed to help you learn the facts, ask questions, and hear from experts — at your own pace, in plain language.</p>
+
+        <div class="for-parents-callout">
+            <p>In the United States, girls are legally protected from genital cutting. Boys and intersex children are not — they rely on informed parents and conscientious health care professionals to protect them.</p>
+        </div>
+
+        <div class="for-parents-grid">
+
+            <a href="key-facts.html" class="for-parents-card">
+                <div class="for-parents-card-icon">📋</div>
+                <h2>Key Facts</h2>
+                <p>A concise summary of the medical evidence, legal landscape, and ethical arguments around circumcision. Start here if you want the core information quickly.</p>
+                <span class="for-parents-card-cta">Read the facts &rarr;</span>
+            </a>
+
+            <a href="attorney-clopper.html" class="for-parents-card">
+                <div class="for-parents-card-icon">⚖️</div>
+                <h2>Ask Attorney Clopper</h2>
+                <p>Put your questions directly to an attorney who specialises in circumcision law. </p>
+                <span class="for-parents-card-cta">Ask a question &rarr;</span>
+            </a>
+
+            <a href="ask-kb.html" class="for-parents-card">
+                <div class="for-parents-card-icon">🤖</div>
+                <h2>Ask the Knowledge Base</h2>
+                <p>An AI assistant that answers your questions using content sourced exclusively from vetted advocacy organizations.</p>
+                <span class="for-parents-card-cta">Ask a question &rarr;</span>
+            </a>
+
+            <a href="youtube-shorts.html" class="for-parents-card">
+                <div class="for-parents-card-icon">▶️</div>
+                <h2>YouTube Shorts</h2>
+                <p>Short, shareable videos covering circumcision facts. You can watch them or read the transcripts.</p>
+                <span class="for-parents-card-cta">Watch or read &rarr;</span>
+            </a>
+
+        </div>
+
+    </main>
+
+    {{template "footer" .}}
+
+</body>
+</html>
