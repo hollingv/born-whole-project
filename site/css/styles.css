@@ -1707,7 +1707,7 @@ details[open] .faq-question::after { transform: rotate(45deg); }
 }
 .for-parents-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
 }
 .for-parents-card {
@@ -1750,6 +1750,31 @@ details[open] .faq-question::after { transform: rotate(45deg); }
     color: #1a4a8a;
 }
 .for-parents-card:hover .for-parents-card-cta { color: #5ba3f5; }
+.for-parents-card-photo {
+    width: 50%;
+    aspect-ratio: 50 / 39;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    display: block;
+    image-rendering: auto;
+    transform: translateZ(0);
+}
+.attorney-clopper-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.attorney-clopper-photo {
+    width: 200px;
+    height: auto;
+    border-radius: 24px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: block;
+}
 
 /* =============================================================================
    15. Disclaimers Page
