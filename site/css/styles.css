@@ -1691,7 +1691,7 @@ details[open] .faq-question::after { transform: rotate(45deg); }
     font-size: 1.05rem;
     line-height: 1.75;
     color: #444;
-    max-width: 720px;
+    max-width: 100%;
     margin-bottom: 2.5rem;
 }
 .for-parents-callout {
@@ -1700,13 +1700,13 @@ details[open] .faq-question::after { transform: rotate(45deg); }
     border-radius: 0 8px 8px 0;
     padding: 1rem 1.25rem;
     margin-bottom: 2rem;
-    max-width: 720px;
 }
 .for-parents-callout p {
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.65;
     color: #0f1f3d;
+    max-width: 100%;
     margin: 0;
 }
 .for-parents-grid {
