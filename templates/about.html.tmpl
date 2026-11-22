@@ -41,7 +41,7 @@
             <details class="faq-item">
                 <summary class="faq-question">About this site</summary>
                 <div class="faq-answer">
-                    <p>Version: <strong>{{.Version}}</strong></p>
+                    <p>Version: <strong>{{.Version}}</strong>{{if .BuildTime}} &nbsp;|&nbsp; Built: <strong>{{.BuildTime}}</strong>{{end}}</p>
                     <p>{{.SiteName}} is an open-source project. Source code and contribution guidelines are available on <a href="https://github.com/hollingv/{{.RepoName}}" target="_blank">GitHub</a>.</p>
                 </div>
             </details>

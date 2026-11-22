@@ -24,6 +24,7 @@ type templateData struct {
 	SiteUrl           string
 	ContactEmail      string
 	Version           string
+	BuildTime         string
 	ProjectPrefix     string
 	OrgGroups         []data.OrgGroup
 	FAQItems          []data.FAQItem
@@ -327,12 +328,14 @@ var siteCmd = &cobra.Command{
 	Long:  `Discovers all page templates and renders them to site/`,
 	Run: func(cmd *cobra.Command, args []string) {
 		version, _ := cmd.Flags().GetString("version")
+		buildTime, _ := cmd.Flags().GetString("build-time")
 		tmplData := templateData{
 			SiteName:          siteName,
 			SiteUrl:           siteUrl,
 			ContactEmail:      contactEmail,
 			RepoName:          repoName,
 			Version:           version,
+			BuildTime:         buildTime,
 			ProjectPrefix:     projectPrefix,
 			OrgGroups:         data.OrgGroups,
 			FAQItems:          data.FAQItems,
@@ -396,4 +399,5 @@ var siteCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(siteCmd)
 	siteCmd.Flags().String("version", "local-dirty", "Version string to embed in the page footer")
+	siteCmd.Flags().String("build-time", "", "Site build timestamp (e.g. 2026-11-21 14:30 UTC); set by make site-build")
 }

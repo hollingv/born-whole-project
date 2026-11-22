@@ -29,6 +29,7 @@ APP_TAG := $(shell \
 	fi)
 
 IS_RELEASE_TAG := $(shell echo "$(APP_TAG)" | grep -qE '^v[0-9]+\.[0-9]+\.[0-9]+$$' && echo true || echo false)
+APP_BUILD_TIME  := $(shell date -u '+%Y-%m-%d %H:%M UTC')
 
 help:
 	@echo ""
@@ -119,7 +120,7 @@ build: ## Compile the bwctl Go binary
 
 site-build: build ## Generate the site from committed content (no network calls)
 	cp -r site/. $(TARGET_DIR)/
-	./$(APP_NAME) site --version $(APP_TAG)
+	./$(APP_NAME) site --version $(APP_TAG) --build-time "$(APP_BUILD_TIME)"
 	@echo "[ INFO ] Site built at version $(APP_TAG)"
 
 harvest: build ## Fetch live data into site/harvested/ — review and commit the result
