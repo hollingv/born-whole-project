@@ -1574,10 +1574,14 @@ details[open] .faq-question::after { transform: rotate(45deg); }
 .resource-list-item:first-child { border-top: 1px solid #e4e8f0; }
 .resource-list-row {
     display: grid;
-    grid-template-columns: 72px minmax(0, 1fr);
+    grid-template-columns: 72px minmax(0, 1fr) 28px;
     gap: 0.65rem;
-    align-items: start;
+    align-items: center;
     padding: 0.55rem 0.25rem;
+}
+.expand-btn-placeholder {
+    display: block;
+    width: 28px;
 }
 .resource-list-thumb-link { display: block; }
 .resource-list-thumb {
