@@ -1669,7 +1669,90 @@ details[open] .faq-question::after { transform: rotate(45deg); }
 
 
 /* =============================================================================
-   14. Disclaimers Page
+   14. For Parents Hub Page
+   ============================================================================= */
+
+.for-parents-page {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+.for-parents-page h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f1f3d;
+    margin-bottom: 0.75rem;
+}
+.for-parents-intro {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #444;
+    max-width: 720px;
+    margin-bottom: 2.5rem;
+}
+.for-parents-callout {
+    background: #f0f4fa;
+    border-left: 4px solid #1a4a8a;
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    max-width: 720px;
+}
+.for-parents-callout p {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.65;
+    color: #0f1f3d;
+    margin: 0;
+}
+.for-parents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+.for-parents-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e4e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+}
+.for-parents-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.11);
+    border-color: #5ba3f5;
+}
+.for-parents-card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+.for-parents-card h2 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0f1f3d;
+    margin-bottom: 0.5rem;
+}
+.for-parents-card p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #555;
+    flex: 1;
+    margin-bottom: 1rem;
+}
+.for-parents-card-cta {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1a4a8a;
+}
+.for-parents-card:hover .for-parents-card-cta { color: #5ba3f5; }
+
+/* =============================================================================
+   15. Disclaimers Page
    ============================================================================= */
 
 .disclaimers-page {
