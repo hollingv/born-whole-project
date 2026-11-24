@@ -10,7 +10,7 @@
             if (!t.hidden) {
                 t.hidden = true;
                 var b = t.closest('.resource-list-item').querySelector('.expand-btn');
-                if (b) { b.setAttribute('aria-expanded', 'false'); b.textContent = '+'; }
+                if (b) { b.setAttribute('aria-expanded', 'false'); b.textContent = '+'; b.title = 'Show the text'; }
             }
         });
     }
@@ -35,6 +35,7 @@
             transcript.hidden = false;
             btn.setAttribute('aria-expanded', 'true');
             btn.textContent = '−';
+            btn.title = 'Hide the text';
         }
     });
 
