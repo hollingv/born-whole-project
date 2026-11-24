@@ -27,11 +27,11 @@
                 {{range .Resources}}
                 <div class="resource-list-item">
                     <p class="resource-list-row">
-                        <a href="https://www.youtube.com/shorts/{{.VideoID}}" target="_blank" class="resource-list-thumb-link">
+                        <a href="https://www.youtube.com/shorts/{{.VideoID}}" target="_blank" class="resource-list-thumb-link" title="View the video">
                             <img src="https://img.youtube.com/vi/{{.VideoID}}/hqdefault.jpg" alt="" width="72" height="40" class="resource-list-thumb"/>
                         </a>
                         <span class="resource-list-title">{{.Title}}</span>
-                        {{if .Transcript}}<button class="expand-btn" aria-expanded="false">+</button>{{else}}<span class="expand-btn-placeholder"></span>{{end}}
+                        {{if .Transcript}}<button class="expand-btn" aria-expanded="false" title="Show the text">+</button>{{else}}<span class="expand-btn-placeholder"></span>{{end}}
                     </p>
                     {{if .Transcript}}<div class="resource-transcript" hidden>{{.Transcript}}</div>{{end}}
                 </div>
