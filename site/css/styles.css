@@ -1629,6 +1629,7 @@ details[open] .faq-question::after { transform: rotate(45deg); }
     border-radius: 0 0 8px 8px;
     padding: 0.75rem 1rem;
     font-family: Arial, sans-serif;
+    font-weight: bold;
     font-style: italic;
     font-size: 0.9rem;
     line-height: 1.8;
