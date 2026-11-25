@@ -22,21 +22,31 @@
 
         <section class="resource-section">
             {{if .Resources}}
-            <p class="resource-count">{{len .Resources}} shorts available</p>
-            <div class="resource-list">
-                {{range .Resources}}
-                <div class="resource-list-item">
-                    <p class="resource-list-row">
-                        <a href="https://www.youtube.com/shorts/{{.VideoID}}" target="_blank" class="resource-list-thumb-link" title="View the video">
-                            <img src="https://img.youtube.com/vi/{{.VideoID}}/hqdefault.jpg" alt="" width="72" height="40" class="resource-list-thumb"/>
-                        </a>
-                        <span class="resource-list-title">{{.Title}}</span>
-                        {{if .Transcript}}<button class="expand-btn" aria-expanded="false" title="Show the text">+</button>{{else}}<span class="expand-btn-placeholder"></span>{{end}}
-                    </p>
-                    {{if .Transcript}}<div class="resource-transcript" hidden>{{.Transcript}}</div>{{end}}
-                </div>
+            <p class="resource-count">{{len .Resources}} shorts available across {{len .ResourceGroups}} topics</p>
+            <div class="get-involved-nav get-involved-nav--3col">
+                {{range .ResourceGroups}}
+                <a href="#yt-{{slug .Category}}" class="get-involved-nav-link">{{.Category}}</a>
                 {{end}}
             </div>
+            {{range .ResourceGroups}}
+            <div class="resource-category-section" id="yt-{{slug .Category}}">
+                <h2 class="resource-category-heading">{{.Category}}</h2>
+                <div class="resource-list">
+                    {{range .Resources}}
+                    <div class="resource-list-item">
+                        <p class="resource-list-row">
+                            <a href="https://www.youtube.com/shorts/{{.VideoID}}" target="_blank" class="resource-list-thumb-link" title="View the video">
+                                <img src="https://img.youtube.com/vi/{{.VideoID}}/hqdefault.jpg" alt="" width="72" height="40" class="resource-list-thumb"/>
+                            </a>
+                            <span class="resource-list-title">{{.Title}}</span>
+                            {{if .Transcript}}<button class="expand-btn" aria-expanded="false" title="Show the text">+</button>{{else}}<span class="expand-btn-placeholder"></span>{{end}}
+                        </p>
+                        {{if .Transcript}}<div class="resource-transcript" hidden>{{.Transcript}}</div>{{end}}
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+            {{end}}
             {{else}}
             <p class="resource-empty">No shorts available yet. Run <code>./bwctl harvest</code> with a <code>{{.ProjectPrefix}}_YT_API_KEY</code> set to populate this page.</p>
             {{end}}

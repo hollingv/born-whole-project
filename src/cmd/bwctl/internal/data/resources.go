@@ -15,6 +15,7 @@ type Resource struct {
 	Description string `json:"description"` // short video description
 	VideoID     string `json:"video_id"`    // YouTube video ID used to construct embed and watch URLs
 	Transcript  string `json:"-"`           // transcript body loaded at build time; not persisted to JSON
+	Category    string `json:"-"`           // category parsed from # Category: header; not persisted to JSON
 }
 
 // LoadResources reads resources from site/kb/resources.json.

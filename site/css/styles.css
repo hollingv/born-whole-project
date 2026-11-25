@@ -1112,6 +1112,10 @@ nav.site-nav a.brand {
     transition: opacity 0.2s;
 }
 .get-involved-nav-link:hover { opacity: 0.85; }
+.get-involved-nav--3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
 
 
 /* =============================================================================
@@ -1558,6 +1562,18 @@ details[open] .faq-question::after { transform: rotate(45deg); }
 }
 
 /* List view */
+.resource-category-section {
+    margin-bottom: 2rem;
+}
+h2.resource-category-heading {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #fff;
+    background: linear-gradient(135deg, #1a4a8a, #5ba3f5);
+    padding: 0.45rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 0.6rem;
+}
 .resource-list {
     display: flex;
     flex-direction: column;

@@ -31,6 +31,7 @@ type templateData struct {
 	SiteFAQItems      []data.FAQItem
 	ContributeExample string
 	Resources         []data.Resource
+	ResourceGroups    []ResourceGroup
 	Events            []data.Event
 	NewsItems         []data.NewsItem
 	DonationItems     []data.DonationItem
@@ -120,17 +121,69 @@ func orgsBySocial(groups []data.OrgGroup, platform string) []OrgSocialEntry {
 	return entries
 }
 
-// enrichResourceTranscripts loads transcript text from site/kb/attyClopper/ and
-// populates the Transcript field on each Resource whose VideoID has a matching file.
+// enrichResourceTranscripts loads transcript text and category from site/kb/attyClopper/
+// and populates the Transcript and Category fields on each matching Resource.
 func enrichResourceTranscripts(resources []data.Resource) []data.Resource {
 	for i, r := range resources {
 		raw, err := os.ReadFile(filepath.Join(attyClopperKBDir, r.VideoID+".txt"))
 		if err != nil {
 			continue
 		}
-		resources[i].Transcript = parseTranscriptBody(string(raw))
+		content := string(raw)
+		resources[i].Transcript = parseTranscriptBody(content)
+		resources[i].Category = parseCategory(content)
 	}
 	return resources
+}
+
+// parseCategory extracts the value of the # Category: header from a KB file.
+func parseCategory(content string) string {
+	for _, line := range strings.Split(content, "\n") {
+		line = strings.TrimSpace(line)
+		if strings.HasPrefix(line, "# Category:") {
+			return strings.TrimSpace(strings.TrimPrefix(line, "# Category:"))
+		}
+	}
+	return ""
+}
+
+// ResourceGroup holds resources belonging to the same category.
+type ResourceGroup struct {
+	Category  string
+	Resources []data.Resource
+}
+
+// categoryOrder defines the display order of resource categories.
+var categoryOrder = []string{
+	"Anatomy & Function",
+	"Medical Claims & Healthcare",
+	"Ethics & Consent",
+	"Cultural Normalization",
+	"For Parents",
+	"Legal & Advocacy",
+}
+
+// groupResourcesByCategory partitions resources into ordered groups by Category.
+func groupResourcesByCategory(resources []data.Resource) []ResourceGroup {
+	byCategory := map[string][]data.Resource{}
+	for _, r := range resources {
+		cat := r.Category
+		if cat == "" {
+			cat = "Other"
+		}
+		byCategory[cat] = append(byCategory[cat], r)
+	}
+	var groups []ResourceGroup
+	for _, cat := range categoryOrder {
+		if rs, ok := byCategory[cat]; ok {
+			groups = append(groups, ResourceGroup{Category: cat, Resources: rs})
+			delete(byCategory, cat)
+		}
+	}
+	for cat, rs := range byCategory {
+		groups = append(groups, ResourceGroup{Category: cat, Resources: rs})
+	}
+	return groups
 }
 
 // parseTranscriptBody strips # header lines from a transcript file, removes
@@ -329,6 +382,7 @@ var siteCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		version, _ := cmd.Flags().GetString("version")
 		buildTime, _ := cmd.Flags().GetString("build-time")
+		enrichedResources := enrichResourceTranscripts(data.LoadResources())
 		tmplData := templateData{
 			SiteName:          siteName,
 			SiteUrl:           siteUrl,
@@ -341,7 +395,8 @@ var siteCmd = &cobra.Command{
 			FAQItems:          data.FAQItems,
 			SiteFAQItems:      data.SiteFAQItems,
 			ContributeExample: data.ContributeExample,
-			Resources:         enrichResourceTranscripts(data.LoadResources()),
+			Resources:         enrichedResources,
+			ResourceGroups:    groupResourcesByCategory(enrichedResources),
 			Events:            data.AllEvents(),
 			NewsItems:         data.NewsItems,
 			DonationItems:     data.DonationItems,
@@ -368,6 +423,18 @@ var siteCmd = &cobra.Command{
 			"homeEventGroups":   homeEventGroups,
 			"orgsBySocial":      orgsBySocial,
 			"hasOverview":       func(id string) bool { return overwithOverview[id] },
+			"slug": func(s string) string {
+				s = strings.ToLower(s)
+				s = strings.ReplaceAll(s, " & ", "-and-")
+				s = strings.ReplaceAll(s, " ", "-")
+				var b strings.Builder
+				for _, r := range s {
+					if (r >= 'a' && r <= 'z') || (r >= '0' && r <= '9') || r == '-' {
+						b.WriteRune(r)
+					}
+				}
+				return b.String()
+			},
 		}
 
 		generateOverviewPages(tmplData, funcMap)
