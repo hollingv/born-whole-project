@@ -1577,14 +1577,14 @@ details[open] .faq-question::after { transform: rotate(45deg); }
 .resource-list-item:hover { background: #e2eaf4; }
 .resource-list-row {
     display: grid;
-    grid-template-columns: 72px minmax(0, 1fr) 28px;
+    grid-template-columns: 72px minmax(0, 1fr) 29px;
     gap: 0.65rem;
     align-items: center;
     padding: 0.6rem 0.75rem;
 }
 .expand-btn-placeholder {
     display: block;
-    width: 28px;
+    width: 29px;
 }
 .resource-list-thumb-link { display: block; }
 .resource-list-thumb {
@@ -1603,9 +1603,9 @@ details[open] .faq-question::after { transform: rotate(45deg); }
 }
 .expand-btn {
     display: inline-block;
-    width: 22px;
-    height: 22px;
-    line-height: 20px;
+    width: 29px;
+    height: 29px;
+    line-height: 27px;
     text-align: center;
     border-radius: 50%;
     border: 1px solid #1a4a8a;
