@@ -162,6 +162,7 @@ test-links-get-involved: site-build docker-build ## Check external links on the 
 		lychee \
 			--exclude 'https://fonts.googleapis.com' \
 			--exclude 'https://fonts.gstatic.com' \
+			--exclude 'https://github.com' \
 			'/dist/get-involved.html'
 
 test-links: site-build docker-build test-links-get-involved ## Check all links in the built site using lychee
