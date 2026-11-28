@@ -36,6 +36,7 @@ type templateData struct {
 	NewsItems         []data.NewsItem
 	DonationItems     []data.DonationItem
 	Description       string // meta description; set per-page at render time
+	PageTitle         string // og:title override; set per-page at render time
 }
 
 // EventGroup is a slice of events sharing the same Kind, used for template rendering.
@@ -202,6 +203,22 @@ func parseTranscriptBody(content string) string {
 	// Collapse runs of whitespace that may be left behind.
 	body = strings.Join(strings.Fields(body), " ")
 	return strings.TrimSpace(body)
+}
+
+// pageTitles maps output filenames to their og:title strings.
+var pageTitles = map[string]string{
+	"index.html":                "Born Whole — Circumcision Information & Resources",
+	"for-parents.html":          "Circumcision 101 for Parents — Born Whole",
+	"attorney-clopper.html":     "Ask a Circumcision Lawyer — Born Whole",
+	"ask-kb.html":               "Circumcision Questions — AI Knowledge Base — Born Whole",
+	"key-facts.html":            "Circumcision Key Facts — Born Whole",
+	"youtube-shorts.html":       "Circumcision Educational Videos — Born Whole",
+	"organizations.html":        "Circumcision Awareness Organizations — Born Whole",
+	"organizations-social.html": "Circumcision Organizations on Social Media — Born Whole",
+	"events.html":               "Circumcision Awareness Events — Born Whole",
+	"news.html":                 "Circumcision News — Born Whole",
+	"about.html":                "About Born Whole — Circumcision Resource",
+	"get-involved.html":         "Get Involved — Born Whole Circumcision Advocacy",
 }
 
 // pageDescriptions maps output filenames to their meta description strings.
@@ -495,8 +512,12 @@ var siteCmd = &cobra.Command{
 			}
 
 			pageData := tmplData
-			if desc, ok := pageDescriptions[filepath.Base(p.output)]; ok {
+			outName := filepath.Base(p.output)
+			if desc, ok := pageDescriptions[outName]; ok {
 				pageData.Description = desc
+			}
+			if pt, ok := pageTitles[outName]; ok {
+				pageData.PageTitle = pt
 			}
 			if err := tmpl.Execute(f, pageData); err != nil {
 				f.Close()
