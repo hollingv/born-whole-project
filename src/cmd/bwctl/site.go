@@ -35,6 +35,7 @@ type templateData struct {
 	Events            []data.Event
 	NewsItems         []data.NewsItem
 	DonationItems     []data.DonationItem
+	Description       string // meta description; set per-page at render time
 }
 
 // EventGroup is a slice of events sharing the same Kind, used for template rendering.
@@ -201,6 +202,23 @@ func parseTranscriptBody(content string) string {
 	// Collapse runs of whitespace that may be left behind.
 	body = strings.Join(strings.Fields(body), " ")
 	return strings.TrimSpace(body)
+}
+
+// pageDescriptions maps output filenames to their meta description strings.
+var pageDescriptions = map[string]string{
+	"index.html":                "Born Whole connects parents with trusted organizations, legal experts, and an AI knowledge base about circumcision — grounded in evidence, not opinion.",
+	"for-parents.html":          "Circumcision 101 for parents: key facts, legal perspectives from Attorney Clopper, an AI knowledge base, and educational videos — all in one place.",
+	"attorney-clopper.html":     "Ask Attorney Eric Clopper your questions about circumcision law, equal protection, and parental rights. Answers grounded in his YouTube Shorts.",
+	"ask-kb.html":               "Ask an AI knowledge base your circumcision questions — answers grounded exclusively in content from vetted advocacy organizations.",
+	"key-facts.html":            "Key medical, legal, and ethical facts about circumcision. Understand what the foreskin does, what the evidence says, and what your rights are.",
+	"youtube-shorts.html":       "Short educational videos about circumcision covering anatomy, consent, law, hygiene myths, and parental rights from Attorney Eric Clopper.",
+	"organizations.html":        "Directory of organizations working to end non-therapeutic circumcision — legal, medical, educational, and advocacy groups worldwide.",
+	"organizations-social.html": "Find intactivist and circumcision awareness organizations on Facebook, X, Instagram, and YouTube.",
+	"events.html":               "Upcoming events, protests, and conferences focused on ending circumcision and protecting children's bodily integrity.",
+	"news.html":                 "News and updates from organizations working to end circumcision and protect children's right to bodily integrity.",
+	"donate.html":               "Support organizations working to end circumcision and protect children's bodily autonomy through donations and advocacy.",
+	"get-involved.html":         "Ways to contribute to Born Whole Project — from sharing information to legal advocacy against circumcision.",
+	"about.html":                "About Born Whole Project — an open-source platform connecting parents and advocates with resources and organizations working to end circumcision.",
 }
 
 // orgOverviewExists returns a set of org IDs for which a {id}-overview.html.tmpl
@@ -452,7 +470,11 @@ var siteCmd = &cobra.Command{
 				os.Exit(1)
 			}
 
-			if err := tmpl.Execute(f, tmplData); err != nil {
+			pageData := tmplData
+			if desc, ok := pageDescriptions[filepath.Base(p.output)]; ok {
+				pageData.Description = desc
+			}
+			if err := tmpl.Execute(f, pageData); err != nil {
 				f.Close()
 				fmt.Fprintf(os.Stderr, "Error rendering %s: %v\n", p.output, err)
 				os.Exit(1)
