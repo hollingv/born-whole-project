@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.58.0 - 2026-11-28
+#### Features
+- (**ci**) place the APP_BUILD_TIME on the about page - (9a01f45) - hollingv
+- (**css**) youtube-shorts row color and highlighting - (555795b) - hollingv
+- (**kb**) add 'Category' to every youtube short transcript file - (f646f28) - hollingv
+- (**kb**) clean up all youtube short transcript text - (a8a24c5) - hollingv
+- (**ui**) group YouTube Shorts by topic with category navigation - (41bd064) - hollingv
+- (**ui**) use the same row style on org-social page as on yt-shorts - (273d63d) - hollingv
+- (**ui**) transcript text now bold on youtube-shorts page - (37f356e) - hollingv
+- (**ui**) increase the diameter of the + button on youtube-shorts - (4714b53) - hollingv
+- (**ui**) set transcript panel background to pale yellow on YouTube Shorts page - (57c836b) - hollingv
+- (**ui**) add hover tooltips to video thumbnail and transcript toggle on YouTube Shorts page - (4b8b7dd) - hollingv
+- (**ui**) expand text at top of for-parents.html page - (1f2b9a1) - hollingv
+- (**ui**) put '+' button in it's own cell on yt-shorts page - (60dbc6e) - hollingv
+- (**ui**) Use Eric Clopper image on attorney-clopper page - (45917ad) - hollingv
+- (**ui**) focus on 'For Parents' with new landing page - (4fb6969) - hollingv
+
+- - -
+
 ## v0.57.0 - 2026-11-17
 #### Features
 - (**news**) add the Oregon Plaintiff's Notice of Appeal - (9a25b54) - hollingv
