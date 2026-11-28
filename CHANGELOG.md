@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.59.0 - 2026-11-28
+#### Features
+- (**organizations**) add The Case to Wait.org - (5e15ea0) - hollingv
+- (**seo**) add per-page og:title overrides - (bb00fbd) - hollingv
+- (**seo**) add 'circumcision' keyword to page title tags - (befc972) - hollingv
+- (**seo**) add robots.txt - (a8ed7df) - hollingv
+- (**seo**) generate sitemap.xml at site-build time - (432632e) - hollingv
+- (**seo**) add per-page meta description to all pages - (f3cfdc9) - hollingv
+#### Tests
+- (**Makefile**) remove the github lychee tests (network errs common) - (22782c4) - hollingv
+#### Refactoring
+- (**site**) combine 2 maps into 1 - (a75ffa6) - hollingv
+
+- - -
+
 ## v0.58.0 - 2026-11-28
 #### Features
 - (**ci**) place the APP_BUILD_TIME on the about page - (9a01f45) - hollingv
