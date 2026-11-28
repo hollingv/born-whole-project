@@ -205,37 +205,66 @@ func parseTranscriptBody(content string) string {
 	return strings.TrimSpace(body)
 }
 
-// pageTitles maps output filenames to their og:title strings.
-var pageTitles = map[string]string{
-	"index.html":                "Born Whole — Circumcision Information & Resources",
-	"for-parents.html":          "Circumcision 101 for Parents — Born Whole",
-	"attorney-clopper.html":     "Ask a Circumcision Lawyer — Born Whole",
-	"ask-kb.html":               "Circumcision Questions — AI Knowledge Base — Born Whole",
-	"key-facts.html":            "Circumcision Key Facts — Born Whole",
-	"youtube-shorts.html":       "Circumcision Educational Videos — Born Whole",
-	"organizations.html":        "Circumcision Awareness Organizations — Born Whole",
-	"organizations-social.html": "Circumcision Organizations on Social Media — Born Whole",
-	"events.html":               "Circumcision Awareness Events — Born Whole",
-	"news.html":                 "Circumcision News — Born Whole",
-	"about.html":                "About Born Whole — Circumcision Resource",
-	"get-involved.html":         "Get Involved — Born Whole Circumcision Advocacy",
+// pageSEO holds the og:title and meta description for a generated page.
+type pageSEO struct {
+	title       string
+	description string
 }
 
-// pageDescriptions maps output filenames to their meta description strings.
-var pageDescriptions = map[string]string{
-	"index.html":                "Born Whole connects parents with trusted organizations, legal experts, and an AI knowledge base about circumcision — grounded in evidence, not opinion.",
-	"for-parents.html":          "Circumcision 101 for parents: key facts, legal perspectives from Attorney Clopper, an AI knowledge base, and educational videos — all in one place.",
-	"attorney-clopper.html":     "Ask Attorney Eric Clopper your questions about circumcision law, equal protection, and parental rights. Answers grounded in his YouTube Shorts.",
-	"ask-kb.html":               "Ask an AI knowledge base your circumcision questions — answers grounded exclusively in content from vetted advocacy organizations.",
-	"key-facts.html":            "Key medical, legal, and ethical facts about circumcision. Understand what the foreskin does, what the evidence says, and what your rights are.",
-	"youtube-shorts.html":       "Short educational videos about circumcision covering anatomy, consent, law, hygiene myths, and parental rights from Attorney Eric Clopper.",
-	"organizations.html":        "Directory of organizations working to end non-therapeutic circumcision — legal, medical, educational, and advocacy groups worldwide.",
-	"organizations-social.html": "Find intactivist and circumcision awareness organizations on Facebook, X, Instagram, and YouTube.",
-	"events.html":               "Upcoming events, protests, and conferences focused on ending circumcision and protecting children's bodily integrity.",
-	"news.html":                 "News and updates from organizations working to end circumcision and protect children's right to bodily integrity.",
-	"donate.html":               "Support organizations working to end circumcision and protect children's bodily autonomy through donations and advocacy.",
-	"get-involved.html":         "Ways to contribute to Born Whole Project — from sharing information to legal advocacy against circumcision.",
-	"about.html":                "About Born Whole Project — an open-source platform connecting parents and advocates with resources and organizations working to end circumcision.",
+// pageSEOMap maps output filenames to their SEO metadata.
+var pageSEOMap = map[string]pageSEO{
+	"index.html": {
+		title:       "Born Whole — Circumcision Information & Resources",
+		description: "Born Whole connects parents with trusted organizations, legal experts, and an AI knowledge base about circumcision — grounded in evidence, not opinion.",
+	},
+	"for-parents.html": {
+		title:       "Circumcision 101 for Parents — Born Whole",
+		description: "Circumcision 101 for parents: key facts, legal perspectives from Attorney Clopper, an AI knowledge base, and educational videos — all in one place.",
+	},
+	"attorney-clopper.html": {
+		title:       "Ask a Circumcision Lawyer — Born Whole",
+		description: "Ask Attorney Eric Clopper your questions about circumcision law, equal protection, and parental rights. Answers grounded in his YouTube Shorts.",
+	},
+	"ask-kb.html": {
+		title:       "Circumcision Questions — AI Knowledge Base — Born Whole",
+		description: "Ask an AI knowledge base your circumcision questions — answers grounded exclusively in content from vetted advocacy organizations.",
+	},
+	"key-facts.html": {
+		title:       "Circumcision Key Facts — Born Whole",
+		description: "Key medical, legal, and ethical facts about circumcision. Understand what the foreskin does, what the evidence says, and what your rights are.",
+	},
+	"youtube-shorts.html": {
+		title:       "Circumcision Educational Videos — Born Whole",
+		description: "Short educational videos about circumcision covering anatomy, consent, law, hygiene myths, and parental rights from Attorney Eric Clopper.",
+	},
+	"organizations.html": {
+		title:       "Circumcision Awareness Organizations — Born Whole",
+		description: "Directory of organizations working to end non-therapeutic circumcision — legal, medical, educational, and advocacy groups worldwide.",
+	},
+	"organizations-social.html": {
+		title:       "Circumcision Organizations on Social Media — Born Whole",
+		description: "Find intactivist and circumcision awareness organizations on Facebook, X, Instagram, and YouTube.",
+	},
+	"events.html": {
+		title:       "Circumcision Awareness Events — Born Whole",
+		description: "Upcoming events, protests, and conferences focused on ending circumcision and protecting children's bodily integrity.",
+	},
+	"news.html": {
+		title:       "Circumcision News — Born Whole",
+		description: "News and updates from organizations working to end circumcision and protect children's right to bodily integrity.",
+	},
+	"donate.html": {
+		title:       "",
+		description: "Support organizations working to end circumcision and protect children's bodily autonomy through donations and advocacy.",
+	},
+	"get-involved.html": {
+		title:       "Get Involved — Born Whole Circumcision Advocacy",
+		description: "Ways to contribute to Born Whole Project — from sharing information to legal advocacy against circumcision.",
+	},
+	"about.html": {
+		title:       "About Born Whole — Circumcision Resource",
+		description: "About Born Whole Project — an open-source platform connecting parents and advocates with resources and organizations working to end circumcision.",
+	},
 }
 
 // generateSitemap writes a sitemap.xml to dist/ listing all crawlable HTML pages.
@@ -512,12 +541,9 @@ var siteCmd = &cobra.Command{
 			}
 
 			pageData := tmplData
-			outName := filepath.Base(p.output)
-			if desc, ok := pageDescriptions[outName]; ok {
-				pageData.Description = desc
-			}
-			if pt, ok := pageTitles[outName]; ok {
-				pageData.PageTitle = pt
+			if meta, ok := pageSEOMap[filepath.Base(p.output)]; ok {
+				pageData.Description = meta.description
+				pageData.PageTitle = meta.title
 			}
 			if err := tmpl.Execute(f, pageData); err != nil {
 				f.Close()
