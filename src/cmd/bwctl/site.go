@@ -221,6 +221,29 @@ var pageDescriptions = map[string]string{
 	"about.html":                "About Born Whole Project — an open-source platform connecting parents and advocates with resources and organizations working to end circumcision.",
 }
 
+// generateSitemap writes a sitemap.xml to dist/ listing all crawlable HTML pages.
+func generateSitemap(pages []page) {
+	var sb strings.Builder
+	sb.WriteString(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+`)
+	for _, p := range pages {
+		name := filepath.Base(p.output)
+		if name == "disclaimers.html" {
+			continue // non-indexed utility page
+		}
+		url := siteUrl + "/" + name
+		sb.WriteString("  <url><loc>" + url + "</loc></url>\n")
+	}
+	sb.WriteString("</urlset>\n")
+	out := filepath.Join(targetDir, "sitemap.xml")
+	if err := os.WriteFile(out, []byte(sb.String()), 0644); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing %s: %v\n", out, err)
+		return
+	}
+	fmt.Printf("Written %s\n", out)
+}
+
 // orgOverviewExists returns a set of org IDs for which a {id}-overview.html.tmpl
 // file exists in the templates/overviews/ directory.
 func orgOverviewExists() map[string]bool {
@@ -455,6 +478,7 @@ var siteCmd = &cobra.Command{
 			},
 		}
 
+		generateSitemap(pages)
 		generateOverviewPages(tmplData, funcMap)
 
 		for _, p := range pages {
