@@ -1,8 +1,9 @@
 {{define "head-og"}}
     <link rel="icon" type="image/webp" href="images/project_logo.webp">
     <link rel="apple-touch-icon" href="images/project_logo.webp">
+    {{if .Description}}<meta name="description" content="{{.Description}}">{{end}}
     <meta property="og:site_name" content="{{.SiteName}}">
     <meta property="og:title" content="{{.SiteName}}">
-    <meta property="og:description" content="Protect all children from forced, non-religious genital cutting.">
+    <meta property="og:description" content="{{if .Description}}{{.Description}}{{else}}Protect all children from forced, non-religious genital cutting.{{end}}">
     <meta property="og:image" content="{{.SiteUrl}}/images/project_logo.webp">
 {{end}}
