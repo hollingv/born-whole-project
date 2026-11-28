@@ -212,6 +212,23 @@ var OrgGroups = []OrgGroup{
 		Type: "Informational",
 		Organizations: []Organization{
 			{
+				ID:           "thecasetowait",
+				Name:         "The Case to Wait",
+				Description:  "There’s a strong case to wait — he’d statistically choose to keep the foreskin as it's both beneficial and functional.",
+				Website:      "https://thecasetowait.org",
+				Thumbnail:    "images/thecasetowait.png",
+				NewsUrl:      "",
+				EventsUrl:    "",
+				DonateUrl:    "",
+				ContactUsUrl: "",
+				SocialSites: SocialSites{
+					Facebook:  "",
+					X:         "",
+					Instagram: "",
+					YouTube:   "",
+				},
+			},
+			{
 				ID:           "nocirc-michigan",
 				Name:         "NOCIRC of Michigan",
 				Description:  "Preventing Circumcision in Michigan",
